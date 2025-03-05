@@ -1,0 +1,40 @@
+.bannder-container{
+  width: 100%;
+  .banner-overlay {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    width: 70%;
+    padding: 1.5rem;
+    border-radius: 10px;
+
+    h1, h3 {
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      width: 80%;
+      padding: 1rem;
+      h1 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      width: 90%;
+      padding: 0.8rem;
+      bottom: 5px;
+      left: 5px;
+      h1 {
+        font-size: 1.2rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,16 @@
+.bi-search {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+button {
+  background-color: #0fd28a;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0fd28b8d;
+  }
+}
