@@ -1,11 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
 import { Dropdown } from 'bootstrap';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
