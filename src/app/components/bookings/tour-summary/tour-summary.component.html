@@ -1,0 +1,78 @@
+<div class="d-flex flex-column gap-3">
+  <div
+    class="d-flex justify-content-between align-items-center p-2 rounded d-block d-md-none"
+    role="button"
+    (click)="toggleOrderDetails()"
+  >
+    <div class="d-flex align-items-center gap-2">
+      <span class="fw-semibold">
+        {{
+          isOrderDetailsVisible ? "Hide Order Details" : "Show Order Details"
+        }}
+      </span>
+
+      <i
+        class="bi"
+        [ngClass]="isOrderDetailsVisible ? 'bi-chevron-up' : 'bi-chevron-down'"
+      ></i>
+    </div>
+
+    <span class="fw-bold">${{ price.toFixed(2) }}</span>
+  </div>
+  @if(isOrderDetailsVisible){
+    <app-order-summery ></app-order-summery>
+  }
+
+  <app-order-summery class="d-none d-md-block"></app-order-summery>
+
+  <div class="card border-1 shadow-sm p-3 rounded d-md-block d-none">
+    <h5 class="fw-semibold fs-6 m-0">Book with confidence</h5>
+    <hr />
+
+    <div class="d-flex align-items-start mb-3">
+      <i class="bi bi-wallet2 me-2"></i>
+      <div>
+        <p class="feature fw-bold m-0">Lowest price guarantee</p>
+        <p class="text-muted m-0">
+          Find it cheaper? We'll refund the difference
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-start mb-3">
+      <i class="bi bi-lock me-2"></i>
+      <div>
+        <p class="feature fw-bold m-0">Privacy protection</p>
+        <p class="text-muted m-0">
+          We use SSL encryption to keep your data secure
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-start mb-3">
+      <i class="bi bi-headset me-2 fs-5"></i>
+      <div>
+        <p class="feature fw-bold m-0">24/7 global support</p>
+        <p class="text-muted m-0">
+          Get the answers you need, when you need them
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-start">
+      <i class="bi bi-telephone me-2 fs-5"></i>
+      <div>
+        <p class="feature fw-bold m-0">Give us a call</p>
+        <p class="text-muted m-0">
+          We'd be happy to help you out with your booking
+        </p>
+        <a
+          [href]="'tel:' + supportPhone"
+          class="text-muted fw-semibold feature"
+        >
+          Call now: {{ supportPhone }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

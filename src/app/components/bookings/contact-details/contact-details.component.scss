@@ -1,0 +1,26 @@
+$primaryColor:#34e0a1;
+
+.description,
+.form-check-label {
+  font-size: 13px;
+}
+
+input:focus {
+  box-shadow: none;
+  border: 2px solid black;
+}
+
+* {
+  box-shadow: none !important;
+}
+
+
+.form-check-input:checked {
+  background-color: $primaryColor !important;
+  border-color: $primaryColor !important;
+
+}
+
+.dropdown-item{
+  cursor: pointer;
+}

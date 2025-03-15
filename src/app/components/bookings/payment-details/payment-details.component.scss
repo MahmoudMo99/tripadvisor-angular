@@ -1,0 +1,14 @@
+$primaryColor:#34e0a1;
+
+input[type="radio"]{
+  margin-left: 10px;
+}
+input[type="radio"]:checked{
+  box-shadow: none;
+   background-color: $primaryColor !important;
+   border-color: $primaryColor !important;
+}
+img{
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+}
