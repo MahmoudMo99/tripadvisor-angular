@@ -7,8 +7,10 @@ import { ActivityDetailsComponent } from './components/bookings/activity-details
 import { PaymentDetailsComponent } from './components/bookings/payment-details/payment-details.component';
 import { bookingActivityGuard } from './guards/booking/booking-activity.guard';
 import { bookingPaymentGuard } from './guards/booking/booking-payment.guard';
+import { ResturantPageComponent } from './components/restaurants/resturant-page/resturant-page.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomePageComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   {
@@ -32,4 +34,6 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'Resturant', component: ResturantPageComponent },
+
 ];

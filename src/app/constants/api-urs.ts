@@ -1,5 +1,7 @@
 import { environment } from '../environment/environemt.dev';
 const Domain = environment.baseUrl;
-const auth = {
+export const auth = {
   login: `${Domain}auth/login`,
-};
+  attractiveHome: `${Domain}attractives`,
+  destinationHome: `${Domain}destination`,
+  };
