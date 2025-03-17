@@ -80,7 +80,7 @@
       <div class="card shadow-sm p-2">
         <div class="row justify-content-end">
           <div class="col-auto">
-            <img [src]="flight.airlineLogo || 'default-logo.png'" alt="Airline Logo" class="airline-logo">
+            <img [src]="flight.airlineLogo" class="airline-logo">
           </div>
           <div class="col">
             <p class="mb-1">
@@ -88,11 +88,11 @@
               <span *ngIf="flight.arrivalDate">{{ flight.arrivalDate | date:'shortTime' }}</span>
             </p>
             <p class="text-muted">
-              {{ flight.origin?.name || 'Unknown' }} ({{ flight.origin?.country || 'N/A' }}) - 
-              {{ flight.destination?.name || 'Unknown' }} ({{ flight.destination?.country || 'N/A' }}),
-              {{ flight.airline || 'Unknown Airline' }}
+              {{ flight.origin?.name }} ({{ flight.origin?.country }}) - 
+              {{ flight.destination?.name}} ({{ flight.destination?.country }}),
+              {{ flight.airline  }}
             </p>
-            <span class="text-muted">{{ flight.flightDuration || 'N/A' }} Hours </span>
+            <span class="text-muted">{{ flight.flightDuration  }} Hours </span>
           </div>
 
           <div class="col-auto text-end d-flex flex-column align-items-end ms-auto">
@@ -119,10 +119,10 @@
   <div class="col-md-3">
     <div>
     <h5>greet {{searchResults[0]?.origin?.name}} hotel deals </h5>
-    <img [src]="searchResults[0]?.origin?.images[0] || 'default-image.png'" alt="Origin Image" class="card-img-top" h-50>  </div>
+    <img src="{{ searchResults[0]?.origin?.images[0] }}" class="card-img-top h-50">
     <div class="card-body">
       <p class="card-text">with price as low as:12$ </p>
-      <a href="#" class="btn btn-warning  rounded-custom">Go somewhere</a>
+      <button type="submit">Go somewhere</button>
 
     </div>
   </div>

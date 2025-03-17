@@ -86,26 +86,27 @@ export class FlightReviewComponent implements OnInit {
 
   ngOnInit(): void {
     const type = 'Flight';
-    const reference = ''; // يمكنك تغيير هذا حسب الحاجة
+    const reference = ''; 
 
     this.loadReviews(type, reference);
   }
 
-  // جلب الـ Reviews وتصفيتها للحصول على الـ Flight Reviews فقط
   loadReviews(type: string, reference: string): void {
     this.reviewService.getReviews(type, reference).subscribe(
       (data: any) => {
         console.log('Fetched reviews:', data);
 
-        // تصفية البيانات للحصول على الـ Flight Reviews فقط
         this.reviews = data
-          .filter((review: any) => review.type === 'Flight') // تصفية حسب النوع
+          .filter((review: any) => review.type === 'Flight')
           .map((review: any) => ({
-            airline: review.title, // افترض أن الـ title هو اسم الشركة
+            airline: review.title,
+            user:{
+              image: review.user?.profileImage || 'assets/tonit1079.jpg',
+            },
             rating: review.rating,
-            ratingcount: review.ratingcount || '0', // إذا لم يكن موجودًا، استخدم القيمة الافتراضية
-            topRatedIn: review.topRatedIn || 'N/A', // إذا لم يكن موجودًا، استخدم القيمة الافتراضية
-            reviewText: review.description, // افترض أن الـ description هو نص المراجعة
+            ratingcount: review.ratingcount||"0", 
+            topRatedIn: review.topRatedIn ||'Flights', 
+            reviewText: review.description, 
           }));
       },
       (error) => {
@@ -114,17 +115,21 @@ export class FlightReviewComponent implements OnInit {
     );
   }
 
-  // تحويل التقييم إلى نجوم
   getRatingStars(rating: number): string {
     const fullStars = '★'.repeat(Math.floor(rating));
     const emptyStars = '☆'.repeat(5 - Math.floor(rating));
     return fullStars + emptyStars;
   }
 
-  // البحث (يمكنك تطويره لاحقًا)
   onSearch(): void {
-    if (this.searchQuery.trim()) {
-      console.log(this.searchQuery);
-    }
+    if (!this.searchQuery.trim()) return;
+    
+    const searchTerm = this.searchQuery.toLowerCase();
+    const filteredReviews = this.reviews.filter(review => 
+      review.title.toLowerCase().includes(searchTerm) ||
+      review.description.toLowerCase().includes(searchTerm)
+    );
+    
+    console.log('Search results:', filteredReviews);
   }
 }
