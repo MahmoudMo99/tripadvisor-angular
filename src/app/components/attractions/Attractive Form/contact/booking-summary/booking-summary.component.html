@@ -1,0 +1,91 @@
+<div class="main">
+  <div class="summary-card" *ngIf="bookingData">
+  <div class="top-card ">
+    <div class="info">
+      <h5 class="fw-bold">{{ bookingData.title }}</h5>
+      <p>by Soirées Fantastiques</p>
+      <p>{{ bookingData.title }}</p>
+ <div class="rating">
+            <span class="circle" *ngFor="let star of stars"></span>
+            <span>{{ bookingData.reviews | number }}</span>
+          </div>
+      <p></p>
+</div>  
+<div>
+      <img [src]="bookingData.image" alt="attraction image" class="summary-image">
+
+</div>  
+
+  </div>
+
+  <hr />
+
+  <div class="summary-details">
+    <div class="detail-row">
+      <span>Date</span>
+      <span>{{ bookingData.selectedDate | date: 'fullDate' }}</span>
+    </div>
+    <div class="detail-row">
+      <span>Time</span>
+      <span>{{ bookingData.selectedTime }}</span>
+    </div>
+    <div class="detail-row">
+      <span>Travelers</span>
+      <span>{{ bookingData.travelers }} Adults</span>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="cancellation-policy">
+    <p>
+      <a href="#">Free cancellation</a> + <a href="#">Unlimited reschedule</a><br />
+      before 7:00 PM on {{ bookingData.selectedDate | date: 'MMMM d' }} (tour local time)
+    </p>
+  </div>
+
+  
+</div>
+<div class="total-row">
+    <span>Total</span>
+    <span><strong>${{ bookingData.totalPrice.toFixed(2) }}</strong></span>
+  </div>
+<div class="confidence-card">
+  <h5 class="card-title">Book with confidence</h5>
+  <hr />
+
+  <div class="confidence-item">
+    <i class="fa-solid fa-wallet icon"></i>
+    <div>
+      <strong>Lowest price guarantee</strong>
+      <p>Find it cheaper? We'll refund the difference</p>
+    </div>
+  </div>
+
+  <div class="confidence-item">
+    <i class="fa-solid fa-lock icon"></i>
+    <div>
+      <strong>Privacy protection</strong>
+      <p>We use SSL encryption to keep your data secure</p>
+    </div>
+  </div>
+
+  <div class="confidence-item">
+    <i class="fa-solid fa-headphones icon"></i>
+    <div>
+      <strong>24/7 global support</strong>
+      <p>Get the answers you need, when you need them</p>
+    </div>
+  </div>
+
+  <div class="confidence-item">
+    <i class="fa-solid fa-phone icon"></i>
+    <div>
+      <strong>Give us a call</strong>
+      <p>We’d be happy to help you out with your booking<br />
+      <a href="tel:+18552755071">Call now: +1 855 275 5071</a></p>
+    </div>
+  </div>
+</div>
+
+</div>

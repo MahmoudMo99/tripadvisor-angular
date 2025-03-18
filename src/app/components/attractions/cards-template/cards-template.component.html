@@ -1,0 +1,36 @@
+  <div class="slider-container ">
+    <h2 class="fw-bold">{{ title }}</h2> 
+    
+    <div class="slider" #slider>
+      <div *ngFor="let attractive of attractions" class="card" [ngClass]="customCardClass" (click)="goToDetails(attractive._id)">
+        <img [src]="attractive.images[0]" [alt]="attractive.title" />
+
+        <div class="fav-icon">
+          <img src="../../../../assets/images/attractions-images/heart.png" alt="Favorite" />
+        </div>
+
+        <div class="card-content">
+          <h3 *ngIf="attractive.length !== 0">{{ attractive.title }}</h3>
+          
+          <div class="rating">
+            <span class="circle" *ngFor="let star of stars"></span>
+            <span>{{ attractive.reviews | number }}</span>
+          </div>
+
+          <p class="price">{{ attractive?.price | currency }}</p>
+
+          <ng-content select="[customCardBody]"></ng-content>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="controls col-12" *ngIf="attractions.length !== 0">
+      <button class="control-btn" (click)="prev()">
+        <img src="../../../../assets/images/attractions-images/back.png" alt="Previous">
+      </button>
+      <button class="control-btn" (click)="next()">
+        <img src="../../../../assets/images/attractions-images/next.png" alt="Next">
+      </button>
+    </div>
+  </div>
