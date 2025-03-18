@@ -1,0 +1,56 @@
+<div class="section2 container">
+  <div class="pageheader container text-center m-4">
+    <img src="/assets/flightpic.png" width="50px" height="50">
+
+    <h2>See traveler reviews</h2>
+    <p>
+      Customer service, legroom, meals—find out what travelers loved (or didn’t love) in their airline reviews.
+      <a href="https://www.tripadvisor.com/Airlines">Browse all airlines</a>
+    </p>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <form role="search" (submit)="onSearch()" class="position-relative">
+          <i
+            class="bi bi-search position-absolute top-50 start-0 ms-3 translate-middle-y"
+            style="cursor: pointer;"
+            (click)="onSearch()"
+          ></i>
+
+          <input
+            type="search"
+            [(ngModel)]="searchQuery"
+            name="q"
+            class="shadow form-control rounded-pill py-2 px-4 ps-5"
+            placeholder="Search airlines"
+            required
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 reviews-row">
+    <div *ngFor="let review of reviews" class="review-col">
+      <div class="card" style="width: 19rem; height: 21rem; border-radius: 15px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ review.airline }}</h5>
+
+          <div class="rating d-flex align-items-center">
+            <span class="circles me-2">{{ review.ratingcount }}</span>
+            <span>{{ getRatingStars(review.ratingcount) }}</span>
+          </div>
+
+          <img [attr.src]="review.user.image" class="img-fluid rounded-circle mt-2"
+     alt="Profile Image" style="width: 30px; height: 30px;">
+
+
+          <p class="card-text mt-2"><strong>Top Rated In:</strong> {{ review.topRatedIn }}</p>
+          <p class="card-text mt-2">{{ review.reviewText }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
