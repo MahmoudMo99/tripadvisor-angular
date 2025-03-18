@@ -1,0 +1,151 @@
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+//     font-family: "Inter", serif;
+//     font-optical-sizing: auto;
+//     list-style: none;
+//     overflow-wrap: break-word;
+
+// }
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.h-230 {
+    height: 230px;
+}
+.h-101{
+    height: 100px;
+}
+
+.bg-gray {
+    background-color: #E0E0E0;
+}
+
+.main {
+   transform: translateY(-50px);
+}
+
+.user-info-card .edit-btn {
+    border: 1px solid #E0E0E0;
+
+}
+
+.user-info-card .edit-btn .line {
+    width: 1px;
+    /* height: 100%; */
+    background-color: #E0E0E0;
+}
+
+.user-info-card .edit-btn button {
+    border: none;
+    background: none;
+}
+
+.user-info-card ul {
+
+    height: 100%;
+}
+
+.user-info-card ul li {
+    font-size: 14px;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.active-li {
+    font-weight: 700;
+    border-bottom: 3px solid #00AA6C;
+}
+
+.btn-black {
+    background-color: #000000;
+    border: none;
+}
+
+.btn-black:hover {
+    background-color: #333333;
+}
+.btn-outlet-black {
+    border: #000000 solid 2px;
+    color: #000000;
+    background-color: white;
+}
+.btn-outlet-black:hover{
+    background-color: #000000;
+    color: white;
+}
+
+
+
+
+.icn i {
+    color: #E0E0E0;
+    margin-right: 5px;
+}
+
+.icn:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.icn:hover i {
+    color: #000000;
+}
+
+.heart-icn:hover i {
+    color: #FF5D5D;
+}
+
+.edit-model {
+    top: 250px;
+}
+
+.input-box {
+    width: 100%;
+    border: 1px solid #E0E0E0;
+}
+
+.input-box input ,.input-box textarea {
+    border: none;
+    outline: none;
+    margin-left: 5px;
+    width: 100%;
+}
+
+
+
+.input-box i {
+    color: #8d8d8d;
+}
+.upload-box{
+    color:#005e3c;
+    padding: 50px;
+    width: 100%;
+}
+
+.upload-box:hover{
+    border:3px solid #00AA6C;
+    border-radius: 20px;
+}
+
+.nPst-btn{
+    left:100%;
+    bottom: 30px;
+}
+  

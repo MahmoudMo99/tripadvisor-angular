@@ -30,10 +30,9 @@ export const routes: Routes = [
       {
         path: 'payment-details',
         component: PaymentDetailsComponent,
-        canActivate:[bookingPaymentGuard]
+        canActivate: [bookingPaymentGuard],
       },
     ],
   },
   { path: 'Resturant', component: ResturantPageComponent },
-
 ];
