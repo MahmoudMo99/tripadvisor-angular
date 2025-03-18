@@ -18,16 +18,15 @@ import { ResturantPageComponent } from './components/restaurants/resturant-page/
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomePageComponent },
-    { path: 'attractions', component: AttractionsComponent },
-    // { path: 'attractions/details', component: AttractionsDetailsComponent },
-  { path: 'attraction/:id', component: AttractionsDetailsComponent }, 
+  { path: 'attractions', component: AttractionsComponent },
+  // { path: 'attractions/details', component: AttractionsDetailsComponent },
+  { path: 'attraction/:id', component: AttractionsDetailsComponent },
   { path: 'steps', component: StepsComponent },
-    { path: 'attraction/:id/contact', component: ContactComponent },
+  { path: 'attraction/:id/contact', component: ContactComponent },
 
   { path: 'attraction/activity', component: ActivityComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: '', redirectTo: '/Home', pathMatch: 'full' }
-  
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
 
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   {
