@@ -1,0 +1,19 @@
+<div class="homepage-hero">
+  <div class="home-hero-container">
+    <img class="home-img"
+         src="https://static.tacdn.com/img2/branding/homepage/home-tab3-hero-1367x520-prog.jpg"
+         alt="Restaurant Search Banner">
+
+    <div class="search-container">
+      <form role="search" (submit)="searchRestaurants()" class="position-relative">
+        <i class="bi bi-search position-absolute top-50 start-0 ms-3 translate-middle-y"></i>
+        <input type="search" [(ngModel)]="searchQuery" name="searchQuery"
+               class="shadow form-control rounded-pill py-3 px-5 search-input"
+               placeholder="Places to go, things to do, hotels" required>
+
+      </form>
+      <h1 class="header">Find your perfect restaurant</h1>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.card {
+  min-height: 160px; 
+  display: flex;
+  align-items: center; 
+
+  p, span, h5 {
+    font-size: 1.2rem; 
+  }
+
+  .airline-logo {
+    width: 60px;
+    height: auto;
+  }
+  .rounded-custom {
+    border-radius: 20px; 
+}
+
+
+}

@@ -11,3 +11,8 @@ export const API = {
     getById: (id: string) => `${Domain}attractives/${id}`,
   }
 };
+export const auth = {
+  login: `${Domain}auth/login`,
+  attractiveHome: `${Domain}attractives`,
+  destinationHome: `${Domain}destination`,
+  };

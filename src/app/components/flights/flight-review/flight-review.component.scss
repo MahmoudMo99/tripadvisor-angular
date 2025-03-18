@@ -1,0 +1,131 @@
+.section2 {
+  background-color: #F2F1EC;
+  height: 95vh;
+  width: 95%;
+  border-radius: 20px;
+  padding: 20px;
+
+  a {
+    color: black;
+  }
+
+  .pageheader {
+    img {
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .card {
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.reviews-row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 15px;
+  
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+}
+
+.review-col {
+  flex: 0 0 auto;
+  width: 19rem;
+}
+
+@media (max-width: 992px) {
+  .section2 {
+    height: 95%;
+    .card {
+      width: 100% !important;
+      margin: 0 auto 20px;
+    }
+
+    .col-md-3 {
+      padding: 0 10px;
+    }
+
+    .pageheader {
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+
+    .col-md-5 {
+      width: 70%;
+    }
+  }
+
+}
+
+@media (max-width: 576px) {
+  .section2 {
+    height: 95%;
+    padding: 10px;
+
+    .pageheader {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    .card {
+      height: 50vh !important;
+      min-height: 200px;
+    }
+
+    .col-md-5 {
+      width: 90%;
+    }
+
+    .card-body {
+      padding: 15px;
+
+      h5 {
+        font-size: 1.1rem;
+      }
+
+      .card-text {
+        font-size: 14px;
+      }
+    }
+
+    .rating {
+      margin: 10px 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-row {
+    gap: 15px;
+    
+    .review-col {
+      width: 85vw;
+    }
+  }
+}

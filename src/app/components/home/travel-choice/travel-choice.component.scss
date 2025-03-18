@@ -1,0 +1,16 @@
+.bg-light {
+  background-color: #f7f5ef !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #333;
+  }
+}

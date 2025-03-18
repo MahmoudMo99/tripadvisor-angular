@@ -1,0 +1,45 @@
+<div class="container-fluid p-0 py-4">
+  <div class="row flex-wrap w-100 m-auto p-0">
+    <div
+      class="col-md-12 col-lg-8 d-md-flex justify-content-center d-lg-block d-none"
+    >
+      <img src="assets/logo.svg" alt="logo" class="img-fluid w-25" />
+    </div>
+    <div class="col-6 d-flex justify-content-center m-auto d-md-none">
+      <img src="assets/logo2.png" alt="logo" class="img-fluid w-25" />
+    </div>
+    <nav
+      class="col-lg-8 col-12 d-flex justify-content-between align-items-center m-auto mt-lg-2 mt-3"
+    >
+      <a
+        routerLink="contact-details"
+       
+        [class.active]="isStepActive('contact-details')"
+        class="d-flex gap-2 align-items-center text-decoration-none text-dark fs-6 fw-semibold"
+      >
+        <div class="step-circle">1</div>
+        <span>Contact <span class="d-none d-md-inline">Details</span></span>
+      </a>
+
+      <a
+        routerLink="activity-details"
+        
+        [class.active]="isStepActive('activity-details')"
+        class="d-flex gap-2 align-items-center text-decoration-none text-dark fs-6 fw-semibold"
+      >
+        <div class="step-circle">2</div>
+        <span>Activity <span class="d-none d-md-inline">Details</span></span>
+      </a>
+
+      <a
+        routerLink="payment-details"
+       
+        [class.active]="isStepActive('payment-details')"
+        class="d-flex gap-2 align-items-center text-decoration-none text-dark fs-6 fw-semibold"
+      >
+        <div class="step-circle">3</div>
+        <span>Payment <span class="d-none d-md-inline">Details</span></span>
+      </a>
+    </nav>
+  </div>
+</div>
