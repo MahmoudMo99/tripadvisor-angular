@@ -1,0 +1,23 @@
+
+<div class="container col-11">
+ <div class="stepper-container col-12">
+  <div class="img col-10">
+  <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg"
+       alt="" class="logo" />
+  </div>
+
+  <div class="steps">
+    <div
+      class="step"
+      *ngFor="let s of steps"
+      [class.active]="isActive(s.route)"
+      (click)="goToStep(s.route)"
+    >
+      <div class="circle">{{ s.step }}</div>
+      <div class="label">{{ s.label }}</div>
+    </div>
+  </div>
+</div>
+ 
+</div>
+<div ><hr></div>

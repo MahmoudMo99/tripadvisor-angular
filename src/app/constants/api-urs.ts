@@ -1,5 +1,13 @@
-import { environment } from '../environment/environemt.dev';
+import { environment } from '../environment/environemt.dev';  
+
 const Domain = environment.baseUrl;
-const auth = {
-  login: `${Domain}auth/login`,
+
+export const API = {
+  auth: {
+    login: `${Domain}auth/login`,
+  },
+  attractives: {
+    getAll: `${Domain}attractives`,
+    getById: (id: string) => `${Domain}attractives/${id}`,
+  }
 };
