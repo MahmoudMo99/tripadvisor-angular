@@ -1,22 +1,26 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../../../services/flight.service';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router'; 
+import { Subscription,  } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-searched-flights',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './searched-flights.component.html',
   styleUrls: ['./searched-flights.component.scss']
 })
 export class SearchedFlightsComponent implements OnInit {
+  flightForm!: FormGroup;
+  tripType: string = 'roundTrip';
   searchResults: any[] = [];
   filteredResults: any[] = [];
+  isInvalidDateRange: boolean = false;
   errorMessage: string = '';
+  isDropdownOpen: boolean = false;
+
   private subscription: Subscription | undefined;
 
   availableAirlines: string[] = ['Nesma', 'Other airline'];
@@ -36,12 +40,28 @@ export class SearchedFlightsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private flightService: FlightService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.availableAirlines.forEach(airline => {
       this.filters.airlines[airline] = false;
+    });
+
+    this.flightForm = this.fb.group({
+      from: [''],
+      to: [''],
+      startDate: [''],
+      endDate: [''],
+      date: [''],
+      tripType: ['roundTrip'],
+      passengers: this.fb.group({
+        adults: [1],
+        children: [0],
+        seniors: [0]
+      }),
+      multiCitySegments: this.fb.array([])
     });
 
     this.subscription = this.route.queryParams.subscribe(params => {
@@ -50,22 +70,102 @@ export class SearchedFlightsComponent implements OnInit {
       }
     });
   }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  get multiCitySegments(): FormArray {
+    return this.flightForm.get('multiCitySegments') as FormArray;
+  }
 
+  getMultiCitySegment(index: number): FormGroup {
+    return this.multiCitySegments.at(index) as FormGroup;
+  }
 
-  fetchFlights(query: any) {
+  addSegment() {
+    const segmentGroup = this.fb.group({
+      from: ['', Validators.required],
+      to: ['', Validators.required],
+      date: ['', Validators.required]
+    });
+    this.multiCitySegments.push(segmentGroup);
+  }
+
+  removeSegment(index: number) {
+    if (this.multiCitySegments.length > 1) {
+      this.multiCitySegments.removeAt(index);
+    }
+  }
+  validateDateRange() {
+    const startDate = this.flightForm.get('startDate')?.value;
+    const endDate = this.flightForm.get('endDate')?.value;
+
+    if (startDate && endDate) {
+      this.isInvalidDateRange = new Date(startDate) > new Date(endDate);
+    } else {
+      this.isInvalidDateRange = false;
+    }
+  }
+
+  adjustPassengers(type: 'adults' | 'children' | 'seniors', increase: boolean) {
+    const control = this.flightForm.get(`passengers.${type}`);
+    if (control) {
+      let value = control.value;
+      value = increase ? value + 1 : Math.max(value - 1, type === 'adults' ? 1 : 0);
+      control.setValue(value);
+    }
+  }
+
+  setTripType(type: string) {
+    this.tripType = type;
+    this.flightForm.patchValue({ tripType: type });
+
+    if (type === 'roundTrip') {
+      this.flightForm.patchValue({ date: '', multiCitySegments: [] });
+    } else if (type === 'oneWay') {
+      this.flightForm.patchValue({ startDate: '', endDate: '', multiCitySegments: [] });
+    } else if (type === 'multiCity') {
+      this.flightForm.patchValue({ from: '', to: '', date: '', startDate: '', endDate: '' });
+    }
+  }
+
+  onSubmit() {
+    const formValue = this.flightForm.value;
+    const searchQuery: any = {
+      from: formValue.from,
+      to: formValue.to,
+      passengers: formValue.passengers,
+      tripType: this.tripType
+    };
+
+    if (this.tripType === 'roundTrip') {
+      searchQuery.startDate = formValue.startDate;
+      searchQuery.endDate = formValue.endDate;
+    } else if (this.tripType === 'oneWay') {
+      searchQuery.date = formValue.date;
+    } else if (this.tripType === 'multiCity') {
+      searchQuery.segments = formValue.multiCitySegments;
+    }
+
+    this.searchFlights(searchQuery);
+  }
+
+  searchFlights(query: any) {
     this.flightService.searchFlights(query).subscribe({
       next: (results: any[]) => {
         this.searchResults = results.filter(
           (flight: any, index: number, self: any[]) =>
-            index === self.findIndex((f: any) => f.id === flight.id) 
+            index === self.findIndex((f: any) => f.id === flight.id)
         );
         this.filteredResults = [...this.searchResults];
       },
       error: (err) => {
         console.error('Error fetching flights:', err);
-        this.errorMessage = 'Error fetching flights. Please try again.';
       }
     });
+  }
+
+  fetchFlights(query: any) {
+    this.searchFlights(query);
   }
 
   getLowestSeatPrice(seats: any[]): number {
@@ -92,8 +192,8 @@ export class SearchedFlightsComponent implements OnInit {
 
       const airlineFilter =
         Object.values(this.filters.airlines).some(value => value) ?
-        this.filters.airlines[flight.airline] :
-        true; 
+          this.filters.airlines[flight.airline] :
+          true;
 
       const priceFilter = this.getLowestSeatPrice(flight.seats) <= this.filters.price;
 
@@ -120,9 +220,3 @@ export class SearchedFlightsComponent implements OnInit {
     }
   }
 }
-
-
-
-
-
-
