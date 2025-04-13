@@ -110,7 +110,6 @@ export class FlightSearchComponent implements OnInit {
       return;
     }
   
-    // إذا كان النموذج صالحًا، تابع عملية البحث
     const formValue = this.flightForm.value;
     let searchQuery: any = {
       tripType: this.tripType,

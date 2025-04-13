@@ -16,6 +16,10 @@ import { bookingPaymentGuard } from './guards/booking/booking-payment.guard';
 import { ResturantPageComponent } from './components/restaurants/resturant-page/resturant-page.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 
+import { SearchedFlightsComponent } from './components/flights/searched-flights/searched-flights.component';
+import { GetflightdetailsComponent } from './components/flights/getflightdetails/getflightdetails.component';
+import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
+import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
 export const routes: Routes = [
   {path:'',component:MainLayoutComponent,children:[
 
@@ -29,6 +33,9 @@ export const routes: Routes = [
 
   { path: 'attraction/activity', component: ActivityComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'searched-flight', component: SearchedFlightsComponent },
+  { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
+  {path:'flights',component:FlightpageComponent},
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
 
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
