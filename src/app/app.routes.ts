@@ -14,9 +14,12 @@ import { PaymentDetailsComponent } from './components/bookings/payment-details/p
 import { bookingActivityGuard } from './guards/booking/booking-activity.guard';
 import { bookingPaymentGuard } from './guards/booking/booking-payment.guard';
 import { ResturantPageComponent } from './components/restaurants/resturant-page/resturant-page.component';
+import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'Home', pathMatch: 'full' },
+  {path:'',component:MainLayoutComponent,children:[
+
+    { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomePageComponent },
   { path: 'attractions', component: AttractionsComponent },
   // { path: 'attractions/details', component: AttractionsDetailsComponent },
@@ -51,4 +54,40 @@ export const routes: Routes = [
     ],
   },
   { path: 'Resturant', component: ResturantPageComponent },
+  ]}
+  // { path: '', redirectTo: 'Home', pathMatch: 'full' },
+  // { path: 'Home', component: HomePageComponent },
+  // { path: 'attractions', component: AttractionsComponent },
+  // // { path: 'attractions/details', component: AttractionsDetailsComponent },
+  // { path: 'attraction/:id', component: AttractionsDetailsComponent },
+  // { path: 'steps', component: StepsComponent },
+  // { path: 'attraction/:id/contact', component: ContactComponent },
+
+  // { path: 'attraction/activity', component: ActivityComponent },
+  // { path: 'payment', component: PaymentComponent },
+  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
+
+  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
+  // {
+  //   path: 'Booking',
+  //   component: BookingComponent,
+  //   children: [
+  //     { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
+  //     {
+  //       path: 'contact-details',
+  //       component: ContactDetailsComponent,
+  //     },
+  //     {
+  //       path: 'activity-details',
+  //       component: ActivityDetailsComponent,
+  //       canActivate: [bookingActivityGuard],
+  //     },
+  //     {
+  //       path: 'payment-details',
+  //       component: PaymentDetailsComponent,
+  //       canActivate: [bookingPaymentGuard],
+  //     },
+  //   ],
+  // },
+  // { path: 'Resturant', component: ResturantPageComponent },
 ];

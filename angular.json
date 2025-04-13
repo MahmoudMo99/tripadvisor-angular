@@ -23,7 +23,6 @@
             "polyfills": [
               "zone.js",
               "@angular/localize/init"
-              "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -93,7 +92,6 @@
               "zone.js",
               "zone.js/testing",
               "@angular/localize/init"
-              "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",

@@ -3,10 +3,11 @@ $primaryColor:#34e0a1;
 $white:white;
 
 nav {
-  position: fixed;
+  position: sticky;
   top: 0;
+  left:0;
   background-color: $white;
-  z-index: 999;
+
 }
 
 .navContainer {
