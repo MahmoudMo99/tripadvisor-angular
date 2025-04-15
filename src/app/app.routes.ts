@@ -18,6 +18,7 @@ import { MainLayoutComponent } from './components/layouts/main-layout/main-layou
 import { ReviewSearchComponent } from './components/reviews/review-search/review-search.component';
 import { ReviewFormComponent } from './components/reviews/review-form/review-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PostPhotoComponent } from './components/post-photo/post-photo.component';
 
 export const routes: Routes = [
   {
@@ -60,7 +61,8 @@ export const routes: Routes = [
       { path: 'Resturant', component: ResturantPageComponent },
       { path: 'review-search', component: ReviewSearchComponent },
       { path: 'review-form', component: ReviewFormComponent },
-      {path:'prfile',component:ProfileComponent}
+      {path:'prfile',component:ProfileComponent},
+      {path:'post-photo',component:PostPhotoComponent}
     ]
   }
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },
