@@ -75,12 +75,13 @@
         </div>
       </div>
       <!-- profile nav -->
-      <div class="bg-white mb-3">
-        <ul class="d-flex align-items-center gap-3 p-0 m-0 ps-4">
+      <div class="bg-white mb-3 ">
+        <ul class="d-flex align-items-center  p-0 m-0 ps-4 ">
           @for (item of navItems; track $index) {
           <li
             [class.active-li]="currentMainIndex === $index"
-            class="p-2"
+            class="p-2 col-lg-1 col-2 text-center"
+            [ngClass]="{'fs-14': screenSize === 'lg' , 'fs-12': screenSize === 'sm'}"
             (click)="changeMain($index)"
           >
             {{ item.name }}
@@ -89,7 +90,7 @@
         </ul>
       </div>
       <!-- main section -->
-      <section class="col-lg-10 col-12" id="main-section">
+      <section class="col-lg-10 col-12 " id="main-section">
         <div class="row">
           <!-- sidebar -->
           <div class="col-lg-4 d-flex flex-lg-column flex-column-reverse gap-3">
@@ -161,7 +162,7 @@
             </div>
           </div>
           <!--main feed -->
-          <div class="col-lg-7"> 
+          <div class="col-lg-7 mt-lg-0 mt-3"> 
              <ng-container *ngComponentOutlet="navItems[currentMainIndex].Component"></ng-container>
           </div>
         </div>

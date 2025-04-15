@@ -16,6 +16,8 @@ import { bookingPaymentGuard } from './guards/booking/booking-payment.guard';
 import { ResturantPageComponent } from './components/restaurants/resturant-page/resturant-page.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { ReviewSearchComponent } from './components/reviews/review-search/review-search.component';
+import { ReviewFormComponent } from './components/reviews/review-form/review-form.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +58,9 @@ export const routes: Routes = [
         ],
       },
       { path: 'Resturant', component: ResturantPageComponent },
-      { path: 'review-search', component: ReviewSearchComponent }
+      { path: 'review-search', component: ReviewSearchComponent },
+      { path: 'review-form', component: ReviewFormComponent },
+      {path:'prfile',component:ProfileComponent}
     ]
   }
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },

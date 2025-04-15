@@ -12,6 +12,7 @@ import { ReviewsComponent } from "./components/reviews/reviews.component";
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
+  screenSize: string = window.innerWidth > 992?'lg': 'sm';
   // nav
   navItems = [
     {name:'Activity feed', Component: FeedComponent},
