@@ -2,9 +2,8 @@
 	<i class="fa-solid fa-circle">
 		@if (fill > 0) {
             <i class="fa-solid fa-circle filled" [style.width.%]="fill"></i>
-			
 		}
 	</i>
 </ng-template>
 
-<ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="false" [max]="5" [ariaValueText]="ariaValueText" />
+<ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="readonly" [max]="5" [ariaValueText]="ariaValueText" />

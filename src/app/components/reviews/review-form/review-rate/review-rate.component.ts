@@ -8,7 +8,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './review-rate.component.scss'
 })
 export class ReviewRateComponent {
-	rating = 0;
+	@Input() rating = 0;
   @Input() readonly = false;
 
 	ariaValueText(current: number, max: number) {

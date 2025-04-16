@@ -19,6 +19,7 @@ import { ReviewSearchComponent } from './components/reviews/review-search/review
 import { ReviewFormComponent } from './components/reviews/review-form/review-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PostPhotoComponent } from './components/post-photo/post-photo.component';
+import { SearchComponent } from './components/search/search.component';
 
 export const routes: Routes = [
   {
@@ -62,7 +63,8 @@ export const routes: Routes = [
       { path: 'review-search', component: ReviewSearchComponent },
       { path: 'review-form', component: ReviewFormComponent },
       {path:'prfile',component:ProfileComponent},
-      {path:'post-photo',component:PostPhotoComponent}
+      {path:'post-photo',component:PostPhotoComponent},
+      {path:'search',component:SearchComponent}
     ]
   }
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },

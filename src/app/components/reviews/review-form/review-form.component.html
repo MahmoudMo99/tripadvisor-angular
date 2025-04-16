@@ -18,7 +18,9 @@
             <p class="m-0 fs-4 fw-bold">
                 How would you rate your experience?
             </p>
-            <app-review-rate [readonly]="false"></app-review-rate>
+            <div class="fs-2">
+                <app-review-rate [readonly]="false"></app-review-rate>
+            </div>
         </div>
 
 
@@ -39,7 +41,7 @@
                 <p class="m-0 fs-4 fw-bold">
                     Who did you go with?
                 </p>
-                <div class="col-lg-6 col-12">
+                <div class=" col-12">
                     <div class="d-flex justify-content-start align-items-center gap-2 flex-wrap">
                         @for (item of groupOptions; track $index) {
                         <input type="radio" class="btn-check" [id]="$index" name="radioDefault" autocomplete="off">
