@@ -62,7 +62,7 @@ export const routes: Routes = [
       { path: 'Resturant', component: ResturantPageComponent },
       { path: 'review-search', component: ReviewSearchComponent },
       { path: 'review-form', component: ReviewFormComponent },
-      {path:'prfile',component:ProfileComponent},
+      {path:'profile',component:ProfileComponent},
       {path:'post-photo',component:PostPhotoComponent},
       {path:'search',component:SearchComponent}
     ]

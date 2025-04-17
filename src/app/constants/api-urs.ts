@@ -9,6 +9,10 @@ export const API = {
   attractives: {
     getAll: `${Domain}attractives`,
     getById: (id: string) => `${Domain}attractives/${id}`,
+  },
+  user:{
+    getCurrentUser: `${Domain}users`,
+    
   }
 };
 export const auth = {

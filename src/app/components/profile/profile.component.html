@@ -21,10 +21,7 @@
         </div>
     </header> -->
 <section class="bg-light">
-  <div
-    class="bg-gray h-230 d-flex justify-content-center align-items-center gap-2"
-    onclick="showEditImgModel()"
-  >
+  <div class="bg-gray h-230 d-flex justify-content-center align-items-center gap-2" onclick="showEditImgModel()">
     <i class="fa-regular fa-image"></i>Add cover photo
   </div>
 
@@ -32,44 +29,38 @@
     <div class="main">
       <!-- user data card -->
       <div
-        class="bg-white user-info-card p-4 d-flex flex-column flex-lg-row justify-content-start gap-4 align-items-center"
-      >
+        class="bg-white user-info-card p-4 d-flex flex-column flex-lg-row justify-content-start gap-4 align-items-center">
         <!-- image -->
         <img
           src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=300&h=-1&s=1"
-          alt="user image"
-          width="150"
-          class="rounded-circle"
-        />
+          alt="user image" width="150" class="rounded-circle" />
         <!-- data -->
         <div class="d-flex flex-column justify-content-center w-100">
           <div class="d-flex justify-content-between align-items-start">
             <div>
-              <h3>Manar Khaled</h3>
-              <p class="text-secondary">&#64; manar255</p>
+              <h3>{{userData.firstName}}</h3>
+              <p class="text-secondary">&#64;{{userData.username}}</p>
             </div>
             <div class="edit-btn fs-14 px-2 d-flex align-items-center gap-2">
-              <button class="py-1" onclick="showEditModel()">
+              <button class="py-1" (click)="showEditModel()">
                 edit profile
               </button>
               <div class="line align-self-stretch"></div>
               <button class="py-1"><i class="fa-solid fa-gear"></i></button>
             </div>
           </div>
-          <div
-            class="d-flex justify-content-md-start justify-content-center align-items-center gap-md-5 gap-2"
-          >
+          <div class="d-flex justify-content-md-start justify-content-center align-items-center gap-md-5 gap-2">
             <div>
               <h5>contributions</h5>
               <p class="fw-600">2</p>
             </div>
             <div>
               <h5>Followers</h5>
-              <p class="fw-600">2</p>
+              <p class="fw-600">{{userData.followers?.counter||0}}</p>
             </div>
             <div>
               <h5>Following</h5>
-              <p class="text-secondary fw-600">0</p>
+              <p class="text-secondary fw-600">{{userData.following?.counter||0}}</p>
             </div>
           </div>
         </div>
@@ -78,12 +69,8 @@
       <div class="bg-white mb-3 ">
         <ul class="d-flex align-items-center  p-0 m-0 ps-4 ">
           @for (item of navItems; track $index) {
-          <li
-            [class.active-li]="currentMainIndex === $index"
-            class="p-2 col-lg-1 col-2 text-center"
-            [ngClass]="{'fs-14': screenSize === 'lg' , 'fs-12': screenSize === 'sm'}"
-            (click)="changeMain($index)"
-          >
+          <li [class.active-li]="currentMainIndex === $index" class="p-2 col-lg-1 col-2 text-center"
+            [ngClass]="{'fs-14': screenSize === 'lg' , 'fs-12': screenSize === 'sm'}" (click)="changeMain($index)">
             {{ item.name }}
           </li>
           }
@@ -97,33 +84,19 @@
             <!-- frist div -->
             <div class="bg-white d-flex flex-column p-3">
               <h3>Recent Achievements</h3>
-              <div
-                class="d-flex justify-content-between align-items-center gap-2"
-              >
-                <div
-                  class="d-flex flex-column justify-content-center align-items-center"
-                >
-                  <img
-                    src="https://www.tripadvisor.com/img2/badges/rookie_photos_milestones_badges.svg"
-                    width="80"
-                    alt=""
-                  />
+              <div class="d-flex justify-content-between align-items-center gap-2">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="https://www.tripadvisor.com/img2/badges/rookie_photos_milestones_badges.svg" width="80"
+                    alt="" />
                   <p class="fs-14 fw-600">Photos Rookie</p>
                 </div>
-                <div
-                  class="d-flex flex-column justify-content-center align-items-center"
-                >
-                  <img
-                    src="https://www.tripadvisor.com/img2/badges/first-timer_reviews_milestones_badges.svg"
-                    width="80"
-                    alt=""
-                  />
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <img src="https://www.tripadvisor.com/img2/badges/first-timer_reviews_milestones_badges.svg"
+                    width="80" alt="" />
                   <p class="fs-14 fw-600">Reviews First-timer</p>
                 </div>
               </div>
-              <button
-                class="text-white btn-black rounded-pill align-self-stretch py-2"
-              >
+              <button class="text-white btn-black rounded-pill align-self-stretch py-2">
                 View all
               </button>
             </div>
@@ -132,17 +105,34 @@
             <div class="bg-white d-flex flex-column p-3">
               <h5 class="fs-16">Intr</h5>
               <ul class="fs-14 p-1 m-0 d-flex flex-column gap-2">
+                @if(userData.currentCity){
+                <li class=""><i class="fa-solid fa-location-dot"></i> {{userData.currentCity}}</li>
+                }
+                @else {
                 <li class="">
                   <i class="fa-solid fa-plus"></i> Add your current city
                 </li>
+                }
+               
                 <li class="">
-                  <i class="fa-regular fa-calendar"></i> Joined in Feb 2025
+                  <i class="fa-regular fa-calendar"></i> Joined in {{userData.createdAt|date:'MMM yyyy'}}
                 </li>
+                @if(userData.website){
+                <li class=""><i class="fa-solid fa-paperclip"></i> {{userData.website}}</li>
+                }
+                @else {
                 <li class=""><i class="fa-solid fa-plus"></i> Add a website</li>
+                }
+                @if(userData.bio){
+                <li class=""><i class="fa-solid fa-plus"></i> {{userData.bio}}</li>
+                }
+                @else {
                 <li class="">
                   <i class="fa-solid fa-plus"></i> Write some details about
                   yourself
                 </li>
+                }
+
               </ul>
             </div>
 
@@ -162,13 +152,14 @@
             </div>
           </div>
           <!--main feed -->
-          <div class="col-lg-7 mt-lg-0 mt-3"> 
-             <ng-container *ngComponentOutlet="navItems[currentMainIndex].Component"></ng-container>
+          <div class="col-lg-7 mt-lg-0 mt-3">
+            <ng-container *ngComponentOutlet="navItems[currentMainIndex].Component"></ng-container>
           </div>
         </div>
       </section>
       <!--------------------edit profile model ---------------------------->
-      <!-- <div class="bg-white col-7  edit-model position-absolute  start-50 translate-middle">
+      <div class="bg-white col-7  edit-model position-absolute  start-50 translate-middle "
+        [ngClass]="{'d-none': !showEditModelFlag,'d-block': showEditModelFlag}">
                     <div class="bg-light h-101 col-12 d-flex gap-2 justify-content-center align-items-center">
                         <i
                             class="fa-regular fa-image"></i>Add cover photo
@@ -220,14 +211,14 @@
                             </div>
     
                             <div class="d-flex justify-content-end align-items-center gap-2">
-                               <button class=" btn-outlet-black  p-2 px-3 rounded-pill">cancel</button>
-                               <button class=" btn-black text-white p-2 px-3 rounded-pill">cancel</button>
+                               <button class=" btn-outlet-black  p-2 px-3 rounded-pill" (click)="closeEditModel()">Cancel</button>
+                               <button class=" btn-black text-white p-2 px-3 rounded-pill">Save</button>
     
                             </div>
                         </div>
                         
                     </div>
-                </div>  -->
+                </div> 
 
       <!---------------- edit profile image model ------------------------->
       <!-- <div class="bg-white col-7  edit-model position-absolute  start-50 translate-middle ">
@@ -246,8 +237,7 @@
       <!-- add post button -->
       <div
         class="nPst-btn bg-black opacity-75 rounded-circle position-sticky d-lg-none d-flex justify-content-center align-items-center"
-        style="width: 50px; height: 50px"
-      >
+        style="width: 50px; height: 50px">
         <span class="text-white"><i class="fa-solid fa-plus"></i></span>
       </div>
     </div>
