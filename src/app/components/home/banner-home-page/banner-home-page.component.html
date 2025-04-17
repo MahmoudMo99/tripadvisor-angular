@@ -1,0 +1,22 @@
+<section class="shared-container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-10 position-relative">
+      <img
+        [src]="bannerImage"
+        class="img-fluid rounded w-100"
+        alt="Tripadvisor Trendcast"
+      />
+      <div class="position-absolute bottom-0 start-0 w-75 w-md-80 w-lg-70 text-white p-3 p-md-4 rounded">
+        <h1 class="fw-bold display-6 display-md-5">{{ title }}</h1>
+        <h3 class="fs-5 fs-md-4 mb-2">{{ subtitle }}</h3>
+
+        <a
+          [href]="buttonLink"
+          class="btn btn-light mt-2 px-4 py-2 rounded-pill"
+        >
+          {{ buttonText }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

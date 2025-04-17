@@ -1,0 +1,144 @@
+<div class="container">
+  <h2 class="fs-5 fw-bold mb-4">Activity Details</h2>
+
+  <form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <p class="m-0 fw-semibold mb-3">Lead Traveler</p>
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold"
+          >First Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control bg-transparent"
+          formControlName="firstName"
+          readonly
+        />
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold"
+          >Last Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control bg-transparent"
+          formControlName="lastName"
+          readonly
+        />
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Passport Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="passportNumber" />
+         @if(passportNumber?.invalid && passportNumber?.touched ||(passportNumber?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Enter passport number.</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Country <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="country" />
+        @if(country?.invalid && country?.touched ||(country?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Enter country of issue of passport.</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Expiration Date <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" formControlName="expirationDate" />
+        @if(expirationDate?.invalid && expirationDate?.touched ||(expirationDate?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Enter passport expiry date.</div>
+        }
+      </div>
+
+
+       <p class="m-0 fw-semibold mb-3  mt-5">Traveler 2</p>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">First Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="traveler2FirstName" />
+        @if(traveler2FirstName?.invalid && traveler2FirstName?.touched ||(traveler2FirstName?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Please enter first name</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Last Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="traveler2LastName" />
+        @if(traveler2LastName?.invalid && traveler2LastName?.touched ||(traveler2LastName?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Please enter last name.</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Passport Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="traveler2PassportNumber" />
+        @if(traveler2PassportNumber?.invalid && traveler2PassportNumber?.touched ||(traveler2PassportNumber?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Enter passport number.</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Country <span class="text-danger">*</span></label>
+         <input type="text" class="form-control" formControlName="traveler2Country" />
+         @if(traveler2Country?.invalid && traveler2Country?.touched ||(traveler2Country?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Enter country of issue of passport.</div>
+        }
+      
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Expiration Date <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" formControlName="traveler2ExpirationDate" />
+        @if(traveler2ExpirationDate?.invalid && traveler2ExpirationDate?.touched ||(traveler2ExpirationDate?.invalid
+        && formSubmitted)){
+        <div class="text-danger">nter passport expiry date.</div>
+        }
+      </div>
+
+      <div class="col-12 mb-4">
+        <label class="form-label fw-semibold d-block m-0"
+          >Pickup Location <span class="text-danger">*</span></label
+        >
+        <small class="mb-2 d-block fw-semibold">The provider offers pickup from select locations. Meet the provider at one of the listed locations</small>
+        <select class="form-select" formControlName="pickupLocation">
+          <option value="" disabled selected>Select Pickup Location</option>
+          @for (location of pickupLocations; track $index) {
+          <option [value]="location">
+            {{ location }}
+          </option>
+          }
+        </select>
+        @if(pickupLocation?.invalid && pickupLocation?.touched ||(pickupLocation?.invalid
+        && formSubmitted)){
+        <div class="text-danger">Pickup location is required.</div>
+        }
+      </div>
+
+      <div class="col-lg-6 col-12 mb-4">
+        <label class="form-label fw-semibold">Tour/Activity Language</label>
+        <select class="form-select" formControlName="tourLanguage">
+          @for (lang of languages; track $index) {
+          <option [value]="lang">
+            {{ lang }}
+          </option>
+          }
+        </select>
+      </div>
+
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-dark w-75 rounded-pill py-2">
+          Next
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

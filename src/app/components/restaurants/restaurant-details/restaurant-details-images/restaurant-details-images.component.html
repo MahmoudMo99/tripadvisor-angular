@@ -1,0 +1,114 @@
+<!-- <div *ngIf="restaurant" class="images-container">
+
+
+  <div class="right-column" *ngIf="restaurant?.images?.restaurantImages?.length">
+    <div *ngFor="let img of restaurant.images.restaurantImages" class="image-card">
+      <img [src]="img" alt="Restaurant Image" />
+      <div class="overlay">
+        <span class="label">restaurantImages</span>
+        <span class="count">{{ restaurant.images.restaurantImages[0].length }}</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="left-column">
+    <div class="thumbnail-card menu" *ngIf="restaurant.images?.menuImages?.length">
+      <img [src]="restaurant.images.menuImages[0]" alt="Menu" />
+      <div class="overlay">
+        <span class="label">Menu</span>
+        <span class="count">{{ restaurant.images.menuImages.length }}</span>
+      </div>
+    </div>
+
+    <div class="thumbnail-card interior" *ngIf="restaurant.images?.interiorImages?.length">
+      <img [src]="restaurant.images.interiorImages[0]" alt="Interior" />
+      <div class="overlay">
+        <span class="label">Interior</span>
+        <span class="count">{{ restaurant.images.interiorImages.length }}</span>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<!-- Restaurant Images Wrapper -->
+<div *ngIf="restaurant?.images" class="images-wrapper">
+  <!-- Left Section -->
+  <div class="left-section">
+    <div class="image-card">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-restaurant')" >←</div>
+
+        <div id="scroll-container-restaurant" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.restaurantImages" class="image-slide">
+            <img [src]="img" alt="Restaurant Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-restaurant')">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-section">
+    <!-- Menu Images -->
+    <div class="image-card half-height">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-menu')">←</div>
+
+        <div id="scroll-container-menu" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.menuImages" class="image-slide">
+            <img [src]="img" alt="Menu Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-menu')">→</div>
+        <div class="card-label">Menu</div>
+      </div>
+    </div>
+
+    <!-- Interior Images -->
+    <div class="image-card half-height">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-interior')">←</div>
+
+        <div id="scroll-container-interior" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.interiorImages" class="image-slide">
+            <img [src]="img" alt="Interior Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-interior')">→</div>
+        <div class="card-label">Interior</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Restaurant Grid Section -->
+<!-- <div id="scroll-container-restaurant" class="scrollable-images no-scrollbar">
+  <div
+    *ngFor="let img of restaurant.images?.restaurantImages"
+    class="image-slide"
+    (click)="openModal(restaurant)"
+    style="cursor: pointer;"
+  >
+    <img [src]="img" alt="Restaurant Image" />
+  </div>
+</div> -->
+
+
+<!--  Modal Components -->
+<app-restaurant-details-model
+  *ngIf="showModal"
+  [restaurant]="selectedRestaurant"
+  [showModal]="showModal"
+  (close)="closeModal()"
+></app-restaurant-details-model>
+

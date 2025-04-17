@@ -1,0 +1,35 @@
+<div class="container-fluid p-0">
+  <div class="row p-0 m-0">
+    <app-navbar-booking
+      class="w-100 border border-bottom border-0 border-bottom-1 border-secondary-subtle"
+    ></app-navbar-booking>
+
+    <main
+      class="row align-items-start w-75 py-5 m-auto justify-content-between"
+    >
+      <div class="col-md-7 col-md-7 col-12 order-2 order-md-1 mt-4 mt-md-0">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col-lg-4 col-md-5 col-12 order-1 order-md-2">
+        <app-tour-summary></app-tour-summary>
+      </div>
+
+      <div
+        class="d-flex flex-column align-items-start mb-3 d-block d-md-none order-3 col-12 mt-2 ms-2"
+      >
+        <p class="feature fw-bold m-0">24/7 global support</p>
+        <p class="text-muted m-0">
+          Our award-winning support team is here to help, 24/7.
+        </p>
+        <a
+          href="tel:+18552755071"
+          class="text-dark fw-semibold text-decoration-underline"
+        >
+          Call now: +1 855 275 5071
+        </a>
+      </div>
+    </main>
+
+    <app-footer-booking class="w-100"></app-footer-booking>
+  </div>
+</div>

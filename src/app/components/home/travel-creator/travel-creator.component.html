@@ -1,0 +1,51 @@
+<div class="py-5">
+  <div class="container-lg container-fluid px-4" >
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="ms-1 text-dark">Got inspired by our fave travel creators</h3>
+        </div>
+        <span>
+          <h6 class="ms-1 text-dark">Tried-and-true guidance to fuel your next big trip</h6>
+        </span>
+      </div>
+
+      <div class="col-12">
+        <div class="position-relative">
+          <div class="scroll-container d-flex overflow-hidden" id="scroll-container-3">
+            <div *ngFor="let creator of TravelCreator" class="card-wrapper">
+              <div class="card-item position-relative">
+                <button class="favorite-btn">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <a [routerLink]="creator.link">
+                  <img [src]="creator.image" class="card-img-top img-fluid rounded rounded-25" [alt]="creator.title" />
+                </a>
+              </div>
+
+              <div class="card-details">
+                <div class="mt-2">
+                  <a [routerLink]="creator.link" class="card-title">{{ creator.title }}</a>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-start mt-2">
+                  <ng-container *ngFor="let _ of createArray(creator.rate)">
+                    <div class="circle green-circle"></div>
+                  </ng-container>
+                  <div class="ms-2">{{ creator.reviews }} reviews</div>
+                </div>
+
+                <div class="d-flex justify-content-start mt-2">
+                  <span class="price-text">{{ creator.price }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="scroll-arrow left-arrow" (click)="scrollToLeft()">←</button>
+          <button class="scroll-arrow right-arrow" (click)="scrollRight()">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

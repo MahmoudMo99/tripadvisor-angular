@@ -1,0 +1,14 @@
+<section class="container mt-4">
+  <div class="d-flex justify-content-center">
+    <ul class="nav">
+      <li class="nav-item" *ngFor="let item of navItems">
+        <button *ngIf="item.isButton" class="nav-link" type="button">
+          <i class="{{ item.icon }} me-1"></i> {{ item.label }}
+        </button>
+        <a *ngIf="!item.isButton" class="nav-link" [routerLink]="item.link">
+          <i class="{{ item.icon }} me-1"></i> {{ item.label }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
