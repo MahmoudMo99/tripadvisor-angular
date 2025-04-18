@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchResturantComponent } from '../search-resturant/search-resturant.component';
 import { InformationResturantComponent } from '../information-resturant/information-resturant.component';
-<<<<<<< HEAD
-
-@Component({
-  selector: 'app-resturant-page',
-  imports: [SearchResturantComponent,InformationResturantComponent],
-=======
 import { RecentRestautantComponent } from '../recent-restautant/recent-restautant.component';
 import { DinnerRestautantComponent } from '../dinner-restautant/dinner-restautant.component';
 import { LaunchRestautantComponent } from '../launch-restautant/launch-restautant.component';
@@ -16,15 +10,15 @@ import { RestaurantDetailsCardComponent } from '../restaurant-details/restaurant
 
 @Component({
   selector: 'app-resturant-page',
-  imports: [SearchResturantComponent,InformationResturantComponent,RecentRestautantComponent,DinnerRestautantComponent,LaunchRestautantComponent,BreackfastRestautantComponent],
->>>>>>> 67538c4225ae2d61ad8787e73c712d3a50f588ec
+  imports: [
+    SearchResturantComponent,
+    InformationResturantComponent,
+    RecentRestautantComponent,
+    DinnerRestautantComponent,
+    LaunchRestautantComponent,
+    BreackfastRestautantComponent,
+  ],
   templateUrl: './resturant-page.component.html',
-  styleUrl: './resturant-page.component.scss'
+  styleUrl: './resturant-page.component.scss',
 })
-export class ResturantPageComponent {
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 67538c4225ae2d61ad8787e73c712d3a50f588ec
-}
+export class ResturantPageComponent {}
