@@ -16,45 +16,60 @@ import { bookingPaymentGuard } from './guards/booking/booking-payment.guard';
 import { ResturantPageComponent } from './components/restaurants/resturant-page/resturant-page.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 
+import { SearchedFlightsComponent } from './components/flights/searched-flights/searched-flights.component';
+import { GetflightdetailsComponent } from './components/flights/getflightdetails/getflightdetails.component';
+import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
+import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
+import { RestaurantDetailsConnectionComponent } from './components/restaurants/restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
 export const routes: Routes = [
-  {path:'',component:MainLayoutComponent,children:[
-
-    { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  { path: 'Home', component: HomePageComponent },
-  { path: 'attractions', component: AttractionsComponent },
-  // { path: 'attractions/details', component: AttractionsDetailsComponent },
-  { path: 'attraction/:id', component: AttractionsDetailsComponent },
-  { path: 'steps', component: StepsComponent },
-  { path: 'attraction/:id/contact', component: ContactComponent },
-
-  { path: 'attraction/activity', component: ActivityComponent },
-  { path: 'payment', component: PaymentComponent },
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
-
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
   {
-    path: 'Booking',
-    component: BookingComponent,
+    path: '',
+    component: MainLayoutComponent,
     children: [
-      { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
+      { path: 'Home', component: HomePageComponent },
+      { path: 'attractions', component: AttractionsComponent },
+      // { path: 'attractions/details', component: AttractionsDetailsComponent },
+      { path: 'attraction/:id', component: AttractionsDetailsComponent },
+      { path: 'steps', component: StepsComponent },
+      { path: 'attraction/:id/contact', component: ContactComponent },
+
+      { path: 'attraction/activity', component: ActivityComponent },
+      { path: 'payment', component: PaymentComponent },
+      { path: 'searched-flight', component: SearchedFlightsComponent },
+      { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
+      { path: 'flights', component: FlightpageComponent },
+      { path: '', redirectTo: '/Home', pathMatch: 'full' },
+
+      { path: '', redirectTo: '/Home', pathMatch: 'full' },
       {
-        path: 'contact-details',
-        component: ContactDetailsComponent,
+        path: 'Booking',
+        component: BookingComponent,
+        children: [
+          { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
+          {
+            path: 'contact-details',
+            component: ContactDetailsComponent,
+          },
+          {
+            path: 'activity-details',
+            component: ActivityDetailsComponent,
+            canActivate: [bookingActivityGuard],
+          },
+          {
+            path: 'payment-details',
+            component: PaymentDetailsComponent,
+            canActivate: [bookingPaymentGuard],
+          },
+        ],
       },
+      { path: 'restaurants', component: ResturantPageComponent },
       {
-        path: 'activity-details',
-        component: ActivityDetailsComponent,
-        canActivate: [bookingActivityGuard],
-      },
-      {
-        path: 'payment-details',
-        component: PaymentDetailsComponent,
-        canActivate: [bookingPaymentGuard],
+        path: 'restaurants/:id',
+        component: RestaurantDetailsConnectionComponent,
       },
     ],
   },
-  { path: 'Resturant', component: ResturantPageComponent },
-  ]}
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },
   // { path: 'Home', component: HomePageComponent },
   // { path: 'attractions', component: AttractionsComponent },

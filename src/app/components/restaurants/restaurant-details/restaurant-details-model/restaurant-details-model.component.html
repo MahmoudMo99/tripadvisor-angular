@@ -1,0 +1,77 @@
+ <div *ngIf="showModal" class="modal-backdrop">
+  <div class="modal-content">
+    <button class="close-btn" (click)="close.emit()">×</button>
+
+    <div class="model">
+      <div class="modal-header">
+        <h2 class="restaurant-name">{{ restaurant.name }}</h2>
+
+        <div class="rating-section">
+          <div
+            class="green-circle"
+            *ngFor="let bubble of createRatingCircles(restaurant.rank)"
+            [class.filled]="bubble"
+          ></div>
+          <span class="reviews-count"
+            >({{ restaurant.reviewsCount }} reviews)</span
+          >
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-reservation">Make a reservation</button>
+      </div>
+    </div>
+
+    <div class="album-container">
+      <div class="album-left">
+        <div
+          class="category-thumb"
+          (click)="setCategory('all', restaurant.images.restaurantImages[0])"
+        >
+          <img
+            *ngIf="restaurant.images?.restaurantImages?.length"
+            [src]="restaurant.images.restaurantImages[0]"
+            alt="restaurant image"
+            (click)="setCategory('all', restaurant.images.restaurantImages[0])"
+          />
+          <div class="category-label">All Photos</div>
+        </div>
+
+        <div
+          class="category-thumb"
+          (click)="setCategory('menu', restaurant.images.menuImages[0])"
+        >
+          <img
+            *ngIf="restaurant.images?.menuImages?.length"
+            [src]="restaurant.images.menuImages[0]"
+            alt="menu image"
+            (click)="setCategory('menu', restaurant.images.menuImages[0])"
+          />
+          <div class="category-label">Menu</div>
+        </div>
+
+        <div
+          class="category-thumb"
+          (click)="setCategory('interior', restaurant.images.interiorImages[0])"
+        >
+          <img
+            *ngIf="restaurant.images?.interiorImages?.length"
+            [src]="restaurant.images.interiorImages[0]"
+            alt="interior image"
+            (click)="
+              setCategory('interior', restaurant.images.interiorImages[0])
+            "
+          />
+          <div class="category-label">Interior</div>
+        </div>
+      </div>
+
+      <div class="album-right">
+        <div class="image-grid">
+          <img *ngFor="let img of imagesToShow" [src]="img" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
