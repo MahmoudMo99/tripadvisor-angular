@@ -1,0 +1,153 @@
+// Variables
+$scroll-arrow-bg: white;
+$scroll-arrow-color: black;
+$scroll-arrow-size: 40px;
+$card-width: 350px;
+$card-height: 250px;
+$border-radius: 8px;
+
+/* Scroll container */
+.scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+  padding-bottom: 10px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Wrapper to keep title, rating, and price outside the card */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card styling */
+.card-item {
+  scroll-snap-align: start;
+  width: $card-width;
+  height: $card-height;
+  position: relative;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $border-radius;
+  }
+}
+
+/* Favorite Button */
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+
+  i {
+    color: black;
+    transition: color 0.3s;
+  }
+
+  &:hover i {
+    color: red;
+  }
+}
+
+/* Details section outside card */
+.card-details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Rating Circles */
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: green;
+  margin-right: 5px;
+}
+
+/* Price Styling */
+.price-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #141816;
+}
+
+/* Scroll arrows */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $scroll-arrow-bg;
+  border: 2px solid $scroll-arrow-color;
+  color: $scroll-arrow-color;
+  border-radius: 50%;
+  width: $scroll-arrow-size;
+  height: $scroll-arrow-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+
+}
+
+.left-arrow {
+  left: -20px;
+}
+
+.right-arrow {
+  right: -20px;
+}
+.seeAll{
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+
+  }
+}
+

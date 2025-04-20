@@ -1,4 +1,4 @@
-import { environment } from '../environment/environemt.dev';  
+import { environment } from '../environment/environemt.dev';
 
 const Domain = environment.baseUrl;
 
@@ -9,10 +9,17 @@ export const API = {
   attractives: {
     getAll: `${Domain}attractives`,
     getById: (id: string) => `${Domain}attractives/${id}`,
+  },
+  restaurant:{
+    recentlyrestaurants: `${Domain}resturants`,
+    getById: (id: string) => `${Domain}resturants/${id}`,
+
+
   }
 };
 export const auth = {
   login: `${Domain}auth/login`,
   attractiveHome: `${Domain}attractives`,
   destinationHome: `${Domain}destination`,
+
   };

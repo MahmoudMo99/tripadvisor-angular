@@ -6,9 +6,9 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-travel-creator',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './travel-creator.component.html',
-  styleUrls: ['./travel-creator.component.scss']
+  styleUrls: ['./travel-creator.component.scss'],
 })
 export class TravelCreatorComponent implements OnInit {
   TravelCreator: any[] = [];
@@ -24,11 +24,11 @@ export class TravelCreatorComponent implements OnInit {
       (data) => {
         this.TravelCreator = data.map((creator: any) => ({
           title: creator.title,
-          image: creator.images?.[0] || 'assets/default-image.jpg', // Use first image or default
-          link: `/creator/${creator.id}`, // Dynamic link
-          rate: creator.rating || 0, // Ensure rating is present
-          reviews: creator.reviewsCount || 0, // Ensure review count is present
-          price: `$${creator.price?.toFixed(2) || 'N/A'}`, // Format price
+          image: creator.images?.[0] || 'assets/default-image.jpg',
+          link: `/creator/${creator.id}`,
+          rate: creator.rating || 0,
+          reviews: creator.reviewsCount || 0,
+          price: `$${creator.price?.toFixed(2) || 'N/A'}`,
         }));
       },
       (error) => {
