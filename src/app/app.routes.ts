@@ -22,7 +22,9 @@ import { FlightReviewComponent } from './components/flights/flight-review/flight
 import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
 import { EmptyTripsComponent } from './components/trips/EmptyTrips/empty-trips/empty-trips.component';
 import { MyTripsComponent } from './components/trips/my-trips/my-trips.component';
+import { RestaurantDetailsConnectionComponent } from './components/restaurants/restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
 export const routes: Routes = [
+
   {
     path: '',
     component: MainLayoutComponent,
@@ -40,6 +42,9 @@ export const routes: Routes = [
       { path: 'searched-flight', component: SearchedFlightsComponent },
       { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
       { path: 'flights', component: FlightpageComponent },
+      { path: '', redirectTo: '/Home', pathMatch: 'full' },
+
+      { path: '', redirectTo: '/Home', pathMatch: 'full' },
       {
         path: 'Booking',
         component: BookingComponent,
@@ -60,6 +65,12 @@ export const routes: Routes = [
             canActivate: [bookingPaymentGuard],
           },
         ],
+
+      },
+      { path: 'restaurants', component: ResturantPageComponent },
+      {
+        path: 'restaurants/:id',
+        component: RestaurantDetailsConnectionComponent,
       },
       { path: 'Resturant', component: ResturantPageComponent },
       // EmptyTripsComponent

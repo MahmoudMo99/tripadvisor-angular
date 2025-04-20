@@ -22,9 +22,17 @@ export const API = {
     invite: (id: string) => withDomain(`trips/${id}/invite`),
     share: (id: string) => withDomain(`trips/share/${id}`),
   },
+  restaurant:{
+    recentlyrestaurants: `${Domain}resturants`,
+    getById: (id: string) => `${Domain}resturants/${id}`,
+
+  }
 };
+
 export const auth = {
   login: `${Domain}auth/login`,
   attractiveHome: `${Domain}attractives`,
   destinationHome: `${Domain}destination`,
 };
+
+

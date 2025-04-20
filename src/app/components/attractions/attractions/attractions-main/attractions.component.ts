@@ -9,15 +9,12 @@ import { AttractionsCardsComponent } from "../attractions-cards/attractions-card
 
 @Component({
   selector: 'app-attractions',
-  imports: [ HeroComponent, FeatureComponent, AttractionsCardsComponent],
+  imports: [HeroComponent, FeatureComponent, AttractionsCardsComponent],
   templateUrl: './attractions.component.html',
-  styleUrls: ['./attractions.component.css']
+  styleUrls: ['./attractions.component.css'],
 })
 export class AttractionsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
