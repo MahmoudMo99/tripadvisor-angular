@@ -1,0 +1,29 @@
+<div class="trip-modal-container">
+  <button class="close-btn" mat-icon-button (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2 class="modal-title">Share "{{ data.tripname }}"</h2>
+
+  <div class="section mb-4">
+    <p class="section-title small">
+      <i class="fa-solid fa-share"></i>
+      Share with anyone
+    </p>
+    <p class="section-subtitle text-muted">
+      Copy and send the link below to share your trip. Anyone with this link can
+      view the trip, but can't edit or add to it.
+    </p>
+
+    <div class="invite-link-wrapper">
+      <input
+        class="form-control invite-input"
+        [value]="data.shareableLink"
+        readonly
+      />
+      <button class="btn copy-btn" (click)="copyLink()">Copy</button>
+    </div>
+  </div>
+
+  <hr />
+</div>

@@ -20,48 +20,52 @@ import { SearchedFlightsComponent } from './components/flights/searched-flights/
 import { GetflightdetailsComponent } from './components/flights/getflightdetails/getflightdetails.component';
 import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
 import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
+import { EmptyTripsComponent } from './components/trips/EmptyTrips/empty-trips/empty-trips.component';
+import { MyTripsComponent } from './components/trips/my-trips/my-trips.component';
 export const routes: Routes = [
-  {path:'',component:MainLayoutComponent,children:[
-
-    { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  { path: 'Home', component: HomePageComponent },
-  { path: 'attractions', component: AttractionsComponent },
-  // { path: 'attractions/details', component: AttractionsDetailsComponent },
-  { path: 'attraction/:id', component: AttractionsDetailsComponent },
-  { path: 'steps', component: StepsComponent },
-  { path: 'attraction/:id/contact', component: ContactComponent },
-
-  { path: 'attraction/activity', component: ActivityComponent },
-  { path: 'payment', component: PaymentComponent },
-  { path: 'searched-flight', component: SearchedFlightsComponent },
-  { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
-  {path:'flights',component:FlightpageComponent},
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
-
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
   {
-    path: 'Booking',
-    component: BookingComponent,
+    path: '',
+    component: MainLayoutComponent,
     children: [
-      { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
+      { path: 'Home', component: HomePageComponent },
+      { path: 'attractions', component: AttractionsComponent },
+      // { path: 'attractions/details', component: AttractionsDetailsComponent },
+      { path: 'attraction/:id', component: AttractionsDetailsComponent },
+      { path: 'steps', component: StepsComponent },
+      { path: 'attraction/:id/contact', component: ContactComponent },
+
+      { path: 'attraction/activity', component: ActivityComponent },
+      { path: 'payment', component: PaymentComponent },
+      { path: 'searched-flight', component: SearchedFlightsComponent },
+      { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
+      { path: 'flights', component: FlightpageComponent },
       {
-        path: 'contact-details',
-        component: ContactDetailsComponent,
+        path: 'Booking',
+        component: BookingComponent,
+        children: [
+          { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
+          {
+            path: 'contact-details',
+            component: ContactDetailsComponent,
+          },
+          {
+            path: 'activity-details',
+            component: ActivityDetailsComponent,
+            canActivate: [bookingActivityGuard],
+          },
+          {
+            path: 'payment-details',
+            component: PaymentDetailsComponent,
+            canActivate: [bookingPaymentGuard],
+          },
+        ],
       },
-      {
-        path: 'activity-details',
-        component: ActivityDetailsComponent,
-        canActivate: [bookingActivityGuard],
-      },
-      {
-        path: 'payment-details',
-        component: PaymentDetailsComponent,
-        canActivate: [bookingPaymentGuard],
-      },
+      { path: 'Resturant', component: ResturantPageComponent },
+      // EmptyTripsComponent
+      {path:"Trips",component:MyTripsComponent,title:"Trips"}
     ],
   },
-  { path: 'Resturant', component: ResturantPageComponent },
-  ]}
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },
   // { path: 'Home', component: HomePageComponent },
   // { path: 'attractions', component: AttractionsComponent },

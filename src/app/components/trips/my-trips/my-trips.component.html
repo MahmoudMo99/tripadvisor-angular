@@ -1,0 +1,265 @@
+@if(isLoading){
+<div class="text-center py-4">
+  <img src="assets/trips-images/loader.gif" class="w-100" alt="Loading..." />
+</div>
+} @if(error){
+<div class="alert alert-danger">
+  {{ error }}
+</div>
+} @if(!isLoading && (uncompletedTrips.length || completedTrips.length)) {
+<div class="container-fluid px-0 px-lg-5 my-5 py-0">
+  <div class="container">
+    <!-- Notification banner -->
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div
+          class="p-3 rounded text-dark text-center"
+          style="
+            background: linear-gradient(
+              102.69deg,
+              #c9ffeb -139.94%,
+              #dcc8ff 100.37%
+            );
+          "
+        >
+          <span class="fw-semibold">
+            <img
+              src="assets/trips-images/stars.svg"
+              alt="stars"
+              class="img-fluid"
+              style="width: 30px"
+            />
+            Get custom recs faster.
+          </span>
+          <span>We've updated our Trips product to help. </span>
+          <a href="#" class="fw-bold text-decoration-underline ms-1 text-dark"
+            >Learn More</a
+          >
+        </div>
+      </div>
+
+      <h2 class="col-12 fs-1 fw-bolder mt-5">My trips</h2>
+    </div>
+
+    <!--two  Buttons -->
+    <div class="row text-center mt-2 g-3">
+      <div class="col-12 col-md-6">
+        <button
+          class="bg-transparent border border-1 border-dark-subtle rounded rounded-3 py-3 w-100 px-4 h-100 d-flex align-items-center justify-content-center gap-3"
+          (click)="openManualTripBuilder(content)"
+        >
+          <span class="fs-6"><i class="fa-solid fa-plus"></i></span>
+          <span class="fw-normal">Create a new trip</span>
+        </button>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <button
+          class="bg-transparent border border-1 border-dark-subtle rounded rounded-3 w-100 py-3 px-4 h-100 d-flex align-items-center justify-content-center gap-2"
+        >
+          <div class="p-2 icon position-relative">
+            <i class="fa-solid fa-location-dot position-absolute"></i>
+          </div>
+          <span class="fw-normal">Build a trip with AI</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Uncompleted  -->
+    @if(!isLoading && uncompletedTrips.length > 0) {
+    <div>
+      <div class="d-flex justify-content-end align-items-center my-4">
+        @if(uncompletedTrips.length > 1) {
+        <div class="dropdown">
+          <button
+            class="btn btn-sm dropdown-toggle"
+            type="button"
+            id="sortDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Sort by: Trip start date
+          </button>
+          <ul
+            class="dropdown-menu shadow border-0"
+            aria-labelledby="sortDropdown"
+          >
+            <li>
+              <a class="dropdown-item small fw-semibold">Trip start date</a>
+            </li>
+            <li>
+              <a class="dropdown-item small fw-semibold">Recently edited</a>
+            </li>
+            <li>
+              <a class="dropdown-item small fw-semibold">Recently created</a>
+            </li>
+          </ul>
+        </div>
+        }
+      </div>
+      <div class="row">
+        @for (trip of uncompletedTrips; track $index) {
+        <div class="col-12 mb-4">
+          <div
+            class="d-flex flex-column flex-md-row align-items-center p-0 shadow-sm rounded border h-100"
+          >
+            @let images = trip.destination.images; @if(images && images.length >
+            0) {
+            <img
+              [src]="trip.destination.images[0]"
+              alt="{{ trip.name }}"
+              class="trip-img rounded me-md-3 mb-3 mb-md-0 col-12 col-md-3"
+              style="object-fit: cover"
+            />
+            }
+
+            <div
+              class="d-flex flex-column justify-content-between w-100 h-75 px-3 px-md-2 py-3 py-md-0"
+            >
+              <!-- up -->
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="d-flex flex-column">
+                  <h5 class="fw-bold">{{ trip.name }}</h5>
+                  <p class="mb-1 text-muted">
+                    <i class="fa-solid fa-location-dot me-1"></i>
+                    {{ trip.destination.name }}
+                  </p>
+                </div>
+                <button
+                  class="btn"
+                  #popoverRef="ngbPopover"
+                  [ngbPopover]="menuTemplate"
+                  popoverClass="border-0 shadow-lg"
+                  triggers="manual"
+                  placement="bottom"
+                  (click)="togglePopover(popoverRef, trip._id)"
+                >
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="rotate: 90deg; font-size: 20px"
+                  ></i>
+                </button>
+              </div>
+              <!-- down -->
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0">
+                  Have dates yet?
+                  <a
+                    href="#"
+                    class="fw-semibold text-decoration-underline text-dark"
+                    >Add dates</a
+                  >
+                </p>
+                <img
+                  src="assets/avatar.jpg"
+                  class="rounded-circle"
+                  style="width: 25px; height: 25px; object-fit: cover"
+                  alt="User avatar"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Completed -->
+    @if(!isLoading) {
+    <div>
+      <h4 class="mt-5 mb-3 fw-bolder fs-4">Completed trips</h4>
+      @if(completedTrips.length > 0) {
+      <div class="row mt-2">
+        @for (trip of completedTrips; track $index) {
+        <div class="col-md-6 col-lg-4 mb-3 d-flex ">
+          <div class="card d-flex flex-row w-100 align-items-start justify-content-between border-0">
+            <div class="d-flex gap-1 col-10 align-items-start">
+              @let images = trip.destination.images; @if (images &&
+              images.length > 0) {
+              <img
+                [src]="trip.destination.images[0]"
+                class="img-fluid w-25 rounded-start"
+                alt="{{ trip.name }}"
+                style="object-fit: cover; height: 100%"
+              />
+              }
+              <div
+                class="card-body d-flex flex-column justify-content-center"
+              >
+                <h5 class="card-title small">{{ trip.name }}</h5>
+                <p class="card-text small">{{ trip.destination.name }}</p>
+              </div>
+            </div>
+            <div class="col-1 mt-2">
+              <i
+                class="fa-solid fa-ellipsis-vertical"
+                style="rotate: 90deg; font-size: 20px; cursor: pointer"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        }
+      </div>
+      } @else {
+      <div class="text-muted fst-italic">
+        Your completed trips will appear here.
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+}
+
+<!-- there is no Trips -->
+@if(!isLoading && !completedTrips.length && !uncompletedTrips.length){
+<app-empty-trips></app-empty-trips>
+}
+
+<!-- Popover for menu  -->
+<ng-template #menuTemplate class="bg-danger">
+  <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+    <li class="popover-item fw-semibold cursor p-1" (click)="openDateModal()">
+      Add dates
+    </li>
+    <li class="popover-item fw-semibold cursor p-1" (click)="invite()">
+      Invite
+    </li>
+    <li class="popover-item fw-semibold cursor p-1" (click)="shareTrip()">
+      Share trip
+    </li>
+    <li class="popover-item fw-semibold cursor p-1" (click)="makePublic()">
+      Make trip public
+    </li>
+    <li class="popover-item fw-semibold cursor p-1" (click)="markAsComplete()">
+      Make trip as complete
+    </li>
+    <li
+      class="popover-item text-danger fw-semibold cursor p-1"
+      (click)="deleteTrip()"
+    >
+      Delete
+    </li>
+  </ul>
+</ng-template>
+
+<!-- Offcanvas  for creation trip -->
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header border border-bottom-1 border-dark-subtle py-4">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-create-trip
+      [offcanvasRef]="offcanvas"
+      (tripCreated)="fetchMyTrips()"
+    ></app-create-trip>
+  </div>
+</ng-template>

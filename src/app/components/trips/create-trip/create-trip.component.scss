@@ -1,0 +1,45 @@
+.add-trip-modal {
+  input::placeholder {
+    color: #999;
+  }
+
+  .input-group {
+    background-color: #f8f9fa;
+    border-radius: 2rem;
+  }
+
+  .btn-dark {
+    font-weight: 600;
+  }
+
+  a {
+    color: #000;
+  }
+}
+
+
+.form-control {
+  background-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: black;
+}
+
+.list-group-item{
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.list-group-item:hover{
+  background-color: #dddddd;
+}
+
+
+.smallFont{
+  font-size: 12px !important;
+}

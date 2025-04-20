@@ -1,0 +1,77 @@
+<div class="add-trip-modal py-0">
+  <div style="height: 73vh; overflow-y: auto">
+    <h3 class="fw-bold mb-4">Create a trip</h3>
+    <div class="mb-3">
+      <label for="tripName" class="form-label fw-semibold">Trip name</label>
+      <input
+        type="text"
+        id="tripName"
+        class="form-control"
+        placeholder="e.g., Summer vacation in Greece"
+        maxlength="80"
+        [(ngModel)]="tripName"
+        [ngClass]="{ 'border-danger border-2': tripNameError }"
+      />
+      <div class="text-end text-muted smallFont mt-1">0/80 max characters</div>
+      @if(tripNameError){
+      <div class="text-danger smallFont fw-bold m-0">Trip name is required</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="destination" class="form-label fw-semibold"
+        >Destination</label
+      >
+      <div class="input-group rounded-pill border px-3 py-1"   [ngClass]="{ 'border-danger border-2': destinationError }">
+        <span class="input-group-text bg-transparent border-0 pe-2">
+          <i class="fas fa-search text-muted"></i>
+        </span>
+        <input
+          type="text"
+          id="destination"
+          class="form-control border-0"
+          placeholder="Where to?"
+          [(ngModel)]="selectedDestinationName"
+          (input)="onDestinationInput($event)"
+        />
+      </div>
+
+      @if(destinationError){
+      <div class="text-danger fw-bold smallFont mt-1">Destination is required</div>
+      }
+    </div>
+
+    @if(searchResults.length > 0){
+    <ul class="list-group mt-0 border-0">
+      @for (destination of searchResults; track $index) {
+      <li
+        class="list-group-item d-flex align-items-center p-1 border-0 mb-2"
+        (click)="selectDestination(destination)"
+      >
+        @if(destination.images.length){
+        <img
+          [src]="destination.images[0]"
+          alt="{{ destination.name }}"
+          width="50"
+          height="50"
+          class="rounded me-2"
+        />
+        }
+        <div>
+          <div class="fw-semibold fs-6">{{ destination.name }}</div>
+          <small class="text-muted">
+            {{ destination.region }}, {{ destination.country }}
+          </small>
+        </div>
+      </li>
+      }
+    </ul>
+    }
+  </div>
+  <!-- Footer  -->
+  <div class="d-flex justify-content-end align-items-center pt-3 border-top">
+    <button class="btn btn-dark rounded-pill px-4" (click)="createTrip()">
+      Create trip
+    </button>
+  </div>
+</div>

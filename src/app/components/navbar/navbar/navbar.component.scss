@@ -40,3 +40,8 @@ input:focus {
   }
 }
 
+$greyColor:#d5d5d5;
+
+ul>li>a:hover {
+  background-color: $greyColor !important;
+}

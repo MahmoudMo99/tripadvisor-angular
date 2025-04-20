@@ -1,0 +1,89 @@
+.title {
+  letter-spacing: .02em;
+  font-size: 52px;
+  font-weight: 700;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.featureDescription,
+.DescriptionAi {
+  line-height: 1.1;
+}
+
+.ai-trip-btn {
+  background-color: #301d49;
+  transition: background-color 0.3s ease;
+}
+
+.ai-trip-btn:hover {
+  background-color: #4a2e6b;
+}
+
+.manual-trip-btn {
+  background-color: #34e0a1;
+  transition: background-color 0.3s ease;
+}
+
+.manual-trip-btn:hover {
+  background-color: #2cb88a;
+}
+
+.city-card {
+  width: calc((100% - 4 * 1rem) / 5);
+  cursor: pointer;
+}
+
+.city-card .overlay {
+  background-color: rgba(51, 51, 51, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.city-card:hover .overlay {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+// .wide-offcanvas{
+//   width: 50% !important;
+// }
+
+
+// .wide-offcanvas .offcanvas {
+//   width: 40% !important;
+//   max-width: none !important;
+// }
+// .carousel {
+//   width: 100%;
+//   overflow: hidden;
+// }
+
+// .carousel .slick-slide {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+
+// .offcanvas::backdrop {
+//   background-color: rgba(133, 133, 133, 0.3) !important;
+// }
+
+button{
+  box-shadow: none !important;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
+  .city-card{
+    width: 150px !important;
+  }
+}

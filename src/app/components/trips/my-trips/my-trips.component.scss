@@ -1,0 +1,36 @@
+.icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #dfd3ee;
+}
+.icon>i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #7446af;
+}
+
+.btn{
+  border: none !important;
+  outline: none !important;
+}
+
+.cursor{
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.cursor:hover{
+  background-color: rgb(219, 219, 219);
+}
+
+.trip-img {
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  .trip-img {
+    height: 180px;
+  }
+}
