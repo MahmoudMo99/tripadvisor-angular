@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { IEditUser } from '../../models/user/i-edit-user';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
+import { IReview } from '../../models/review/review';
+import { ReviewService } from '../../services/review/review.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +26,8 @@ export class ProfileComponent {
     username: '',
   };
   editUserData :IEditUser={} 
+  reviews: IReview[] = [];
+  
 
 
 
@@ -43,8 +47,9 @@ export class ProfileComponent {
   showEditImageModelFlag: boolean = false;
   showEditImageModelType: string = 'image';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private reviewService: ReviewService) {
     this.getUserData();
+    this.getReviews();
   }
 
 
@@ -78,6 +83,13 @@ export class ProfileComponent {
     } else {
       console.error('No file selected');
     }
+  }
+  // reviews
+  getReviews() {
+    this.reviewService.userReviews.subscribe(r=>{
+      this.reviews = r;
+      console.log(this.reviews);
+    })
   }
 
 
