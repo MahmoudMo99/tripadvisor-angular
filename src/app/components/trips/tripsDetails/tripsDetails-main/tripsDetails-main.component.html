@@ -1,0 +1,51 @@
+<div class="container-fluid main col-12">
+  <div class="row main-con justify-content-center col-10">
+    <div class="col-lg-8 col-md-8 col-12">
+
+      <div class="trip-card mb-4" *ngIf="tripData">
+        <img 
+    [src]="tripData.destination.images " 
+          alt="{{ tripData.destination.name || 'Trip Image' }}" 
+          class="trip-image img-fluid" 
+        />
+
+        <div class="trip-info">
+          <div class="trip-actions d-flex justify-content-end gap-2">
+            <button (click)="openInviteDialog()">
+              <mat-icon>person_add</mat-icon> Invite
+            </button>
+            <button (click)="openInviteDialog()">
+              <mat-icon>share</mat-icon>
+            </button>
+            <button>
+              <mat-icon>settings</mat-icon>
+            </button>
+          </div>
+
+          <div class="mt-auto">
+            <h1 class="h3">{{ tripData.name }}</h1> 
+            <p><mat-icon>location_on</mat-icon> {{ tripData.destination.name || 'Unknown' }}</p> 
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs-container d-flex gap-4 flex-wrap">
+        <a routerLink="saves" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }">Saves</a>
+        <a routerLink="itinerary" routerLinkActive="active-tab">Itinerary</a>
+        <a routerLink="for-you" routerLinkActive="active-tab">For you</a>
+      </div>
+
+      <div class="page-content mt-4">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-12 mt-4 mt-lg-0">
+      <div class="map-wrapper">
+        <div id="map" class="map-container"></div>
+      </div>
+    </div>
+
+  </div>
+</div>

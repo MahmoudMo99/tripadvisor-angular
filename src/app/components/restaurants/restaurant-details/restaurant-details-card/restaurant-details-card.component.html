@@ -25,7 +25,7 @@
         <span class="day">{{ day }}</span>
         <div class="hours">
           <!-- Use safe navigation operator and provide a fallback to avoid errors -->
-          <span>{{ parsedHours[day]?.join(', ') || 'No hours available' }}</span>
+          <span>{{ parsedHours[day].join(', ') || 'No hours available' }}</span>
         </div>
       </div>
     </div>

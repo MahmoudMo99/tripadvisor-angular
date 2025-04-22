@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Contributor } from '../../../models/Trips/itrip-invite-res';
+import { Contributor } from '../../../../models/Trips/itrip-invite-res';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

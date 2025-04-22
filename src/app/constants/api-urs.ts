@@ -21,6 +21,8 @@ export const API = {
     addDateToTrip: (id: string) => withDomain(`trips/${id}/add-date`),
     invite: (id: string) => withDomain(`trips/${id}/invite`),
     share: (id: string) => withDomain(`trips/share/${id}`),
+  getTripById: (tripId: string) => withDomain(`trips/${tripId}`)
+
   },
   restaurant:{
     recentlyrestaurants: `${Domain}resturants`,

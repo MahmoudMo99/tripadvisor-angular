@@ -59,4 +59,13 @@ export class TripsService {
     return this.http.get<ItripShareRes>(url, { headers });
   }
 
+
+
+    getTripById(tripId: string): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
+    );
+    return this.http.get(API.trips.getTripById(tripId), { headers });
+  }
 }

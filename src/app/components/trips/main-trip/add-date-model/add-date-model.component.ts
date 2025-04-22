@@ -10,7 +10,7 @@ import {
   DateAdapter,
 } from '@angular/material/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TripsService } from '../../../services/trips/trips.service';
+import { TripsService } from '../../../../services/trips/trips.service';
 
 // Default Material date formats
 export const MY_DATE_FORMATS = {
