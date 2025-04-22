@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="fw-1">Trip collaboration</h1>
+
+<mat-dialog-content>
+  <p><strong>Invite collaborators</strong></p>
+  <p>Copy and send the link below to invite collaborators. Anyone with this link can edit and add to your trip.</p>
+
+  <div class="col-12 d-flex dialog-container">
+    <div class="col-9 invite-link">
+      <input readonly [value]="'https://www.tripadvisor.com/Trips?t=' + tripData._id" />
+    </div>
+    <div class="col-3">
+      <button (click)="copyLink()">Copy</button>
+    </div>
+  </div>
+
+  <div class="collaborators">
+    <h5>Collaborators</h5>
+    <div class="collaborator" *ngIf="tripData?.owner">
+      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/eb/a3/default-avatar-2020-38.jpg?w=200&h=-1&s=1" alt="Owner" class="avatar" />
+      <span>{{ tripData.owner.firstName }} {{ tripData.owner.lastName }} (Owner)</span>
+    </div>
+  </div>
+</mat-dialog-content>

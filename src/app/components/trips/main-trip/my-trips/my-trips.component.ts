@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TripsService } from '../../../services/trips/trips.service';
-import { ItripFetch } from '../../../models/Trips/itrip-fetch';
-import { EmptyTripsComponent } from '../EmptyTrips/empty-trips/empty-trips.component';
+import { TripsService } from '../../../../services/trips/trips.service';
+import { ItripFetch } from '../../../../models/Trips/itrip-fetch';
+import { EmptyTripsComponent } from '../empty-trips/empty-trips.component';
 import {
   NgbModal,
   NgbOffcanvas,
@@ -12,6 +12,7 @@ import { CreateTripComponent } from "../create-trip/create-trip.component";
 import { MatDialog } from '@angular/material/dialog';
 import { TripInviteModalComponent } from '../trip-invite-modal/trip-invite-modal.component';
 import { TripShareModalComponent } from '../trip-share-modal/trip-share-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-trips',
@@ -31,7 +32,8 @@ export class MyTripsComponent implements OnInit {
     private tripsService: TripsService,
     private modalService: NgbModal,
     private offcanvasService: NgbOffcanvas,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,8 @@ export class MyTripsComponent implements OnInit {
     this.tripsService.getMyTrips().subscribe({
       next: (res) => {
         this.completedTrips = res.completedTrips || [];
+        console.log(res);
+        
         this.uncompletedTrips = res.uncompletedTrips || [];
         this.isLoading = false;
       },
@@ -113,5 +117,13 @@ export class MyTripsComponent implements OnInit {
 }
   makePublic() {}
   markAsComplete() {}
-  deleteTrip() {}
+  deleteTrip() { }
+  
+
+
+  goToDetails(id:string) {
+        this.router.navigate(['/trips', id]);
+console.log(this.selectedTripId);
+
+  }
 }

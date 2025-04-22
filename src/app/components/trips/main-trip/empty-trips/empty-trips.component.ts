@@ -4,7 +4,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { NgbOffcanvasModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { CreateTripComponent } from "../../create-trip/create-trip.component";
+import { CreateTripComponent } from "../create-trip/create-trip.component";
 
 @Component({
   selector: 'app-empty-trips',

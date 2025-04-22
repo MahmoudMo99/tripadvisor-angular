@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DestinationService } from '../../../services/Destinations/destination.service';
-import { IDestination } from '../../../models/Destination/idestination';
+import { DestinationService } from '../../../../services/Destinations/destination.service';
+import { IDestination } from '../../../../models/Destination/idestination';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Itrip } from '../../../models/Trips/itrip';
-import { TripsService } from '../../../services/trips/trips.service';
+import { Itrip } from '../../../../models/Trips/itrip';
+import { TripsService } from '../../../../services/trips/trips.service';
 
 @Component({
   selector: 'app-create-trip',

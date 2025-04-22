@@ -119,7 +119,7 @@
               <!-- up -->
               <div class="d-flex justify-content-between align-items-start">
                 <div class="d-flex flex-column">
-                  <h5 class="fw-bold">{{ trip.name }}</h5>
+                <h5> <a class="fw-bold text-decoration-none text-dark" (click)="goToDetails(trip._id)"  style="cursor: pointer">{{ trip.name }}</a></h5> 
                   <p class="mb-1 text-muted">
                     <i class="fa-solid fa-location-dot me-1"></i>
                     {{ trip.destination.name }}
