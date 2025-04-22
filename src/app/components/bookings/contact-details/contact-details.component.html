@@ -1,0 +1,154 @@
+<div class="container-fluid">
+  <h2 class="fs-5 fw-bold">Contact Details</h2>
+  <p class="description">
+    We'll use this information to send you confirmation and updates about your
+    booking.
+  </p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="d-flex col-12 gap-1 flex-wrap flex-lg-nowrap">
+        <div class="col-lg-6 col-12 mb-3">
+          <label class="form-label fw-semibold"
+            >First Name <span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              (firstName?.invalid && firstName?.touched) ||
+              (firstName?.invalid && formSubmitted)
+            "
+            [class.is-valid]="
+              (firstName?.valid && firstName?.touched) ||
+              (firstName?.valid && formSubmitted)
+            "
+            formControlName="firstName"
+          />
+          @if ((firstName?.invalid && firstName?.touched) ||(firstName?.invalid
+          && formSubmitted)) {
+          <small class="text-danger">enter your first name.</small>
+          }
+        </div>
+
+        <div class="col-lg-6 col-12 mb-3">
+          <label class="form-label fw-semibold"
+            >Last Name <span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              (lastName?.invalid && lastName?.touched) ||
+              (lastName?.invalid && formSubmitted)
+            "
+            [class.is-valid]="
+              (lastName?.valid && lastName?.touched) ||
+              (lastName?.valid && formSubmitted)
+            "
+            formControlName="lastName"
+          />
+          @if ((lastName?.invalid && lastName?.touched) ||(lastName?.invalid &&
+          formSubmitted)) {
+          <small class="text-danger">enter your last name.</small>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3 col-12">
+        <label class="form-label fw-semibold"
+          >Email <span class="text-danger">*</span></label
+        >
+        <input
+          type="email"
+          class="form-control"
+          [class.is-invalid]="
+            (email?.invalid && email?.touched) ||
+            (email?.invalid && formSubmitted)
+          "
+          [class.is-valid]="
+            (email?.valid && email?.touched) || (email?.valid && formSubmitted)
+          "
+          formControlName="email"
+        />
+        @if ((email?.invalid && email?.touched) ||(email?.invalid &&
+        formSubmitted)) {
+        <small class="text-danger">Enter a valid email .</small>
+        }
+      </div>
+
+      <div class="mb-3 col-12">
+        <label class="form-label fw-semibold"
+          >Phone Number <span class="text-danger">*</span></label
+        >
+        <div class="d-flex col-12">
+          <div class="dropdown">
+            <button
+              class="btn border border-end-0 rounded-end-0 bg-transparent dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              {{ selectedCountry }}
+            </button>
+            <ul class="dropdown-menu">
+              @for (country of countries; track $index) {
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="onCountryChange(country.code)"
+                >
+                  {{ country.name }} ({{ country.code }})
+                </a>
+              </li>
+              }
+            </ul>
+          </div>
+
+          <input
+            type="text"
+            class="form-control rounded-start-0"
+            formControlName="phoneNumber"
+            (input)="validatePhoneNumber()"
+            [class.is-invalid]="
+              (phoneNumber?.invalid && phoneNumber?.touched) ||
+              (phoneNumber?.invalid && formSubmitted)
+            "
+            [class.is-valid]="
+              (phoneNumber?.valid && phoneNumber?.touched) ||
+              (phoneNumber?.valid && formSubmitted)
+            "
+          />
+        </div>
+
+        @if ((phoneNumber?.invalid && phoneNumber?.touched)
+        ||(phoneNumber?.invalid && formSubmitted)) {
+        <small class="text-danger">Enter a valid phone number.</small>
+        } @if (phoneNumber?.errors?.['invalidCountryFormat']) {
+        <small class="text-danger"
+          >Phone number does not match the format for
+          {{ selectedCountry }}.</small
+        >
+        }
+      </div>
+
+      <div class="form-check mb-3 col-12 ms-3">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="smsUpdates"
+          id="smsUpdates"
+        />
+        <label for="smsUpdates" class="form-check-label">
+          Receive SMS updates about your booking. Message rates may apply.
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-dark w-75 rounded-pill py-2 d-flex justify-content-center m-auto my-2"
+      >
+        Next
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,254 @@
+<!-- <header class="bg-white">
+        <div>
+            <img src="https://www.tripadvisor.com/" alt="">
+            <div>
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="search">
+            </div>
+            <div>
+                <ul>
+                    <li>Discover</li>
+                    <li>Trips</li>
+                    <li>Review</li>
+                    <li>More</li>
+                </ul>
+            </div>
+            <div>
+                <span></span>
+                <div class="line"></div>
+                <p>USA</p>
+            </div>
+        </div>
+    </header> -->
+<section class="bg-light">
+  <div
+    class="bg-gray h-230 d-flex justify-content-center align-items-center gap-2"
+    onclick="showEditImgModel()"
+  >
+    <i class="fa-regular fa-image"></i>Add cover photo
+  </div>
+
+  <div class="container">
+    <div class="main">
+      <!-- user data card -->
+      <div
+        class="bg-white user-info-card p-4 d-flex flex-column flex-lg-row justify-content-start gap-4 align-items-center"
+      >
+        <!-- image -->
+        <img
+          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=300&h=-1&s=1"
+          alt="user image"
+          width="150"
+          class="rounded-circle"
+        />
+        <!-- data -->
+        <div class="d-flex flex-column justify-content-center w-100">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <h3>Manar Khaled</h3>
+              <p class="text-secondary">&#64; manar255</p>
+            </div>
+            <div class="edit-btn fs-14 px-2 d-flex align-items-center gap-2">
+              <button class="py-1" onclick="showEditModel()">
+                edit profile
+              </button>
+              <div class="line align-self-stretch"></div>
+              <button class="py-1"><i class="fa-solid fa-gear"></i></button>
+            </div>
+          </div>
+          <div
+            class="d-flex justify-content-md-start justify-content-center align-items-center gap-md-5 gap-2"
+          >
+            <div>
+              <h5>contributions</h5>
+              <p class="fw-600">2</p>
+            </div>
+            <div>
+              <h5>Followers</h5>
+              <p class="fw-600">2</p>
+            </div>
+            <div>
+              <h5>Following</h5>
+              <p class="text-secondary fw-600">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- profile nav -->
+      <div class="bg-white mb-3">
+        <ul class="d-flex align-items-center gap-3 p-0 m-0 ps-4">
+          @for (item of navItems; track $index) {
+          <li
+            [class.active-li]="currentMainIndex === $index"
+            class="p-2"
+            (click)="changeMain($index)"
+          >
+            {{ item.name }}
+          </li>
+          }
+        </ul>
+      </div>
+      <!-- main section -->
+      <section class="col-lg-10 col-12" id="main-section">
+        <div class="row">
+          <!-- sidebar -->
+          <div class="col-lg-4 d-flex flex-lg-column flex-column-reverse gap-3">
+            <!-- frist div -->
+            <div class="bg-white d-flex flex-column p-3">
+              <h3>Recent Achievements</h3>
+              <div
+                class="d-flex justify-content-between align-items-center gap-2"
+              >
+                <div
+                  class="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img
+                    src="https://www.tripadvisor.com/img2/badges/rookie_photos_milestones_badges.svg"
+                    width="80"
+                    alt=""
+                  />
+                  <p class="fs-14 fw-600">Photos Rookie</p>
+                </div>
+                <div
+                  class="d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img
+                    src="https://www.tripadvisor.com/img2/badges/first-timer_reviews_milestones_badges.svg"
+                    width="80"
+                    alt=""
+                  />
+                  <p class="fs-14 fw-600">Reviews First-timer</p>
+                </div>
+              </div>
+              <button
+                class="text-white btn-black rounded-pill align-self-stretch py-2"
+              >
+                View all
+              </button>
+            </div>
+            <!-- second div -->
+
+            <div class="bg-white d-flex flex-column p-3">
+              <h5 class="fs-16">Intr</h5>
+              <ul class="fs-14 p-1 m-0 d-flex flex-column gap-2">
+                <li class="">
+                  <i class="fa-solid fa-plus"></i> Add your current city
+                </li>
+                <li class="">
+                  <i class="fa-regular fa-calendar"></i> Joined in Feb 2025
+                </li>
+                <li class=""><i class="fa-solid fa-plus"></i> Add a website</li>
+                <li class="">
+                  <i class="fa-solid fa-plus"></i> Write some details about
+                  yourself
+                </li>
+              </ul>
+            </div>
+
+            <!-- third div -->
+            <div class="bg-white d-lg-flex d-none flex-column p-3">
+              <h5 class="">Share your travel advice</h5>
+              <div class="d-flex flex-column gap-3 my-2 fs-14">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="fa-solid fa-camera-retro"></i>
+                  <p class="m-0">Post photos</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  <p class="m-0">Write review</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--main feed -->
+          <div class="col-lg-7"> 
+             <ng-container *ngComponentOutlet="navItems[currentMainIndex].Component"></ng-container>
+          </div>
+        </div>
+      </section>
+      <!--------------------edit profile model ---------------------------->
+      <!-- <div class="bg-white col-7  edit-model position-absolute  start-50 translate-middle">
+                    <div class="bg-light h-101 col-12 d-flex gap-2 justify-content-center align-items-center">
+                        <i
+                            class="fa-regular fa-image"></i>Add cover photo
+    
+                    </div>
+                    <div class="d-flex gap-3 p-5">
+    
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/cf/87/0e/caption.jpg?w=1000&h=700&s=1"
+                            width="90" height="90" class="rounded-circle">
+                        <div style="width: 100%;" class="d-flex flex-column gap-3">
+                            <div>
+                                <label for="name "class="fs-12 fw-600" >Name</label>
+                                <div class="input-box p-2">
+                                    <input type="text" id="name" name="name">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="name "class="fs-12 fw-600" >username</label>
+                                <div class="input-box p-2 d-flex">
+                                    <span>
+                                    <i class="fa-solid fa-at"></i>
+                                    </span>
+                                    <input type="text" id="name" name="name">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="name "class="fs-12 fw-600" >Current City</label>
+                                <div class="input-box p-2 d-flex">
+                                    <span>
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                    <input type="text" id="name" name="name" placeholder="Search">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="name "class="fs-12 fw-600" >Website</label>
+                                <div class="input-box p-2 d-flex">
+                                    <span>
+                                        <i class="fa-solid fa-globe"></i>
+                                    </span>
+                                    <input type="text" id="name" name="name" placeholder="Add a website">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="name "class="fs-12 fw-600" >About you</label>
+                                <div class="input-box p-2 d-flex">
+                                   <textarea placeholder="Write some details about you"></textarea> 
+                                </div>
+                            </div>
+    
+                            <div class="d-flex justify-content-end align-items-center gap-2">
+                               <button class=" btn-outlet-black  p-2 px-3 rounded-pill">cancel</button>
+                               <button class=" btn-black text-white p-2 px-3 rounded-pill">cancel</button>
+    
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>  -->
+
+      <!---------------- edit profile image model ------------------------->
+      <!-- <div class="bg-white col-7  edit-model position-absolute  start-50 translate-middle ">
+                    <div class="bg-light d-flex justify-content-between p-3 ">
+                        <h5 class="fs-14"><i class="fa-regular fa-image"></i> Select profile photo</h5>
+                        <span class="fs-14"><i class="fa-solid fa-x"></i></span>
+                    </div>
+                    <div class="d-flex gap-3 justify-content-center align-items-center p-3">
+                        <p class="text-secondary fs-12">Note: Photo must be less than 14MB</p>
+                        <div class=" bg-light upload-box d-flex justify-content-center align-items-center fw-600" id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+                            <p><i class="fa-solid fa-plus"></i> Uploud your image</p>
+                        </div>
+                    </div>
+                </div> -->
+
+      <!-- add post button -->
+      <div
+        class="nPst-btn bg-black opacity-75 rounded-circle position-sticky d-lg-none d-flex justify-content-center align-items-center"
+        style="width: 50px; height: 50px"
+      >
+        <span class="text-white"><i class="fa-solid fa-plus"></i></span>
+      </div>
+    </div>
+  </div>
+</section>

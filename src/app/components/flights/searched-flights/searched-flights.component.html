@@ -1,0 +1,285 @@
+  <div class="container">
+    <div class="trip-type-buttons">
+      <ul class="nav nav-pills justify-content-start">
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="tripType === 'roundTrip'" (click)="setTripType('roundTrip')">
+            Round Trip
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="tripType === 'oneWay'" (click)="setTripType('oneWay')">
+            One-way
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="tripType === 'multiCity'" (click)="setTripType('multiCity')">
+            Multi-city
+          </button>
+        </li>
+      </ul>
+    </div>
+    <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+      <div class="formcontent">
+        <div class="firstinput" style="display: flex; width: 100%; gap: 10px;">
+          <div style="position: relative; flex: 1;">
+            <i class="fa-solid fa-location-dot"
+              style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;"></i>
+            <input type="text" class="form-control" placeholder="From" formControlName="from"
+              style="padding-left: 40px; padding-right: 15px; border-radius: 0px;"
+              [ngClass]="{'is-invalid': flightForm.get('from')?.touched && flightForm.get('from')?.invalid}">
+          </div>
+    
+          <div style="position: relative; flex: 1;">
+            <i class="fa-solid fa-location-dot"
+              style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;"></i>
+            <input type="text" id="to" class="form-control" placeholder="To" formControlName="to"
+              style="padding-left: 40px; padding-right: 15px; border-radius: 0px;"
+              [ngClass]="{'is-invalid': flightForm.get('to')?.touched && flightForm.get('to')?.invalid}">
+          </div>
+    
+          <div *ngIf="tripType === 'roundTrip'" style="display: flex; width: 30%; gap: 10px;">
+            <div style="position: relative; flex: 1;">
+              <input type="date" class="form-control" formControlName="startDate"
+                (change)="validateDateRange()"
+                style="padding-right: 15px; border-radius: 0px;"
+                [ngClass]="{'is-invalid': flightForm.get('startDate')?.touched && flightForm.get('startDate')?.invalid}">
+            </div>
+            <div style="position: relative; flex: 1;">
+              <input type="date" class="form-control" formControlName="endDate"
+                (change)="validateDateRange()"
+                style="padding-right: 15px; border-radius: 0px;"
+                [ngClass]="{'is-invalid': flightForm.get('endDate')?.touched && flightForm.get('endDate')?.invalid}">
+            </div>
+          </div>
+    
+          <div *ngIf="tripType === 'oneWay'" style="position: relative; flex: 1;">
+            <input type="date" class="form-control" formControlName="date"
+              style="border-radius: 0; padding-right: 15px;"
+              [ngClass]="{'is-invalid': flightForm.get('date')?.touched && flightForm.get('date')?.invalid}">
+          </div>
+    
+          <div *ngIf="tripType === 'multiCity'">
+            <div *ngFor="let segment of multiCitySegments.controls; let i = index" [formGroup]="getMultiCitySegment(i)">
+              <div class="formcontent">
+                <div class="firstinput" style="display: flex; width: 100%; gap: 10px;">
+                  <div style="position: relative; flex: 1;">
+                    <i class="fa-solid fa-location-dot"
+                      style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;"></i>
+                    <input type="text" class="form-control" placeholder="From" formControlName="from" id="from"
+                      style="padding-left: 40px; padding-right: 15px; border-radius: 0px;"
+                      [ngClass]="{'is-invalid': segment.get('from')?.touched && segment.get('from')?.invalid}">
+                  </div>
+    
+                  <div style="position: relative; flex: 1;">
+                    <i class="fa-solid fa-location-dot"
+                      style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;"></i>
+                    <input type="text" class="form-control" placeholder="To" formControlName="to" id="to"
+                      style="padding-left: 40px; padding-right: 15px; border-radius: 0px;"
+                      [ngClass]="{'is-invalid': segment.get('to')?.touched && segment.get('to')?.invalid}">
+                  </div>
+    
+                  <div style="position: relative; flex: 1;">
+                    <input type="date" class="form-control" formControlName="date"
+                      style="padding-right: 15px; border-radius: 0px;"
+                      [ngClass]="{'is-invalid': segment.get('date')?.touched && segment.get('date')?.invalid}">
+                  </div>
+    
+                  <button (click)="addSegment()">Add Flight</button>
+                  <button (click)="removeSegment(i)" *ngIf="multiCitySegments.length > 1">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div style="position: relative; flex: 1;">
+            <i class="fa-solid fa-user-group"
+              style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;"></i>
+            <input type="text" class="form-control" placeholder="Travellers"
+              [value]="flightForm.get('class')?.value + ', ' + flightForm.get('passengers.adults')?.value + ' Adults, ' + flightForm.get('passengers.children')?.value + ' Children'"
+              (click)="toggleDropdown()" 
+              style="cursor: pointer; border-radius: 0; padding-left: 40px; padding-right: 15px;">
+            <div class="dropdown-menu p-3" [class.show]="isDropdownOpen">
+              <select class="form-select mb-3" formControlName="class">
+                <option value="Economy">First Class</option>
+                <option value="Business">Business</option>
+                <option value="PremiumEconomy">Economy</option>
+                <option value="FirstClass">Premium Economy</option>
+              </select>
+              <div class="passenger-count">
+                <label>Adults</label>
+                <button class="plus-button" (click)="adjustPassengers('adults', false)">-</button>
+                <span>{{ flightForm.value.passengers.adults }}</span>
+                <button class="plus-button" (click)="adjustPassengers('adults', true)">+</button>
+              </div>
+              <div class="passenger-count">
+                <label>Children</label>
+                <button class="plus-button" (click)="adjustPassengers('children', false)">-</button>
+                <span>{{ flightForm.value.passengers.children }}</span>
+                <button class="plus-button" (click)="adjustPassengers('children', true)">+</button>
+              </div>
+              <div class="passenger-count">
+                <label>Senior</label>
+                <button class="plus-button" (click)="adjustPassengers('seniors', false)">-</button>
+                <span>{{ flightForm.value.passengers.seniors }}</span>
+                <button class="plus-button" (click)="adjustPassengers('seniors', true)">+</button>
+              </div>
+            </div>
+          </div>
+    
+          <button type="submit" class="findtrip"
+            style="
+              background-color: gray; 
+              color: white; 
+              width: 220px; 
+              height: 35px;
+              border: none;
+              border-radius: 50px; 
+              font-weight: bold;
+              font-size: 16px;
+            "
+            [disabled]="flightForm.invalid"
+            (click)="searchFlights(flightForm.value)">
+            Search
+          </button>
+        </div>
+    
+        <div class="custom-input">
+          <label>
+            <input type="checkbox" formControlName="preferNonStop" /> Prefer nonstop
+          </label>
+          <label>
+            <input type="checkbox" formControlName="includeNearbyAirports" /> Include nearby airports
+          </label>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      
+      <div class="col-3">
+        <div class="accordion accordion-flush" id="filtersAccordion">
+      
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="stopsHeading">
+              <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('stops')" [attr.aria-expanded]="isStopsOpen" aria-controls="stopsFilter">
+                Stops
+              </button>
+            </h2>
+            <div id="stopsFilter" class="accordion-collapse collapse" [ngClass]="{'show': isStopsOpen}">
+              <div class="accordion-body">
+                <div class="form-check">
+                  <input type="checkbox" id="nonStop" class="form-check-input" [(ngModel)]="filters.stops.nonStop" (change)="applyFilters()">
+                  <label for="nonStop" class="form-check-label">Non-stop</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" id="oneStop" class="form-check-input" [(ngModel)]="filters.stops.oneStop" (change)="applyFilters()">
+                  <label for="oneStop" class="form-check-label">1 Stop</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" id="twoPlusStops" class="form-check-input" [(ngModel)]="filters.stops.twoPlusStops" (change)="applyFilters()">
+                  <label for="twoPlusStops" class="form-check-label">2+ Stops</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="airlinesHeading">
+              <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('airlines')" [attr.aria-expanded]="isAirlinesOpen" aria-controls="airlinesFilter">
+                Airlines
+              </button>
+            </h2>
+            <div id="airlinesFilter" class="accordion-collapse collapse" [ngClass]="{'show': isAirlinesOpen}">
+              <div class="accordion-body">
+                <div class="form-check" *ngFor="let airline of availableAirlines">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="filters.airlines[airline]" (change)="applyFilters()">
+                  <label class="form-check-label">{{ airline }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="priceHeading">
+              <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('price')" [attr.aria-expanded]="isPriceOpen" aria-controls="priceFilter">
+                Price
+              </button>
+            </h2>
+            <div id="priceFilter" class="accordion-collapse collapse" [ngClass]="{'show': isPriceOpen}">
+              <div class="accordion-body">
+                <input type="range" class="form-range" min="0" max="5000" step="100" [(ngModel)]="filters.price" (input)="applyFilters()">
+                <p>Max Price: ${{ filters.price }}</p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="durationHeading">
+              <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('duration')" [attr.aria-expanded]="isDurationOpen" aria-controls="durationFilter">
+                Duration
+              </button>
+            </h2>
+            <div id="durationFilter" class="accordion-collapse collapse" [ngClass]="{'show': isDurationOpen}">
+              <div class="accordion-body">
+                <input type="range" class="form-range" min="0" max="24" step="1" [(ngModel)]="filters.duration" (input)="applyFilters()">
+                <p>Max Duration: {{ filters.duration }} Hours</p>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+     <div class="col-md-6"> 
+  <div *ngIf="filteredResults.length > 0" class="row">
+    <div *ngFor="let flight of filteredResults" class="col-md-12 mb-3">
+      <div class="card shadow-sm p-2">
+        <div class="row justify-content-end">
+          <div class="col-auto">
+            <img [src]="flight.airlineLogo" class="airline-logo">
+          </div>
+          <div class="col">
+            <p class="mb-1">
+              <span *ngIf="flight.departureDate">{{ flight.departureDate | date:'shortTime' }}</span> - 
+              <span *ngIf="flight.arrivalDate">{{ flight.arrivalDate | date:'shortTime' }}</span>
+            </p>
+            <p class="text-muted">
+              {{ flight.origin?.name }} ({{ flight.origin?.country }}) - 
+              {{ flight.destination?.name}} ({{ flight.destination?.country }}),
+              {{ flight.airline  }}
+            </p>
+            <span class="text-muted">{{ flight.flightDuration  }} Hours </span>
+          </div>
+
+          <div class="col-auto text-end d-flex flex-column align-items-end ms-auto">
+            <h5 class="mb-0 fw-bold">${{ getLowestSeatPrice(flight.seats) }}</h5>
+            <p class="text-muted mb-2">{{ flight.dealsCount || 0 }} deals</p>
+            <button (click)="getflightbyid(flight._id)" class="btn btn-warning rounded-custom">View Deal</button>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="filteredResults.length === 0 && !errorMessage">
+    <p>No flights found.</p>
+  </div>
+
+  <div *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
+
+  <div class="col-md-3">
+    <div>
+    <h5>greet {{searchResults[0]?.origin?.name}} hotel deals </h5>
+    <img src="{{ searchResults[0]?.origin?.images[0] }}" class="card-img-top h-50">
+    <div class="card-body">
+      <p class="card-text">with price as low as:12$ </p>
+      <button type="submit">Go somewhere</button>
+
+    </div>
+  </div>
+    </div>
+  </div>
+  

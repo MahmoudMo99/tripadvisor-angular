@@ -1,0 +1,23 @@
+// $primaryColor:#34e0a1;
+
+.form-check-label {
+  font-size: 14px;
+}
+
+input:focus {
+  box-shadow: none;
+  border: 2px solid black;
+}
+
+* {
+  box-shadow: none !important;
+}
+
+.form-select:focus{
+ border: 1px solid rgb(175, 174, 174) !important;
+}
+
+
+.dropdown-item {
+  cursor: pointer;
+}

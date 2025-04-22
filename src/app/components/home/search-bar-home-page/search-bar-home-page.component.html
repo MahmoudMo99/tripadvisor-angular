@@ -1,0 +1,25 @@
+<section class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form role="search" (submit)="onSearch()" class="position-relative">
+        <i
+          class="bi bi-search position-absolute top-50 ms-3 translate-middle-y"
+        ></i>
+        <input
+          type="search"
+          [(ngModel)]="searchQuery"
+          name="q"
+          class="shadow form-control rounded-pill py-3 px-5"
+          placeholder="Places to go,things to do,hotels"
+          required
+        />
+        <button
+          type="submit"
+          class="color-green border-0 position-absolute top-50 end-0 translate-middle-y px-3 py-2 me-2 rounded-pill"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

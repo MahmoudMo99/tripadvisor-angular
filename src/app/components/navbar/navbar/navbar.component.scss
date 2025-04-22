@@ -1,0 +1,42 @@
+$greyColor:#d5d5d5;
+$primaryColor:#34e0a1;
+$white:white;
+
+nav {
+  position: sticky;
+  top: 0;
+  left:0;
+  background-color: $white;
+
+}
+
+.navContainer {
+  width: 90%;
+}
+
+input,
+input:focus {
+  border: none;
+  outline: none;
+}
+
+.lists>li {
+  transition: all 0.3s linear;
+}
+
+.lists>li:hover {
+  background-color: $greyColor;
+}
+
+@media (min-width: 992px) {
+  .custom-img {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .menu {
+    font-size: 20px !important;
+  }
+}
+

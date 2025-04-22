@@ -1,0 +1,15 @@
+.text-muted,
+.date,
+.time,
+.travelers,
+.promoCode,
+.feature {
+  font-size: 12px;
+}
+
+
+@media (max-width: 768px) {
+  .card {
+    border: 0 !important;
+  }
+}

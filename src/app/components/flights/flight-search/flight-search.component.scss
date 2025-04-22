@@ -1,0 +1,224 @@
+.flight_search {
+    background-image: url('../../../../../public/assets/coverflight.png');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    .nav-link {
+      background-color: transparent !important; 
+      color: white !important; 
+      border: none !important; 
+    }
+    .nav-link.active {
+     text-decoration: underline white;
+    }
+  .flight-txt {
+        position: absolute;
+      padding: 20px;
+      border-radius: 10px;
+     width: 80%;
+     right: 10%;
+     left: 10%;
+     .plus-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #4CAF50; 
+      color: white;
+      font-size: 20px; 
+      font-weight: bold;
+      border: 2px solid white; 
+      text-align: center;
+      cursor: pointer;
+  }
+  
+  .plus-button:hover {
+      background-color: #45a049; 
+  }
+  
+
+  
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+  
+      .tripdetails {
+        form {
+          display: flex;
+        
+          justify-content: center;
+  
+          div {
+            flex: 1 1 calc(20% - 20px);
+            width: 70%;
+  
+            label {
+              display: block;
+              margin-bottom: 5px;
+              font-weight: bold;
+            }
+  
+            .firstinput input, select {
+            height: 8vh;
+              width: 100%;
+              padding: 8px 35px 8px 10px; 
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              background: rgba(255, 255, 255, 0.8);
+              color: #000;
+            }
+  
+           
+  
+            i {
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: gray;
+            }
+          }
+  
+          .findtrip {
+           
+            background-color: rgb(1, 24, 1);
+            color: #ccc;
+          
+               width: 15%;
+              border-radius: 0 20px 20px 0;
+           
+          }
+        }
+      }
+    }
+  }
+ 
+  
+
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .form-control {
+    cursor: pointer;
+  }
+  .custom-input {
+    display: flex;
+    height: 8vh;
+    position: absolute;
+    align-items: center;
+    gap: 45%; 
+    padding: 10px 15px; 
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8); 
+   min-width: 96%;
+    box-sizing: border-box; 
+    margin-top: 10px; 
+  }
+  
+  .custom-input label {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    margin: 0; 
+    font-size: 16px; 
+    color: #333;
+  }
+  .trip-type-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    label {
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  }
+  
+  .multi-city-input {
+    display: flex;
+    margin-bottom: 10px;
+  
+    button {
+      margin-left: 10px;
+    }
+    
+  }
+
+  @media (max-width: 768px) {
+    .flight_search {
+        height: 85vh;
+    }
+    .formborder{
+      border-radius: 0% !important;
+    }
+    h2 {
+        font-size: 14px; 
+    }
+
+    .findtrip,
+    .flight-txt {
+        width: 100%;
+    }
+
+    .firstinput {
+        flex-direction: column;
+        display: flex;
+        gap: 10px;
+        border-radius: 0px;
+        gap: 0;
+    }
+
+    .firstinput > div,
+    .firstinput input,
+    .firstinput button {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .datedisp {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .s_disp,
+    .e_disp {
+        width: 48%;
+    }
+
+    .custom-input {
+        display: none !important;
+    }
+
+    .findtrip {
+        width: 100%;
+    }
+
+    .findtrip button {
+        background-color: #0a5; 
+        width: 100%;
+        color: white;
+        font-size: 18px;
+        border-radius: 0px;
+        border: none;
+    }
+
+    input, select, button {
+        font-size: 14px; 
+    }
+
+    .flight_search input::placeholder {
+        font-size: 12px; 
+    }
+}

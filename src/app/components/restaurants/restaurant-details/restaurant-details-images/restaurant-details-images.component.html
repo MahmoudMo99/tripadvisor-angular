@@ -1,0 +1,58 @@
+<div *ngIf="restaurant?.images" class="images-wrapper">
+  <div class="left-section">
+    <div class="image-card">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-restaurant')" >←</div>
+
+        <div id="scroll-container-restaurant" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.restaurantImages" class="image-slide">
+            <img [src]="img" alt="Restaurant Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-restaurant')">→</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="image-card half-height">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-menu')">←</div>
+
+        <div id="scroll-container-menu" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.menuImages" class="image-slide">
+            <img [src]="img" alt="Menu Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-menu')">→</div>
+        <div class="card-label">Menu</div>
+      </div>
+    </div>
+
+    <div class="image-card half-height">
+      <div class="image-slider">
+        <div class="scroll-arrow left-arrow" (click)="scrollToLeft('scroll-container-interior')">←</div>
+
+        <div id="scroll-container-interior" class="scrollable-images no-scrollbar">
+          <div *ngFor="let img of restaurant.images?.interiorImages" class="image-slide">
+            <img [src]="img" alt="Interior Image"  (click)="openModal(restaurant)"/>
+          </div>
+        </div>
+
+        <div class="scroll-arrow right-arrow" (click)="scrollToRight('scroll-container-interior')">→</div>
+        <div class="card-label">Interior</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-restaurant-details-model
+  *ngIf="showModal"
+  [restaurant]="selectedRestaurant"
+  [showModal]="showModal"
+  (close)="closeModal()"
+></app-restaurant-details-model>
+
