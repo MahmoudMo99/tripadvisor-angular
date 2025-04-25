@@ -1,28 +1,13 @@
-<!-- <header class="bg-white">
-        <div>
-            <img src="https://www.tripadvisor.com/" alt="">
-            <div>
-                <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="search">
-            </div>
-            <div>
-                <ul>
-                    <li>Discover</li>
-                    <li>Trips</li>
-                    <li>Review</li>
-                    <li>More</li>
-                </ul>
-            </div>
-            <div>
-                <span></span>
-                <div class="line"></div>
-                <p>USA</p>
-            </div>
-        </div>
-    </header> -->
+
 <section class="bg-light">
   <div class="bg-gray h-230 d-flex justify-content-center align-items-center gap-2" onclick="showEditImgModel()">
-    <p class="btn  border-none" (click)="showEditImageModel('cover')"><i class="fa-regular fa-image"></i> Add cover photo</p>
+    @if(userData.cover){
+    <img [src]="userData.cover" alt="cover image" class="w-100 h-100" style="object-fit: cover;" />
+    }
+    @else {
+    <p class="btn  border-none" (click)="showEditImageModel('cover')"><i class="fa-regular fa-image"></i> Add cover
+      photo</p>
+    }
   </div>
 
   <div class="container">
@@ -32,7 +17,7 @@
         class="bg-white user-info-card p-4 d-flex flex-column flex-lg-row justify-content-start gap-4 align-items-center">
         <!-- image -->
         <img
-          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=300&h=-1&s=1"
+          [src]="userData.image||'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=300&h=-1&s=1'"
           alt="user image" width="150" class="rounded-circle" />
         <!-- data -->
         <div class="d-flex flex-column justify-content-center w-100">
@@ -42,7 +27,7 @@
               <p class="text-secondary">&#64;{{userData.username}}</p>
             </div>
             <div class="edit-btn fs-14 px-2 d-flex align-items-center gap-2">
-              <button class="py-1 fw-semibold" (click)="showEditModel()" >
+              <button class="py-1 fw-semibold" (click)="showEditModel()">
                 Edit profile
               </button>
               <div class="line align-self-stretch"></div>
@@ -52,12 +37,14 @@
                   <i class="fa-solid fa-gear"></i>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="rounded-0 fw-semibold">
-                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditModel()" >Edit your profile</button>
-                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditImageModel('image')">Edit your profile image</button>
-                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditImageModel('cover')">Edit your profile image</button>
+                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditModel()">Edit your profile</button>
+                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditImageModel('image')">Edit your
+                    profile image</button>
+                  <button ngbDropdownItem class="fw-semibold btn" (click)="showEditImageModel('cover')">Edit your
+                    profile image</button>
                 </div>
               </div>
-             
+
             </div>
           </div>
           <div class="d-flex justify-content-md-start justify-content-center align-items-center gap-md-5 gap-2">
@@ -153,17 +140,19 @@
               <h5 class="">Share your travel advice</h5>
               <div class="d-flex flex-column gap-3 my-2 fs-14">
                 <div class="d-flex align-items-center gap-3">
-                  <a [routerLink]="['/post-photo']"  class="text-decoration-none text-black d-flex align-items-center gap-3">
+                  <a [routerLink]="['/post-photo']"
+                    class="text-decoration-none text-black d-flex align-items-center gap-3">
                     <i class="fa-solid fa-camera-retro"></i>
-                  <p class="m-0">Post photos</p>
+                    <p class="m-0">Post photos</p>
                   </a>
                 </div>
                 <div class="d-flex align-items-center gap-3">
-                  <a [routerLink]="['/review-search']"  class="text-decoration-none text-black d-flex align-items-center gap-3">
+                  <a [routerLink]="['/review-search']"
+                    class="text-decoration-none text-black d-flex align-items-center gap-3">
                     <i class="fa-regular fa-pen-to-square"></i>
                     <p class="m-0">Write review</p>
                   </a>
-                    
+
                 </div>
               </div>
             </div>
@@ -174,93 +163,9 @@
           </div>
         </div>
       </section>
-      <!--------------------edit profile model ---------------------------->
-      <div class="bg-white col-7 edit-model position-absolute start-50 translate-middle"
-        [ngClass]="{'d-none': !showEditModelFlag, 'd-block': showEditModelFlag}">
-        <div
-          class="bg-light h-101 col-12 d-flex gap-2 justify-content-center align-items-center btn btn-light rounded-0"
-          (click)="showEditImageModel('cover')">
-          <i class="fa-regular fa-image"></i>Add cover photo
-        </div>
-        <div class="d-flex gap-3 p-5">
-          <div class="position-relative "><img
-              src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/cf/87/0e/caption.jpg?w=1000&h=700&s=1"
-              width="90" height="90" class="rounded-circle">
-            <div class=" d-flex justify-content-center align-items-center fw-600 position-absolute rounded-circle text-center btn btn-dark"
-              style="width: 90px; height: 90px;top:0; opacity: .4; cursor: pointer"
-              (click)="showEditImageModel('image')">
-              <small class="text center text-light " ><i class="fa-regular fa-image"></i> change profile photo</small>
-              </div>
-            </div>
-          <div style="width: 100%;" class="d-flex flex-column gap-3">
-            <div>
-              <label for="name" class="fs-12 fw-600">Name</label>
-              <div class="input-box p-2">
-                <input type="text" id="name" name="name" [(ngModel)]="editUserData.name" placeholder="Name">
-              </div>
-            </div>
-            <div>
-              <label for="username" class="fs-12 fw-600">Username</label>
-              <div class="input-box p-2 d-flex">
-                <span>
-                  <i class="fa-solid fa-at"></i>
-                </span>
-                <input type="text" id="username" name="username" [(ngModel)]="editUserData.username"
-                  placeholder="Username">
-              </div>
-            </div>
-            <div>
-              <label for="currentCity" class="fs-12 fw-600">Current City</label>
-              <div class="input-box p-2 d-flex">
-                <span>
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="text" id="currentCity" name="currentCity" [(ngModel)]="editUserData.currentCity"
-                  placeholder="Search">
-              </div>
-            </div>
-            <div>
-              <label for="website" class="fs-12 fw-600">Website</label>
-              <div class="input-box p-2 d-flex">
-                <span>
-                  <i class="fa-solid fa-globe"></i>
-                </span>
-                <input type="text" id="website" name="website" [(ngModel)]="editUserData.website"
-                  placeholder="Add a website">
-              </div>
-            </div>
-            <div>
-              <label for="bio" class="fs-12 fw-600">About you</label>
-              <div class="input-box p-2 d-flex">
-                <textarea id="bio" name="bio" [(ngModel)]="editUserData.bio"
-                  placeholder="Write some details about you"></textarea>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end align-items-center gap-2">
-              <button class="btn-outlet-black p-2 px-3 rounded-pill" (click)="closeEditModel()">Cancel</button>
-              <button class="btn-black text-white p-2 px-3 rounded-pill" (click)="saveUserData()">Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!---------------- edit profile image model ------------------------->
-      <div class="bg-white col-7  edit-model position-absolute  start-50 top-0 translate-middle "
-        [ngClass]="{'d-none': !showEditImageModelFlag, 'd-block': showEditImageModelFlag}">
-        <div class="bg-light d-flex justify-content-between p-3 ">
-          <h5 class="fs-14"><i class="fa-regular fa-image"></i> Select {{showEditImageModelType}} photo</h5>
-          <span class="fs-14 btn btn-light" (click)="closeEditImageModel()"><i class="fa-solid fa-x"></i></span>
-        </div>
-        <div class="d-flex gap-3 justify-content-center align-items-center p-3">
-          <p class="text-secondary fs-12">Note: Photo must be less than 14MB</p>
-          <div class=" bg-light upload-box d-flex justify-content-center align-items-center fw-600"
-            onclick="document.getElementById('coverPhotoInput').click()">
-            <p><i class="fa-solid fa-plus"></i> Uploud your image</p>
-            <input type="file" id="coverPhotoInput" style="display: none;" accept="image/*"
-              (change)="saveUserImage()" />
-          </div>
-        </div>
-      </div>
+
+
 
       <!-- add post button -->
       <div
@@ -269,5 +174,12 @@
         <span class="text-white"><i class="fa-solid fa-plus"></i></span>
       </div>
     </div>
+    <!-- edit profile model -->
+    <app-profile-edit-model
+    [userData]="userData"
+     ></app-profile-edit-model>
+
+    <!-- edit profile image model -->
+    <app-profile-image-edit-model></app-profile-image-edit-model>
   </div>
 </section>

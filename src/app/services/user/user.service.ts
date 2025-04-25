@@ -9,8 +9,15 @@ import { IEditUser } from '../../models/user/i-edit-user';
 })
 export class UserService {
 
-  token: string | null =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAwOWY5NmFhMzYwMGEwYTE0NmU0ODkiLCJpYXQiOjE3NDQ4NzI3ODJ9.WC_jomYNYiq_xwdiWFDUS-wCT2PcZJIFwmWRgeGDkXk";
-  
+  token: string | null = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAwOWY5NmFhMzYwMGEwYTE0NmU0ODkiLCJpYXQiOjE3NDQ4NzI3ODJ9.WC_jomYNYiq_xwdiWFDUS-wCT2PcZJIFwmWRgeGDkXk";
+  showEditModelFlag = new BehaviorSubject<boolean>(false);
+  showEditImageModelFlag = new BehaviorSubject<boolean>(false);
+  showEditImageModelType = new BehaviorSubject<string>('image');
+  currentUser: BehaviorSubject<IUser> = new BehaviorSubject<IUser>({
+    name: '',
+    username: '',
+  });
+
 
   constructor(private http: HttpClient) {
     // Initialize the user service here if needed
@@ -23,7 +30,7 @@ export class UserService {
       }
     });
   }
-  editProfile(user: IEditUser|FormData): Observable<IUser> {
+  editProfile(user: IEditUser | FormData): Observable<IUser> {
     return this.http.patch<IUser>(API.user.getCurrentUser, user, {
       withCredentials: true,
       headers: {
