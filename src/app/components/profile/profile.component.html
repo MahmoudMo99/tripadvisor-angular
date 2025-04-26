@@ -104,7 +104,7 @@
               <h5 class="fs-16">Intr</h5>
               <ul class="fs-14 p-1 m-0 d-flex flex-column gap-2">
                 @if(userData.currentCity){
-                <li class=""><i class="fa-solid fa-location-dot"></i> {{userData.currentCity}}</li>
+                <li class=""><i class="fa-solid fa-location-dot"></i> {{userData.currentCity.name}},{{userData.currentCity.country}}</li>
                 }
                 @else {
                 <li class="" (click)="showEditModel()">

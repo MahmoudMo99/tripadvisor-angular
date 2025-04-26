@@ -3,7 +3,7 @@ export interface IUser {
     username: string;
     image?: string;
     cover?: string;
-    currentCity?: string; // Assuming `Destination` ID is a string
+    currentCity?: { _id: string, name: string, region: string, country: string, description: string }; // Assuming `Destination` ID is a string
     website?: string;
     bio?: string;
     followers?: {

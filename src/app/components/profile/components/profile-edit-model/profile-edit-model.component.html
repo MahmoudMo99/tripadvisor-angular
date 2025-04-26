@@ -1,7 +1,6 @@
 <!--------------------edit profile model ---------------------------->
 <div class="bg-dark-75  position-fixed top-0 start-0 w-100 h-100 position-absolute d-flex justify-content-center align-items-center p-lg-5"
-    [ngClass]="{'d-none': !showEditModelFlag, 'd-block': showEditModelFlag}"
-    (click)="closeEditModel()">
+    [ngClass]="{'d-none': !showEditModelFlag, 'd-block': showEditModelFlag}" (click)="closeEditModel()">
     >
     <div class="bg-white  edit-model col-lg-6 col-12 " (click)="$event.stopPropagation()">
         <div class="bg-light h-101 col-12 d-flex gap-2 justify-content-center align-items-center btn btn-light rounded-0"
@@ -38,12 +37,23 @@
                 </div>
                 <div>
                     <label for="currentCity" class="fs-12 fw-600">Current City</label>
-                    <div class="input-box p-2 d-flex">
+                    <div class="input-box p-2 d-flex position-relative ">
                         <span>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
-                        <input type="search" id="currentCity" name="currentCity" [(ngModel)]="editUserData.currentCity"
-                            placeholder="Search">
+                        <input type="search" id="currentCity" name="currentCity" [(ngModel)]="selectedCity"
+                            placeholder="Search" (change)="searchCity($event)">
+                        @if(cityList.length > 0) {
+                        <div class="position-absolute w-100 bg-white top-100 border rounded-0 shadow-sm start-0" >
+                            <div class="bg-white py-2">
+                                @for (city of cityList; track $index) {
+                                <div class="p-2 text-muted" (click)="selectCity(city)">
+                                    <span>{{city.name}} , {{city.country}}</span>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        }
                     </div>
                 </div>
                 <div>

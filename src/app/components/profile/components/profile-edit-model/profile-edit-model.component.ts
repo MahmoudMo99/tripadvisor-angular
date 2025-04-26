@@ -4,6 +4,7 @@ import { IEditUser } from '../../../../models/user/i-edit-user';
 import { NgClass } from '@angular/common';
 import { IUser } from '../../../../models/user/i-user';
 import { FormsModule } from '@angular/forms';
+import { LocationService } from '../../../../services/location.service';
 
 @Component({
   selector: 'app-profile-edit-model',
@@ -18,23 +19,37 @@ export class ProfileEditModelComponent {
     name: '',
     username: '',
   };
+  cityList: any[] = [];
+  selectedCity: any = null;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private loctionService: LocationService) {
     this.userService.showEditModelFlag.subscribe((res: boolean) => {
       this.showEditModelFlag = res;
     }
     )
     this.userService.currentUser.subscribe((res: IUser) => {
       this.userData = { ...this.userData, ...res };
-      
     }
     )
-
   }
 
-
+  searchCity(event: any) {
+    this.cityList=[];
+    this.loctionService.searchCity(event.target.value,2,1).subscribe((res: any) => {
+      this.cityList= res;
+      console.log(this.cityList);
+    }
+    )
+  }
+  selectCity(city: any) {
+    this.editUserData.currentCity = city;
+    this.selectedCity=`${city.name}, ${city.country}`;
+    this.cityList = [];
+  }
   saveUserData() {
-    this.userService.editProfile(this.editUserData).subscribe((res: IUser) => {
+    
+    this.userService.editProfile({...this.editUserData ,currentCityId:this.editUserData.currentCity?.['_id']}).subscribe((res: IUser) => {
+
        this.userService.currentUser.next({ ...this.userData, ...res });
       console.log(this.userData);
       this.closeEditModel();
