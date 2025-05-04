@@ -21,6 +21,9 @@ import { GetflightdetailsComponent } from './components/flights/getflightdetails
 import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
 import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
 import { RestaurantDetailsConnectionComponent } from './components/restaurants/restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { OptionsComponent } from './components/authentication/options/options.component';
 export const routes: Routes = [
   {
     path: '',
@@ -28,6 +31,12 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomePageComponent },
+
+      // authentication routes (Mahmoud)
+      { path: 'options', component: OptionsComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+
       { path: 'attractions', component: AttractionsComponent },
       // { path: 'attractions/details', component: AttractionsDetailsComponent },
       { path: 'attraction/:id', component: AttractionsDetailsComponent },

@@ -1,13 +1,12 @@
-$greyColor:#d5d5d5;
-$primaryColor:#34e0a1;
-$white:white;
+$greyColor: #d5d5d5;
+$primaryColor: #34e0a1;
+$white: white;
 
 nav {
   position: sticky;
   top: 0;
-  left:0;
+  left: 0;
   background-color: $white;
-
 }
 
 .navContainer {
@@ -20,11 +19,11 @@ input:focus {
   outline: none;
 }
 
-.lists>li {
+.lists > li {
   transition: all 0.3s linear;
 }
 
-.lists>li:hover {
+.lists > li:hover {
   background-color: $greyColor;
 }
 
@@ -39,4 +38,3 @@ input:focus {
     font-size: 20px !important;
   }
 }
-
