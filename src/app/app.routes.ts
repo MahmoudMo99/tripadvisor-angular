@@ -20,10 +20,16 @@ import { SearchedFlightsComponent } from './components/flights/searched-flights/
 import { GetflightdetailsComponent } from './components/flights/getflightdetails/getflightdetails.component';
 import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
 import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
+import { EmptyTripsComponent } from './components/trips/main-trip/empty-trips/empty-trips.component';
+import { MyTripsComponent } from './components/trips/main-trip/my-trips/my-trips.component';
 import { RestaurantDetailsConnectionComponent } from './components/restaurants/restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { OptionsComponent } from './components/authentication/options/options.component';
+import { TripsDetailsMainComponent } from './components/trips/tripsDetails/tripsDetails-main/tripsDetails-main.component';
+import { ForYouComponent } from './components/trips/tripsDetails/for-you/for-you.component';
+import { SavesComponent } from './components/trips/tripsDetails/saves/saves.component';
+import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
 export const routes: Routes = [
   {
     path: '',
@@ -42,7 +48,16 @@ export const routes: Routes = [
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
       { path: 'steps', component: StepsComponent },
       { path: 'attraction/:id/contact', component: ContactComponent },
-
+      {
+        path: 'trips/:id',
+        component: TripsDetailsMainComponent,
+        children: [
+          { path: '', redirectTo: 'for-you', pathMatch: 'full' },
+          { path: 'saves', component: SavesComponent },
+          { path: 'itinerary', component: ItineraryComponent },
+          { path: 'for-you', component: ForYouComponent },
+        ],
+      },
       { path: 'attraction/activity', component: ActivityComponent },
       { path: 'payment', component: PaymentComponent },
       { path: 'searched-flight', component: SearchedFlightsComponent },
@@ -77,6 +92,9 @@ export const routes: Routes = [
         path: 'restaurants/:id',
         component: RestaurantDetailsConnectionComponent,
       },
+      { path: 'Resturant', component: ResturantPageComponent },
+      // EmptyTripsComponent
+      { path: 'Tripss', component: MyTripsComponent, title: 'Trips' },
     ],
   },
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },

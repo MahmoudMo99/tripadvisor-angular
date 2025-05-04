@@ -17,6 +17,10 @@
       </div>
 
       <app-search-bar
+        class="col-7 col-md-6 col-lg-5 d-flex align-items-center g-1 border border-2 border-secondary-subtle p-1 p-md-2 px-3 rounded-5 m-0"
+      ></app-search-bar>
+
+      <app-search-bar
         class="col-7 col-md-6 col-lg-5 d-flex align-items-center g-1 border border-2 border-secondary-subtle p-1 p-md-2 px-3 rounded-5 m-0"></app-search-bar>
 
       <ul class="col-4 d-none d-lg-flex align-items-center justify-content-evenly m-0 lists">
@@ -37,17 +41,26 @@
           </a>
         </li>
       </ul>
+      <div class="col-2 col-md-1 position-relative">
+        <img
+          src="assets/avatar.jpg"
+          alt="avatar"
+          class="img-fluid custom-img"
+          (click)="toggleDropdown()"
+          style="cursor: pointer"
+        />
 
-      <div class="col-2 col-md-1 dropdown">
-        <!-- <img src="assets/avatar.jpg" alt="avatar" class="img-fluid custom-img dropdown-toggle" id="avatarDropdown"
-          data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer" /> -->
-
-        <a class="btn btn-dark rounded-pill" [routerLink]="['/options']" routerLinkActive="router-link-active">
-          <span>Sign in</span>
-        </a>
-
-        <app-user-menu aria-labelledby="avatarDropdown"></app-user-menu>
-
+       @if(isDropdownOpen){
+         <ul
+          class="dropdown-menu dropdown-menu-end show z-3 border-0 shadow p-3  position-absolute top-100 end-50"
+        >
+          @for (item of menuItems; track $index) {
+          <li>
+            <a href="#" class="dropdown-item fw-bold mb-1">{{ item }}</a>
+          </li>
+          }
+        </ul>
+       }
       </div>
     </div>
     <div class="container mt-2 d-none d-lg-block">

@@ -1,0 +1,63 @@
+<div class="col-12">
+
+  <div class="recommendation-filters col-12">
+    <div>
+      <button class="filter-btn me-2" (click)="filterBy('foodAndDrink')">Food & drink</button>
+      <button class="filter-btn me-2" (click)="filterBy('placesToStay')">Places to stay</button>
+      <button class="filter-btn me-2" (click)="filterBy('thingsToDo')">Things to Do</button>
+      <button class="filter-btn me-2" (click)="filterBy('tours')">Tours</button>
+    </div>
+    <div>
+      <button class="refresh-btn" (click)="refreshRecommendations()">
+        Refresh <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="recommendations-grid col-12">
+    <div class="recommendation-card" *ngFor="let item of recommendations">
+
+      <div class="image-wrapper">
+        <img 
+          *ngIf="isAttraction(item)"
+          [src]="item.images[0]" 
+          alt="Attraction Image" />
+        
+        <img 
+          *ngIf="!isAttraction(item)"
+          [src]="item.images.restaurantImages[0]" 
+          alt="Restaurant Image" />
+        
+        <button class="favorite-btn"><mat-icon>favorite_border</mat-icon></button>
+      </div>
+
+      <div class="card-content">
+        <span class="location-label">{{tripData?.destination?.name}}</span>
+
+        <h6 *ngIf="isAttraction(item)">{{ item.title }}</h6>
+        <h6 *ngIf="!isAttraction(item)">{{ item.name }}</h6>
+
+        <div class="rating">
+          <span *ngIf="isAttraction(item)">{{ item.rating }}</span>
+          <div style="display: flex;">
+            <span class="circle" *ngFor="let star of stars"></span>
+          </div>
+          <span>
+            ({{ isAttraction(item) ? item.reviewsCount : item.reviewsCount || item.numberOfReviews }})
+          </span>
+        </div>
+
+        <p class="category">
+          {{ isAttraction(item) ? item.category : item.features?.cuisines?.join(', ') }}
+        </p>
+      </div>
+
+      <div class="bottom-info">
+        <mat-icon>schedule</mat-icon>
+        <span>#{{ isAttraction(item) ? item.rank : '-' }} of 10739 things to do in Paris</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>

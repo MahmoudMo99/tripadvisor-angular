@@ -1,0 +1,105 @@
+.trip-modal-container {
+  padding: 30px 24px;
+  background-color: #fff;
+  border-radius:0 !important;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 100%;
+
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+
+    mat-icon {
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+
+  .modal-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .section-subtitle {
+    color: #555;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .invite-link-wrapper {
+    display: flex;
+    align-items: center;
+
+    .invite-input {
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .copy-btn {
+      border: 1px solid #000;
+      color: #000;
+      background-color: #fff;
+      border-radius: 25px;
+      padding: 6px 16px;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: #000;
+        color:white;
+      }
+    }
+  }
+
+  .collab-title {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .collaborator {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+
+    .avatar-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .collab-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .collab-role {
+      font-size: 0.8rem;
+      color: #888;
+    }
+  }
+}
+
+
+input {
+  box-shadow: none !important;
+  // border-color: black !important;
+  border: none !important;
+  background-color: rgb(234, 234, 234);
+}

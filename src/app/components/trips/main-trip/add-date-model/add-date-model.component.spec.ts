@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserMenuComponent } from './user-menu.component';
+import { AddDateModelComponent } from './add-date-model.component';
 
-describe('UserMenuComponent', () => {
-  let component: UserMenuComponent;
-  let fixture: ComponentFixture<UserMenuComponent>;
+describe('AddDateModelComponent', () => {
+  let component: AddDateModelComponent;
+  let fixture: ComponentFixture<AddDateModelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserMenuComponent]
+      imports: [AddDateModelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserMenuComponent);
+    fixture = TestBed.createComponent(AddDateModelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

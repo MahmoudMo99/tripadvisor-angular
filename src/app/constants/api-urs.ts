@@ -1,25 +1,40 @@
 import { environment } from '../environment/environemt.dev';
 
 const Domain = environment.baseUrl;
+const withDomain = (path: string) => `${Domain}${path}`;
 
 export const API = {
   auth: {
-    login: `${Domain}auth/login`,
+    login: withDomain('auth/login'),
   },
   attractives: {
-    getAll: `${Domain}attractives`,
-    getById: (id: string) => `${Domain}attractives/${id}`,
+    getAll: withDomain('attractives'),
+    getById: (id: string) => withDomain(`attractives/${id}`),
+  },
+  destination: {
+    search: (searchValue: string) =>
+      withDomain(`destination/search?searchValue=${searchValue}`),
+  },
+  trips: {
+    create: withDomain('trips'),
+    getMyTrips: withDomain('trips'),
+    addDateToTrip: (id: string) => withDomain(`trips/${id}/add-date`),
+    invite: (id: string) => withDomain(`trips/${id}/invite`),
+    share: (id: string) => withDomain(`trips/share/${id}`),
+  getTripById: (tripId: string) => withDomain(`trips/${tripId}`)
+
   },
   restaurant:{
     recentlyrestaurants: `${Domain}resturants`,
     getById: (id: string) => `${Domain}resturants/${id}`,
 
-
   }
 };
+
 export const auth = {
   login: `${Domain}auth/login`,
   attractiveHome: `${Domain}attractives`,
   destinationHome: `${Domain}destination`,
+};
 
-  };
+

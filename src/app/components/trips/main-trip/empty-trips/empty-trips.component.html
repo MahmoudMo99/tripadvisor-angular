@@ -1,0 +1,187 @@
+<div class="container-fluid text-center py-5 mt-2">
+  <div class="row flex-column align-items-center">
+    <h1 class="col-12 col-md-10 col-lg-7 mb-4 title p-0">
+      Personalize your travel planning with Trips
+    </h1>
+    <p class="col-12 col-md-8 col-lg-7 fs-6 mb-5 p-0">
+      With Trips, you get two trip planners in one—use AI to build your trip or
+      build it yourself. Either way, there's more than 8 million spots to
+      discover, with over one billion traveler reviews and opinions to guide
+      you.
+    </p>
+    <div
+      class="col-12 p-0 d-flex flex-row align-items-start justify-content-center flex-wrap"
+    >
+      <div class="col-6 col-md-3 col-lg-2 px-4">
+        <div class="d-flex flex-column align-items-center">
+          <div
+            class="bg-light p-2 mb-2 icon border border-1 border-dark-subtle"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <p class="fs-6 featureDescription fw-semibold">
+            Get personalized recs with AI
+          </p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 px-2">
+        <div class="d-flex flex-column align-items-center">
+          <div
+            class="bg-light p-2 mb-2 icon border border-1 border-dark-subtle"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <p class="fs-6 featureDescription fw-semibold">
+            Save hotels,<br />restaurants, and<br />more
+          </p>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-2 px-3">
+        <div class="d-flex flex-column align-items-center">
+          <div
+            class="bg-light p-2 mb-2 icon border border-1 border-dark-subtle"
+          >
+            <i class="fa-regular fa-map"></i>
+          </div>
+          <p class="fs-6 featureDescription fw-semibold">
+            See your saves on your custom map
+          </p>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3 col-lg-2 px-4">
+        <div class="d-flex flex-column align-items-center">
+          <div
+            class="bg-light p-2 mb-2 icon border border-1 border-dark-subtle"
+          >
+            <i class="fa-solid fa-user-group"></i>
+          </div>
+          <p class="fs-6 featureDescription fw-semibold">
+            Share and collab with your travel<br />buds
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 my-4 px-0 px-lg-5">
+    <div class="col-12 col-md-6">
+      <div
+        class="p-4 py-5 rounded-4 h-100 d-flex flex-column justify-content-center align-items-center"
+        style="background-color: #d9d3fb"
+      >
+        <img
+          src="assets/trips-images/TripWithAI.png"
+          alt="AI Trip"
+          class="img-fluid col-7 mb-4"
+        />
+        <h3 class="fw-bold mb-3 col-7 text-start">
+          Start a trip in minutes with AI
+        </h3>
+        <p class="text-muted mb-5 col-7 text-start DescriptionAi">
+          Answer four short questions and get personalized recs with AI, guided
+          by traveler opinions.
+        </p>
+        <div class="col-7 text-start">
+          <button
+            class="btn btn-dark rounded-pill px-4 py-2 d-flex align-items-center gap-2 ai-trip-btn"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+            <p class="m-0">Try AI trip builder</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div
+        class="p-4 py-5 rounded-4 h-100 d-flex flex-column justify-content-center align-items-center"
+        style="background-color: #eafaf4"
+      >
+        <img
+          src="assets/trips-images/TripManual.png"
+          alt="AI Trip"
+          class="img-fluid col-7 mb-4"
+        />
+        <h3 class="fw-bold mb-3 col-7 text-start">
+          Build your trip from scratch
+        </h3>
+        <p class="text-muted mb-5 col-7 text-start DescriptionAi">
+          Browse top destinations, restaurants, and things to do and save your
+          faves to your itinerary as you go.
+        </p>
+        <div class="col-7 text-start">
+          <button
+            class="btn btn-dark rounded-pill px-4 py-2 d-flex align-items-center gap-2 manual-trip-btn border-0"
+            (click)="openManualTripBuilder(content)"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+            <p class="m-0">Do it yourself</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 pt-3 px-0 px-lg-5">
+    <h3 class="fw-semibold mb-4 text-start fs-4">
+      Use AI to plan a trip to a traveler-loved spot
+    </h3>
+
+    <p-carousel
+      [value]="cities"
+      [numVisible]="5"
+      [numScroll]="3"
+      [circular]="false"
+      [responsiveOptions]="responsiveOptions"
+      class="mt-3"
+    >
+      <ng-template let-city pTemplate="item">
+        <div class="city-card p-0 p-md-2" style="width: 220px">
+          <div
+            class="position-relative rounded-4 overflow-hidden shadow-sm w-100"
+            style="aspect-ratio: 3 / 3"
+          >
+            <img
+              [src]="city.image"
+              class="img-fluid w-100 h-100"
+              style="object-fit: cover"
+              [alt]="city.name"
+            />
+            <div
+              class="overlay position-absolute top-0 start-0 w-100 h-100"
+            ></div>
+
+            <div
+              class="position-absolute top-0 start-0 m-2 bg-light p-1 mb-2 shadow-sm"
+              style="width: 30px; height: 30px; border-radius: 50%"
+            >
+              <i class="fa-solid fa-location-dot" style="font-size: 16px"></i>
+            </div>
+
+            <div class="position-absolute bottom-0 start-0 p-2">
+              <h5 class="text-white fw-bold m-0">{{ city.name }}</h5>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
+
+
+<!-- Offcanvas Template -->
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header border border-bottom-1 border-dark-subtle py-4">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-create-trip [offcanvasRef]="offcanvas"></app-create-trip>
+  </div>
+</ng-template>
