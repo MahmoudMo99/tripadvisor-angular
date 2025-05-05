@@ -21,7 +21,13 @@ export const API = {
     addDateToTrip: (id: string) => withDomain(`trips/${id}/add-date`),
     invite: (id: string) => withDomain(`trips/${id}/invite`),
     share: (id: string) => withDomain(`trips/share/${id}`),
-  getTripById: (tripId: string) => withDomain(`trips/${tripId}`)
+    getTripById: (tripId: string) => withDomain(`trips/${tripId}`),
+markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
+delete: (id: string) => withDomain(`trips/${id}`), 
+    getSortedTrips: withDomain('trips/sorted'),
+makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
+
+
 
   },
   restaurant:{

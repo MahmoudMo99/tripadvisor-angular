@@ -59,26 +59,33 @@ export class AddDateModelComponent {
     this.selectedDate = null;
   }
 
-  applyDate() {
-    if (this.selectedDate && this.tripId) {
-      const selected = this.selectedDate;
+applyDate() {
+  if (this.selectedDate && this.tripId) {
+    const selected = this.selectedDate;
 
-      const utcDate = new Date(
-        Date.UTC(
-          selected.getFullYear(),
-          selected.getMonth(),
-          selected.getDate()
-        )
-      );
+    const utcDate = new Date(
+      Date.UTC(
+        selected.getFullYear(),
+        selected.getMonth(),
+        selected.getDate()
+      )
+    );
 
-      console.log('Sending UTC Date:', utcDate.toISOString());
+    console.log('Sending UTC Date:', utcDate.toISOString()); // 🔍 Debug
 
-      this.tripsService
-        .updateTripDate(this.tripId, utcDate.toISOString())
-        .subscribe({
-          next: () => this.activeModal.close(this.selectedDate),
-          error: (err: any) => console.error('Failed to update date:', err),
-        });
-    }
+    this.tripsService
+      .updateTripDate(this.tripId, utcDate.toISOString())
+      .subscribe({
+        next: () => {
+          console.log('✅ Date applied');
+          this.activeModal.close('saved'); // ✅ Must be here!
+        },
+        error: (err) => {
+          console.error('❌ Failed to update date:', err);
+        },
+      });
   }
+}
+
+
 }

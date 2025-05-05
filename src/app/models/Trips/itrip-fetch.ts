@@ -4,6 +4,7 @@ export interface ItripFetch {
   name: string;
   destination:IDestination;
   visibility: string;
+  date?: string; 
   owner: {
     _id: string;
     firstName: string;

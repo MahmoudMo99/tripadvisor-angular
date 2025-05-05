@@ -24,14 +24,20 @@
 
           <div class="mt-auto">
             <h1 class="h3">{{ tripData.name }}</h1> 
-            <p><mat-icon>location_on</mat-icon> {{ tripData.destination.name || 'Unknown' }}</p> 
+            <div class="d-flex d-flex align-items-center gap-3">
+                                   <p >
+      <i class="fa-solid fa-calendar-days me-1"></i>
+                                    {{ tripData.date | date: 'MMM d, y'}}</p>
+ <p>
+<i class="fas fa-map-marker-alt"></i>
+  {{ tripData.destination.name || 'Unknown' }}</p> 
+</div>
           </div>
         </div>
       </div>
 
       <div class="tabs-container d-flex gap-4 flex-wrap">
-        <a routerLink="saves" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }">Saves</a>
-        <a routerLink="itinerary" routerLinkActive="active-tab">Itinerary</a>
+  
         <a routerLink="for-you" routerLinkActive="active-tab">For you</a>
       </div>
 
