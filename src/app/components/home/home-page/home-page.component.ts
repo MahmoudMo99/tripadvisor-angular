@@ -15,7 +15,7 @@ import { TravelCreatorComponent } from '../travel-creator/travel-creator.compone
 
 @Component({
   selector: 'app-home-page',
-  imports: [NavBarHomePageComponent,WhereToHomePageComponent,NavigateSearchHomePageComponent,SearchBarHomePageComponent,BannerHomePageComponent,AdvertisementHomePageComponent,TrendsHomePageComponent,AttractiveHomePageComponent,MoreExploreComponent,Destination1HomePageComponent,Destination2HomePageComponent,TravelChoiceComponent,TravelCreatorComponent],
+  imports: [WhereToHomePageComponent,NavigateSearchHomePageComponent,SearchBarHomePageComponent,BannerHomePageComponent,AdvertisementHomePageComponent,TrendsHomePageComponent,AttractiveHomePageComponent,MoreExploreComponent,Destination1HomePageComponent,Destination2HomePageComponent,TravelChoiceComponent,TravelCreatorComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
