@@ -26,6 +26,7 @@ import { TripsDetailsMainComponent } from './components/trips/tripsDetails/trips
 import { ForYouComponent } from './components/trips/tripsDetails/for-you/for-you.component';
 import { SavesComponent } from './components/trips/tripsDetails/saves/saves.component';
 import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
+import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
 export const routes: Routes = [
   {
     path: '',
@@ -33,6 +34,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomePageComponent },
+      { path: 'language', component: ModalLanguageComponent },
 
       // authentication routes (Mahmoud)
       { path: 'options', component: OptionsComponent },

@@ -3,6 +3,7 @@ import { SearchBarComponent } from "../search-bar/search-bar.component";
 // import { UserMenuComponent } from "../user-menu/user-menu.component";
 import { MobileMenuComponent } from "../mobile-menu/mobile-menu.component";
 import { NavListsComponent } from "../nav-lists/nav-lists.component";
+import { LanguageNavbarService } from '../../../shared/language-navbar.service';
 
 
 @Component({
@@ -12,6 +13,10 @@ import { NavListsComponent } from "../nav-lists/nav-lists.component";
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  constructor(private langService: LanguageNavbarService) {}
+  openLangModal() {
+    this.langService.triggerModal(); 
+  }
   isDropdownOpen = false;
   menuItems = [
     'Trips',
