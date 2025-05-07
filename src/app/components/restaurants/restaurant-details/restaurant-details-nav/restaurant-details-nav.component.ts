@@ -5,7 +5,7 @@ import { MapComponent } from "../map/map.component";
 
 @Component({
   selector: 'app-restaurant-details-nav',
-  imports: [RestaurantDetailsCardComponent, RestaurantDetailsOverviewComponent, MapComponent],
+  imports: [RestaurantDetailsCardComponent, RestaurantDetailsOverviewComponent],
   templateUrl: './restaurant-details-nav.component.html',
   styleUrl: './restaurant-details-nav.component.scss'
 })

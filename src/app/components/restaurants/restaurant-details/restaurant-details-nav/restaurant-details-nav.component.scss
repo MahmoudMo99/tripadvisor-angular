@@ -1,7 +1,90 @@
+// html {
+//   scroll-behavior: smooth;
+// }
+
+// .tab-bar {
+//   display: flex;
+//   gap: 1rem;
+//   padding: 1rem;
+//   background-color: #fff;
+//   border-bottom: 1px solid #ddd;
+//   position: sticky;
+//   top: 0;
+//   z-index: 2;
+
+//   .tab {
+//     background: none;
+//     border: none;
+//     padding: 0.5rem 1rem;
+//     font-size: 1rem;
+//     cursor: pointer;
+//     color: #333;
+//     border-bottom: 2px solid transparent;
+//     transition: all 0.2s ease;
+
+//     &.active,
+//     &:hover {
+//       border-bottom-color: #000;
+//       font-weight: bold;
+//     }
+//   }
+// }
+
+// .section {
+//   padding: 2rem 1rem;
+//   scroll-margin-top: 80px;
+// }
+
+
+// .restaurant-details-container {
+//   display: flex;
+//   justify-content: space-between;
+//   gap: 20px;
+
+//   .overview-container {
+//     flex: 0 0 60%;
+//   }
+
+//   .card-container {
+//     flex: 0 0 35%;
+//     padding: 10px;
+//     border-radius: 10px;
+//   }
+// }
+// .restaurant-details-container {
+//   display: flex;
+//   justify-content: space-between;
+//   gap: 20px;
+//   flex-wrap: wrap;
+
+//   .overview-container {
+//     flex: 0 0 60%;
+//   }
+
+//   .card-container {
+//     flex: 0 0 35%;
+//     padding: 10px;
+//     border-radius: 10px;
+//   }
+
+//   @media (max-width: 768px) {
+//     flex-direction: column;
+
+//     .overview-container,
+//     .card-container {
+//       flex: 0 0 100%;
+//     }
+//   }
+// }
+
+
+
+/* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
+/* Tab bar styling */
 .tab-bar {
   display: flex;
   gap: 1rem;
@@ -10,24 +93,24 @@ html {
   border-bottom: 1px solid #ddd;
   position: sticky;
   top: 0;
-  // z-index: 1000;
+  z-index: 2;
+}
 
-  .tab {
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #333;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
+.tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #333;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
 
-    &.active,
-    &:hover {
-      border-bottom-color: #000;
-      font-weight: bold;
-    }
-  }
+.tab.active,
+.tab:hover {
+  border-bottom-color: #000;
+  font-weight: bold;
 }
 
 .section {
@@ -35,44 +118,42 @@ html {
   scroll-margin-top: 80px;
 }
 
-
 .restaurant-details-container {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
 
-  .overview-container {
-    flex: 0 0 60%;
+.overview-container {
+  flex: 0 0 60%; /* Takes 60% width on larger screens */
+}
+
+.card-container {
+  padding: 10px;
+  border-radius: 10px;
+  flex: 0 0 35%; /* Takes 35% width on larger screens */
+}
+
+@media (max-width: 768px) {
+  .restaurant-details-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    gap: 10px; /* Add some space between stacked sections */
   }
 
+  .overview-container,
   .card-container {
-    flex: 0 0 35%;
-    padding: 10px;
-    border-radius: 10px;
+    flex: 0 0 100%; /* Each component takes full width */
+  }
+
+  .tab-bar {
+    flex-direction: column; /* Stack tabs vertically on small screens */
+    gap: 1rem;
   }
 }
-.restaurant-details-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
 
-  .overview-container {
-    flex: 0 0 60%;
-  }
-
-  .card-container {
-    flex: 0 0 35%;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    .overview-container,
-    .card-container {
-      flex: 0 0 100%;
-    }
+@media (min-width: 992px) {
+  .tab-bar {
+    display: flex; /* Show tabs on larger screens */
   }
 }

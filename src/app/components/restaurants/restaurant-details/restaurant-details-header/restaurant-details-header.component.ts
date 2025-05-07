@@ -34,6 +34,25 @@ export class RestaurantDetailsHeaderComponent {
     const rounded = Math.round(rank);
     return Array(5).fill(false).map((_, i) => i < rounded);
   }
+
+
+
+  copyLink(): void {
+    const restaurantUrl = window.location.href;
+    navigator.clipboard.writeText(restaurantUrl).then(() => {
+      alert('Restaurant link copied to clipboard!');
+    }).catch((err) => {
+      console.error('Failed to copy link: ', err);
+    });
+  }
+
+  sendEmail(): void {
+    const subject = 'Restaurant Details';
+    const body = `Check out this restaurant: ${window.location.href}`;
+    const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  }
+
 }
 
 
