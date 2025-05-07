@@ -1,12 +1,11 @@
 <div class="container-fluid main col-12">
   <div class="row main-con justify-content-center col-10">
     <div class="col-lg-8 col-md-8 col-12">
-
       <div class="trip-card mb-4" *ngIf="tripData">
-        <img 
-    [src]="tripData.destination.images " 
-          alt="{{ tripData.destination.name || 'Trip Image' }}" 
-          class="trip-image img-fluid" 
+        <img
+          [src]="tripData.destination.images"
+          alt="{{ tripData.destination.name || 'Trip Image' }}"
+          class="trip-image img-fluid"
         />
 
         <div class="trip-info">
@@ -23,29 +22,30 @@
           </div>
 
           <div class="mt-auto">
-            <h1 class="h3">{{ tripData.name }}</h1> 
+            <h1 class="h3">{{ tripData.name }}</h1>
             <div class="d-flex d-flex align-items-center gap-3">
-                                          @if (tripData.date) {
-         <p >
-      <i class="fa-solid fa-calendar-days me-1"></i>
-                                    {{ tripData.date | date: 'MMM d, y'}}</p>}
- <p>
-<i class="fas fa-map-marker-alt"></i>
-  {{ tripData.destination.name || 'Unknown' }}</p> 
-</div>
+              @if (tripData.date) {
+              <p>
+                <i class="fa-solid fa-calendar-days me-1"></i>
+                {{ tripData.date | date : "MMM d, y" }}
+              </p>
+              }
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ tripData.destination.name || "Unknown" }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="tabs-container d-flex gap-4 flex-wrap">
-  
         <a routerLink="for-you" routerLinkActive="active-tab">For you</a>
       </div>
 
       <div class="page-content mt-4">
         <router-outlet></router-outlet>
       </div>
-
     </div>
 
     <div class="col-lg-4 col-md-4 col-12 mt-4 mt-lg-0">
@@ -53,6 +53,5 @@
         <div id="map" class="map-container"></div>
       </div>
     </div>
-
   </div>
 </div>

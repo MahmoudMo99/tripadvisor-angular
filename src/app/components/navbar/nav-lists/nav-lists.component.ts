@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-lists',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './nav-lists.component.html',
   styleUrl: './nav-lists.component.scss',
 })
 export class NavListsComponent {
-  navItems: string[] = [
-    'Hotels',
-    'Things to Do',
-    'Restaurants',
-    'Flights',
-    'Vacation Rentals',
-    'Cruises',
-    'Rental Cars',
-    'Forum',
+  navItems = [
+    { label: 'Hotels', path: '/hotels' },
+    { label: 'Things to Do', path: '/attractions' },
+    { label: 'Restaurants', path: '/restaurants' },
+    { label: 'Flights', path: '/flights' },
+    { label: 'Vacation Rentals', path: '/vacation-rentals' },
+    { label: 'Cruises', path: '/cruises' },
+    { label: 'Rental Cars', path: '/rental-cars' },
+    { label: 'Forum', path: '/forum' },
   ];
 }

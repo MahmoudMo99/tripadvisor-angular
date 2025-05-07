@@ -22,19 +22,18 @@ export const API = {
     invite: (id: string) => withDomain(`trips/${id}/invite`),
     share: (id: string) => withDomain(`trips/share/${id}`),
     getTripById: (tripId: string) => withDomain(`trips/${tripId}`),
-markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
-delete: (id: string) => withDomain(`trips/${id}`), 
+    markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
+    delete: (id: string) => withDomain(`trips/${id}`),
     getSortedTrips: withDomain('trips/sorted'),
-makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
-
-
-
+    makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
   },
-  restaurant:{
+  booking: {
+    create: withDomain('bookings'),
+  },
+  restaurant: {
     recentlyrestaurants: `${Domain}resturants`,
     getById: (id: string) => `${Domain}resturants/${id}`,
-
-  }
+  },
 };
 
 export const auth = {
@@ -42,5 +41,3 @@ export const auth = {
   attractiveHome: `${Domain}attractives`,
   destinationHome: `${Domain}destination`,
 };
-
-
