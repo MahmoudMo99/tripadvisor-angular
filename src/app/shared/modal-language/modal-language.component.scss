@@ -1,0 +1,36 @@
+.nav-tabs {
+    .nav-link {
+      background-color: transparent;
+      color: black;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      font-weight: normal;
+  
+      &.active {
+        text-decoration: underline;
+        font-weight: bold;
+        color: black;
+        text-underline-offset: 6px;
+      }
+    
+    }
+  }
+  
+  .card-style {
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background-color: #f8f9fa !important;
+    }
+  }
+  
+  .region-card, .currency-card {
+    @extend .card-style;
+  }
+  .currency-card, .region-card {
+    &:hover, &.selected {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+  }
