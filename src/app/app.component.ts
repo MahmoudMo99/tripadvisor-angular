@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { Dropdown } from 'bootstrap';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,FormsModule,ReactiveFormsModule ],
+  imports: [RouterOutlet, FormsModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'], 
 })
 export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {

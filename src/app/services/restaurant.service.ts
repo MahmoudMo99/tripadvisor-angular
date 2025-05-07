@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { API } from '../constants/api-urs';
 import { Restaurant } from '../models/restaurants/restaurant';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private http: HttpClient) {}
 
   getRecentlyRestaurant(): Observable<Restaurant[]> {
@@ -17,4 +19,5 @@ export class RestaurantService {
   getRestaurantById(id: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(API.restaurant.getById(id));
   }
+
 }

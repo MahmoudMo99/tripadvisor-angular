@@ -13,9 +13,11 @@ import { Destination2HomePageComponent } from '../destination2-home-page/destina
 import { TravelChoiceComponent } from '../travel-choice/travel-choice.component';
 import { TravelCreatorComponent } from '../travel-creator/travel-creator.component';
 
+
+
 @Component({
   selector: 'app-home-page',
-  imports: [NavBarHomePageComponent,WhereToHomePageComponent,NavigateSearchHomePageComponent,SearchBarHomePageComponent,BannerHomePageComponent,AdvertisementHomePageComponent,TrendsHomePageComponent,AttractiveHomePageComponent,MoreExploreComponent,Destination1HomePageComponent,Destination2HomePageComponent,TravelChoiceComponent,TravelCreatorComponent],
+  imports: [NavBarHomePageComponent, WhereToHomePageComponent, NavigateSearchHomePageComponent, SearchBarHomePageComponent, BannerHomePageComponent, AdvertisementHomePageComponent, TrendsHomePageComponent, MoreExploreComponent, Destination1HomePageComponent, Destination2HomePageComponent, TravelCreatorComponent, TravelChoiceComponent, AttractiveHomePageComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
