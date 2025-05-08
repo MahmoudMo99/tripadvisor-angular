@@ -1,0 +1,60 @@
+{
+  "header":{
+
+    "DiscoverV":"Discover",
+    "TripsV":"Trips",
+    "ReviewV":"Review",
+    "USAV":"USV",
+    "HotelsV":"Hotels",
+    "ThingsToDoV":"Things To Do",
+    "RestaurantsV":"Restaurants",
+    "FlightsV":"Flights",
+    "VacationRentalsV":"Vacation Rentals",
+    "CruisesV":"Cruises",
+    "RentalCarsV":"Renta lCars",
+    "Forum":"Forum"
+  },
+  "HomePage": {
+    "DiscoverV": "Discover",
+    "TripsV": "Trips",
+    "ReviewV": "Review",
+    "MoreV": "More",
+    "USAV": "USA",
+    "SignUpV": "Sign up",
+    "WhereToV": "Where To ?",
+    "SearchAllV": "Search All",
+    "HotelsV": "Hotels",
+    "ThingsToDoV": "Things To Do",
+    "RestaurantsV": "Restaurants",
+    "FlightsV": "Flights",
+    "VacationRentalsV": "Vacation Rentals",
+    "SearchV": "Places to go,thingsto do ,hotels",
+    "searchButton": "Search",
+    "BannerText1":"The 2025 Tripadvisor Trendcast",
+    "BannerText2":"Forecasting the future of travel—now.",
+    "CheckitoutV":"Check it out",
+    "SponsoredbyGuadeloupeIslandsV":"Sponsored by Guadeloupe Islands",
+    "DiscoverGuadeloupeV":"Discover Guadeloupe",
+    "FindOutV":"Find out why travelers like you are raving aboute Guadeloupe ",
+    "ExploreV":"Explore now",
+    "MoreToExploreV":"More to explore",
+    "ExploretheworldV":"Explore the world’s most stunning seasides",
+    "DreamNextTripV":"Dream Your Next Trip",
+    "vacationV":"Top destinations for your next vacation",
+    "travelcreatorsV":"Got inspired by our fave travel creators",
+    "nextbigtripV":"Tried-and-true guidance to fuel your next big trip",
+    "TravelersChoiceV":"Travelers' Choice Awards Best of the Best",
+    "TravelersChoiceTextV":"Among our top 1% of places, stays, eats, and experiences—decided by you.",
+    "winnerV":"See the winners"
+
+
+  }
+  ,"footer":{
+    "copyrightV":"© 2025 Tripadvisor LLC All rights reserved",
+    "PrivacyandCookiesV":"Terms of Use Privacy and Cookies StatementCookie ConsentSite MapHow the site worksContact us",
+    "versionWebsite":"This is the version of our website addressed to speakers of English in the United States. If you are a resident of another country or region, please select the appropriate version of Tripadvisor for your country or region in the drop-down menu.",
+    "USAV":"USA",
+    "UnitedStatesV":"United States"
+  }
+
+}
