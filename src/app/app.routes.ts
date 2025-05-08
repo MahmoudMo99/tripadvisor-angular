@@ -170,5 +170,5 @@ export const routes: Routes = [
   //   ],
   // },
   // { path: 'Resturant', component: ResturantPageComponent },
->>>>>>> Manar/ingerations
+
 ];
