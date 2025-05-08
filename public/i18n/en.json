@@ -56,5 +56,143 @@
     "USAV":"USA",
     "UnitedStatesV":"United States"
   }
+  ,"attractions":{
+    "FindThingsV":"Find Things to Do anywhere",
+    "searchV":"Search by place or activity",
+    "PlanbookV":"Plan, book, go—we make it easy",
+    "BackedbytravelersV":"Backed by travelers",
+    "BackedbytravelersText":"See what people loved (or didn’t love) with real reviews on almost everything.",
+    "FreecancellationV":"Free cancellation",
+    "FreecancellationText":"Go with the flow. Most experiences can be canceled up to 24 hours before.",
+    "LowestPriceGuaranteeV":"Lowest Price Guarantee",
+    "LowestPriceGuaranteeText":"If you find the same thing cheaper online, get a refund of the difference. Learn more",
+    "RecentlyviewedV":"Recently viewed",
+    "RecommendedforyouV":"Recommended for you",
+    "TopattractionsV":"Top attractions in Paris",
+    "TopexperiencesV":"Top experiences in Paris",
+    "TopglobaldestinationsV":"Top global destinations",
+    "TopglobalattractionsV":"Top global attractions",
+    "nearmeV":"Top things to do and attractions near me",
+    "nearmeText":"Explore the best things to do around the world on Tripadvisor to get recommendations and read reviews from those who have been there before. From family-friendly activities and adventure excursions to city tours, museums and iconic attractions, discover amazing experiences near and far to start planning your next trip."
+  }
+  ,"attractionsDetails":{
+    "About":"About",
+    "RecommendedforYouV":"Recommended for You",
+    "AboutOperatorV":"About the operator",
+    "AboutOperatorText":"Don’t take it from us – here’s what people have to say about this operator:",
+    "reviewsV":"These reviews are the subjective opinions of Tripadvisor members and not of Tripadvisor LLC. Tripadvisor performs checks on reviews as part of our industry-leading trust & safety standards. Read our transparency report to learn more.",
+    "ContributeV":"Contribute",
+    "FinishReviewV":"Finish your review",
+    "uploadPhotoV":"upload Photo",
+    "FromCard":"From",
+    "peradultV":"per adult (price varies by group size)",
+    "SelectDateAndtravelersV":"Select date and travelers",
+    "Free Cancellation":"Free Cancellation • Cancel anytime before Mar 13 for full refund.",
+    "ReserveNow":"Reserve now, pay later • Secure your spot while staying flexible.",
+    "reserveV":"RESERVE NOW & PAY LATER ELIGIBLE",
+    "Adults":"Adults",
+    "ReserveButton":"ReseveNow"
+  }
+
+,"restaurant":{
+  "searchV":"Places to go,thingsto do ,hotels",
+  "perfectRestaurantV":"Find your perfect restaurant",
+  "placestoeat":"Find the best places to eat",
+  "card1":"4.3 million restaurants — everything from street food to fine dining.",
+  "latestReviewsV":"See the latest reviews",
+  "card2":"Millions of restaurant reviews and photos from our global travel community",
+  "ReserveTable":"Reserve a table",
+  "card3":"Make online reservations at restaurants worldwide.",
+  "RecentlyViewedV":"Recently Viewed",
+  "DinnerRestaurantsV":"Dinner Restaurants",
+  "LaunchRestaurantsV":"Launch Restaurants",
+  "BreakfastRestaurantsV":"Breakfast Restaurants"
+}
+,"restaurantDetails":{
+  "shareV":"Share",
+  "reviewsV":"Review",
+  "saveV":"Save",
+  "glanceV":"At a glance",
+  "About":"About",
+  "FeaturesV":"Features",
+  "LocationV":"Location",
+  "MenuV":"Menu",
+  "OpeningHoursV":"Opening Hours",
+  "ReservtoinV":"Reservtoin",
+  "SundayV":"Sunday",
+  "MondayV":"Monday",
+  "TuesdayV":"Tuesday",
+  "WednesdayV":"Wednesday",
+  "ThursdayV":"Thursday",
+  "FridayV":"Friday",
+  "SaturdayV":"Saturday",
+  "InteriorV":"Interior",
+  "reviewsrate":"reviews"
+}
+
+,"flights":{
+  "findBestV":"Find the best flight for the right price",
+  "RoundTripV":"Round Trip",
+  "OneDayV":"One-Day",
+  "multiCity":"Multi-City",
+  "fromV":"From",
+  "whereV":"Where",
+  "dateV":"mm/dd/yyyy",
+  "econmyV":"econmy",
+  "AdultsV":"Adults",
+  "ChildrenV":"Children",
+  "SeniorV":"Senior",
+  "findFlightV":"Find Flight",
+  "nonstopV":"Prefer nonstop",
+  "nearbyAirportsV":"Include nearby airports",
+  "travelerReviewsV":"See traveler reviews",
+  "travelerReviewsText":"Customer service, legroom, meals—find out what travelers loved (or didn’t love) in their airline reviews. Browse all airlines",
+  "searchAirlinesV":"search airlines",
+  "bestDealsV":"Get the best deals",
+  "bestDealsText":"Compare flight prices from hundreds of airlines and travel sites in one place.",
+  "CustomiseResultsText":"Filter for your preferred airlines, flight times, desired price, and more.",
+  "CustomiseResultsV":"Customise your results",
+  "SearchWorryV":"Search without worry",
+  "SearchWorryText":"We’re completely free to use—no hidden charges or fees on flight prices at all.",
+  "BestDealsV":"Best Flight Deals",
+  "BestDealsText":"No need to shop multiple sites any more. We've already done that by searching hundreds of cheap flights for you– scouring premium airlines, low-cost carriers and the biggest online travel agencies for the best deals. We'll even check alternate dates and nearby airports to help you save money, time, even sanity on airline tickets",
+  "FlightSearchFiltersV":"Our filters make it a snap to easily find the cheap flight that's right for you. Find direct flights that are nonstop, avoid early departure times— or try our Best Value filter, which sorts based on price, duration, and additional factors.",
+  "In-FlightExperienceV":"In-Flight Experience",
+  "FlightExperienceText":"Want Wi-Fi? More legroom? Or even a seat that allows you to sleep perfectly flat? Tripadvisor Flights now makes it easier to find the amenities that can make or break your flight. Find which flights include Wi-Fi, live TV, power outlets, free baggage, and more.",
+  "AirplanePhotosV":"Airplane Photos",
+  "AirplanePhotosText":"Thousands of photos from real travelers let you peek inside the plane before you buy your ticket. Our airline reviews provide unbiased opinions to help you select the right airline and flight for your trip."
+}
+
+
+,"contactDetails":{
+  "ContactDetailsV":"Contact Details",
+  "ContactDetailsText":"We'll use this information to send you confirmation and updates about your booking.",
+"FirstNameV":"First Name",
+"LastNameV":"Last Name",
+"EmailV":"Email",
+"PhoneNumberV ":"Phone Number ",
+"ReceiveSMSV":"Receive SMS updates about your booking. Message rates may apply.",
+"PromoCodeV":"Promo Code",
+"NextButton":"Next",
+"copyRight":"© 2025 Tripadvisor LLC All rights reserved. Tripadvisor Terms of Use and Privacy and Cookies Statement",
+"TotalV":"Total",
+"BookConfidenceV":"Book with confidence",
+"LowestPriceGuaranteeV":"Lowest price guarantee",
+"LowestPriceGuaranteeText":"Find it cheaper? We'll refund the difference",
+"PrivacyProtectionV":"Privacy protection",
+"PrivacyProtectionText":"We use SSL encryption to keep your data secure",
+"24/7 global support":"Get the answers you need, when you need them",
+"GiveUsV":"Give us a call",
+"GiveUsText":"We’d be happy to help you out with your booking",
+"phoneV":"call now: +1 855 275 5071 ",
+"byV":"by",
+"privateTourV":"private tour",
+"DateV":"Date:",
+"TimeV":"Time:",
+"TravelersV":"Travelers:",
+"cancellationRescheduleV":"Free cancellation + Unlimited reschedule ",
+"PromoCode":"Enter Promo Code"
+}
+
 
 }
