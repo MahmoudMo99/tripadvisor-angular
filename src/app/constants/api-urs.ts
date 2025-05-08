@@ -34,6 +34,16 @@ export const API = {
     recentlyrestaurants: `${Domain}resturants`,
     getById: (id: string) => `${Domain}resturants/${id}`,
   },
+  user: {
+    getCurrentUser: `${Domain}users`,
+  }
+  , review: {
+    getCurrentUserReviews: `${Domain}reviews`,
+    getReviews: (type: string, reference: string) => `${Domain}reviews/${type}/${reference}`,
+  },
+  location: {
+    searchforlocation: (searchValue: string, limit: number, page: number) => `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
+  }
 };
 
 export const auth = {
