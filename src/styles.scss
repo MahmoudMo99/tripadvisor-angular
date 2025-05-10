@@ -1,22 +1,22 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 /* Importing Bootstrap SCSS file. */
-@use 'bootstrap/scss/bootstrap';
+@use "bootstrap/scss/bootstrap";
 
 html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
-
 
 * {
   margin: 0;
@@ -24,15 +24,25 @@ html {
   box-sizing: border-box;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
+input {
+  outline: none;
+  border: #ddd 2px solid !important;
+  border-radius: 0.2rem !important;
 
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: none !important;
-  // }
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+}
+
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
 
 
 html,

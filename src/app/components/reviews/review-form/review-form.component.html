@@ -1,0 +1,114 @@
+<div
+    class="container py-5 px-lg-3 px-2 d-flex flex-lg-row flex-column  justify-content-center align-items-start gap-4">
+    <div class="row col-lg-4 col-12 px-lg-4 px-2  border-end  d-flex flex-column justify-content-center  gap-2">
+        <p class="fs-2 fw-bolder p-0 d-lg-block d-none">Tell us, how was your stay?</p>
+        <div class="d-flex  flex-lg-column flex-row gap-2 p-3 col-lg-9 col-12 border ">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/0b/ae/20/img-20170420-220949-228.jpg?w=2400&h=2400&s=1"
+                class="img-fluid col-lg-12 col-3" alt="">
+            <div>
+                <h5 class="fw-bold">The Museum of Egyptian Antiquities</h5>
+                <p class="text-muted m-0">Midan El Tahrir</p>
+                <p class="text-muted m-0">Cairo, Egypt</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-lg-6 col-12 ">
+        <div class="d-flex flex-column gap-3 p-3 col-12 ">
+            <p class="m-0 fs-4 fw-bold">
+                How would you rate your experience?
+            </p>
+            <div class="fs-2">
+                <app-review-rate [readonly]="false"></app-review-rate>
+            </div>
+        </div>
+
+
+        <div class="d-flex flex-column gap-3 p-3 col-12 ">
+            <p class="m-0 fs-4 fw-bold">
+                When did you go?
+            </p>
+            <div class="col-lg-6 col-12">
+                <select class="form-select rounded-pill" aria-label="Default select example">
+                    <option selected>Select </option>
+                    @for (item of monthsAndYears; track $index) {
+                    <option [value]="$index" class="fw-bold">{{item.month}},{{item.year}}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <p class="m-0 fs-4 fw-bold">
+                    Who did you go with?
+                </p>
+                <div class=" col-12">
+                    <div class="d-flex justify-content-start align-items-center gap-2 flex-wrap">
+                        @for (item of groupOptions; track $index) {
+                        <input type="radio" class="btn-check" [id]="$index" name="radioDefault" autocomplete="off">
+                        <label class="btn btn-outline-dark rounded-pill" [for]="$index">{{item}}</label>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <p class="m-0 fs-4 fw-bold">
+                    Write your review
+                </p>
+                <div class="">
+                    <div class="mb-3">
+                        <textarea class="form-control border-3" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="The views are amazinge!"></textarea>
+                        <p class="text-muted text-end">0/100 min characters</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <p class="m-0 fs-4 fw-bold">
+                    Title your review
+                </p>
+                <div class="">
+                    <div class="mb-3">
+                        <input type="text" class="form-control  border-3" id="Title"
+                            placeholder="give us a title for your review">
+                        <p class="text-muted text-end">0/100 min characters</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <p class="m-0 fs-4 fw-bold">
+                    Add some photos
+                </p>
+                <p class="text-muted">Optional</p>
+                <div class="bg-light d-flex flex-column justify-content-center align-items-center p-5">
+                    <span><i class="fa-regular fa-image"></i></span>
+                    <p class="fw-bold  m-0">Add some photos</p>
+                    <p class="text-muted m-0">or drag and drop</p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <div class="form-check">
+                    <input class="form-check-input  p-0  " type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label " for="checkDefault">
+                        <p> certify that this review is based on my own experience and is my genuine opinion of this
+                            establishment and that I have no personal or business relationship with this establishment,
+                            and have not been offered any incentive or payment originating from the establishment to
+                            write this review. I understand that Tripadvisor has a zero-tolerance policy on fake
+                            reviews. <a href="#" class="text-black">Learn more about the consequences of review
+                                fraud.</a>
+                        </p>
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex flex-column gap-3 p-3 col-12 ">
+                <button type="button" class="btn btn-dark rounded-pill p-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

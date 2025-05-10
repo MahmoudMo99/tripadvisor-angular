@@ -1,0 +1,83 @@
+<!--------------------edit profile model ---------------------------->
+<div class="bg-dark-75  position-fixed top-0 start-0 w-100 h-100 position-absolute d-flex justify-content-center align-items-center p-lg-5"
+    [ngClass]="{'d-none': !showEditModelFlag, 'd-block': showEditModelFlag}" (click)="closeEditModel()">
+    >
+    <div class="bg-white  edit-model col-lg-6 col-12 " (click)="$event.stopPropagation()">
+        <div class="bg-light h-101 col-12 d-flex gap-2 justify-content-center align-items-center btn btn-light rounded-0"
+            (click)="showEditImageModel('cover')">
+            <i class="fa-regular fa-image"></i>Add cover photo
+        </div>
+        <div class="d-flex flex-column flex-lg-row gap-3 p-5">
+            <div class="position-relative "><img
+                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/cf/87/0e/caption.jpg?w=1000&h=700&s=1"
+                    width="90" height="90" class="rounded-circle">
+                <div class=" d-flex justify-content-center align-items-center fw-600 position-absolute rounded-circle text-center btn btn-dark"
+                    style="width: 90px; height: 90px;top:0; opacity: .4; cursor: pointer"
+                    (click)="showEditImageModel('image')">
+                    <small class="text center text-light "><i class="fa-regular fa-image"></i> change profile
+                        photo</small>
+                </div>
+            </div>
+            <div style="width: 100%;" class="d-flex flex-column gap-3">
+                <div>
+                    <label for="name" class="fs-12 fw-600">Name</label>
+                    <div class="input-box p-2">
+                        <input type="text" id="name" name="name" [(ngModel)]="editUserData.name" placeholder="Name">
+                    </div>
+                </div>
+                <div>
+                    <label for="username" class="fs-12 fw-600">Username</label>
+                    <div class="input-box p-2 d-flex">
+                        <span>
+                            <i class="fa-solid fa-at"></i>
+                        </span>
+                        <input type="text" id="username" name="username" [(ngModel)]="editUserData.username"
+                            placeholder="Username">
+                    </div>
+                </div>
+                <div>
+                    <label for="currentCity" class="fs-12 fw-600">Current City</label>
+                    <div class="input-box p-2 d-flex position-relative ">
+                        <span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="search" id="currentCity" name="currentCity" [(ngModel)]="selectedCity"
+                            placeholder="Search" (change)="searchCity($event)">
+                        @if(cityList.length > 0) {
+                        <div class="position-absolute w-100 bg-white top-100 border rounded-0 shadow-sm start-0" >
+                            <div class="bg-white py-2">
+                                @for (city of cityList; track $index) {
+                                <div class="p-2 text-muted" (click)="selectCity(city)">
+                                    <span>{{city.name}} , {{city.country}}</span>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <label for="website" class="fs-12 fw-600">Website</label>
+                    <div class="input-box p-2 d-flex">
+                        <span>
+                            <i class="fa-solid fa-globe"></i>
+                        </span>
+                        <input type="text" id="website" name="website" [(ngModel)]="editUserData.website"
+                            placeholder="Add a website">
+                    </div>
+                </div>
+                <div>
+                    <label for="bio" class="fs-12 fw-600">About you</label>
+                    <div class="input-box p-2 d-flex">
+                        <textarea id="bio" name="bio" [(ngModel)]="editUserData.bio"
+                            placeholder="Write some details about you"></textarea>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center gap-2">
+                    <button class="btn-outlet-black p-2 px-3 rounded-pill" (click)="closeEditModel()">Cancel</button>
+                    <button class="btn-black text-white p-2 px-3 rounded-pill" (click)="saveUserData()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,6 +19,8 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
   formSubmitted = false;
   subscription!: Subscription;
 
+  historyState = history.state;
+
   countries = [
     { name: 'United States', code: '+1', regex: /^[2-9]\d{9}$/ },
     { name: 'Egypt', code: '+20', regex: /^01\d{9}$/ },
@@ -35,19 +37,21 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: [
-    '',
-    [
-      Validators.required,
-      Validators.email,
-      Validators.pattern(
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-      ),
-    ],
-  ],
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+          ),
+        ],
+      ],
       countryCode: ['+1', Validators.required],
       phoneNumber: ['', Validators.required],
       smsUpdates: [false],
     });
+
+    console.log('History state at contact:', this.historyState.booking);
   }
 
   ngOnInit() {
@@ -114,7 +118,14 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
       console.log(this.contactForm.value);
 
       this.bookingService.setBookingData(this.contactForm.value);
-      this.router.navigate(['/Booking/activity-details']);
+      this.router.navigate(['/Booking/activity-details'], {
+        state: {
+          booking: {
+            type: this.historyState?.booking?.type,
+            referenceId: this.historyState?.booking?.referenceId,
+          },
+        },
+      });
     }
   }
 

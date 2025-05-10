@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-summery',
@@ -7,13 +8,19 @@ import { Component } from '@angular/core';
   styleUrl: './order-summery.component.scss',
 })
 export class OrderSummeryComponent {
-  tourTitle: string = 'Luxor Day Tour: Visit Dendara and Abydos Temples';
   operator: string = 'Egipto Excursiones';
-  imageUrl: string =
-    'https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/12/59/bf/67.jpg';
-  date: string = 'Sunday, March 16, 2025';
-  time: string = '9:00 AM';
-  travelers: string = '2 Adults';
-  price: number = 150.0;
   promoCode: string = '';
+
+  bookingData: any;
+
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.bookingData = navigation?.extras.state?.['booking'];
+  }
+
+  ngOnInit(): void {
+    if (!this.bookingData) {
+      console.warn('No booking data found in router state');
+    }
+  }
 }
