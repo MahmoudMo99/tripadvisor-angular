@@ -5,6 +5,7 @@ const withDomain = (path: string) => `${Domain}${path}`;
 
 export const API = {
   auth: {
+    register: withDomain('auth/register'),
     login: withDomain('auth/login'),
   },
   attractives: {
@@ -13,11 +14,11 @@ export const API = {
   },
 
   hotels: {
-  getAll: withDomain('hotels'),
+    getAll: withDomain('hotels'),
     getById: (id: string) => withDomain(`hotels/${id}`),
     checkAvailability: (id: string) => withDomain(`hotels/${id}/availability`),
-  filter:withDomain('hotels/filter')
-},
+    filter: withDomain('hotels/filter'),
+  },
 
   destination: {
     search: (searchValue: string) =>
@@ -44,14 +45,16 @@ export const API = {
   },
   user: {
     getCurrentUser: `${Domain}users`,
-  }
-  , review: {
+  },
+  review: {
     getCurrentUserReviews: `${Domain}reviews`,
-    getReviews: (type: string, reference: string) => `${Domain}reviews/${type}/${reference}`,
+    getReviews: (type: string, reference: string) =>
+      `${Domain}reviews/${type}/${reference}`,
   },
   location: {
-    searchforlocation: (searchValue: string, limit: number, page: number) => `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
-  }
+    searchforlocation: (searchValue: string, limit: number, page: number) =>
+      `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
+  },
 };
 
 export const auth = {

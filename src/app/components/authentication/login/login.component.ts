@@ -13,6 +13,6 @@ export class LoginComponent {
   router = inject(Router);
 
   goBack() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/options']);
   }
 }
