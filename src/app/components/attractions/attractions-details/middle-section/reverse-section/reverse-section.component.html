@@ -26,40 +26,40 @@
       />
     </div>
 
-   
+    <div class="buttons d-flex gap-2 mb-3">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="bookingData.selectedTime === '7:00 PM'"
+        (click)="selectTime('7:00 PM')"
+      >
+        7:00 PM
+      </button>
 
-<div class="buttons d-flex gap-2 mb-3">
-
-
-<button
-  type="button"
-  class="btn btn-outline-secondary"
-  [class.active]="bookingData.selectedTime === '7:00 PM'"
-  (click)="selectTime('7:00 PM')"
->
-  7:00 PM
-</button>
-
-<button
-  type="button"
-  class="btn btn-outline-secondary"
-  [class.active]="bookingData.selectedTime === '9:00 PM'"
-  (click)="selectTime('9:00 PM')"
->
-  9:00 PM
-</button>
-
-  </div>
-
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        [class.active]="bookingData.selectedTime === '9:00 PM'"
+        (click)="selectTime('9:00 PM')"
+      >
+        9:00 PM
+      </button>
+    </div>
 
     <div class="info-box">
       <i class="fa-regular fa-clock"></i>
-      <span><strong>Free Cancellation</strong> • Cancel anytime before Mar 13 for full refund.</span>
+      <span
+        ><strong>Free Cancellation</strong> • Cancel anytime before Mar 13 for
+        full refund.</span
+      >
     </div>
 
     <div class="info-box">
       <i class="fa-regular fa-hard-drive"></i>
-      <span><strong>Reserve now, pay later</strong> • Secure your spot while staying flexible.</span>
+      <span
+        ><strong>Reserve now, pay later</strong> • Secure your spot while
+        staying flexible.</span
+      >
     </div>
 
     <div class="experience-card mt-3">
@@ -73,9 +73,13 @@
       </button>
 
       <p>{{ bookingData.travelers }} Adults × {{ pricePerAdult | currency }}</p>
-      <p><strong>Total {{ bookingData.totalPrice.toFixed(2) |currency }} </strong></p>
+      <p>
+        <strong
+          >Total {{ bookingData.totalPrice.toFixed(2) | currency }}
+        </strong>
+      </p>
     </div>
 
-    <button class="reserve mt-3  " type="submit">Reserve Now</button>
+    <button class="reserve mt-3" type="submit">Reserve Now</button>
   </form>
 </div>

@@ -1,0 +1,15 @@
+<div class="destination-wrapper">
+  <h2 class="heading">Hotel reviews: Hotels near me</h2>
+  <p class="subheading">Hotels in popular destinations — Find hotels & motels near you</p>
+
+  <div class="three-column-layout">
+    <div class="column" *ngFor="let group of groups">
+      <h5 class="region">{{ group.region }}</h5>
+      <ul>
+        <li *ngFor="let dest of group.destinations">
+          <a >{{ dest }} Hotels</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

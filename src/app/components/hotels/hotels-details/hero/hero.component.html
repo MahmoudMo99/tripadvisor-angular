@@ -1,0 +1,87 @@
+
+<div *ngIf="hotel" class="container col-10 main-container ">
+
+
+
+
+
+
+
+
+        
+       <div style="display: flex; justify-content: space-between;" class="col-12 ">
+        <div class="top col-10">
+            <div class="header ">
+            <h3 class="">{{hotel.name}}</h3>
+          
+        </div>
+        <div class="reviews">
+                        <span> <a class="" style="text-decoration: none;">{{hotel.averageRating}}  </a> </span>
+
+            <div class="green-circles">
+                <div class="green-circle"></div>
+                <div class="green-circle"></div>
+                <div class="green-circle"></div>
+                <div class="green-circle"></div>
+                <div class="green-circle"></div>
+            </div>
+         
+            <span> <a class="me-2">({{hotel.totalReviews |number}} reviews) </a>  #{{hotel.ranking?.position}} of {{hotel.ranking?.totalHotels |number}} Restaurants in Paris
+</span>
+        </div> 
+
+      
+
+            <div class="contact-details">
+        <p><i class="fas fa-map-marker-alt"></i> {{ hotel.address }}</p>
+        <div class="contact-links">
+          <a href="{{ hotel.HotelLink }}" target="_blank"><i class="fas fa-globe"></i> Visit hotel website</a>
+          <span><i class="fas fa-phone"></i> {{ hotel.contactHotel }}</span>
+          <a [href]="'mailto:' + hotel.emailHotel"><i class="fas fa-envelope"></i> E-mail hotel</a>
+        </div>
+      </div>
+        </div>
+
+
+  <div class="d-flex" style="flex-direction: column; align-items: flex-end;">  
+    <div>
+                       <button class="save-button"><i class="fa-regular fa-heart"></i> Save</button>
+      
+    </div>     
+<br>
+ <div class="price-box"class="d-flex">
+    <div >
+        <div class="price me-2">${{ hotel.pricePerNight }}</div>
+        <div class="site">Booking.com</div></div>
+        <button class=" view-deal-btn ">View deal</button>
+      </div>
+            </div>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="gallery col-12">
+  <img [src]="getImage(0)" class="img-1 col-8" alt="Main Experience Image" />
+
+  <div class="side-images col-4">
+    <img [src]="getImage(1)" alt="Experience Image 2" />
+    <img [src]="getImage(2)" alt="Experience Image 3" />
+  </div>
+</div>
+
+    </div>

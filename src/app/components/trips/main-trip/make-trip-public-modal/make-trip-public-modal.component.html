@@ -1,0 +1,85 @@
+<div class="modal-body p-4 rounded-4 bg-white">
+  <h4 class="fw-bold mb-4 text-center">Edit trip details
+</h4>
+
+  <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-3">
+
+    <div>
+      <label class="form-label fw-semibold">Trip Name</label>
+      <input class="form-control shadow-sm p-2" formControlName="name" placeholder="Enter trip name" />
+    </div>
+
+<div class="mb-3">
+  <label class="form-label fw-semibold">Destination</label>
+  <div class="input-group rounded-pill border px-3 py-1">
+    <span class="input-group-text bg-transparent border-0 pe-2">
+      <i class="fas fa-search text-muted"></i>
+    </span>
+  <input
+  type="text"
+  class="form-control border-0"
+  placeholder="Where to?"
+  formControlName="destinationName"
+  (input)="onDestinationInput($event)"
+/>
+
+  </div>
+</div>
+
+<ul *ngIf="searchResults.length > 0" class="list-group mt-2 border-0">
+  <li
+    *ngFor="let destination of searchResults"
+    class="list-group-item d-flex align-items-center p-1 border-0 mb-2"
+    (click)="selectDestination(destination)"
+  >
+    <img
+      *ngIf="destination.images?.length"
+      [src]="destination.images[0]"
+      alt="{{ destination.name }}"
+      width="50"
+      height="50"
+      class="rounded me-2"
+    />
+    <div>
+      <div class="fw-semibold fs-6">{{ destination.name }}</div>
+      <small class="text-muted">
+        {{ destination.region }}, {{ destination.country }}
+      </small>
+    </div>
+  </li>
+</ul>
+
+
+    <div>
+      <label class="form-label fw-semibold">Date</label>
+      <input type="date" class="form-control shadow-sm p-2" formControlName="date" />
+    </div>
+
+    <div>
+      <label class="form-label fw-semibold">Description</label>
+      <textarea class="form-control shadow-sm" formControlName="description" rows="3" placeholder="Optional..."></textarea>
+    </div>
+
+    <div>
+      <label class="form-label fw-semibold mb-2">Visibility</label>
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="radio" value="public" formControlName="visibility" id="public" />
+        <h6 class="form-check-label" for="public">Public</h6>
+                <small>Visible to the entire TripAdvisor community. For privacy, we only reveal the month and year of a public trip after the dates passed.</small>
+
+      </div>
+      <div class="form-check">
+        <input class="form-check-input " type="radio" value="restricted" formControlName="visibility" id="restricted" />
+        <h6 class="form-check-label" for="restricted"> Restricted</h6>
+                <small>Visible to people who’ve received your sharing link to view or an invite to collaborate.</small>
+
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <button type="submit" class="btn btn-dark px-4 py-2">Save</button>
+      <button type="button" class="btn btn-outline-danger px-3 py-2" (click)="onDelete()">Delete trip</button>
+    </div>
+
+  </form>
+</div>

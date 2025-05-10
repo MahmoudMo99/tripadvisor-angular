@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { OrderSummeryComponent } from './order-summery/order-summery.component';
 
 @Component({

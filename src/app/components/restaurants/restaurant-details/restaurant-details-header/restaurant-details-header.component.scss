@@ -1,0 +1,134 @@
+.restaurant-header {
+  padding: 1rem;
+  border-bottom: 1px solid #eaeaea;
+  font-family: Arial, sans-serif;
+
+  /* First Line */
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+
+    .left {
+      flex: 1;
+      h1.restaurant-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+      }
+    }
+
+    .right.button-group {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        border: 1px solid #333;
+        background: #fff;
+        transition: background 0.3s, color 0.3s;
+
+
+        &.save-button {
+          /* Custom style for Save button if desired */
+        }
+        &.share-button,
+        &.review-button {
+          border: none;
+          color: rgb(0, 0, 0);
+        }
+
+      }
+    }
+  }
+
+  /* Second Line: Inline Layout */
+  .header-bottom {
+    display: flex;
+    flex-wrap: nowrap; // force inline layout
+    align-items: center;
+    gap: 1rem; // overall gap between items
+
+    .rank {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      white-space: nowrap; // prevent wrapping
+    }
+
+    .rating-section {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .green-circle {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #ccc;
+        transition: background-color 0.3s;
+
+        &.filled {
+          background-color: rgb(1, 158, 1);
+        }
+      }
+
+      .reviews-count {
+        font-size: 0.95rem;
+        color: #777;
+        white-space: nowrap;
+      }
+    }
+
+    .location,
+    .destination {
+      font-size: 14px;
+      color: #555;
+      white-space: nowrap;
+      text-decoration: underline #c9ccd0;
+      text-underline-offset: 4px;
+      gap: 0.2rem;
+    }
+  }
+}
+
+.inline-header-bottom {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .rank {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    white-space: nowrap;
+  }
+
+  .rating-section {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .green-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #ccc; // unfilled color
+      transition: background-color 0.3s;
+
+      &.filled {
+        background-color: rgb(1, 158, 1); // filled green
+      }
+    }
+
+    .reviews-count {
+      font-size: 0.95rem;
+      color: #777;
+      white-space: nowrap;
+    }
+  }
+}
