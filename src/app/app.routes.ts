@@ -32,6 +32,8 @@ import { TripsDetailsMainComponent } from './components/trips/tripsDetails/trips
 import { ForYouComponent } from './components/trips/tripsDetails/for-you/for-you.component';
 import { SavesComponent } from './components/trips/tripsDetails/saves/saves.component';
 import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
+import { HotelsComponent } from './components/hotels/hotels/hotels-main/hotels.component';
+import { HotelsDetailsComponent } from './components/hotels/hotels-details/hotels-details-main/hotels-details.component';
 import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
 export const routes: Routes = [
   {
@@ -49,6 +51,24 @@ export const routes: Routes = [
 
       { path: 'attractions', component: AttractionsComponent },
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
+            { path: 'hotels', component: HotelsComponent },
+      { path: 'hotel/:id', component: HotelsDetailsComponent },
+
+      { path: 'steps', component: StepsComponent },
+      { path: 'attraction/:id/contact', component: ContactComponent },
+ { 
+    path: 'trips/:id', 
+    component: TripsDetailsMainComponent,
+    children: [
+      { path: '', redirectTo: 'for-you', pathMatch: 'full' }, 
+      { path: 'saves', component: SavesComponent },
+      { path: 'itinerary', component: ItineraryComponent },
+      { path: 'for-you', component: ForYouComponent }
+    ]
+  },
+      { path: 'attraction/activity', component: ActivityComponent },
+      { path: 'payment', component: PaymentComponent },
+
       // { path: 'steps', component: StepsComponent },
       // { path: 'attraction/:id/contact', component: ContactComponent },
       // { path: 'attraction/activity', component: ActivityComponent },

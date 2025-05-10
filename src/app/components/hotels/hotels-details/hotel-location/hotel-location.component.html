@@ -1,0 +1,19 @@
+<div class="container col-10 main-container " *ngIf="hotel">
+
+<div class="location-section">
+  <h2 class="section-title">Location</h2>
+
+  <div class="info-row">
+    <span><i class="fa fa-map-marker-alt"></i> {{hotel.address}}</span>
+    <span><i class="fa fa-globe"></i> Name/address in local language</span>
+    <span><i class="fa fa-phone-alt"></i> {{hotel.contactHotel}}</span>
+    <span><i class="fa fa-envelope" ></i> <a href={{hotel.emailHotel}} style="color: black; margin-left: 5px;">E-mail hotel</a></span>
+  </div>
+
+  <div class="map-wrapper">
+    <div id="map" class="leaflet-map-container"></div>
+  </div>
+
+ 
+</div>
+</div>

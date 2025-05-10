@@ -15,6 +15,7 @@
 
 
 .slider-container {
+    margin-top: 50px;
     overflow: hidden;
     position: relative;
     padding: 10px 0;
@@ -22,6 +23,7 @@
     justify-content: center;
     flex-direction: column;
     /* margin: 10px; */
+
 }
 
 .slider {
@@ -41,6 +43,8 @@
     background: #fff;
     position: relative;
     border: none;
+
+        font-weight: 400;
 }
 
 .card img {
@@ -75,13 +79,13 @@
 }
 
 .card-content {
-line-height: 80%;
+    line-height: 80%;
 }
 
 .card-content h3 {
     font-size: 14px;
     margin: 8px 0;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .rating {

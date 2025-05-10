@@ -1,0 +1,81 @@
+// reverse-section.component.html
+<div class="booking-card">
+  <p class="highlight">From ${{ pricePerAdult }}</p>
+  <p>per adult (price varies by group size)</p>
+
+  <h6>Select date and travelers</h6>
+  <form #bookingForm="ngForm" (ngSubmit)="reverse(bookingForm.value)">
+    <div class="d-flex gap-2 mb-3">
+      <input
+        type="date"
+        name="selectedDate"
+        class="form-control"
+        [(ngModel)]="bookingData.selectedDate"
+        (change)="onDateChange($event)"
+        required
+      />
+
+      <input
+        type="number"
+        name="travelers"
+        class="form-control"
+        min="1"
+        [(ngModel)]="bookingData.travelers"
+        (input)="onTravelersChange($event)"
+        required
+      />
+    </div>
+
+   
+
+<div class="buttons d-flex gap-2 mb-3">
+
+
+<button
+  type="button"
+  class="btn btn-outline-secondary"
+  [class.active]="bookingData.selectedTime === '7:00 PM'"
+  (click)="selectTime('7:00 PM')"
+>
+  7:00 PM
+</button>
+
+<button
+  type="button"
+  class="btn btn-outline-secondary"
+  [class.active]="bookingData.selectedTime === '9:00 PM'"
+  (click)="selectTime('9:00 PM')"
+>
+  9:00 PM
+</button>
+
+  </div>
+
+
+    <div class="info-box">
+      <i class="fa-regular fa-clock"></i>
+      <span><strong>Free Cancellation</strong> • Cancel anytime before Mar 13 for full refund.</span>
+    </div>
+
+    <div class="info-box">
+      <i class="fa-regular fa-hard-drive"></i>
+      <span><strong>Reserve now, pay later</strong> • Secure your spot while staying flexible.</span>
+    </div>
+
+    <div class="experience-card mt-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h6>{{ bookingData.title }}</h6>
+        <input type="radio" checked />
+      </div>
+
+      <button class="reverse-text mb-2" type="button">
+        RESERVE NOW & PAY LATER ELIGIBLE
+      </button>
+
+      <p>{{ bookingData.travelers }} Adults × {{ pricePerAdult | currency }}</p>
+      <p><strong>Total {{ bookingData.totalPrice.toFixed(2) |currency }} </strong></p>
+    </div>
+
+    <button class="reserve mt-3  " type="submit">Reserve Now</button>
+  </form>
+</div>

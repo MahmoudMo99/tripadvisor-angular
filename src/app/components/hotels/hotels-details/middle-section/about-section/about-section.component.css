@@ -1,0 +1,105 @@
+
+
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.about-container {
+
+    background: white;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ///////////////////////////// */
+.about-section {}
+
+.about-title {
+    font-weight: bold;
+}
+
+.price-icon {}
+
+.links i {
+    width: 16px;
+    height: 16px;
+
+}
+
+.magic-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.about-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.links {
+    margin-top: 15px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* /////////////////////////////////////////////////////////// */
+
+
+.details-section {
+    margin: auto;
+    padding-top: 20px;
+    font-size: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.detail-item i {
+    margin-right: 10px;
+    color: #333;
+}
+
+
+.accordion-button {
+    font-weight: bold;
+}
+
+.accordion {}
+
+.middle-container {
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    gap: 10px;
+
+}
+
+
+/* ////////////////////////////////////////////////// */
+

@@ -1,0 +1,70 @@
+<app-steps></app-steps>
+
+<!-- //////////////////////////////////// -->
+ <div class="container col-9 d-flex">
+ <div class=" col-8">
+
+<div class="container col-10 mt-5">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <h3>Contact Details</h3>
+    <p>We'll use this information to send you confirmation and updates about your booking.</p>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>First Name *</label>
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': isInvalid('firstName') }">
+        <div *ngIf="isInvalid('firstName')" class="invalid-feedback">Enter your first name</div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Last Name *</label>
+        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': isInvalid('lastName') }">
+        <div *ngIf="isInvalid('lastName')" class="invalid-feedback">Enter your last name</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Email *</label>
+      <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': isInvalid('email') }">
+      <div *ngIf="isInvalid('email')" class="invalid-feedback">Enter a valid email</div>
+    </div>
+
+    <div class="mb-3">
+      <label>Phone Number *</label>
+      <div class="input-group">
+        <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': isInvalid('phone') }">
+        <div *ngIf="isInvalid('phone')" class="invalid-feedback">Enter a valid phone number</div>
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="smsUpdates">
+      <label class="form-check-label">Receive SMS updates about your booking. Message rates may apply.</label>
+    </div>
+
+    <div class="mb-3">
+      <label>Promo Code</label>
+      <input type="text" formControlName="promoCode" class="form-control">
+    </div>
+<div class="btn-container d-flex">
+        <button type="submit" class="  col-6">Next</button>
+
+</div>
+  </form>
+</div>
+
+
+ </div>
+
+ <div class="col-4">
+<app-booking-summary [bookingData]="bookingData"></app-booking-summary>
+ </div>
+ </div>
+
+ 
+  <div class='footer '>
+      <small>
+        © 2025 Tripadvisor LLC All rights reserved.
+        Tripadvisor <a href="#">Terms of Use</a> and <a href="#">Privacy and Cookies Statement</a>
+      </small> 
+  </div>

@@ -1,0 +1,52 @@
+<div class="container col-10 main-container">
+  <h4 style="font-weight: 600;">You may also like</h4>
+  <hr style="color: #bfbfbf;" />
+  <h6 class="mb-4 mt-4">Popular Nearby</h6>
+
+  <div class="slider" #slider>
+    <div
+      class="card"
+      *ngFor="let hotel of visibleHotels"
+      (click)="goToDetails(hotel._id!)"
+    >
+      <img
+        *ngIf="hotel.images?.length"
+        [src]="hotel.images[0]"
+        [alt]="hotel.name"
+        class="hotel-img"
+      />
+      <div class="card-content">
+        <h3 class="hotel-name">{{ hotel.name }}</h3>
+
+        <div class="rating-section">
+          <span class="rating-value">{{ hotel.averageRating | number: '1.1-1' }}</span>
+          <span class="green-dots">
+            <span *ngFor="let dot of stars" class="green-dot"></span>
+          </span>
+          <span class="review-count">({{ hotel.totalReviews }})</span>
+        </div>
+
+        <div class="rank">
+          <p><i class="fas fa-map-marker-alt"></i>
+            #{{ hotel.ranking?.totalHotels }} of
+            {{ hotel.ranking?.totalHotels }} hotels in {{ hotel.address }}
+          </p>
+        </div>
+
+        <div class="distance">{{ hotel.address }}</div>
+        <hr style="color: #bfbfbf;" />
+
+        <div class="price-view">
+          <span class="price"><strong>from ${{ hotel.pricePerNight }}</strong></span>
+          <button class="view-btn" (click)="goToDetails(hotel._id!)">View hotel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-3">
+    <a (click)="toggleExpand()" style="color: black; margin: 10px; font-weight: 500; cursor: pointer;">
+      {{ isExpanded ? 'Show Less' : 'See More' }}
+    </a>
+  </div>
+</div>

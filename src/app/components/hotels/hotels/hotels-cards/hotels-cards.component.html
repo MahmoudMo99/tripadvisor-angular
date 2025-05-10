@@ -1,0 +1,54 @@
+<div class="container">
+
+
+<app-cards-template 
+  [title]="'Recently viewed'" 
+  [hotels]="hotels"
+  (hotelClick)="goToDetails($event)"
+></app-cards-template>
+
+<app-cards-template 
+  [title]="'Travelers’ Choice: Top hotels'" 
+  [hotels]="recommendedHotels"
+  (hotelClick)="goToDetails($event)"
+></app-cards-template>
+
+<app-cards-template 
+  [title]="'Travelers’ Choice: All-inclusive resorts'" 
+  [hotels]="topHotels"
+  (hotelClick)="goToDetails($event)"
+></app-cards-template>
+
+<app-cards-template 
+  [title]="'Hotels in top destinations'" 
+  [hotels]="topExperiencesWorldwide"
+  (hotelClick)="goToDetails($event)"
+></app-cards-template>
+<!-- 
+<app-cards-template 
+  [title]="'Top experiences worldwide'" 
+  [hotels]="topGlobalHotels"
+  (attractionClick)="goToDetails($event)"
+></app-cards-template> -->
+<!-- 
+<app-cards-template 
+  [title]="'Top global destinations'" 
+  [attractions]="topGlobalDestinations"
+  (attractionClick)="goToDetails($event)"
+></app-cards-template>
+
+<app-cards-template 
+  [title]="'Top global attractions'" 
+  [attractions]="topGlobalAttractions"
+  (attractionClick)="goToDetails($event)"
+></app-cards-template> -->
+
+
+
+
+  <div class="mt-4">
+   <app-destinations-list></app-destinations-list>
+  </div>
+
+
+</div>
