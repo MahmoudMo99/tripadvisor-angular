@@ -1,0 +1,136 @@
+.top-card{
+display: flex;
+align-items: start;
+justify-content: center;
+}
+.top-card p{
+    margin: 0;
+}
+.top-card img{
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main{
+    margin-top: 40px;
+}
+
+.info{
+    font-size: 14px;
+    color: #333;
+}
+
+.summary-card {
+    border: 1px solid #ddd;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+    /* max-width: 450px; */
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.summary-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.summary-details {
+    margin-top: 10px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.cancellation-policy {
+    font-size: 13px;
+    color: #555;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #eee;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+        border-radius: 0px 0px 10px 10px;
+}
+
+hr {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+.rating {
+    display: flex;
+    align-items: center;
+    /* margin: 5px 0; */
+}
+
+.rating .circle {
+    width: 12px;
+    height: 12px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+@media (max-width: 576px) {
+    .summary-card {
+        padding: 15px;
+    }
+
+    .summary-image {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+.confidence-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+hr {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.confidence-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    font-size: 14px;
+    /* margin-bottom: 15px; */
+}
+
+.icon {
+    font-size: 20px;
+    color: #333;
+}
+
+a {
+    color: #333;
+    text-decoration: underline;
+    font-weight: bold;
+}
+

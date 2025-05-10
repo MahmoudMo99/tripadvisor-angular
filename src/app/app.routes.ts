@@ -27,6 +27,8 @@ import { TripsDetailsMainComponent } from './components/trips/tripsDetails/trips
 import { ForYouComponent } from './components/trips/tripsDetails/for-you/for-you.component';
 import { SavesComponent } from './components/trips/tripsDetails/saves/saves.component';
 import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
+import { HotelsComponent } from './components/hotels/hotels/hotels-main/hotels.component';
+import { HotelsDetailsComponent } from './components/hotels/hotels-details/hotels-details-main/hotels-details.component';
 export const routes: Routes = [
 
   {
@@ -38,6 +40,9 @@ export const routes: Routes = [
       { path: 'attractions', component: AttractionsComponent },
       // { path: 'attractions/details', component: AttractionsDetailsComponent },
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
+            { path: 'hotels', component: HotelsComponent },
+      { path: 'hotel/:id', component: HotelsDetailsComponent },
+
       { path: 'steps', component: StepsComponent },
       { path: 'attraction/:id/contact', component: ContactComponent },
  { 

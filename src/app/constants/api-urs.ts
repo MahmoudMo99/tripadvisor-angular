@@ -11,6 +11,14 @@ export const API = {
     getAll: withDomain('attractives'),
     getById: (id: string) => withDomain(`attractives/${id}`),
   },
+
+  hotels: {
+  getAll: withDomain('hotels'),
+    getById: (id: string) => withDomain(`hotels/${id}`),
+    checkAvailability: (id: string) => withDomain(`hotels/${id}/availability`),
+  filter:withDomain('hotels/filter')
+},
+
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),

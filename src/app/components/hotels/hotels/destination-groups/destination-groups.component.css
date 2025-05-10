@@ -1,0 +1,57 @@
+.destination-wrapper {
+    margin-top: 80px;
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.subheading {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 24px;
+}
+
+.three-column-layout {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 0 0 32%;
+    max-width: 32%;
+    margin-bottom: 24px;
+}
+
+.region {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.column ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.column li {
+    margin: 6px 0;
+}
+
+.column a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.column a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

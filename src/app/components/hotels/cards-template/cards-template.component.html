@@ -1,0 +1,39 @@
+  <div class="slider-container ">
+    <h4 class="" style="font-weight: 600;">{{ title }}</h4> 
+    
+    <div class="slider" #slider>
+      <div *ngFor="let hotel of hotels" class="card" [ngClass]="customCardClass" (click)="goToDetails(hotel._id)">
+        <img [src]="hotel.images[0]" [alt]="hotel.title" />
+
+        <div class="fav-icon">
+          <img src="../../../../assets/images/attractions-images/heart.png" alt="Favorite" />
+        </div>
+
+        <div class="card-content m-0">
+          <h3 *ngIf="hotel.length !== 0">{{ hotel.name }}</h3>
+          
+          <div class="rating">
+            <span class="me-1">{{ hotel.averageRating | number }}</span>   
+
+            <span class="circle" *ngFor="let star of stars"></span>
+                                 <span>({{ hotel.totalReviews | number }})</span>
+
+          </div>
+            <span class="small">{{ hotel?.destinationId?.country}}</span>
+
+
+          <ng-content select="[customCardBody]"></ng-content>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="controls col-12" *ngIf="hotels.length !== 0">
+      <button class="control-btn" (click)="prev()">
+        <img src="../../../../assets/images/attractions-images/back.png" alt="Previous">
+      </button>
+      <button class="control-btn" (click)="next()">
+        <img src="../../../../assets/images/attractions-images/next.png" alt="Next">
+      </button>
+    </div>
+  </div>
