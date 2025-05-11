@@ -51,7 +51,7 @@
         <img src="assets/avatar.jpg" alt="avatar" class="img-fluid custom-img" (click)="toggleDropdown()"
           style="cursor: pointer" />
         @if(isDropdownOpen){
-        <ul class="dropdown-menu dropdown-menu-end show border-0 shadow p-3  position-absolute top-100 end-50">
+        <ul class="dropdown-menu dropdown-menu-end show border-0 shadow p-3 position-absolute top-100 end-50">
           @for (item of menuItems; track $index) {
           <li>
             <a href="#" class="dropdown-item fw-bold mb-1">{{ item }}</a>
