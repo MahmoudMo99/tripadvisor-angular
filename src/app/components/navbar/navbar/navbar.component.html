@@ -40,30 +40,34 @@
           </a>
         </li>
 
+        @if(!isUserLogged){
         <li class="list-unstyled p-2 px-3 rounded-5 sign-li">
           <a class="sign" [routerLink]="['/options']"> Sign In </a>
         </li>
-
+        }
       </ul>
 
-
-      <div class="col-2 col-md-1 position-relative">
+      @if (isUserLogged) {
+      <div class="col-2 col-md-1 position-relative" #dropdownRef>
         <img src="assets/avatar.jpg" alt="avatar" class="img-fluid custom-img" (click)="toggleDropdown()"
-          style="cursor: pointer" />
-        @if(isDropdownOpen){
-        <ul class="dropdown-menu dropdown-menu-end show border-0 shadow p-3 position-absolute top-100 end-50">
-          @for (item of menuItems; track $index) {
-          <li>
-            <a href="#" class="dropdown-item fw-bold mb-1">{{ item }}</a>
-          </li>
-          }
+          style="cursor: pointer;" />
+        @if (isDropdownOpen) {
+        <ul class="dropdown-menu dropdown-menu-end show border-0 shadow p-3 position-absolute top-100 end-50"
+          style="z-index: 1050;">
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Trips</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Write a review</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Profile</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Bookings</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Messages</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Account info</a></li>
+          <li><a class="dropdown-item fw-bold mb-1" (click)="logout()">Sign out</a></li>
         </ul>
         }
       </div>
-
-
-
+      }
     </div>
+
+
     <div class="container mt-2 d-none d-lg-block">
       <app-nav-lists></app-nav-lists>
     </div>

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-search-resturant',
   imports: [FormsModule],
   templateUrl: './search-resturant.component.html',
-  styleUrl: './search-resturant.component.scss'
+  styleUrl: './search-resturant.component.scss',
 })
 export class SearchResturantComponent {
   searchQuery: string = '';

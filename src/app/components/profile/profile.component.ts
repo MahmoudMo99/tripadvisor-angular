@@ -7,7 +7,6 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { UserService } from '../../services/user/user.service';
 import { IUser } from '../../models/user/i-user';
 import { FormsModule } from '@angular/forms';
-import { IEditUser } from '../../models/user/i-edit-user';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { IReview } from '../../models/review/review';
@@ -19,11 +18,7 @@ import { ProfileImageEditModelComponent } from './components/profile-image-edit-
   selector: 'app-profile',
   imports: [
     CommonModule,
-    FeedComponent,
     NgClass,
-    TripComponent,
-    PhotosComponent,
-    ReviewsComponent,
     FormsModule,
     NgbDropdownModule,
     RouterLink,

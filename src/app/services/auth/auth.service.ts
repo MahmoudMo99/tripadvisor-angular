@@ -7,39 +7,52 @@ import { API } from '../../constants/api-urs';
 import { ILoginRequest } from '../../models/auth/i-login-request';
 import { TokenService } from './token.service';
 import { ILoginResponse } from '../../models/auth/i-login-response';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+
   constructor(
     private httpClient: HttpClient,
-    private tokenService: TokenService
-  ) {}
+    private tokenService: TokenService,
+    private router: Router
+  ) {
+    const token = this.tokenService.getToken();
+    const isLoggedIn = token !== null && this.tokenService.isTokenValid(token);
+    this._isLoggedIn$.next(isLoggedIn);
+  }
 
-  // private _isLoggedIn$ = new BehaviorSubject<boolean>(this.isAuthenticated());
+  get isLoggedIn$(): Observable<boolean> {
+    return this._isLoggedIn$.asObservable();
+  }
 
-  // get isLoggedIn$() {
-  //   return this._isLoggedIn$.asObservable();
-  // }
+  get currentToken(): string | null {
+    return this.tokenService.getToken();
+  }
 
   register(request: IRegisterRequest): Observable<IIdResponse> {
     return this.httpClient.post<IIdResponse>(API.auth.register, request);
   }
+
   login(request: ILoginRequest): Observable<ILoginResponse> {
     return this.httpClient.post<ILoginResponse>(API.auth.login, request).pipe(
       tap((res) => {
         this.tokenService.saveToken(res.token);
-        // this.updateLoggedInStatus(true);
+        this._isLoggedIn$.next(true);
       })
     );
   }
+  logout(): void {
+    this.tokenService.deleteCurrentToken();
+    this._isLoggedIn$.next(false);
+    this.router.navigate(['/options']);
+  }
 
-  // get currentToken() {
-  //   return this.tokenService.getToken();
-  // }
-
-  // isAuthenticated(): boolean {
-  //   return (!!this.currentToken && this.tokenService.isTokenValid(this.currentToken));
-  // }
+  isAuthenticated(): boolean {
+    const token = this.currentToken;
+    return token !== null && this.tokenService.isTokenValid(token);
+  }
 }
