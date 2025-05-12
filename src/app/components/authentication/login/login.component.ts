@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           this.toastr.success('Login successful', 'Success');
           this.loginForm.reset();
-          this.router.navigate(['/attractions']);
+          this.router.navigate(['/Home']);
         },
         error: (error) => {
           console.error('Login failed:', error);
