@@ -7,7 +7,11 @@ import { ReviewsComponent } from "./components/reviews/reviews.component";
 
 @Component({
   selector: 'app-profile',
+<<<<<<< Updated upstream
   imports: [CommonModule,FeedComponent, NgClass, TripComponent, PhotosComponent, ReviewsComponent],
+=======
+  imports: [CommonModule , NgClass , NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
+>>>>>>> Stashed changes
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })

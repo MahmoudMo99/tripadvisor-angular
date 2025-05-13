@@ -5,6 +5,107 @@
   <!-- post header -->
   <div class="p-3 d-flex align-items-start gap-3">
     <img
+<<<<<<< Updated upstream
+=======
+      [src]="review.user.image ? review.user.image : 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=100&h=-1&s=1'"
+      class="rounded-circle" width="40" alt="" />
+    <div class="d-flex justify-content-between" style="width: 100%">
+      <div class="fs-14">
+        <div class="d-flex align-items-center">
+          <h5 class="fs-14 m-0">{{review.user.name}}</h5>
+          <p class="m-0">posted a photo</p>
+        </div>
+        <p class="fs-12 text-secondary">{{ review.createdAt | showDate }}</p>
+      </div>
+      <div><i class="fa-solid fa-ellipsis"></i></div>
+    </div>
+  </div>
+  <!-- review image -->
+  @if (review.photos.length >1) {
+  <div class="">
+    @if(review.photos.length == 1) {
+    <!-- one image -->
+    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/cf/87/0e/caption.jpg?w=1600&h=-1&s=1"
+      class="img-fluid" alt="" />
+    }
+    @else {
+    <!-- more than one image -->
+    <div id="carouselExample" class="carousel slide">
+      <!-- <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+      </div> -->
+      <div class="carousel-inner">
+        @for (item of review.photos; track $index) {
+          <div class="carousel-item active">
+            <img [src]="item.uri"
+              class="d-block w-100" alt="..." />
+          </div>
+        }
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    }
+
+  </div>
+  }
+
+  <!-- review data -->
+  <div class="p-3">
+    <!-- review rate -->
+    <div class="d-flex gap-1">
+     <app-review-rate [rating]="review.rating" [readonly]="true"></app-review-rate>
+  </div>
+  <!-- review title -->
+  <h5>{{review.title}}</h5>
+  <!-- review -->
+  <p>
+    {{ review.description.length > 200 ? (review.description.substring(0, 200)) + '...' : review.description }}
+  </p>
+  <!-- date -->
+  <p><span class="fw-bold">Date of visit:</span> {{review.when | showDate}}</p>
+</div>
+
+
+<!-- location card -->
+
+<div class="d-flex border m-3 col-md-6 col-10">
+  <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/fa/f4/missouri.jpg?w=500&h=-1&s=1" width="66"
+    height="66" class="" alt="" />
+  <div class="d-flex justify-content-between px-2 align-items-center" style="width: 100%">
+    <div class="d-flex flex-column">
+      <h5 class="fs-14 m-0">Missouri</h5>
+      <p class="m-0 text-secondary">United States</p>
+    </div>
+    <div class="icn heart-icn"><i class="fa-solid fa-heart"></i></div>
+  </div>
+</div>
+
+<!-- post footer -->
+<div class="p-2 px-3 d-flex align-items-center gap-3">
+  <div class="icn"><i class="fa-regular fa-thumbs-up"></i> Like</div>
+  <div class="icn heart-icn"><i class="fa-solid fa-heart"></i> Save</div>
+  <div class="icn">
+    <i class="fa-solid fa-arrow-up-from-bracket"></i> Share
+  </div>
+</div>
+</div>
+
+<!-- review  -->
+<div class="bg-white mb-3">
+  <!-- post header -->
+  <div class="p-3 d-flex align-items-start gap-3">
+    <img
+>>>>>>> Stashed changes
       src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e9/bb/default-avatar-2020-65.jpg?w=100&h=-1&s=1"
       class="rounded-circle"
       width="40"
