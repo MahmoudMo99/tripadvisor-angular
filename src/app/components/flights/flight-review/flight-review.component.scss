@@ -1,9 +1,12 @@
+
+
 .section2 {
   background-color: #F2F1EC;
-  height: 95vh;
+  min-height: 95vh; // بدل height: 95vh
   width: 95%;
   border-radius: 20px;
   padding: 20px;
+  position: relative;
 
   a {
     color: black;
@@ -33,25 +36,54 @@
 
 .reviews-row {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap; // updated
+  justify-content: center; // centers the reviews
   gap: 20px;
   padding-bottom: 15px;
-  
+
   &::-webkit-scrollbar {
     height: 8px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
   }
 }
-
 .review-col {
   flex: 0 0 auto;
-  width: 19rem;
+  width: 19rem; // default for desktop
 }
+
+@media (max-width: 992px) { // tablets
+  .review-col {
+    width: calc(50% - 20px); // two per row
+  }
+}
+
+@media (max-width: 576px) { // phones
+  .review-col {
+    width: 100%; // one per row
+  }
+}
+
+.rate-circle {
+  height: 15px;
+  width: 15px;
+  border: #00AA6C 1px solid;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.filled {
+  background-color: #00AA6C;
+}
+
+.empty {
+  background-color: transparent;
+}
+
 
 @media (max-width: 992px) {
   .section2 {
