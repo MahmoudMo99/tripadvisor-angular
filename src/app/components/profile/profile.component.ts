@@ -19,7 +19,7 @@ import { ProfileImageEditModelComponent } from './components/profile-image-edit-
 
 
 
-  imports: [CommonModule, NgClass, FormsModule, NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
+  // imports: [CommonModule, NgClass, FormsModule, NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
   imports: [
     CommonModule,
     NgClass,
