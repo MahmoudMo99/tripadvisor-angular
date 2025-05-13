@@ -55,18 +55,9 @@ export const routes: Routes = [
       { path: 'for-you', component: ForYouComponent }
     ]
   },
-<<<<<<< Updated upstream
       { path: 'attraction/activity', component: ActivityComponent },
       { path: 'payment', component: PaymentComponent },
-=======
-      // { path: 'attraction/activity', component: ActivityComponent },
-      // { path: 'payment', component: PaymentComponent },
-
-      // { path: 'steps', component: StepsComponent },
-      // { path: 'attraction/:id/contact', component: ContactComponent },
-      // { path: 'attraction/activity', component: ActivityComponent },
-      // { path: 'payment', component: PaymentComponent },
->>>>>>> Stashed changes
+    
       { path: 'searched-flight', component: SearchedFlightsComponent },
       { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
       { path: 'flights', component: FlightpageComponent },
