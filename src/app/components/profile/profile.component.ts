@@ -17,15 +17,10 @@ import { ProfileImageEditModelComponent } from "./components/profile-image-edit-
 
 @Component({
   selector: 'app-profile',
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-  imports: [CommonModule,FeedComponent, NgClass, TripComponent, PhotosComponent, ReviewsComponent],
-=======
-  imports: [CommonModule , NgClass , NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
->>>>>>> Stashed changes
-=======
-  imports: [CommonModule, FeedComponent, NgClass, TripComponent, PhotosComponent, ReviewsComponent, FormsModule, NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
->>>>>>> 5ac9cbd25b84630ad4f114644db0ab1ab02b39a9
+
+
+
+  imports: [CommonModule, NgClass, FormsModule, NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })

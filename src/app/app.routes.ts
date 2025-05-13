@@ -66,8 +66,8 @@ export const routes: Routes = [
       { path: 'for-you', component: ForYouComponent }
     ]
   },
-      { path: 'attraction/activity', component: ActivityComponent },
-      { path: 'payment', component: PaymentComponent },
+      // { path: 'attraction/activity', component: ActivityComponent },
+      // { path: 'payment', component: PaymentComponent },
       { path: 'searched-flight', component: SearchedFlightsComponent },
       { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
       { path: 'flights', component: FlightpageComponent },
