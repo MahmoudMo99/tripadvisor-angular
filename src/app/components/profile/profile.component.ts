@@ -16,6 +16,10 @@ import { ProfileImageEditModelComponent } from './components/profile-image-edit-
 
 @Component({
   selector: 'app-profile',
+
+
+
+  imports: [CommonModule, NgClass, FormsModule, NgbDropdownModule, RouterLink, ProfileEditModelComponent, ProfileImageEditModelComponent],
   imports: [
     CommonModule,
     NgClass,

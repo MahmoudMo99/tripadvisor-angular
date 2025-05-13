@@ -29,7 +29,7 @@
 .search-bar {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 10px;
   border-radius: 50px;
   background: white;
@@ -38,12 +38,7 @@
   flex-wrap: wrap;
   /* width: 800px; */
 }
-.search-item input {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  background: transparent;
-}
+
 .search-item input.form-control {
   border: none !important;
   outline: none !important;
@@ -141,4 +136,11 @@
 .destination-name {
   font-size: 0.85rem;
   color: #888;
+}
+
+.search-bar-wrapper {
+  background: white;
+  border-radius: 32px;
+  max-width:900px;
+  width: 100%;
 }

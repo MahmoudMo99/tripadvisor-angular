@@ -45,6 +45,21 @@ export const routes: Routes = [
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
       { path: 'hotels', component: HotelsComponent },
       { path: 'hotel/:id', component: HotelsDetailsComponent },
+
+      // { path: 'steps', component: StepsComponent },
+      // { path: 'attraction/:id/contact', component: ContactComponent },
+ { 
+    path: 'trips/:id', 
+    component: TripsDetailsMainComponent,
+    children: [
+      { path: '', redirectTo: 'for-you', pathMatch: 'full' }, 
+      { path: 'saves', component: SavesComponent },
+      { path: 'itinerary', component: ItineraryComponent },
+      { path: 'for-you', component: ForYouComponent }
+    ]
+  },
+      // { path: 'attraction/activity', component: ActivityComponent },
+      // { path: 'payment', component: PaymentComponent },
       {
         path: 'trips/:id',
         component: TripsDetailsMainComponent,

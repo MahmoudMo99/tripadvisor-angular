@@ -1,38 +1,27 @@
+<div *ngIf="hotel" class="container main-container">
 
-<div *ngIf="hotel" class="container col-10 main-container ">
+  <div class="row w-100 gx-3">
+    <div class="col-12 col-lg-9 top">
+      <div class="header">
+        <h3>{{ hotel.name }}</h3>
+      </div>
 
-
-
-
-
-
-
-
-        
-       <div style="display: flex; justify-content: space-between;" class="col-12 ">
-        <div class="top col-10">
-            <div class="header ">
-            <h3 class="">{{hotel.name}}</h3>
-          
+      <div class="reviews">
+        <span><a style="text-decoration: none;">{{ hotel.averageRating }}</a></span>
+        <div class="green-circles">
+          <div class="green-circle"></div>
+          <div class="green-circle"></div>
+          <div class="green-circle"></div>
+          <div class="green-circle"></div>
+          <div class="green-circle"></div>
         </div>
-        <div class="reviews">
-                        <span> <a class="" style="text-decoration: none;">{{hotel.averageRating}}  </a> </span>
+        <span>
+          <a class="me-2">({{ hotel.totalReviews | number }} reviews)</a>
+          #{{ hotel.ranking?.position }} of {{ hotel.ranking?.totalHotels | number }} Restaurants in Paris
+        </span>
+      </div>
 
-            <div class="green-circles">
-                <div class="green-circle"></div>
-                <div class="green-circle"></div>
-                <div class="green-circle"></div>
-                <div class="green-circle"></div>
-                <div class="green-circle"></div>
-            </div>
-         
-            <span> <a class="me-2">({{hotel.totalReviews |number}} reviews) </a>  #{{hotel.ranking?.position}} of {{hotel.ranking?.totalHotels |number}} Restaurants in Paris
-</span>
-        </div> 
-
-      
-
-            <div class="contact-details">
+      <div class="contact-details mt-2">
         <p><i class="fas fa-map-marker-alt"></i> {{ hotel.address }}</p>
         <div class="contact-links">
           <a href="{{ hotel.HotelLink }}" target="_blank"><i class="fas fa-globe"></i> Visit hotel website</a>
@@ -40,48 +29,33 @@
           <a [href]="'mailto:' + hotel.emailHotel"><i class="fas fa-envelope"></i> E-mail hotel</a>
         </div>
       </div>
-        </div>
+    </div>
 
+    <div class="col-12 col-lg-3 d-flex flex-column align-items-lg-end align-items-start mt-3 mt-lg-0">
+      <button class="save-button mb-2"><i class="fa-regular fa-heart"></i> Save</button>
 
-  <div class="d-flex" style="flex-direction: column; align-items: flex-end;">  
-    <div>
-                       <button class="save-button"><i class="fa-regular fa-heart"></i> Save</button>
-      
-    </div>     
-<br>
- <div class="price-box"class="d-flex">
-    <div >
-        <div class="price me-2">${{ hotel.pricePerNight }}</div>
-        <div class="site">Booking.com</div></div>
-        <button class=" view-deal-btn ">View deal</button>
+      <div class="price-box mt-2 w-100 w-lg-auto d-flex ">
+        <!-- <div>
+          <div class="price">${{ hotel.pricePerNight }}</div>
+          <div class="site">Booking.com</div>
+        </div> -->
+        <button  class="view-deal-btn ms-3 mt-2 mt-lg-0">Check availability</button>
       </div>
-            </div>
-       </div>
+    </div>
+  </div>
 
+<div class="hotel-gallery row gx-2 mt-4 w-100">
+  <div class="col-12 col-md-8">
+    <div class="main-image-wrapper">
+      <img [src]="getImage(0)" alt="Main Image" class="img-fluid main-gallery-image" />
+    </div>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="gallery col-12">
-  <img [src]="getImage(0)" class="img-1 col-8" alt="Main Experience Image" />
-
-  <div class="side-images col-4">
-    <img [src]="getImage(1)" alt="Experience Image 2" />
-    <img [src]="getImage(2)" alt="Experience Image 3" />
+  <div class="col-12 col-md-4 d-flex flex-column gap-2 side-image-wrapper">
+    <img [src]="getImage(1)" alt="Image 2" class="img-fluid side-gallery-image" />
+    <img [src]="getImage(2)" alt="Image 3" class="img-fluid side-gallery-image" />
   </div>
 </div>
 
-    </div>
+
+</div>

@@ -39,6 +39,19 @@ input {
   }
 }
 
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: none !important;
+  // }
+
+
+
 html,
 body {
   height: 100%;
