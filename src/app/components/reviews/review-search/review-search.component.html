@@ -1,0 +1,34 @@
+<div class="container-fluid p-0 d-flex flex-column justify-content-center align-items-center py-5 bg-light">
+    <div
+        class="row col-md-7 col-12 p-0 d-flex flex-column justify-content-center align-items-center gap-2  text-center ">
+        <div class="d-flex flex-column gap-1">
+            <h1 class="fw-bolder">Write a review, make someone's trip</h1>
+            <p class="fs-5">Stories like yours are what helps travelers have better trips. Share your experience and
+                help out a
+                fellow
+                traveler!</p>
+        </div>
+        <div class="input-group mb-3  input-group-lg">
+            <span class="input-group-text rounded-start-pill " id="basic-addon1"><i
+                    class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control rounded-end-pill " placeholder="Search for a review"
+                [(ngModel)]="searchTerm" (input)="onSearch()">
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-3 col-lg-7 col-11"> 
+            <img src="https://static.tacdn.com/img2/war/hero_image_1.png" class="img-fluid col-4" >
+            <img src="https://static.tacdn.com/img2/war/hero_image_2.png" class="img-fluid col-4" alt="">
+            <img src="https://static.tacdn.com/img2/war/hero_image_3.png" class="img-fluid col-4" alt="">
+        </div>
+    </div>
+    <!-- <div class="row col-10 border py-4 px-3 d-flex flex-column justify-content-center gap-2 ">
+        <h5 class="fw-bold">Pick up where you left off</h5>
+        <div class="d-flex">
+            <div class="bg-white rounded shadow p-2 col-4 d-flex   align-items-center gap-2">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/20/f2/5e/59/welcome-to-bongoyo.jpg?w=1400&h=-1&s=1"  width="80">
+                <h5 class="text-center">Your last review</h5>
+
+            </div>
+        </div>
+    </div> -->
+
+</div>

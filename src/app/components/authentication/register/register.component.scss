@@ -1,0 +1,25 @@
+.logo {
+  width: 3rem;
+  object-fit: cover;
+}
+
+.separator {
+  .line {
+    height: 1px;
+    background-color: #ddd;
+  }
+
+  span {
+    color: #666;
+  }
+}
+.back-div {
+  cursor: pointer;
+  .back {
+    width: 1.5rem;
+  }
+}
+
+.policy {
+  font-size: 13px;
+}

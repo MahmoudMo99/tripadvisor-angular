@@ -1,0 +1,33 @@
+.logo {
+  width: 3rem;
+  object-fit: cover;
+}
+
+.text-div {
+  width: 20rem;
+}
+
+.google-div,
+.email-div {
+  border: 2px solid black;
+  border-radius: 2rem;
+
+  .text-div {
+    text-align: center;
+  }
+
+  img {
+    width: 1rem;
+    object-fit: cover;
+  }
+  .mail-icon {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.policy {
+  font-size: 13px;
+}

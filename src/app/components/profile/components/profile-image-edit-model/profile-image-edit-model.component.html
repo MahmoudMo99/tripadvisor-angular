@@ -1,0 +1,44 @@
+<!---------------- edit profile image model ------------------------->
+
+<div class="bg-dark-75  position-fixed top-0 start-0 w-100 h-100 position-absolute d-flex justify-content-center align-items-center p-lg-5"
+    (click)="closeEditImageModel()" [ngClass]="{'d-none': !showEditImageModelFlag, 'd-block': showEditImageModelFlag}">
+    <div class="bg-white col-lg-7 col-12  " (click)="$event.stopPropagation()">
+        <div class="bg-light d-flex justify-content-between p-3 ">
+            <h5 class="fs-14"><i class="fa-regular fa-image"></i> Select {{showEditImageModelType}} photo</h5>
+            <span class="fs-14 btn btn-light" (click)="closeEditImageModel()"><i class="fa-solid fa-x"></i></span>
+        </div>
+
+        <div class="d-flex flex-column  gap-3 justify-content-center align-items-center p-5">
+            <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center flex-column gap-3">
+                @if(selectedImage){
+                <!-- show this image -->
+                 <div class="col-6">
+                     <img id="imagePreview" alt="Selected Image"  class="rounded img-fluid">
+                 </div>
+
+                }@else {
+
+                <p class="text-secondary fs-12">Note: Photo must be less than 14MB</p>
+                }
+                <div class=" bg-light upload-box d-flex justify-content-center align-items-center fw-600"
+                    onclick="document.getElementById('coverPhotoInput').click()">
+                    <p><i class="fa-solid fa-plus"></i> Uploud your image</p>
+                    <input type="file" id="coverPhotoInput" style="display: none;" accept="image/*"
+                        (change)="showImage()" />
+                </div>
+            </div>
+
+            @if (selectedImage) {
+            <div class="d-flex justify-content-end align-items-center gap-2 align-self-end">
+                <button class="btn-outlet-black p-2 px-3 rounded-pill" (click)="closeEditImageModel()">Cancel</button>
+                <button class="btn-black text-white p-2 px-3 rounded-pill" (click)="saveUserImage()">Save</button>
+            </div>
+            }
+
+
+
+
+        </div>
+    </div>
+
+</div>

@@ -29,6 +29,8 @@ export class ActivityDetailsComponent {
     'German - Guide',
   ];
 
+  historyState = history.state;
+
   constructor(
     private fb: FormBuilder,
     private bookingService: BookingService,
@@ -64,6 +66,10 @@ export class ActivityDetailsComponent {
           });
         }
       });
+
+
+     console.log('History state at activity:', this.historyState.booking);
+
   }
 
   get pickupLocation() {
@@ -96,13 +102,22 @@ export class ActivityDetailsComponent {
   }
 
   onSubmit() {
-    this.formSubmitted = true;
-    if (this.activityForm.valid) {
-      this.activityService.setActivityData(this.activityForm.value);
-      console.log('Activity Details Saved:', this.activityForm.value);
-      this.router.navigate(['/Booking/payment-details']);
-    }
+  this.formSubmitted = true;
+  if (this.activityForm.valid) {
+    this.activityService.setActivityData(this.activityForm.value);
+    console.log('Activity Details Saved:', this.activityForm.value);
+
+    this.router.navigate(['/Booking/payment-details'], {
+      state: {
+        booking: {
+          type: this.historyState?.booking?.type,
+          referenceId: this.historyState?.booking?.referenceId,
+        },
+      },
+    });
   }
+}
+
 
   ngOnDestroy() {
     if (this.bookingSubscription) {

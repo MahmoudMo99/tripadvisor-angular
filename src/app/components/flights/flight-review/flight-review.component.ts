@@ -69,7 +69,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ReviewService } from '../../../services/review.service';
+import { ReviewService } from '../../../services/review/review.service';
 
 @Component({
   selector: 'app-flight-review',
