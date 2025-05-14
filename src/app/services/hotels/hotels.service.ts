@@ -1,4 +1,3 @@
-// hotels.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ElementRef } from '@angular/core';

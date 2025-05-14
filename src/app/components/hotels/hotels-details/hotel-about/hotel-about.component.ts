@@ -42,33 +42,29 @@ export class HotelAboutComponent {
   }
 
   private loadHotel(id: string): void {
-    this.hotelService.getHotelById(id).subscribe(
-      (hotel: Hotel) => {
-        this.hotel = hotel;
-this.hotel = hotel;
+this.hotelService.getHotelById(id).subscribe(
+  (response) => {
+    this.hotel = response;
 
-this.shortDescription = hotel.description || '';
-this.fullDescription = hotel.longDescription || this.shortDescription;
+    this.shortDescription = this.hotel.description || '';
+    this.fullDescription = this.hotel.longDescription || this.shortDescription;
 
-        if (hotel.scoreDetails) {
-          this.ratings = Object.entries(hotel.scoreDetails)
-            .filter(([_, value]) => value != null)
-            .map(([label, value]) => ({
-              label,
-              value: Number(value),
-            }));
-        }
+    if (this.hotel.scoreDetails) {
+      this.ratings = Object.entries(this.hotel.scoreDetails)
+        .filter(([_, value]) => value != null)
+        .map(([label, value]) => ({ label, value: Number(value) }));
+    }
 
-      this.amenities = {
-  property: (hotel.groupedAmenities?.propertyAmenities || []).slice(0, 8),
-  features: (hotel.groupedAmenities?.roomFeatures || []).slice(0, 8),
-  types: (hotel.groupedAmenities?.roomTypes || []).slice(0, 8)
-};
+    this.amenities = {
+      property: (this.hotel.groupedAmenities?.propertyAmenities || []).slice(0, 8),
+      features: (this.hotel.groupedAmenities?.roomFeatures || []).slice(0, 8),
+      types: (this.hotel.groupedAmenities?.roomTypes || []).slice(0, 8),
+    };
+  },
+  (error) => {
+    console.error('Error fetching hotel:', error);
+  }
+);
 
-      },
-      (error) => {
-        console.error('Error fetching hotel:', error);
-      }
-    );
   }
 }
