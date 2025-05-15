@@ -1,3 +1,5 @@
+import { IDestination } from "../Destination/idestination";
+
 export interface ICards {
   id: string;
   title: string;
@@ -51,7 +53,7 @@ export interface ICards {
   };
 
   productCategories?: string[];
-  destination?: string; 
+  destination?: IDestination; 
   accessibility?: string[];
   code?: string;
   timeOfDay?: 'morning' | 'afternoon' | 'evening';

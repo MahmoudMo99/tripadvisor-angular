@@ -19,7 +19,7 @@ export class CardsComponent implements AfterViewInit, OnInit {
   attractions: ICards[] = [];
   recommendedAttractions: ICards[] = [];
   topAttractions: ICards[] = [];
-  topExperiences: ICards[] = [];
+  topExperiencesByDestination: Record<string, ICards[]> = {};
   topExperiencesWorldwide: ICards[] = [];
   topGlobalDestinations: ICards[] = [];
   topGlobalAttractions: ICards[] = [];
@@ -54,7 +54,7 @@ export class CardsComponent implements AfterViewInit, OnInit {
         this.attractions = result.attractions;
         this.recommendedAttractions = result.recommendedAttractions;
         this.topAttractions = result.topAttractions;
-        this.topExperiences = result.topExperiences;
+        this.topExperiencesByDestination = result.topExperiencesByDestination;
         this.topExperiencesWorldwide = result.topExperiencesWorldwide;
         this.topGlobalDestinations = result.topGlobalDestinations;
         this.topGlobalAttractions = result.topGlobalAttractions;
