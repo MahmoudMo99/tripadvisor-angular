@@ -25,13 +25,14 @@ export interface ICards {
     }[];
   };
 
-  details?: {
-    ageRange: string;
-    maxGroupSize: number;
+ 
+    minAge: number;
+    maxAge: number;
+    groupSize: number;
     duration: string;
-    languages: string[];
+    language: string[];
     mobileTicket: boolean;
-  };
+  
 
   pricingOptions?: {
     pricePerAdult: number;
@@ -43,9 +44,16 @@ export interface ICards {
     freeCancellation: boolean;
     reserveNowPayLater: boolean;
     lowestPriceGuarantee: boolean;
-    award: {
+    award?: {
       name: string;
       year: number;
     };
   };
+
+  productCategories?: string[];
+  destination?: string; 
+  accessibility?: string[];
+  code?: string;
+  timeOfDay?: 'morning' | 'afternoon' | 'evening';
+  languages?: ('english' | 'arabic' | 'french' | 'german' | 'spanish')[];
 }
