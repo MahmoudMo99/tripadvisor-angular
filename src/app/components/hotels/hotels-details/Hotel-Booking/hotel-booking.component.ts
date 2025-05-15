@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Hotel } from '../../../../models/hotels/Hotel';
+import { IRoom } from '../../../../models/hotels/IRoom';
 
 @Component({
   selector: 'app-hotel-booking',
@@ -35,7 +37,7 @@ export class HotelBookingComponent {
   children: number = 0;
   roomsCount: number = 1;
 
-  rooms: any[] = [];
+  rooms: IRoom[] = [];
   errorMessage: string = '';
   loading: boolean = false;
   showGuests: boolean = false;

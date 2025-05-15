@@ -1,4 +1,5 @@
 import { IDestination } from "../Destination/idestination";
+import { IRoom } from "./IRoom";
 
 export interface Hotel {
   _id?: string;
@@ -19,7 +20,7 @@ export interface Hotel {
   };
   hotelStyle: string[];
   cancellationDeadline?: Date;
-  // rooms: Room[];
+  rooms: IRoom[];
   amenities: string[];
   groupedAmenities?: {
     propertyAmenities: string[];
