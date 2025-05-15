@@ -9,7 +9,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { NavListsComponent } from '../nav-lists/nav-lists.component';
 import { LanguageNavbarService } from '../../../shared/language-navbar.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
@@ -19,6 +19,7 @@ import { AuthService } from '../../../services/auth/auth.service';
     MobileMenuComponent,
     NavListsComponent,
     RouterModule,
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
