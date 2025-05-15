@@ -38,11 +38,10 @@ export class PaymentDetailsComponent {
       paymentMethod: ['', Validators.required],
     });
 
-
-   
-    console.log('History state at payment:', this.historyState.booking);
-    
-
+    console.log(
+      'History state at paymenttttttttttttttt:',
+      this.historyState.booking
+    );
   }
 
   onSubmit() {
@@ -59,6 +58,8 @@ export class PaymentDetailsComponent {
           .getActivityData$()
           .pipe(take(1))
           .subscribe((activity) => {
+            const historyBooking = this.historyState.booking;
+
             const bookingPayload: Ibooking = {
               leadTraveler: {
                 firstName: booking.firstName,
@@ -70,13 +71,18 @@ export class PaymentDetailsComponent {
               },
               email: booking.email,
               phoneNumber: booking.phoneNumber,
-              type: booking.type || this.historyState.booking?.type,
-              reference:
-                booking.referenceId || this.historyState.booking?.referenceId,
+              type: booking.type || historyBooking?.type,
+              reference: booking.reference || historyBooking?.reference,
               Location: activity.pickupLocation,
               paymentDetails: {
                 method: this.paymentForm.value.paymentMethod,
               },
+              // ✅ Add check-in/out and roomId from navigation state
+              checkIn: historyBooking?.checkIn
+                && new Date(historyBooking.checkIn).toISOString().split('T')[0],
+              checkOut: historyBooking?.checkOut && new Date(historyBooking.checkOut).toISOString().split('T')[0],
+             
+              roomId: historyBooking?.roomId,
             };
 
             this.paymentService.submitBooking(bookingPayload).subscribe({
@@ -88,7 +94,6 @@ export class PaymentDetailsComponent {
               error: (error) => {
                 console.log('Booking data:', booking);
                 console.log('Activity data:', activity);
-
                 console.error('Booking failed:', error);
                 this.errorMessage = 'Booking failed. Please try again.';
                 this.isLoading = false;

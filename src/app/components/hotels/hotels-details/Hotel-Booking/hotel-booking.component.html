@@ -18,7 +18,7 @@
 
       <div class="control-item guests col-4">
         <button class="guest" (click)="showGuests = !showGuests">
-          
+
           {{ roomsCount }} rooms, {{ adults + children }} guests
         </button>
        <div *ngIf="showGuests" class="dropdown updated-style">
@@ -70,7 +70,7 @@
         <div class="room-details">
           <div class="room-header">
             <h3>{{ room.type }} Room</h3>
-            <button class="book-btn">Book Now</button>
+            <button class="book-btn" (click)="bookRoom(room)">Book Now</button>
           </div>
           <p class="description">{{ room.description }}</p>
           <ul class="features">
@@ -83,8 +83,8 @@
           </ul>
         </div>
       </div>
-      
-      
+
+
     </div>
 
     <ng-template #notAvailable>

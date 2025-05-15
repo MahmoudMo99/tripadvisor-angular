@@ -108,12 +108,7 @@ export class ActivityDetailsComponent {
     console.log('Activity Details Saved:', this.activityForm.value);
 
     this.router.navigate(['/Booking/payment-details'], {
-      state: {
-        booking: {
-          type: this.historyState?.booking?.type,
-          referenceId: this.historyState?.booking?.referenceId,
-        },
-      },
+      state: { booking: this.historyState?.booking },
     });
   }
 }
