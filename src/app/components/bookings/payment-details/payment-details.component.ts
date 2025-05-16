@@ -81,7 +81,6 @@ export class PaymentDetailsComponent {
               checkIn: historyBooking?.checkIn
                 && new Date(historyBooking.checkIn).toISOString().split('T')[0],
               checkOut: historyBooking?.checkOut && new Date(historyBooking.checkOut).toISOString().split('T')[0],
-             
               roomId: historyBooking?.roomId,
             };
 
