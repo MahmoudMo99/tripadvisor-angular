@@ -51,7 +51,7 @@ export class ReverseSectionComponent implements OnInit {
         this.pricePerAdult = attraction.price ?? 0;
 
         this.bookingData = {
-          selectedDate: new Date(Date.now() + 86400000 * 3)
+          checkIn: new Date(Date.now() + 86400000 * 3)
             .toISOString()
             .split('T')[0],
           travelers: 1,
@@ -62,7 +62,7 @@ export class ReverseSectionComponent implements OnInit {
           image: attraction.images[0] || 'assets/19th-century.jpg',
           attraction: attraction,
           attractionId: this.attractionId,
-          referenceId: this.attractionId,
+          reference: this.attractionId,
           type: 'Attractive',
         };
 
