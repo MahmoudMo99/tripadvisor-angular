@@ -36,7 +36,7 @@ export class HotelsCategorizerService {
             .filter(h => h.isTop)
             .sort((a, b) => (b.averageRating ?? 0) - (a.averageRating ?? 0)),
           topExperiencesWorldwide: sortedHotels
-            .filter(h => (h.totalReviews ?? 0) > 1000)
+            .filter(h => (h.totalReviews ?? 0) > 20000)
             .sort((a, b) => (b.totalReviews ?? 0) - (a.totalReviews ?? 0)),
           topGlobalHotels: sortedHotels
             .filter(h => h.isGlobal)

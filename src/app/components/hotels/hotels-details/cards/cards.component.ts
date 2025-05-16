@@ -55,7 +55,7 @@ export class CardsComponent implements AfterViewInit {
     this.hotelsCategorizerService.getCategorizedHotels().subscribe({
       next: (result) => {
         this.hotels = result.hotels;
-        this.recommendedHotels = result.recommendedHotels;
+        this.recommendedHotels = result.topHotels;
        
       },
       error: (err) => console.error('Error fetching categorized hotels:', err)

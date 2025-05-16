@@ -18,7 +18,7 @@
 
       <div class="control-item guests col-4">
         <button class="guest" (click)="showGuests = !showGuests">
-          
+
           {{ roomsCount }} rooms, {{ adults + children }} guests
         </button>
        <div *ngIf="showGuests" class="dropdown updated-style">
@@ -63,15 +63,28 @@
       <div class="offer-box red">
         <i class="fa-solid fa-tag"></i> Hotel direct offer! <span>Special rate available</span>
       </div>
-
-      <div *ngFor="let room of rooms" class="provider">
-        <img src="https://static.tacdn.com/img2/branding/hotels/Vio_com.png" />
-        <div class="price">
-          <span *ngIf="room.oldPrice" class="old-price">${{ room.oldPrice }}</span>
-          <span class="new-price">${{ room.price }}</span>
-          <button class="view-btn">Book</button>
+      <div *ngFor="let room of rooms" class="room-card">
+        <div class="room-img-container">
+          <img class="room-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4JCnWyUEWWW_KVJbLKfftOmQpYco6s7KXQ&s" alt="Room image" />
+        </div>
+        <div class="room-details">
+          <div class="room-header">
+            <h3>{{ room.type }} Room</h3>
+            <button class="book-btn" (click)="bookRoom(room)">Book Now</button>
+          </div>
+          <p class="description">{{ room.description }}</p>
+          <ul class="features">
+            <li><strong>Max Adults:</strong> {{ room.maxAdults }}</li>
+            <li><strong>Max Children:</strong> {{ room.maxChildren }}</li>
+            <li *ngIf="room.roomSize"><strong>Room Size:</strong> {{ room.roomSize }}</li>
+            <li *ngIf="room.bedType"><strong>Bed Type:</strong> {{ room.bedType }}</li>
+            <li><strong>Room Number:</strong> {{ room.roomNumber }}</li>
+            <li><strong>Floor:</strong> {{ room.floorNumber }}</li>
+          </ul>
         </div>
       </div>
+
+
     </div>
 
     <ng-template #notAvailable>

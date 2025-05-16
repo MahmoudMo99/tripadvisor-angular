@@ -4,9 +4,12 @@ export interface Ibooking {
   email: string;
   phoneNumber: string;
   type: 'Hotel' | 'Restaurant' | 'Flight' | 'Trip' | 'Attractions';
-  reference: string; 
+  reference: string;
   Location: string;
   paymentDetails: PaymentDetails;
+  checkIn: Date;
+  checkOut: Date;
+  roomId: string;
 }
 
 export interface Traveler {
