@@ -1,12 +1,11 @@
 
-
 .section2 {
   background-color: #F2F1EC;
-  min-height: 95vh; // بدل height: 95vh
+  height: 95vh;
   width: 95%;
   border-radius: 20px;
   padding: 20px;
-  position: relative;
+  margin-bottom: 10px; // Reduced from default margin
 
   a {
     color: black;
@@ -36,35 +35,23 @@
 
 .reviews-row {
   display: flex;
-  flex-wrap: wrap; // updated
-  justify-content: center; // centers the reviews
+  flex-wrap: wrap;
   gap: 20px;
   padding-bottom: 15px;
-
+  
   &::-webkit-scrollbar {
     height: 8px;
   }
-
+  
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
   }
 }
+
 .review-col {
   flex: 0 0 auto;
-  width: 19rem; // default for desktop
-}
-
-@media (max-width: 992px) { // tablets
-  .review-col {
-    width: calc(50% - 20px); // two per row
-  }
-}
-
-@media (max-width: 576px) { // phones
-  .review-col {
-    width: 100%; // one per row
-  }
+  width: 19rem;
 }
 
 .rate-circle {
@@ -84,17 +71,18 @@
   background-color: transparent;
 }
 
-
 @media (max-width: 992px) {
   .section2 {
     height: 95%;
+    padding: 15px;
+
     .card {
       width: 100% !important;
       margin: 0 auto 20px;
     }
 
-    .col-md-3 {
-      padding: 0 10px;
+    .col-md-5 {
+      width: 70%;
     }
 
     .pageheader {
@@ -102,17 +90,19 @@
         font-size: 1.75rem;
       }
     }
-
-    .col-md-5 {
-      width: 70%;
-    }
   }
 
+  .reviews-row {
+    justify-content: center;
+  }
+
+  .review-col {
+    width: 45%; // 2 cards per row on tablet
+  }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .section2 {
-    height: 95%;
     padding: 10px;
 
     .pageheader {
@@ -122,6 +112,33 @@
 
       p {
         font-size: 14px;
+      }
+    }
+
+    .col-md-5 {
+      width: 85%;
+    }
+  }
+
+  .reviews-row {
+    .review-col {
+      width: 85vw; // Adjust for better fit on smaller screens
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .section2 {
+    height: 95%;
+    padding: 10px;
+
+    .pageheader {
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 12px;
       }
     }
 
@@ -150,14 +167,10 @@
       margin: 10px 0;
     }
   }
-}
 
-@media (max-width: 768px) {
   .reviews-row {
-    gap: 15px;
-    
     .review-col {
-      width: 85vw;
+      width: 100%; // 1 card per row on phone
     }
   }
 }

@@ -1,4 +1,5 @@
-<div class="section2 container">
+
+<div class="section2 container mb-2">
   <div class="pageheader container text-center m-4">
     <img src="/assets/flightpic.png" width="50" height="50" alt="Flight icon">
     <h2>See traveler reviews</h2>
@@ -37,13 +38,13 @@
   </div>
 
   <div class="row mt-5 reviews-row">
-    <div *ngFor="let review of reviews" class="review-col">
+    <div *ngFor="let review of reviews" class="col-12 col-md-6 col-lg-3 review-col">
       <div class="card" style="width: 19rem; height: 21rem; border-radius: 15px;">
         <div class="card-body">
-          <h5 class="card-title">{{review.airlinetype?.airline || 'no'}}</h5>
+          <h5 class="card-title">{{review.airlinetype?.airline || 'American Airlines'}}</h5>
 
           <div class="rating d-flex align-items-center mb-3">
-            <span class="circles me-2">{{review.ratingflightCountnumber || '0'}}</span>
+            <span class="circles me-2">{{review.ratingflightCountnumber || '81,988'}}</span>
             <div class="rating-circles">
               <span *ngFor="let circle of getRatingCircles(review.ratingflightCountcircles || 4)" 
                     class="rate-circle"
@@ -52,7 +53,7 @@
             </div>
           </div>
 
-          <div class="user-info mt-2 d-flex align-items-center mb-3">
+          <div class="user-info mt-1 d-flex align-items-center mb-1">
             <img [src]="review.user?.image || 'assets/avatar.jpg'" 
                  class="img-fluid rounded-circle me-2"
                  alt="Profile Image" 
@@ -60,17 +61,15 @@
             <small>{{review.user?.firstName}} {{review.user?.lastName}}</small>
           </div>
 
-          <p class="mt-2 mb-0">
-            <small>
-              Top rated in {{review.topRatedInflights || 'null'}}
+          <p class="mt-1 mb-1">
+            <small class="text-success">
+              Top rated in {{review.topRatedInflights || 'none'}}
             </small>
           </p>
           
           <p class="review-text">
-            {{review.reviewflightText || 'null.'}}
+            {{review.reviewflightText || 'none'}}
           </p>
-
-        
         </div>
       </div>
     </div>

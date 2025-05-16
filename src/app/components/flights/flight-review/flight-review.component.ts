@@ -64,7 +64,6 @@
 
 
 
-// flight-review.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -85,7 +84,6 @@ export class FlightReviewComponent implements OnInit {
   loading: boolean = false;
   error: string | null = null;
   
-  // Array of flight IDs to fetch reviews for
   flightIds: string[] = [
     '67b9ec98a6257e7737703105',
     '67b9edac53c8085da0b9e51a',
@@ -113,11 +111,14 @@ loadReviews() {
     next: (responses: any[]) => {
       console.log('All API responses:', responses);
 
+      // Modified this part to handle the actual response structure
       const allReviews = responses.flatMap(response => {
-        if (response?.data && Array.isArray(response.data)) {
+        if (Array.isArray(response)) {
+          return response; // Response is already the array of reviews
+        } else if (response?.data && Array.isArray(response.data)) {
           return response.data;
         } else {
-          console.warn('Invalid response format:', response);
+          console.warn('Unexpected response format:', response);
           return [];
         }
       });
@@ -127,20 +128,17 @@ loadReviews() {
       if (this.reviews.length === 0) {
         console.log('No flight reviews found');
         this.error = 'No flight reviews available';
-      } else {
-        console.log('Total flight reviews:', this.reviews);
       }
 
       this.loading = false;
     },
     error: (error) => {
       console.error('Error fetching reviews:', error);
-      this.error = `Failed to load reviews: ${error.message}`;
+      this.error = 'Failed to load reviews. Please try again later.';
       this.loading = false;
     }
   });
 }
-
  
   getRatingCircles(rating: number): { filled: boolean }[] {
     const ratingValue = rating || 0;

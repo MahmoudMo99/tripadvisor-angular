@@ -81,8 +81,8 @@
                     [ngClass]="{'is-invalid': segment.get('date')?.touched && segment.get('date')?.invalid}">
                 </div>
 
-                <button (click)="addSegment()">Add Flight</button>
-                <button (click)="removeSegment(i)" *ngIf="multiCitySegments.length > 1">Remove</button>
+                <!-- <button (click)="addSegment()">Add Flight</button> -->
+                <!-- <button (click)="removeSegment(i)" *ngIf="multiCitySegments.length > 1">Remove</button> -->
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
               border-radius: 50px;
               font-weight: bold;
               font-size: 16px;
-            " [disabled]="flightForm.invalid" (click)="searchFlights(flightForm.value)">
+            " [disabled]="flightForm.invalid" (click)="fetchFlights(flightForm.value)">
           Search
         </button>
       </div>
@@ -148,14 +148,12 @@
     </div>
   </form>
   <div class="row">
-
     <div class="col-3">
       <div class="accordion accordion-flush" id="filtersAccordion">
-
         <div class="accordion-item">
           <h2 class="accordion-header" id="stopsHeading">
             <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('stops')"
-              [attr.aria-expanded]="isStopsOpen" aria-controls="stopsFilter">
+                    [attr.aria-expanded]="isStopsOpen" aria-controls="stopsFilter">
               Stops
             </button>
           </h2>
@@ -163,17 +161,17 @@
             <div class="accordion-body">
               <div class="form-check">
                 <input type="checkbox" id="nonStop" class="form-check-input" [(ngModel)]="filters.stops.nonStop"
-                  (change)="applyFilters()">
+                       (change)="applyFilters()">
                 <label for="nonStop" class="form-check-label">Non-stop</label>
               </div>
               <div class="form-check">
                 <input type="checkbox" id="oneStop" class="form-check-input" [(ngModel)]="filters.stops.oneStop"
-                  (change)="applyFilters()">
+                       (change)="applyFilters()">
                 <label for="oneStop" class="form-check-label">1 Stop</label>
               </div>
               <div class="form-check">
                 <input type="checkbox" id="twoPlusStops" class="form-check-input"
-                  [(ngModel)]="filters.stops.twoPlusStops" (change)="applyFilters()">
+                       [(ngModel)]="filters.stops.twoPlusStops" (change)="applyFilters()">
                 <label for="twoPlusStops" class="form-check-label">2+ Stops</label>
               </div>
             </div>
@@ -183,7 +181,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="airlinesHeading">
             <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('airlines')"
-              [attr.aria-expanded]="isAirlinesOpen" aria-controls="airlinesFilter">
+                    [attr.aria-expanded]="isAirlinesOpen" aria-controls="airlinesFilter">
               Airlines
             </button>
           </h2>
@@ -191,7 +189,7 @@
             <div class="accordion-body">
               <div class="form-check" *ngFor="let airline of availableAirlines">
                 <input type="checkbox" class="form-check-input" [(ngModel)]="filters.airlines[airline]"
-                  (change)="applyFilters()">
+                       (change)="applyFilters()">
                 <label class="form-check-label">{{ airline }}</label>
               </div>
             </div>
@@ -201,14 +199,14 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="priceHeading">
             <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('price')"
-              [attr.aria-expanded]="isPriceOpen" aria-controls="priceFilter">
+                    [attr.aria-expanded]="isPriceOpen" aria-controls="priceFilter">
               Price
             </button>
           </h2>
           <div id="priceFilter" class="accordion-collapse collapse" [ngClass]="{'show': isPriceOpen}">
             <div class="accordion-body">
               <input type="range" class="form-range" min="0" max="5000" step="100" [(ngModel)]="filters.price"
-                (input)="applyFilters()">
+                     (input)="applyFilters()">
               <p>Max Price: ${{ filters.price }}</p>
             </div>
           </div>
@@ -217,64 +215,117 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="durationHeading">
             <button class="accordion-button collapsed" type="button" (click)="toggleAccordion('duration')"
-              [attr.aria-expanded]="isDurationOpen" aria-controls="durationFilter">
+                    [attr.aria-expanded]="isDurationOpen" aria-controls="durationFilter">
               Duration
             </button>
           </h2>
           <div id="durationFilter" class="accordion-collapse collapse" [ngClass]="{'show': isDurationOpen}">
             <div class="accordion-body">
               <input type="range" class="form-range" min="0" max="24" step="1" [(ngModel)]="filters.duration"
-                (input)="applyFilters()">
+                     (input)="applyFilters()">
               <p>Max Duration: {{ filters.duration }} Hours</p>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-    <div class="col-md-6">
-      <div *ngIf="filteredResults.length > 0" class="row">
-        <div *ngFor="let flight of filteredResults" class="col-md-12 mb-3">
-          <div class="card shadow-sm p-2">
-            <div class="row justify-content-end">
-              <div class="col-auto">
-                <img [src]="flight.airlineLogo" class="airline-logo">
-              </div>
-              <div class="col">
-                <p class="mb-1">
-                  <span *ngIf="flight.departureDate">{{ flight.departureDate | date:'shortTime' }}</span> -
-                  <span *ngIf="flight.arrivalDate">{{ flight.arrivalDate | date:'shortTime' }}</span>
+
+<div class="col-md-6">
+  <div *ngIf="tripType === 'roundTrip' && outboundFlights.length > 0 && returnFlights.length > 0">
+    <div class="row">
+      <ng-container *ngFor="let outbound of outboundFlights; let i = index">
+        <div *ngIf="returnFlights[i]" class="col-md-12 mb-2">
+          <div class="card flight-card">
+            <div class="flight-info">
+              <div class="time-airline">
+                <p class="mb-1 flight-time">
+                  {{ outbound.departureDate | date:'shortTime' }} - {{ outbound.arrivalDate | date:'shortTime' }}
+                  <sup *ngIf="(outbound.arrivalDate | date:'d') !== (outbound.departureDate | date:'d')">+1</sup>
                 </p>
-                <p class="text-muted">
-                  {{ flight.origin?.name }} ({{ flight.origin?.country }}) -
-                  {{ flight.destination?.name}} ({{ flight.destination?.country }}),
-                  {{ flight.airline }}
+                <p class="text-muted mb-2 airline-details">
+                  {{ outbound.origin?.code }} - {{ outbound.destination?.code }}, {{ outbound.airline }}
                 </p>
-                <span class="text-muted">{{ flight.flightDuration }} Hours </span>
               </div>
-
-              <div class="col-auto text-end d-flex flex-column align-items-end ms-auto">
-                <h5 class="mb-0 fw-bold">${{ getLowestSeatPrice(flight.seats) }}</h5>
-                <p class="text-muted mb-2">{{ flight.dealsCount || 0 }} deals</p>
-                <button (click)="getflightbyid(flight._id)" class="btn btn-warning rounded-custom">View Deal</button>
+              <div class="duration-stops">
+                <p class="mb-1">{{ outbound.flightDuration }}</p>
+                <p class="text-muted mb-0">
+                  {{ outbound.stopovers === 0 ? 'Nonstop' : outbound.stopovers + ' stop' + (outbound.stopovers > 1 ? 's' : '') }}
+                  <span *ngIf="outbound.stopovers > 0">, {{ outbound.stopoverLocation }}</span>
+                </p>
               </div>
+              <div class="price-action">
+                <h5 class="mb-2">${{ getLowestSeatPrice(outbound.seats) + getLowestSeatPrice(returnFlights[i].seats) }}</h5>
+              </div>
+            </div>
 
+            <div class="flight-info">
+              <div class="time-airline">
+                <p class="mb-1 flight-time">
+                  {{ returnFlights[i].departureDate | date:'shortTime' }} - {{ returnFlights[i].arrivalDate | date:'shortTime' }}
+                  <sup *ngIf="(returnFlights[i].arrivalDate | date:'d') !== (returnFlights[i].departureDate | date:'d')">+1</sup>
+                </p>
+                <p class="text-muted mb-2 airline-details">
+                  {{ returnFlights[i].origin?.code }} - {{ returnFlights[i].destination?.code }}, {{ returnFlights[i].airline }}
+                </p>
+              </div>
+              <div class="duration-stops">
+                <p class="mb-1">{{ returnFlights[i].flightDuration }}</p>
+                <p class="text-muted mb-0">
+                  {{ returnFlights[i].stopovers === 0 ? 'Nonstop' : returnFlights[i].stopovers + ' stop' + (returnFlights[i].stopovers > 1 ? 's' : '') }}
+                  <span *ngIf="returnFlights[i].stopovers > 0">, {{ returnFlights[i].stopoverLocation }}</span>
+                </p>
+              </div>
+              <div class="price-action">
+                <!-- <h5 class="mb-2">${{ getLowestSeatPrice(outbound.seats) + getLowestSeatPrice(returnFlights[i].seats) }}</h5> -->
+                <button (click)="getflightbyid(outbound._id)" class="btn btn-warning rounded-custom mb-1">View Deal</button>
+                <p *ngIf="returnFlights[i].selfTransfer" class="text-muted mb-0 self-transfer">Self-transfer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 
+  <div *ngIf="tripType !== 'roundTrip' || outboundFlights.length === 0 || returnFlights.length === 0">
+    <div *ngIf="filteredResults.length > 0" class="row">
+      <div *ngFor="let flight of filteredResults" class="col-md-12 mb-3">
+        <div class="card flight-card">
+          <div class="flight-info">
+            <div class="time-airline">
+              <p class="mb-1 flight-time">
+                {{ flight.departureDate | date:'shortTime' }} - {{ flight.arrivalDate | date:'shortTime' }}
+                <sup *ngIf="(flight.arrivalDate | date:'d') !== (flight.departureDate | date:'d')">+1</sup>
+              </p>
+              <p class="text-muted mb-2 airline-details">
+                {{ flight.origin?.code }} - {{ flight.destination?.code }}, {{ flight.airline }}
+              </p>
+            </div>
+           <div class="duration-stops">
+  <p class="mb-1">{{ flight.flightDuration }}</p>
+  <p class="text-muted mb-0">
+    {{ flight.stopovers === 0 ? '2 stops' : flight.stopovers + ' stop' + (flight.stopovers > 1 ? 's' : '') }}
+    <span *ngIf="flight.stopovers > 0">, {{ flight.stopoverLocation }}</span>
+  </p></div>
+            <div class="price-action">
+              <h5 class="mb-2">${{ getLowestSeatPrice(flight.seats) }}</h5>
+              <button (click)="getflightbyid(flight._id)" class="btn btn-warning rounded-custom mb-1">View Deal</button>
+              <p *ngIf="flight.selfTransfer" class="text-muted mb-0 self-transfer">Self-transfer</p>
             </div>
           </div>
         </div>
       </div>
-
-      <div *ngIf="filteredResults.length === 0 && !errorMessage">
-        <p>No flights found.</p>
-      </div>
-
-      <div *ngIf="errorMessage">
-        <p>{{ errorMessage }}</p>
-      </div>
     </div>
+    <div *ngIf="filteredResults.length === 0 && !errorMessage">
+      <p>No flights found.</p>
+    </div>
+  </div>
 
-    <div class="col-md-3">
+  <div *ngIf="errorMessage && searchQuery">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
+<div class="col-md-3">
       <div>
         <h5>greet {{searchResults[0]?.origin?.name}} hotel deals </h5>
         <img src="{{ searchResults[0]?.origin?.images[0] }}" class="card-img-top h-50">
@@ -283,6 +334,7 @@
           <button type="submit">Go somewhere</button>
 
         </div>
-      </div>
-    </div>
-  </div>
+
+</div>
+</div>
+
