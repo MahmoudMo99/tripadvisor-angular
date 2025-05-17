@@ -1,4 +1,4 @@
-<div class="py-5" *ngIf="launchMeal.length">
+<!-- <div class="py-5" *ngIf="launchMeal.length">
   <div class="container-lg container-fluid px-4">
     <div class="row">
       <div class="col-12">
@@ -24,16 +24,11 @@
             </div>
 
             <div class="card-details">
-              <div class="mt-2">
-                <a [routerLink]="['restaurants', rest._id]" class="card-title">{{ rest.name }}</a>
+      <div class="mt-2">
+                <a [routerLink]="['/restaurants', rest._id]" class="card-title">{{ rest.title }}</a>
               </div>
 
-            <!-- <div class="d-flex align-items-center justify-content-start mt-2">
-                  <ng-container *ngFor="let _ of createArray(rest.rate)">
-                    <div class="circle green-circle"></div>
-                  </ng-container>
-                  <div class="ms-2">{{ rest.reviews }} reviews</div>
-                </div> -->
+
 
 <div class="d-flex align-items-center justify-content-start mt-2">
   <ng-container *ngFor="let fill of getRatingFillArray(rest.rate)">
@@ -54,4 +49,56 @@
 
 <div *ngIf="launchMeal.length === 0">
   <p class="text-center">Loading launch restaurants...</p>
+</div> -->
+
+
+
+
+<div class="py-5" *ngIf="launchMeal.length">
+  <div class="container-lg container-fluid px-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="ms-1 text-dark mb-0">Lunch Restaurants</h4>
+          <!-- <a [routerLink]="['/restaurants']" [queryParams]="{ mealType: 'Lunch' }" class="text-dark small seeAll">
+            See all
+          </a> -->
+        </div>
+      </div>
+
+      <div class="col-12 position-relative">
+        <button class="scroll-arrow left-arrow" (click)="scrollToLeft()">←</button>
+        <button class="scroll-arrow right-arrow" (click)="scrollRight()">→</button>
+
+        <div #scrollContainer class="scroll-container d-flex overflow-auto pt-3">
+          <div *ngFor="let rest of launchMeal" class="card-wrapper me-3">
+            <div class="card-item position-relative">
+              <button class="favorite-btn">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <a [routerLink]="rest.link">
+                <img [src]="rest.image" class="card-img-top img-fluid rounded rounded-25" [alt]="rest.title" />
+              </a>
+            </div>
+
+            <div class="card-details mt-2">
+              <a [routerLink]="['/restaurants', rest._id]" class="card-title">{{ rest.title }}</a>
+              <div class="d-flex align-items-center justify-content-start mt-2">
+                <ng-container *ngFor="let fill of getRatingFillArray(rest.rate)">
+                  <div class="circle">
+                    <div class="fill" [ngStyle]="{ width: (fill * 100) + '%' }"></div>
+                  </div>
+                </ng-container>
+                <div class="ms-2">{{ rest.rate.toFixed(1) }} • {{ rest.reviews }} reviews</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="launchMeal.length === 0">
+  <p class="text-center">Loading lunch restaurants...</p>
 </div>

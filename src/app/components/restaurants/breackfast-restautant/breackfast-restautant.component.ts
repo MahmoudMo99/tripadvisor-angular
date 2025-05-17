@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RestaurantService } from '../../../services/restaurant.service';
 
@@ -10,6 +10,8 @@ import { RestaurantService } from '../../../services/restaurant.service';
   styleUrl: './breackfast-restautant.component.scss'
 })
 export class BreackfastRestautantComponent {
+    @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+
   breackfastkMeal: any[] = [];
 
   constructor(private breackfastRestaurant: RestaurantService) {}
@@ -40,5 +42,14 @@ export class BreackfastRestautantComponent {
       else result.push(0);
     }
     return result;
+  }
+
+
+  scrollToLeft(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 }

@@ -141,28 +141,28 @@ $border-radius: 8px;
 .scroll-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background: $scroll-arrow-bg;
-  border: 2px solid $scroll-arrow-color;
-  color: $scroll-arrow-color;
+  transform: translateY(-100%);
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
   border-radius: 50%;
-  width: $scroll-arrow-size;
-  height: $scroll-arrow-size;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
   cursor: pointer;
-
+  z-index: 2;
 }
 
 .left-arrow {
-  left: -20px;
+  left: 0;
 }
 
 .right-arrow {
-  right: -20px;
+  right: 0;
 }
+
 .seeAll{
   text-decoration: none;
   &:hover {

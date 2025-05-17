@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RestaurantService } from '../../../services/restaurant.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -11,6 +11,8 @@ import { RouterLink } from '@angular/router';
 })
 export class DinnerRestautantComponent {
   dinnerRestaurants: any[] = [];
+      @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+
 
   constructor(private dinnerRestaurant:RestaurantService) {}
   // ngOnInit(): void {
@@ -53,4 +55,13 @@ export class DinnerRestautantComponent {
   }
   return result;
 }
+
+
+  scrollToLeft(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+  }
 }
