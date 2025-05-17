@@ -1,0 +1,16 @@
+<div class="search-card d-flex flex-row  gap-3 bg-white rounded ">
+    <div class="col-4">
+        <img [src]="item.type=='restaurant'?item.images.restaurantImages[0]:item.images[0]" class="img-fluid " alt=""
+            [ngClass]="{'rounded-start': screenSize === 'lg'|| screenSize === 'md', 'rounded': screenSize === 'sm' }">
+    </div>
+    <div class="col-8 p-3 d-flex flex-column gap-1 justify-content-start align-items-start">
+        <small
+            class="border border-dark rounded m-0 p-2 fw-bold">{{item.type=='restaurant'?'Restaurant':item.type=='hotel'?'Hotel':'Things to do'}}</small>
+        <h5 class="m-0 fw-bold">{{item.type=='attractive'? item.title:item.name}}</h5>
+        <div class=" d-flex flex-row align-items-center gap-2 fs-6">
+            <small class="text-secondary fs-6">2.5 </small>
+            <app-review-rate [rating]="2.5" [readonly]="true" />
+        </div>
+        <small class=" text-secondary">{{item.type!='restaurant'?item.description:''}}</small>
+    </div>
+</div>

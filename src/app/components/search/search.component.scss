@@ -10,6 +10,16 @@
     background-color:#84E9BD !important ;
     
 }
-.top-filter{
-    top:92px;
+
+.input{
+    border: none;
+}
+.input:focus{
+    outline: none;
+}
+.filter-option{
+    cursor: pointer;
+}
+.filter-option:hover{
+    font-size: 17px;
 }

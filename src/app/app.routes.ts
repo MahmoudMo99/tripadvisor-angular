@@ -54,8 +54,8 @@ export const routes: Routes = [
             { path: 'hotels', component: HotelsComponent },
       { path: 'hotel/:id', component: HotelsDetailsComponent },
 
-      { path: 'steps', component: StepsComponent },
-      { path: 'attraction/:id/contact', component: ContactComponent },
+      // { path: 'steps', component: StepsComponent },
+      // { path: 'attraction/:id/contact', component: ContactComponent },
  { 
     path: 'trips/:id', 
     component: TripsDetailsMainComponent,
@@ -66,8 +66,8 @@ export const routes: Routes = [
       { path: 'for-you', component: ForYouComponent }
     ]
   },
-      { path: 'attraction/activity', component: ActivityComponent },
-      { path: 'payment', component: PaymentComponent },
+      // { path: 'attraction/activity', component: ActivityComponent },
+      // { path: 'payment', component: PaymentComponent },
 
       // { path: 'steps', component: StepsComponent },
       // { path: 'attraction/:id/contact', component: ContactComponent },
@@ -147,7 +147,7 @@ export const routes: Routes = [
       },
       { path: 'Resturant', component: ResturantPageComponent },
       { path: 'review-search', component: ReviewSearchComponent },
-      { path: 'review-form', component: ReviewFormComponent },
+      { path: 'review-form/:type/:reference', component: ReviewFormComponent },
       {path:'profile',component:ProfileComponent},
       {path:'post-photo',component:PostPhotoComponent},
       {path:'search',component:SearchComponent},

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReviewRateComponent } from "./review-rate/review-rate.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-review-form',
@@ -8,14 +9,22 @@ import { ReviewRateComponent } from "./review-rate/review-rate.component";
   styleUrl: './review-form.component.scss'
 })
 export class ReviewFormComponent {
-
+  type:string='';
+  reference: string='';
   monthsAndYears: { month: string, year: number }[] = [];
   groupOptions: String[] = [];
   
 
-  constructor() {
+  constructor(private route:ActivatedRoute) {
       this.monthsAndYears = this.getMonthsAndYears();
       this.groupOptions = ['Business', 'Couples','Family','Friends','Solo','Other'];
+    }
+
+    ngOnInit(){
+      this.route.params.subscribe(params=>{
+        this.type=params['type'];
+        this.reference = params['reference']
+      })
     }
 
   getMonthsAndYears(): { month: string, year: number }[] {
