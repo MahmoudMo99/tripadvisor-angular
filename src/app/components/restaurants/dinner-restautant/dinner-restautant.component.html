@@ -18,26 +18,36 @@
               <button class="favorite-btn">
                 <i class="fa-regular fa-heart"></i>
               </button>
-              <a [routerLink]="['/restaurants', rest._id]">
-                <img
-                  [src]="rest.images?.restaurantImages[0]"
-                  class="card-img-top img-fluid rounded rounded-25"
-                  [alt]="rest.name"
-                />
-              </a>
+         <a [routerLink]="rest.link">
+                  <img [src]="rest.image" class="card-img-top img-fluid rounded rounded-25" [alt]="rest.title" />
+                </a>
             </div>
 
             <div class="card-details">
               <div class="mt-2">
-                <a [routerLink]="['/restaurants', rest._id]" class="card-title">{{ rest.name }}</a>
+                <a [routerLink]="['/restaurants', rest._id]" class="card-title">{{ rest.title }}</a>
               </div>
 
-              <div class="d-flex align-items-center justify-content-start mt-2">
-                <ng-container *ngFor="let _ of createRatingArray(5)">
+              <!-- <div class="d-flex align-items-center justify-content-start mt-2">
+                <ng-container *ngFor="let _ of createArray(rest.rate)">
                   <div class="circle green-circle"></div>
                 </ng-container>
-                <div class="ms-2">{{ rest.reviewsCount || 0 }} reviews</div>
-              </div>
+                <div class="ms-2">{{ rest.reviews}} reviews</div>
+              </div> -->
+
+
+
+
+<div class="d-flex align-items-center justify-content-start mt-2">
+  <ng-container *ngFor="let fill of getRatingFillArray(rest.rate)">
+    <div class="circle">
+      <div class="fill" [ngStyle]="{ width: (fill * 100) + '%' }"></div>
+    </div>
+  </ng-container>
+  <div class="ms-2">{{ rest.rate.toFixed(1) }} • {{ rest.reviews }} reviews</div>
+</div>
+
+
             </div>
           </div>
         </div>

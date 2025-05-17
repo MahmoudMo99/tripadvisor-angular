@@ -1,58 +1,3 @@
-// import { Component, EventEmitter, Input, Output } from '@angular/core';
-// import { Restaurant } from '../../../../models/restaurants/restaurant';
-// import { CommonModule } from '@angular/common';
-// import { ActivatedRoute, RouterLink } from '@angular/router';
-// import { RestaurantService } from '../../../../services/restaurant.service';
-// import { RestaurantDetailsModelAlbumComponent } from '../restaurant-details-model-album/restaurant-details-model-album.component';
-
-// @Component({
-//   selector: 'app-restaurant-details-model',
-//   imports: [CommonModule,RouterLink,RestaurantDetailsModelAlbumComponent],
-//   templateUrl: './restaurant-details-model.component.html',
-//   styleUrl: './restaurant-details-model.component.scss'
-// })
-// export class RestaurantDetailsModelComponent {
-//   @Input() restaurant!: Restaurant;
-//   @Input() showModal: boolean = false;
-//   @Output() close = new EventEmitter<void>();
-//   selectedRestaurant!: Restaurant;
-
-//   constructor(
-//     private route: ActivatedRoute,
-//     private restaurantService: RestaurantService
-//   ) {}
-//   ngOnInit(): void {
-//     const id = this.route.snapshot.paramMap.get('id');
-//     if (id) {
-//       this.restaurantService.getRestaurantById(id).subscribe({
-//         next: (data) => {
-//           this.restaurant = data;
-//         },
-//         error: (err) => console.error('Error fetching restaurant:', err)
-//       });
-//     }
-//   }
-
-//   createRatingCircles(rank: number = 4.5): boolean[] {
-//     const rounded = Math.round(rank);
-//     return Array(5).fill(false).map((_, i) => i < rounded);
-//   }
-
-
-
-//   closeModal() {
-//     this.close.emit();
-//   }
-// }
-
-
-
-
-
-
-
-
-
 
 
   import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -80,18 +25,39 @@ export class RestaurantDetailsModelComponent {
     private restaurantService: RestaurantService
   ) {}
 
-  ngOnInit() {
-    this.restaurantService.getRestaurantById(this.restaurantId).subscribe(res => {
-      this.restaurant = res;
+  // ngOnInit() {
+  //   this.restaurantService.getRestaurantById(this.restaurantId).subscribe(res => {
+  //     this.restaurant = res;
 
+  //     this.selectedCategory = 'all';
+  //     this.updateImages();
+  //   });
+  // }
+
+
+ngOnInit() {
+  if (!this.restaurantId) {
+    console.error('restaurantId is undefined');
+    return;
+  }
+
+  this.restaurantService.getRestaurantById(this.restaurantId).subscribe({
+    next: (res) => {
+      this.restaurant = res;
       this.selectedCategory = 'all';
       this.updateImages();
-    });
-  }
+    },
+    error: (err) => {
+      console.error('Error loading restaurant:', err);
+    }
+  });
+}
+
 
   setCategory(category: 'all' | 'menu' | 'interior', img?: string) {
     this.selectedCategory = category;
     this.updateImages(img);
+
   }
 
   updateImages(selectedImage?: string) {
@@ -114,13 +80,19 @@ export class RestaurantDetailsModelComponent {
     }
   }
 
-  createRatingCircles(rank: number = 4.5): boolean[] {
-    const rounded = Math.round(rank);
-    return Array(5).fill(false).map((_, i) => i < rounded);
-  }
+ getRatingCircles(rating: number = 5): ('full' | 'half' | 'empty')[] {
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.25 && rating % 1 < 0.75;
+  return Array.from({ length: 5 }, (_, i) => {
+    if (i < fullStars) return 'full';
+    if (i === fullStars && hasHalf) return 'half';
+    return 'empty';
+  });
+}
 
   closeModal() {
     this.close.emit();
   }
+
 }
 

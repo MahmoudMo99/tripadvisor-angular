@@ -18,16 +18,16 @@
     <div class="recommendation-card" *ngFor="let item of recommendations">
 
       <div class="image-wrapper">
-        <img 
+        <img
           *ngIf="isAttraction(item)"
-          [src]="item.images[0]" 
+          [src]="item.images[0]"
           alt="Attraction Image" />
-        
-        <img 
+
+        <img
           *ngIf="!isAttraction(item)"
-          [src]="item.images.restaurantImages[0]" 
+          [src]="item.images.restaurantImages[0]"
           alt="Restaurant Image" />
-        
+
         <button class="favorite-btn"><mat-icon>favorite_border</mat-icon></button>
       </div>
 
@@ -43,7 +43,7 @@
             <span class="circle" *ngFor="let star of stars"></span>
           </div>
           <span>
-            ({{ isAttraction(item) ? item.reviewsCount : item.reviewsCount || item.numberOfReviews }})
+            ({{ isAttraction(item) ? item.reviewsCount : item.numberOfReviews || item.numberOfReviews }})
           </span>
         </div>
 
