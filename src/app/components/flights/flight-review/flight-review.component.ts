@@ -64,12 +64,12 @@
 
 
 
-// flight-review.component.ts
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReviewService } from '../../../services/review/review.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-flight-review',
@@ -81,55 +81,86 @@ import { ReviewService } from '../../../services/review/review.service';
 export class FlightReviewComponent implements OnInit {
   searchQuery: string = '';
   reviews: any[] = [];
+  loading: boolean = false;
+  error: string | null = null;
+  
+  flightIds: string[] = [
+    '67b9ec98a6257e7737703105',
+    '67b9edac53c8085da0b9e51a',
+    '6819324615a40966c33f4360',
+    '681da89aa8d66424653433b6'
+  ];
 
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit(): void {
-    const type = 'Flight';
-    const reference = ''; 
-
-    this.loadReviews(type, reference);
+    this.loadReviews();
   }
 
-  loadReviews(type: string, reference: string): void {
-    this.reviewService.getReviews(type, reference).subscribe(
-      (data: any) => {
-        console.log('Fetched reviews:', data);
+loadReviews() {
+  this.loading = true;
+  this.reviews = [];
+  this.error = '';
 
-        this.reviews = data
-          .filter((review: any) => review.type === 'Flight')
-          .map((review: any) => ({
-            airline: review.title,
-            user:{
-              image: review.user?.profileImage || 'assets/tonit1079.jpg',
-            },
-            rating: review.rating,
-            ratingcount: review.ratingcount||"0", 
-            topRatedIn: review.topRatedIn ||'Flights', 
-            reviewText: review.description, 
-          }));
-      },
-      (error) => {
-        console.error('Error fetching reviews', error);
+  const requests = this.flightIds.map(flightId => {
+    console.log(`Fetching reviews for flight ID: ${flightId}`);
+    return this.reviewService.getReviews('Flight', flightId);
+  });
+
+  forkJoin(requests).subscribe({
+    next: (responses: any[]) => {
+      console.log('All API responses:', responses);
+
+      // Modified this part to handle the actual response structure
+      const allReviews = responses.flatMap(response => {
+        if (Array.isArray(response)) {
+          return response; // Response is already the array of reviews
+        } else if (response?.data && Array.isArray(response.data)) {
+          return response.data;
+        } else {
+          console.warn('Unexpected response format:', response);
+          return [];
+        }
+      });
+
+      this.reviews = allReviews;
+
+      if (this.reviews.length === 0) {
+        console.log('No flight reviews found');
+        this.error = 'No flight reviews available';
       }
-    );
-  }
 
-  getRatingStars(rating: number): string {
-    const fullStars = '★'.repeat(Math.floor(rating));
-    const emptyStars = '☆'.repeat(5 - Math.floor(rating));
-    return fullStars + emptyStars;
+      this.loading = false;
+    },
+    error: (error) => {
+      console.error('Error fetching reviews:', error);
+      this.error = 'Failed to load reviews. Please try again later.';
+      this.loading = false;
+    }
+  });
+}
+ 
+  getRatingCircles(rating: number): { filled: boolean }[] {
+    const ratingValue = rating || 0;
+    return Array(5).fill(0).map((_, index) => ({
+      filled: index < ratingValue
+    }));
   }
 
   onSearch(): void {
-    if (!this.searchQuery.trim()) return;
+    if (!this.searchQuery.trim()) {
+      this.loadReviews();
+      return;
+    }
     
     const searchTerm = this.searchQuery.toLowerCase();
     const filteredReviews = this.reviews.filter(review => 
-      review.title.toLowerCase().includes(searchTerm) ||
-      review.description.toLowerCase().includes(searchTerm)
-    );
+      (review.title?.toLowerCase().includes(searchTerm) ||
+      review.description?.toLowerCase().includes(searchTerm) ||
+      review.reviewflightText?.toLowerCase().includes(searchTerm)
+    ));
     
+    this.reviews = filteredReviews;
     console.log('Search results:', filteredReviews);
   }
 }

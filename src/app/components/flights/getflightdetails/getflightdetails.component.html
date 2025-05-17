@@ -1,40 +1,48 @@
+
 <div *ngIf="flight" class="container mt-4">
-  <h1>{{ flight.origin.name }} → {{ flight.destination.name }}</h1>
+  <h1>{{ flight.origin.name }} → {{ flight.destination.name }} and back</h1>
   <div class="row">
-      <div class="col-md-8">
-          <div class="card container-fluid">
-              <p>Trip Summary</p>
-              <hr>
-              <h6>{{ flight.origin.name }} → {{ flight.destination.name }}</h6>
-              <div class="card">
-                  <div class="card-body">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <p>{{ flight.departureDate | date:'shortTime' }}</p>
-                              <p>{{ flight.departureDate | date:'EEE, MMM d' }}</p>
-                              <p><strong>{{ flight.flightDuration }}H</strong></p>
-                              <p>{{ flight.arrivalDate | date:'shortTime' }}</p>
-                              <p>{{ flight.arrivalDate | date:'EEE, MMM d' }}</p>
-
-                              <p><strong>{{ flight.origin.name }} · {{ flight.origin.country }}</strong></p>
-                              <p>{{ flight.origin.description }}</p>
-                              <p><strong>{{ flight.airline }}</strong></p>
-                          </div>
-                          <div class="col-md-6">
-                              <p><strong>{{ flight.destination.name }} · {{ flight.destination.country }}</strong></p>
-                              <p>{{ flight.destination.description }}</p>
-                              <p><strong>Flight Number: {{ flight.flightNumber }}</strong></p>
-                          </div>
-                      </div>
-                  </div>
+    <div class="col-12 col-md-8">
+      <div class="cardbig">
+        <div class="card-body">
+          <p>Trip Summary</p>
+          <hr>
+          <div class="trip-summary">
+            <h6>{{ flight.origin.name }} → {{ flight.destination.name }}</h6>
+            <div class="flight-leg d-flex align-items-center">
+              <div class="departure text-start">
+                <p class="time">{{ flight.departureDate | date:'shortTime' }}</p>
+                <p class="date">{{ flight.departureDate | date:'EEE, MMM d' }}</p>
               </div>
-          </div> 
+              <div class="duration mx-3 text-center position-relative">
+                <span class="line"></span>
+                <p class="mb-0">
+                  <i class="fa-solid fa-plane plane-icon"></i>
+                  {{ flight.flightDuration }}H
+                </p>
+              </div>
+              <div class="arrival text-end">
+                <p class="time">{{ flight.arrivalDate | date:'shortTime' }}</p>
+                <p class="date">{{ flight.arrivalDate | date:'EEE, MMM d' }}</p>
+              </div>
+            </div>
+            <div class="flight-details mt-3">
+              <p><strong>{{ flight.origin.name }} · {{ flight.origin.country }}</strong></p>
+              <p>{{ flight.origin.description }}</p>
+              <p><strong>{{ flight.airline }}</strong></p>
+              <p><strong>Flight Number: {{ flight.flightNumber }}</strong></p>
+              <p><strong>{{ flight.destination.name }} · {{ flight.destination.country }}</strong></p>
+              <p>{{ flight.destination.description }}</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="col-md-4">
-          <div class="card">
-              <div class="card-body">
-                  <h5>Passenger Details</h5>
+    <div class="col-12 col-md-4">
+      <div class="cardbig">
+        <div class="card-body">
+          <h5>Passenger Details</h5>
                   <hr>
                   <p>1x passenger</p>
                   <p>1x Cabin baggage</p>
@@ -42,9 +50,9 @@
                   <p><strong>Seat Price (USD):</strong> {{ flight.seats[0]?.price }} {{ flight.seats[0]?.currency }}</p>
                   <p><strong>Total (USD):</strong> ${{ flight.seats[0]?.price }}</p>
                   <p>Includes all taxes, fees, surcharges, and service fees.</p>
-                  <button class="btn btn-success" (click)="checkAvailability(flight.id)">Check Availability</button>
-                </div>
-          </div>
+<button class="btn btn-success" (click)="bookFlight(getSelectedSeat())">Book Now</button>                </div>
       </div>
+    </div>
   </div>
-</div>
+  </div>
+

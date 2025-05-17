@@ -16,7 +16,10 @@ export class OrderSummeryComponent {
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.bookingData = navigation?.extras.state?.['booking'];
+    console.log("Booking data at summary :", this.bookingData);
+
   }
+
 
   ngOnInit(): void {
     if (!this.bookingData) {

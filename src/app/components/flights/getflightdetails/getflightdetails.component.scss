@@ -1,19 +1,167 @@
+// .cardbig {
+//     border: 1px solid #ddd;
+//     border-radius: 8px;
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   }
+  
+//   .card-body {
+//     padding: 20px;
+//   }
+  
+//   p {
+//     margin-bottom: 10px;
+//     font-size: 16px;
+//   }
+  
+//   strong {
+//     font-weight: bold;
+//     color: #333;
+//   }
+
+.container {
+  padding: 20px;
+}
+
 .cardbig {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.trip-summary h6 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.flight-leg {
+  position: relative;
+}
+
+.departure, .arrival {
+  flex: 1;
+}
+
+.duration {
+  flex: 0 0 auto;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.date {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.line::before,
+.line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  border-top: 1px dashed #999;
+}
+
+.line::before {
+  left: -50px;
+}
+
+.line::after {
+  right: -50px;
+}
+
+.plane-icon {
+  font-size: 14px;
+  margin-right: 5px;
+  color: #666;
+}
+
+span {
+  color: #28a745; // Green for "Included"
+  margin-left: 5px;
+}
+
+.btn-success {
+  width: 200px;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) { // Tablet and below
+  .col-md-8, .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
-  
-  .card-body {
-    padding: 20px;
+
+  .cardbig {
+    margin-bottom: 15px;
   }
-  
-  p {
+
+  .btn-success {
+    width: 100%;
+  }
+
+  .flight-leg {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .departure, .arrival, .duration {
+    text-align: left !important;
     margin-bottom: 10px;
+  }
+
+  .duration {
+    margin: 0;
+  }
+
+  .line::before,
+  .line::after {
+    display: none; // Hide line on smaller screens
+  }
+}
+
+@media (max-width: 576px) { // Phone
+  h1 {
+    font-size: 24px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .trip-summary h6 {
     font-size: 16px;
   }
-  
-  strong {
-    font-weight: bold;
-    color: #333;
+
+  .time {
+    font-size: 16px;
   }
+
+  .date {
+    font-size: 12px;
+  }
+}

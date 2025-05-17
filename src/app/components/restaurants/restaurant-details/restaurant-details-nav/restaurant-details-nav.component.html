@@ -1,5 +1,4 @@
-<!-- Navigation Tabs -->
-<div class="tab-bar" role="tablist">
+<div class="tab-bar d-none d-sm-flex " role="tablist">
   <button (click)="scrollToSection('overview')" class="tab active">Overview</button>
   <button (click)="scrollToSection('hours')" class="tab">Hours</button>
   <button (click)="scrollToSection('location')" class="tab">Location</button>
@@ -10,13 +9,33 @@
 
 
 <div class="restaurant-details-container">
-  <!-- Left Side - Overview Component -->
-  <div class="overview-container">
+  <div class="overview-container" >
     <div id="overview" ><app-restaurant-details-overview ></app-restaurant-details-overview></div>
   </div>
 
-  <!-- Right Side - Card Component -->
-  <div class="card-container">
+  <div class="card-container " >
     <div id="hours" ><app-restaurant-details-card></app-restaurant-details-card></div>
   </div>
 </div>
+
+
+
+<!-- <div class="restaurant-page-wrapper">
+  <div class="tab-bar" role="tablist">
+    <button (click)="scrollToSection('overview')" class="tab active">Overview</button>
+    <button (click)="scrollToSection('hours')" class="tab">Hours</button>
+    <button (click)="scrollToSection('location')" class="tab">Location</button>
+    <button (click)="scrollToSection('reviews')" class="tab">Reviews</button>
+  </div>
+
+  <div class="restaurant-details-container">
+    <div class="overview-container" id="overview">
+      <app-restaurant-details-overview></app-restaurant-details-overview>
+    </div>
+
+    <div class="card-container" id="hours">
+      <app-restaurant-details-card></app-restaurant-details-card>
+    </div>
+  </div>
+</div> -->
+

@@ -26,13 +26,20 @@
                   <a [routerLink]="rest.link" class="card-title">{{ rest.title }}</a>
                 </div>
 
-                <div class="d-flex align-items-center justify-content-start mt-2">
+                <!-- <div class="d-flex align-items-center justify-content-start mt-2">
                   <ng-container *ngFor="let _ of createArray(rest.rate)">
                     <div class="circle green-circle"></div>
                   </ng-container>
                   <div class="ms-2">{{ rest.reviews }} reviews</div>
-                </div>
-
+                </div> -->
+<div class="d-flex align-items-center justify-content-start mt-2">
+  <ng-container *ngFor="let fill of getRatingFillArray(rest.rate)">
+    <div class="circle">
+      <div class="fill" [ngStyle]="{ width: (fill * 100) + '%' }"></div>
+    </div>
+  </ng-container>
+  <div class="ms-2">{{ rest.rate.toFixed(1) }} • {{ rest.reviews }} reviews</div>
+</div>
 
               </div>
             </div>

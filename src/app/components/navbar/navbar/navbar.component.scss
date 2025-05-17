@@ -20,11 +20,26 @@ input:focus {
 }
 
 .lists > li {
-  transition: all 0.3s linear;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .lists > li:hover {
   background-color: $greyColor;
+}
+
+.sign-li {
+  background-color: black;
+
+  &:hover {
+    background-color: black !important;
+    opacity: 0.7;
+  }
+}
+
+.sign {
+  color: $white;
+  text-decoration: none;
 }
 
 @media (min-width: 992px) {
@@ -39,8 +54,10 @@ input:focus {
   }
 }
 
-$greyColor:#d5d5d5;
-
-ul>li>a:hover {
-  background-color: $greyColor !important;
+.custom-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.dropdown-item {
+  cursor: pointer;
 }

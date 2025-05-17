@@ -16,10 +16,10 @@ export class AttractionsCardsComponent implements OnInit {
   attractions: ICards[] = [];
   recommendedAttractions: ICards[] = [];
   topAttractions: ICards[] = [];
-  topExperiences: ICards[] = [];
   topExperiencesWorldwide: ICards[] = [];
   topGlobalDestinations: ICards[] = [];
   topGlobalAttractions: ICards[] = [];
+  topExperiencesByDestination: Record<string, ICards[]> = {};
 
   constructor(private attractionCategorizerService: AttractionCategorizerService) {}
 
@@ -33,10 +33,10 @@ export class AttractionsCardsComponent implements OnInit {
         this.attractions = result.attractions;
         this.recommendedAttractions = result.recommendedAttractions;
         this.topAttractions = result.topAttractions;
-        this.topExperiences = result.topExperiences;
         this.topExperiencesWorldwide = result.topExperiencesWorldwide;
         this.topGlobalDestinations = result.topGlobalDestinations;
         this.topGlobalAttractions = result.topGlobalAttractions;
+        this.topExperiencesByDestination = result.topExperiencesByDestination;
 
         console.log('Categorized and Sorted Data:', result);
       },

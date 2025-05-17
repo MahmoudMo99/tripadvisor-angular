@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RestaurantService } from '../../../services/restaurant.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -11,17 +11,57 @@ import { RouterLink } from '@angular/router';
 })
 export class DinnerRestautantComponent {
   dinnerRestaurants: any[] = [];
+      @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+
 
   constructor(private dinnerRestaurant:RestaurantService) {}
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  //   this.dinnerRestaurant.getRecentlyRestaurant().subscribe(restaurants => {
+  //     this.dinnerRestaurants = restaurants.filter(rest =>
+  //       rest.features?.mealTypes?.includes('Dinner')
+  //     );
+  //   });
+  // }
+
+    ngOnInit(): void {
     this.dinnerRestaurant.getRecentlyRestaurant().subscribe(restaurants => {
-      this.dinnerRestaurants = restaurants.filter(rest =>
-        rest.features?.mealTypes?.includes('Dinner')
-      );
+      this.dinnerRestaurants = restaurants
+        .filter(rest => rest.features?.mealTypes?.includes('Dinner'))
+        .map((rest: any) => ({
+            title: rest.name,
+            image:
+              rest.images?.restaurantImages?.[0] || 'assets/default-image.jpg',
+            link: `/restaurants/${rest._id}`,
+            rate: rest.rating || 0,
+            reviews: rest.numberOfReviews || 0,
+          }));
     });
   }
 
-  createRatingArray(rating: number): any[] {
-    return new Array(rating);
+
+
+  //   createArray(rate: number): number[] {
+  //   return new Array(Math.round(rate)).fill(0);
+  // }
+
+
+  getRatingFillArray(rate: number): number[] {
+  const result: number[] = [];
+  for (let i = 0; i < 5; i++) {
+    const diff = rate - i;
+    if (diff >= 1) result.push(1);
+    else if (diff > 0) result.push(diff);
+    else result.push(0);
+  }
+  return result;
+}
+
+
+  scrollToLeft(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight(): void {
+    this.scrollContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 }

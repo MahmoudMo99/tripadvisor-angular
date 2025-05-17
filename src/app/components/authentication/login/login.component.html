@@ -9,18 +9,24 @@
             <img src="tripadvisor.svg" alt="" class="img-fluid logo" />
             <h2 class="fw-bold mb-4 pt-4">Welcome back.</h2>
 
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
                 <div class="mb-3 text-start">
                     <label for="email" class="form-label fw-semibold">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
                 </div>
+
+
 
                 <div class="mb-2 text-start">
                     <label for="password" class="form-label fw-semibold">Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                        <span class="input-group-text bg-white border-start-0">
-                            <i class="bi bi-eye"></i>
+                        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+                            formControlName="password" placeholder="Password">
+                        <span class="input-group-text bg-white border-start-0" (click)="showPassword = !showPassword"
+                            style="cursor: pointer;">
+                            <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
                         </span>
                     </div>
                 </div>
@@ -30,9 +36,9 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-dark w-75 rounded-pill py-2 mb-4">Sign in</button>
+                    <button type="submit" class="btn btn-dark w-75 rounded-pill py-2 mb-4"
+                        [disabled]="loginForm.invalid">Sign in</button>
                 </div>
-
             </form>
 
             <div class="separator my-4 d-flex align-items-center">

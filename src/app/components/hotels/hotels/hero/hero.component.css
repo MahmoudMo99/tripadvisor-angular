@@ -7,7 +7,7 @@
   justify-content: center;
   text-align: center;
   color: white;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .overlay {
@@ -33,7 +33,7 @@
 .search-bar {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 10px;
   border-radius: 50px;
   background: white;
@@ -42,22 +42,19 @@
   flex-wrap: wrap;
   /* width: 800px; */
 }
-.search-item input {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  background: transparent;
-}
+
 .search-item input.form-control {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
   background: transparent !important;
 }
-.xxx{
+
+.xxx {
   display: flex;
   gap: 10px;
 }
+
 .search-item {
   display: flex;
   align-items: center;
@@ -75,16 +72,18 @@
   background: transparent;
   font-size: 14px;
 }
-.search-item2{
+
+.search-item2 {
   display: flex;
-    align-items: center;
-    gap: 8px;
-    /* background: #f0f0f0; */
-    padding: 10px 15px;
-    border-radius: 30px;
-    color: #000;
-    border: 1px solid rgb(222, 222, 222);
+  align-items: center;
+  gap: 8px;
+  /* background: #f0f0f0; */
+  padding: 10px 15px;
+  border-radius: 30px;
+  color: #000;
+  border: 1px solid rgb(222, 222, 222);
 }
+
 .search-btn {
   background-color: #00aa6c;
   color: white;
@@ -94,6 +93,7 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .suggestions-list {
   position: absolute;
   top: calc(100% + 8px);
@@ -145,4 +145,11 @@
 .destination-name {
   font-size: 0.85rem;
   color: #888;
+}
+
+.search-bar-wrapper {
+  background: white;
+  border-radius: 32px;
+  max-width: 900px;
+  width: 100%;
 }
