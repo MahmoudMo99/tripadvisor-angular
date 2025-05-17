@@ -10,7 +10,6 @@
 
 
 
-<!-- npm install @popperjs/core -->
 
 <div class="dropdown">
   <button class="btn share-button dropdown-toggle" id="shareButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,27 +34,39 @@
 </div>
   </div>
 
-  <div class="header-bottom">
+  <div class="header-bottom  ">
     <div class="left">
       <div class="inline-header-bottom">
-        <span class="rank">{{ restaurant.rank }}</span>
-        <div class="rating-section">
-          <div
-            class="green-circle"
-            *ngFor="let bubble of createRatingCircles(restaurant.rank)"
-            [class.filled]="bubble"
-          ></div>
-          <span class="reviews-count">({{ restaurant.reviewsCount }} reviews)</span>
-        </div>
+        <span class="rank">{{ restaurant.rating }}</span>
+<div class="rating-section">
+     <div
+    class="green-circle"
+    *ngFor="let state of getRatingCircles(restaurant.rating)"
+    [class.filled]="state === 'full'"
+    [class.half-filled]="state === 'half'"
+  ></div>
+
+
+
+
+
+
+  <span class="reviews-count">({{ restaurant.numberOfReviews }} reviews)</span>
+</div>
       </div>
 
     </div>
     <div class="right info">
-      <span class="location">{{ restaurant.location }}</span>
-      <span class="destination">{{ restaurant.destination }}</span>
+<span class="location">
+  <span class="part">{{ restaurant.location.address }},</span>
+  <span class="part">{{ restaurant.location.city }},</span>
+  <span class="part">{{ restaurant.location.country }}</span>
+</span>
     </div>
   </div>
 </div>
+
+
 
 
 

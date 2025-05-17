@@ -3,13 +3,24 @@ export interface Restaurant {
   name: string;
   destination: string;
   rank: number;
-  location: string;
-  hours: string;
+  rating:number;
+  // location: string;
+
+location: {
+  address: string;
+    city?: string;
+    country?: string;
+    coordinates?: string;
+}
+  // hours: string;
+ hours: {
+  [day: string]: string[];
+};
   website: string;
   phone: string;
-  reviewsCount: number;
+  // reviewsCount: number;
   numberOfReviews: number;
-  latitude?: number;  
+  latitude?: number;
   longitude?: number;
   images: {
     restaurantImages: string[];

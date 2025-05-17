@@ -60,10 +60,15 @@ export class RestaurantDetailsModelComponent {
     }
   }
 
-  createRatingCircles(rank: number = 4.5): boolean[] {
-    const rounded = Math.round(rank);
-    return Array(5).fill(false).map((_, i) => i < rounded);
-  }
+ getRatingCircles(rating: number = 5): ('full' | 'half' | 'empty')[] {
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.25 && rating % 1 < 0.75;
+  return Array.from({ length: 5 }, (_, i) => {
+    if (i < fullStars) return 'full';
+    if (i === fullStars && hasHalf) return 'half';
+    return 'empty';
+  });
+}
 
   closeModal() {
     this.close.emit();

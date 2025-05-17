@@ -47,16 +47,19 @@
   margin-left: 20px;
 
   .green-circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #ccc;
-    transition: background-color 0.3s;
-
-    &.filled {
-      background-color: rgb(1, 158, 1);
-    }
-  }
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: lightgray;
+  display: inline-block;
+  margin-right: 3px;
+}
+.green-circle.filled {
+  background-color: green;
+}
+.green-circle.half-filled {
+  background: linear-gradient(to right, green 50%, lightgray 50%);
+}
 
   .reviews-count {
     font-size: 0.95rem;
