@@ -45,10 +45,25 @@ export class AuthService {
       })
     );
   }
+
   logout(): void {
-    this.tokenService.deleteCurrentToken();
-    this._isLoggedIn$.next(false);
-    this.router.navigate(['/options']);
+    this.changeStatusBack().subscribe({
+      next: () => {
+        this.tokenService.deleteCurrentToken();
+        this._isLoggedIn$.next(false);
+        this.router.navigate(['/options']);
+      },
+      error: (err) => {
+        console.error('Logout API failed', err);
+        this.tokenService.deleteCurrentToken();
+        this._isLoggedIn$.next(false);
+        this.router.navigate(['/options']);
+      },
+    });
+  }
+
+  changeStatusBack(): Observable<any> {
+    return this.httpClient.post(API.auth.logout, {});
   }
 
   isAuthenticated(): boolean {

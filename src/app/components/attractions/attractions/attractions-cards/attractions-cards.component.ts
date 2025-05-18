@@ -19,7 +19,7 @@ export class AttractionsCardsComponent implements OnInit {
   topExperiencesWorldwide: ICards[] = [];
   topGlobalDestinations: ICards[] = [];
   topGlobalAttractions: ICards[] = [];
-  topExperiencesByDestination: Record<string, ICards[]> = {};
+  topExperiencesByDestination:  ICards[] = [];
 
   constructor(private attractionCategorizerService: AttractionCategorizerService) {}
 
