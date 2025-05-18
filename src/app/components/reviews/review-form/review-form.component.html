@@ -19,7 +19,7 @@
                 How would you rate your experience?
             </p>
             <div class="fs-2">
-                <app-review-rate [readonly]="false"></app-review-rate>
+                <app-review-rate [readonly]="false" (ratingChange)="onRatingChange($event)"></app-review-rate>
             </div>
         </div>
 
@@ -29,10 +29,10 @@
                 When did you go?
             </p>
             <div class="col-lg-6 col-12">
-                <select class="form-select rounded-pill" aria-label="Default select example">
-                    <option selected>Select </option>
+                <select class="form-select rounded-pill" aria-label="Default select example" [(ngModel)]="reviewData.when">
+                    <option [ngValue]="null" selected>Select</option>
                     @for (item of monthsAndYears; track $index) {
-                    <option [value]="$index" class="fw-bold">{{item.month}},{{item.year}}</option>
+                        <option [ngValue]="item">{{item.month}}, {{item.year}}</option>
                     }
                 </select>
             </div>
@@ -44,10 +44,17 @@
                 <div class=" col-12">
                     <div class="d-flex justify-content-start align-items-center gap-2 flex-wrap">
                         @for (item of groupOptions; track $index) {
-                        <input type="radio" class="btn-check" [id]="$index" name="radioDefault" autocomplete="off">
-                        <label class="btn btn-outline-dark rounded-pill" [for]="$index">{{item}}</label>
+                            <input
+                                type="radio"
+                                class="btn-check"
+                                [id]="$index"
+                                name="radioDefault"
+                                autocomplete="off"
+                                [value]="item"
+                                [(ngModel)]="reviewData.who"
+                            >
+                            <label class="btn btn-outline-dark rounded-pill" [for]="$index">{{item}}</label>
                         }
-
                     </div>
                 </div>
             </div>
@@ -60,7 +67,7 @@
                 <div class="">
                     <div class="mb-3">
                         <textarea class="form-control border-3" id="exampleFormControlTextarea1" rows="3"
-                            placeholder="The views are amazinge!"></textarea>
+                            placeholder="The views are amazinge!" [(ngModel)]="reviewData.description"></textarea>
                         <p class="text-muted text-end">0/100 min characters</p>
                     </div>
                 </div>
@@ -74,7 +81,7 @@
                 <div class="">
                     <div class="mb-3">
                         <input type="text" class="form-control  border-3" id="Title"
-                            placeholder="give us a title for your review">
+                            placeholder="give us a title for your review" [(ngModel)]="reviewData.title">
                         <p class="text-muted text-end">0/100 min characters</p>
                     </div>
                 </div>
@@ -85,10 +92,17 @@
                     Add some photos
                 </p>
                 <p class="text-muted">Optional</p>
-                <div class="bg-light d-flex flex-column justify-content-center align-items-center p-5">
+                <div class="bg-light d-flex flex-column justify-content-center align-items-center p-5"
+                onclick="document.getElementById('reviewImages').click()"
+                >
                     <span><i class="fa-regular fa-image"></i></span>
                     <p class="fw-bold  m-0">Add some photos</p>
-                    <p class="text-muted m-0">or drag and drop</p>
+                    <div id="image-preview" class="d-flex gap-2">
+
+                    </div>
+                    
+                     <input type="file" multiple id="reviewImages" style="display: none;" accept="image/*"
+                        (change)="getImages($event)" />
                 </div>
             </div>
 
@@ -107,7 +121,7 @@
                 </div>
             </div>
             <div class="d-flex flex-column gap-3 p-3 col-12 ">
-                <button type="button" class="btn btn-dark rounded-pill p-3">Submit</button>
+                <button type="button" class="btn btn-dark rounded-pill p-3" (click)="onSubmit()">Submit</button>
             </div>
         </div>
     </div>

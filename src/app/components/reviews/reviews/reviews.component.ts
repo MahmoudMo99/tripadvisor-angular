@@ -3,6 +3,7 @@ import { ReviewRateComponent } from "../review-form/review-rate/review-rate.comp
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { ReviewProgressbarComponent } from "./review-progressbar/review-progressbar.component";
 import { RouterLink } from '@angular/router';
+import { ReviewService } from '../../../services/review/review.service';
 
 
 @Component({
@@ -14,4 +15,13 @@ import { RouterLink } from '@angular/router';
 export class ReviewsComponent {
   @Input() type: string='';
   @Input() reference: string='';
+
+//   review:{
+// title:
+//   }[]
+
+  constructor(private reviewService:ReviewService){
+  
+
+  }
 }

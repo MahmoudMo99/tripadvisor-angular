@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output ,OnChanges, SimpleChanges} from '@angular/core';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,7 +11,18 @@ export class ReviewRateComponent {
 	@Input() rating = 0;
   @Input() readonly = false;
 
-	ariaValueText(current: number, max: number) {
-		return `${current} out of ${max} hearts`;
-	}
+  constructor( ){
+
+  }
+ 
+  ariaValueText(current: number, max: number) {
+    return `${current} out of ${max} hearts`;
+  }
+
+  @Output() ratingChange = new EventEmitter<number>();
+  
+
+  onRate(){
+    this.ratingChange.emit(this.rating);
+  }
 }
