@@ -1,7 +1,7 @@
 import { IDestination } from "../Destination/idestination";
 
 export interface ICards {
-  id: string;
+  _id: string;
   title: string;
   images: string[];
   location?: string;
