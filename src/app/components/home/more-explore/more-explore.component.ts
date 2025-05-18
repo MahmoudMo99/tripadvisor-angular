@@ -37,7 +37,7 @@ export class MoreExploreComponent {
       next: (data) => {
          console.log('Fetched attractions data:', data);
         this.travelCreators = data.slice(4, 7).map(attraction => ({
-           id:attraction.id ||attraction._id,
+           id:attraction._id ||attraction._id,
           title: attraction.title,
           image: attraction.images?.[0] || 'assets/default.jpg',
           creator: attraction.location || 'Unknown',

@@ -29,7 +29,7 @@ export class AttractiveHomePageComponent {
       next: (data) => {
          console.log('Fetched attractions data:', data);
         this.travelCreators = data.map(attraction => ({
-           id:attraction.id ||attraction._id,
+           id:attraction._id ||attraction._id,
           title: attraction.title,
           image: attraction.images?.[0] || 'assets/default.jpg',
           creator: attraction.location || 'Unknown',
