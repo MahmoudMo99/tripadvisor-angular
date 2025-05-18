@@ -54,7 +54,6 @@ export class AuthService {
         this.router.navigate(['/options']);
       },
       error: (err) => {
-        console.error('Logout API failed', err);
         this.tokenService.deleteCurrentToken();
         this._isLoggedIn$.next(false);
         this.router.navigate(['/options']);
@@ -69,5 +68,21 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.currentToken;
     return token !== null && this.tokenService.isTokenValid(token);
+  }
+
+  sendOtp(email: string) {
+    return this.httpClient.post(API.auth.sendOtp, { email });
+  }
+
+  verifyOtp(email: string, otp: string) {
+    return this.httpClient.post(API.auth.verifyOtp, { email, otp });
+  }
+
+  resetPassword(email: string, otp: string, newPassword: string) {
+    return this.httpClient.post(API.auth.resetPassword, {
+      email,
+      otp,
+      newPassword,
+    });
   }
 }

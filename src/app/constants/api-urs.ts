@@ -8,6 +8,9 @@ export const API = {
     register: withDomain('auth/register'),
     login: withDomain('auth/login'),
     logout: withDomain('auth/logout'),
+    sendOtp: withDomain('auth/send-otp'),
+    verifyOtp: withDomain('auth/verify-otp'),
+    resetPassword: withDomain('auth/reset-password'),
   },
   attractives: {
     getAll: withDomain('attractives'),
