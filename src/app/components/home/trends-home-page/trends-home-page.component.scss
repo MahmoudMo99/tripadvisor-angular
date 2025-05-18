@@ -89,7 +89,7 @@ $border-radius: 8px;
 .scroll-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-100%);
   background: $scroll-arrow-bg;
   border: 2px solid $scroll-arrow-color;
   color: $scroll-arrow-color;
