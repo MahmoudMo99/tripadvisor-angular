@@ -15,6 +15,8 @@ export const API = {
   attractives: {
     getAll: withDomain('attractives'),
     getById: (id: string) => withDomain(`attractives/${id}`),
+    filter: withDomain('attractives/filter'),
+
   },
 
   hotels: {
@@ -27,6 +29,9 @@ export const API = {
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
+    getAll: `${Domain}destination`
+
+
   },
   trips: {
     create: withDomain('trips'),

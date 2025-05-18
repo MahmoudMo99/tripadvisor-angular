@@ -13,7 +13,7 @@
       <div class="col-12">
         <div class="position-relative">
           <div id="scroll-container-4" class="scroll-container d-flex overflow-hidden">
-            <div *ngFor="let destination of destinations" class="card-wrapper position-relative">
+            <div *ngFor="let destination of destinations" class="card-wrapper position-relative" (click)="onCardClick(destination)" style="cursor: pointer;">
               <div class="card-item">
                 <a [href]="'https://www.google.com/search?q=' + destination.name" target="_blank">
                   <img [src]="destination.images[0]" alt="{{ destination.name }}" class="img-fixed card-img-top rounded" />
