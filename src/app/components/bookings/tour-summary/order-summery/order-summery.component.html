@@ -5,7 +5,8 @@
         {{
           bookingData?.title ||
             bookingData?.hotel?.name ||
-            bookingData?.flight?.airline
+            bookingData?.flight?.airline ||
+            bookingData?.restaurant?.name
         }}
       </h5>
       <p class="text-muted mb-2">
@@ -15,7 +16,7 @@
       <p class="text-muted mt-0">private tour</p>
     </div>
     <img
-      [src]="bookingData?.image||bookingData?.hotel?.images?.[0] ||bookingData?.flight?.destination?.images?.[0]"
+      [src]="bookingData?.image||bookingData?.hotel?.images?.[0] ||bookingData?.flight?.destination?.images?.[0]|| bookingData?.restaurant?.images?.restaurantImages?.[0]"
       alt="Tour Image"
       class="rounded img-thumbnail p-0"
       style="width: 80px; height: 80px; object-fit: cover"
@@ -34,7 +35,8 @@
       <span class="text-dark fw-medium">{{
         bookingData?.selectedTime ||
           bookingData?.hotel?.updatedAt ||
-          bookingData?.flight?.departureDate
+          bookingData?.flight?.departureDate ||
+          bookingData?.restaurant?.updatedAt
       }}</span>
     </div>
     @if (bookingData?.travelers) {

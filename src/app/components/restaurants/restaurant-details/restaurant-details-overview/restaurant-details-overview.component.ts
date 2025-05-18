@@ -3,13 +3,13 @@ import { RestaurantService } from '../../../../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Restaurant } from '../../../../models/restaurants/restaurant';
-import { MapUrlPipe } from '../../../../pipes/map-url.pipe';
+// import { MapUrlPipe } from '../../../../pipes/map-url.pipe';
 import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-restaurant-details-overview',
   standalone: true,
-  imports: [CommonModule, MapUrlPipe,MapComponent],
+  imports: [CommonModule,MapComponent],
   templateUrl: './restaurant-details-overview.component.html',
   styleUrls: ['./restaurant-details-overview.component.scss'],
 })

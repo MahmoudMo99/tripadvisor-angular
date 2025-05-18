@@ -56,8 +56,10 @@
   (close)="closeModal()"
 ></app-restaurant-details-model> -->
 <app-restaurant-details-model
+  *ngIf="selectedRestaurant"
   [showModal]="showModal"
   [restaurant]="selectedRestaurant"
-[restaurantId]="selectedRestaurant?._id || ''"
+  [restaurantId]="selectedRestaurant._id"
   (close)="closeModal()"
 />
+
