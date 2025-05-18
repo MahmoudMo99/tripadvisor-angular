@@ -16,13 +16,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HotelsDetailsComponent implements OnInit {
   hotelId: string='';
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
       this.hotelId = params.get('id') || '';
       console.log('Route ID:', this.hotelId);
     });
+   }
+
+  ngOnInit(): void {
+    
   }
 
 }

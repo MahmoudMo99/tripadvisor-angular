@@ -6,6 +6,17 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IReview } from '../../models/review/review';
 import { TokenService } from '../auth/token.service';
 
+interface IReviews{ 
+  title: string ,
+ description:string,
+ photos?:string[],
+ when:Date,
+ user:{
+   firstName:string;
+   lastName:string;
+   image?:string;
+ }
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -20,10 +31,10 @@ export class ReviewService {
     this.getCurrentUserReviews();
   }
 
-  getReviews(type: string, reference: string) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-
-    return this.http.get(API.review.getReviews(type, reference), { headers });
+  getReviews(type: string, reference: string): Observable<IReviews[]>  {
+    console.log('====>',type,reference);
+    
+    return this.http.get<IReviews[]>(API.review.getReviews(type, reference));
   }
   getCurrentUserReviews() {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
