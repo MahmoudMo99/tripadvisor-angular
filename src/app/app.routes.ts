@@ -48,16 +48,16 @@ export const routes: Routes = [
 
       // { path: 'steps', component: StepsComponent },
       // { path: 'attraction/:id/contact', component: ContactComponent },
-      {
-        path: 'trips/:id',
-        component: TripsDetailsMainComponent,
-        children: [
-          { path: '', redirectTo: 'for-you', pathMatch: 'full' },
-          { path: 'saves', component: SavesComponent },
-          { path: 'itinerary', component: ItineraryComponent },
-          { path: 'for-you', component: ForYouComponent }
-        ]
-      },
+ { 
+    path: 'trips/:id', 
+    component: TripsDetailsMainComponent,
+    children: [
+      { path: '', redirectTo: 'for-you', pathMatch: 'full' }, 
+      { path: 'saves', component: SavesComponent },
+      { path: 'itinerary', component: ItineraryComponent },
+      { path: 'for-you', component: ForYouComponent }
+    ]
+  },
       // { path: 'attraction/activity', component: ActivityComponent },
       // { path: 'payment', component: PaymentComponent },
 
@@ -117,48 +117,10 @@ export const routes: Routes = [
         ],
       },
       { path: 'review-search', component: ReviewSearchComponent },
-      { path: 'review-form', component: ReviewFormComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'post-photo', component: PostPhotoComponent },
-      { path: 'search', component: SearchComponent },
+      { path: 'review-form/:type/:reference', component: ReviewFormComponent },
+      {path:'profile',component:ProfileComponent},
+      {path:'post-photo',component:PostPhotoComponent},
+      {path:'search',component:SearchComponent},
     ],
   },
-
-
-  // { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  // { path: 'Home', component: HomePageComponent },
-  // { path: 'attractions', component: AttractionsComponent },
-  // // { path: 'attractions/details', component: AttractionsDetailsComponent },
-  // { path: 'attraction/:id', component: AttractionsDetailsComponent },
-  // { path: 'steps', component: StepsComponent },
-  // { path: 'attraction/:id/contact', component: ContactComponent },
-
-  // { path: 'attraction/activity', component: ActivityComponent },
-  // { path: 'payment', component: PaymentComponent },
-  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
-
-  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
-  // {
-  //   path: 'Booking',
-  //   component: BookingComponent,
-  //   children: [
-  //     { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
-  //     {
-  //       path: 'contact-details',
-  //       component: ContactDetailsComponent,
-  //     },
-  //     {
-  //       path: 'activity-details',
-  //       component: ActivityDetailsComponent,
-  //       canActivate: [bookingActivityGuard],
-  //     },
-  //     {
-  //       path: 'payment-details',
-  //       component: PaymentDetailsComponent,
-  //       canActivate: [bookingPaymentGuard],
-  //     },
-  //   ],
-  // },
-  // { path: 'Resturant', component: ResturantPageComponent },
-
 ];
