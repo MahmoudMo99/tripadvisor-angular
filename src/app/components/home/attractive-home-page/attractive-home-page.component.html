@@ -1,24 +1,23 @@
 <div class="py-5">
   <div class="container mx-auto px-4">
     <div class="row">
-      <div class="col-12">
-        <div><h3>{{ title }}</h3></div>
-        <div><h6>{{ subtitle }}</h6></div>
+      <div class="col-12 mb-3">
+        <h2>{{ title }}</h2>
+        <h5>{{ subtitle }}</h5>
       </div>
 
       <div class="col-12">
         <div class="position-relative">
           <div [id]="containerId" class="scroll-container d-flex overflow-hidden">
-            <div *ngFor="let creator of travelCreators" class="card-wrapper">
-              <div class="card-item">
+<div *ngFor="let creator of travelCreators" class="card-wrapper me-3" (click)="onCardClick(creator)" style="cursor: pointer;">
+              <div class="card-item position-relative">
                 <img [src]="creator.image" alt="{{ creator.title }}" class="img-fixed card-img-top" />
-                <button class="favorite-btn">
+                <button class="favorite-btn position-absolute top-0 end-0 m-2">
                   <i class="fas fa-heart"></i>
                 </button>
               </div>
-              <div class="card-content">
+              <div class="card-content mt-2">
                 <h5 class="trend-title">{{ creator.title }}</h5>
-                <p class="creator-name">{{ creator.creator }}</p>
                 <p class="item-count">❤️ {{ creator.items }} <strong>Reviews</strong></p>
               </div>
             </div>

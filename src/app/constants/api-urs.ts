@@ -23,7 +23,8 @@ export const API = {
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
-    
+    getAll: `${Domain}destination`
+
   },
   trips: {
     create: withDomain('trips'),

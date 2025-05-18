@@ -9,18 +9,16 @@
 
       <div class="col-12">
         <div class="row">
-          <div *ngFor="let trend of trends" class="col-lg-4 col-md-6 col-12">
-            <div class="p-2 position-relative">
-              <a [routerLink]="trend.link">
-                <img [src]="trend.image" class="card-img-top img-fixed rounded rounded-25" [alt]="trend.title" />
-              </a>
-              <div class="mt-2 d-flex justify-content-center">
-                <a [routerLink]="trend.link" class="card-title">
-                  {{ trend.title }}
-                </a>
-              </div>
-            </div>
-          </div>
+       <div *ngFor="let trend of travelCreators " class="col-lg-4 col-md-6 col-12" (click)="onCardClick(trend)" style="cursor: pointer;">
+  <div class="p-2 position-relative">
+    <img [src]="trend.image" class="card-img-top img-fixed rounded rounded-25" [alt]="trend.title" />
+    <div class="mt-2 d-flex justify-content-center">
+      <span class="card-title">
+        {{ trend.title }}
+      </span>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>

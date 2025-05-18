@@ -2,6 +2,7 @@ import { IDestination } from "../Destination/idestination";
 
 export interface ICards {
   id: string;
+  _id?: string;
   title: string;
   images: string[];
   location?: string;
@@ -27,14 +28,14 @@ export interface ICards {
     }[];
   };
 
- 
+
     minAge: number;
     maxAge: number;
     groupSize: number;
     duration: string;
     language: string[];
     mobileTicket: boolean;
-  
+
 
   pricingOptions?: {
     pricePerAdult: number;
@@ -53,7 +54,7 @@ export interface ICards {
   };
 
   productCategories?: string[];
-  destination?: IDestination; 
+  destination?: IDestination;
   accessibility?: string[];
   code?: string;
   timeOfDay?: 'morning' | 'afternoon' | 'evening';

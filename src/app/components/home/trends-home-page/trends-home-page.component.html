@@ -1,4 +1,4 @@
-<div class="py-5">
+<!-- <div class="py-5">
   <div class="container" >
     <div class="row">
       <div class="col-12">
@@ -33,6 +33,48 @@
 
           <button class="scroll-arrow left-arrow d-none d-md-block" (click)="scrollToLeft()">←</button>
           <button class="scroll-arrow right-arrow d-none d-md-block" (click)="scrollRight()">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="ms-1 text-dark">Explore the world’s top restaurants</h3>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+          <h3 class="ms-md-1 text-dark">{{ title }}</h3>
+        </div>
+        <span>
+          <h6 class="ms-md-1 text-dark">{{ subtitle }}</h6>
+        </span>
+      </div>
+
+      <div class="col-12">
+        <div class="position-relative">
+          <div [id]="containerId" class="d-flex overflow-auto flex-nowrap scroll-container">
+           <div *ngFor="let trend of trends" class="trend-item me-3" (click)="onCardClick(trend)" style="cursor: pointer;">
+  <div class="card-item card">
+    <img [src]="trend.image" alt="{{ trend.title }}" class="img-fixed card-img-top" />
+    <button class="favorite-btn" (click)="$event.stopPropagation()">
+      <i class="fas fa-heart"></i>
+    </button>
+  </div>
+  <h5 class="trend-title mt-2">{{ trend.title }}</h5>
+  <p class="trend-title mb-0">{{ trend.country }}</p>
+  <p class="trend-title">⭐ {{ trend.rating }} | ❤️ {{ trend.reviews }} Reviews</p>
+</div>
+          </div>
+
+          <button class="scroll-arrow left-arrow  d-md-block" (click)="scrollToLeft()">←</button>
+          <button class="scroll-arrow right-arrow  d-md-block" (click)="scrollRight()">→</button>
         </div>
       </div>
     </div>
