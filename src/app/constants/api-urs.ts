@@ -7,6 +7,7 @@ export const API = {
   auth: {
     register: withDomain('auth/register'),
     login: withDomain('auth/login'),
+    logout: withDomain('auth/logout'),
   },
   attractives: {
     getAll: withDomain('attractives'),
@@ -23,7 +24,6 @@ export const API = {
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
-    
   },
   trips: {
     create: withDomain('trips'),
