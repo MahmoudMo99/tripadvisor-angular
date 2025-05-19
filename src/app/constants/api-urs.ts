@@ -57,6 +57,9 @@ export const API = {
     getCurrentUserReviews: `${Domain}reviews`,
     getReviews: (type: string, reference: string) =>
       `${Domain}reviews/${type}/${reference}`,
+
+    getFlightReviews: (type: string) =>
+      `${Domain}reviews/flightReviews/${type}`,
   },
   location: {
     searchforlocation: (searchValue: string, limit: number, page: number) =>
