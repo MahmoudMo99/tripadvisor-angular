@@ -7,6 +7,8 @@ import { LaunchRestautantComponent } from '../launch-restautant/launch-restautan
 import { BreackfastRestautantComponent } from '../breackfast-restautant/breackfast-restautant.component';
 import { RestaurantDetailsConnectionComponent } from '../restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
 import { RestaurantDetailsCardComponent } from '../restaurant-details/restaurant-details-card/restaurant-details-card.component';
+import { ReviewsComponent } from "../../reviews/reviews/reviews.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resturant-page',
@@ -17,8 +19,12 @@ import { RestaurantDetailsCardComponent } from '../restaurant-details/restaurant
     DinnerRestautantComponent,
     LaunchRestautantComponent,
     BreackfastRestautantComponent,
-  ],
+    ReviewsComponent
+],
   templateUrl: './resturant-page.component.html',
   styleUrl: './resturant-page.component.scss',
 })
-export class ResturantPageComponent {}
+export class ResturantPageComponent {
+
+   
+}

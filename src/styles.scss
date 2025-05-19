@@ -2,7 +2,7 @@
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
 /* Importing Bootstrap SCSS file. */
-@use "bootstrap/scss/bootstrap";
+// @use "bootstrap/scss/bootstrap";
 
 html {
   @include mat.theme(
@@ -22,6 +22,8 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
 }
 
 ul {
@@ -39,17 +41,7 @@ input {
   }
 }
 
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: none !important;
-  // }
-
-
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: none !important;
-  // }
-
+ 
 
 
 html,

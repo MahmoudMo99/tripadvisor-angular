@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './feed.component.scss'
 })
 export class FeedComponent {
-  feed: any[] = [1];
+  feed: any[] = [];
   
 }

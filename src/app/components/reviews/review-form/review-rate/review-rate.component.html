@@ -1,7 +1,7 @@
 <ng-template #t let-fill="fill">
 	<i class="fa-solid fa-circle">
 		@if (fill > 0) {
-            <i class="fa-solid fa-circle filled" [style.width.%]="fill"></i>
+            <i class="fa-solid fa-circle filled" [style.width.%]="fill" (click)="onRate()"></i>
 		}
 	</i>
 </ng-template>

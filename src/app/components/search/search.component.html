@@ -1,15 +1,15 @@
 <!-- search bar  -->
 <div class="container-fluid   ">
-    <div class="row position-sticky  top-0 bg-white justify-content-center align-items-center shadow-sm">
+    <div class="row position-sticky  top-0 bg-white justify-content-center align-items-center shadow-sm z-2">
         <div class=" col-lg-6 col-12 py-3 ">
             <div class="input-group input-group-lg  rounded-pill border  ">
-                <span class="input-group-text bg-white rounded-start-pill" id="basic-addon1"><i
+                <span class="input-group-text bg-white rounded-start-pill border-0" id="basic-addon1"><i
                         class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control border-start-0 border-end-0" placeholder="Search tripadvisor"
-                    aria-label="search" aria-describedby="basic-addon1">
-                <span class="input-group-text bg-white rounded-end-pill " id="basic-addon1"> <button
+                <input type="text" class="form-control border-0 input" placeholder="Search tripadvisor"
+                    aria-label="search" aria-describedby="basic-addon1" [(ngModel)]="searchValue">
+                <span class="input-group-text bg-white rounded-end-pill border-0 " id="basic-addon1"> <button
                         class="btn btn-lg btn-light-green rounded-pill d-md-block d-none" type="button"
-                        id="button-addon2">Search</button>
+                        id="button-addon2" (click)="searchPlaces()">Search</button>
                 </span>
             </div>
         </div>
@@ -18,21 +18,21 @@
 
     <div class="row bg-light ">
 
-        <div class="mt-lg-5 mb-5 d-flex  col-12 d-flex justify-content-center">
+        <div class="mt-lg-5 mb-5 d-flex  col-12 d-flex justify-content-center position-relative">
             <div
                 class=" col-lg-9 col-12 d-flex flex-lg-row flex-column justify-content-center  align-items-start gap-lg-5">
                 <!-- filter  -->
-                <div class=" bg-white p-3 col-lg-3 col-12 d-flex flex-column gap-3 position-sticky top-filter">
+                <div class=" bg-white p-4 col-lg-3 col-12 d-flex flex-column gap-3   ">
                     <h5 class="d-lg-block d-none fw-bold">Filter Results</h5>
 
-                    <div class="d-flex flex-lg-column flex-row gap-2 overflow-x-auto">
-                        <div class="fw-semibold fw-bold text-nowrap"
-                            [ngClass]="{'border border-dark p-2 rounded-pill': screenSize !== 'lg' }">
-                            <p class="m-0 fw-bold text-decoration-underline">All Results</p>
-                        </div>
+                    <div class="d-flex flex-lg-column flex-row gap-3 overflow-x-auto ">
+                      
                         @for (item of filterOptions; track $index) {
-                        <div class="fw-semibold text-nowrap"
-                            [ngClass]="{'border p-2 rounded-pill': screenSize !== 'lg' }">
+                        <div class=" text-nowrap filter-option"
+                            [ngClass]="{'border p-2 rounded-pill': screenSize !== 'lg' }"
+                            [ngClass]="{'fw-bold text-decoration-underline': selectedFilter === $index}"
+                            (click)="setSelectedFilter($index)"
+                            >
                             <p class="m-0">{{item}}</p>
                         </div>
                         }
@@ -42,48 +42,14 @@
                 <!-- results -->
                 <div class=" col-lg-9 col-12 p-3 d-flex flex-column gap-4"
                     [ngClass]="{'bg-white': screenSize === 'sm' }">
-                    <h3>Search results matching "op"</h3>
+                    @if(searchValue){<h3>Search results matching "{{searchValue}}"</h3>}
                     <!-- cards -->
                     <div class="d-flex flex-column justify-content-center gap-3">
-
-                        <!-- card  -->
-                        <div class=" d-flex flex-row  gap-3 bg-white rounded ">
-                            <div class="col-3">
-                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/88/0a/fa/caption.jpg?w=600&h=600&s=1"
-                                    class="img-fluid " alt=""
-                                    [ngClass]="{'rounded-start': screenSize === 'lg'|| screenSize === 'md', 'rounded': screenSize === 'sm' }">
-                            </div>
-                            <div class="col-8 p-3 d-flex flex-column gap-1 justify-content-start align-items-start">
-                                <small class="border border-dark rounded m-0 p-2 fw-bold">Things to do</small>
-                                <h5 class="m-0 fw-bold">Co-op Live</h5>
-                                <div class=" d-flex flex-row align-items-center gap-2 fs-6">
-                                    <small class="text-secondary fs-6">2.5 </small>
-                                    <app-review-rate [rating]="2.5" [readonly]="true"/>
-                                </div>
-                                <small class=" text-secondary">Manchester, Greater Manchester, England</small>
-                            </div>
-                        </div>
-
-                        <!-- more cards here -->
-                          <!-- card  -->
-                        <div class=" d-flex flex-row  gap-3 bg-white rounded ">
-                            <div class="col-3 ">
-                                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/01/57/84/museum-ons-lieve-heer.jpg?w=600&h=600&s=1"
-                                    class="img-fluid " alt=""
-                                    [ngClass]="{'rounded-start': screenSize === 'lg'|| screenSize === 'md', 'rounded': screenSize === 'sm' }">
-                            </div>
-                            <div class="col-8 p-3 d-flex flex-column gap-1 justify-content-start align-items-start">
-                                <small class="border border-dark rounded m-0 p-2 fw-bold">Things to do</small>
-                                <h5 class="m-0 fw-bold text-nowrap">Our Lord in the Attic Museum Ons' Lieve Heer op Solder</h5>
-                                <div class=" d-flex flex-row align-items-center gap-2 fs-6">
-                                    <small class="text-secondary fs-6">2.5 </small>
-                                    <app-review-rate [rating]="2.5" [readonly]="true"/>
-                                </div>
-                                <small class=" text-secondary">Manchester, Greater Manchester, England</small>
-                            </div>
-                        </div>
-
-
+                        @for (item of searchResult; track $index) {
+                        <app-search-card [item]="item"></app-search-card>
+                        }@empty {
+                            <h3 class="text-center">No results found....</h3>
+                        }
                     </div>
                 </div>
             </div>

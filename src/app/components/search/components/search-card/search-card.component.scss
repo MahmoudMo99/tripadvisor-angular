@@ -1,0 +1,20 @@
+.search-card{
+    height: 250px;
+}
+.search-card img{
+    height: 250px;
+    width: 100%;
+}
+input:focus{
+    outline: none;
+}
+
+@media screen and (max-width: 762px) {
+    .search-card {
+        flex-direction: column;
+    }
+    .search-card img {
+        height: 100px;
+        width: 100%;
+    }
+}
