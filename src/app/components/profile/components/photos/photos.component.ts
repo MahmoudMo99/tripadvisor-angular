@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-photos',
   imports: [],
   templateUrl: './photos.component.html',
-  styleUrl: './photos.component.scss'
+  styleUrl: './photos.component.scss',
 })
 export class PhotosComponent {
-  photos:any[] =[];
+  photos: any[] = [];
 }

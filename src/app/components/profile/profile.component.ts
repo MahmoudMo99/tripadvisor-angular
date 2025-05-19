@@ -46,7 +46,6 @@ export class ProfileComponent {
     { name: 'Photo', Component: PhotosComponent },
     { name: 'Reviews', Component: ReviewsComponent },
     { name: 'Booking', Component: ReviewsComponent },
-    { name: 'Travel map', Component: FeedComponent },
   ];
   currentMainIndex = 0;
 

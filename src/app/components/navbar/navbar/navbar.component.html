@@ -56,7 +56,8 @@
           style="z-index: 1050;">
           <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Trips</a></li>
           <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Write a review</a></li>
-          <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Profile</a></li>
+          <li><a [routerLink]="['/profile']" class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Profile</a>
+          </li>
           <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Bookings</a></li>
           <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Messages</a></li>
           <li><a class="dropdown-item fw-bold mb-1" (click)="onMenuItemClick()">Account info</a></li>

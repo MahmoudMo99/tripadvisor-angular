@@ -4,9 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-feed',
   imports: [],
   templateUrl: './feed.component.html',
-  styleUrl: './feed.component.scss'
+  styleUrl: './feed.component.scss',
 })
 export class FeedComponent {
-  feed: any[] = [1];
-  
+  feed: any[] = [];
 }

@@ -22,6 +22,7 @@ export class UserService {
   getCurrentUser(): Observable<IUser> {
     return this.http.get<IUser>(API.user.getCurrentUser, {
       withCredentials: true,
+      
     });
   }
   editProfile(user: IEditUser | FormData): Observable<IUser> {

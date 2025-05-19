@@ -1,12 +1,5 @@
-<div
-  
->
+<div>
   <i class="fa-solid fa-magnifying-glass" style="color: #464646"></i>
-  <input
-    type="text"
-    name="search"
-    id="search"
-    class="col-10 border-0 ps-2"
-    placeholder="Search"
-  />
+  <input type="text" name="search" id="search" class="col-10 border-0 ps-2" placeholder="Search"
+    (input)="onSearchInput($event)" />
 </div>
