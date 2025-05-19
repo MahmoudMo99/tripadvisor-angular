@@ -29,7 +29,7 @@ import { SavesComponent } from './components/trips/tripsDetails/saves/saves.comp
 import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
 import { HotelsComponent } from './components/hotels/hotels/hotels-main/hotels.component';
 import { HotelsDetailsComponent } from './components/hotels/hotels-details/hotels-details-main/hotels-details.component';
-import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
+// import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 export const routes: Routes = [
   {
@@ -38,7 +38,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomePageComponent },
-      { path: 'language', component: ModalLanguageComponent },
+      // { path: 'language', component: ModalLanguageComponent },
       { path: 'options', component: OptionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },

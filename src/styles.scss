@@ -69,3 +69,16 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+html[dir='rtl'] body {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', sans-serif;
+}
+
+html[dir='ltr'] body {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}

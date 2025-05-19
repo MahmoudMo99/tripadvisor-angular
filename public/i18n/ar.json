@@ -1,4 +1,55 @@
 {
+  "HOME": {
+    "TITLE": "مرحبا"
+  },
+
+  "NAV": {
+    "DISCOVER": "اكتشف",
+    "TRIPS": "رحلات",
+    "REVIEW": "مراجعة",
+    "SWITCH_TO": "تبديل إلى",
+    "SIGN_IN": "تسجيل الدخول",
+    "WRITE_REVIEW": "اكتب مراجعة",
+    "PROFILE": "الملف الشخصي",
+    "BOOKINGS": "الحجوزات",
+    "MESSAGES": "الرسائل",
+    "ACCOUNT_INFO": "معلومات الحساب",
+    "SIGN_OUT": "تسجيل الخروج"
+  },
+  "LANG": {
+    "ENGLISH": "الإنجليزية",
+    "ARABIC": "العربية"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "header": {
     "DiscoverV": "اكتشف",
     "TripsV": "رحلات",

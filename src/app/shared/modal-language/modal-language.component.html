@@ -3,14 +3,22 @@
         <div class="modal-content p-3">
             <div class="modal-header -bottom-0">
                 <h5 class="modal-title">Preferences</h5>
-              
+
             </div>
-  
+
             <div class="modal-body">
               <ul class="nav nav-tabs mb-4">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" [class.active]="activeTab === 'region'" (click)="setActiveTab('region')">Region and Language</a>
-                </li>
+                </li> -->
+
+<ul>
+  <li *ngFor="let region of regions">
+    <a style="cursor:pointer" (click)="changeLanguage(region.code)">
+      {{ region.name }}
+    </a>
+  </li>
+</ul>
                 <li class="nav-item">
                   <a class="nav-link" [class.active]="activeTab === 'currency'" (click)="setActiveTab('currency')">Currency</a>
                 </li>
@@ -19,7 +27,7 @@
                 <h6 class="mb-3">Choose a region and language</h6>
                 <div class="row">
                   <div class="col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let region of regions">
-                    <div class="p-3 h-100 region-card " 
+                    <div class="p-3 h-100 region-card "
                     [class.selected]="selectedRegion === region"
                     style="cursor: pointer;"
        (click)="selectRegion(region)">
@@ -31,9 +39,9 @@
               </div>
               <div *ngIf="activeTab === 'currency'">
                 <h6 class="mb-3">Choose a currency</h6>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-sm-4 col-md-3 col-lg-2 mb-2" *ngFor="let currency of currencies">
-                    <div class="p-2 h-100  currency-card" 
+                    <div class="p-2 h-100  currency-card"
                     [class.selected]="selectedCurrency === currency"
                     style="cursor: pointer; font-size: 0.8rem; line-height: 1;"
                     (click)="selectCurrency(currency)">
@@ -41,7 +49,7 @@
                  <small>{{ currency.code }}</small>
                </div>
                   </div>
-                </div>
+                </div> -->
               </div>
                 <p class="text-muted mt-4 mb-0" style="font-size: 0.9rem;">
                     Any changes to the preferences are optional and will persist through your user session.
