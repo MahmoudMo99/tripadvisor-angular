@@ -1,5 +1,25 @@
-<div>
-  <i class="fa-solid fa-magnifying-glass" style="color: #464646"></i>
-  <input type="text" name="search" id="search" class="col-10 border-0 ps-2" placeholder="Search"
-    (input)="onSearchInput($event)" />
+<div class="container" style="position: relative;">
+  <div>
+    <i class="fa-solid fa-magnifying-glass" style="color: #464646"></i>
+    <input type="text" name="search" id="search" class="col-10 border-0 ps-2" placeholder="Search"
+      [(ngModel)]="searchTerm" (input)="onSearch()" />
+  </div>
+
+
+  @if(searchResult.length > 0){
+
+  <div class="">
+    <div class="bg-white p-3 d-flex flex-column  rounded shadow "
+      style="position: absolute; z-index: 9999; background-color:green ;">
+      @for (item of searchResult; track $index) {
+      <div class="search-card d-flex gap-3 justify-content-start align-items-center col-12">
+        <img [src]="item.type=='restaurant'?item.images.restaurantImages[0]:item.images[0]" [width]="70" [height]="70"
+          class="rounded">
+        <p class="">
+          {{item.type=='attractive'? item.title:item.name}}
+        </p>
+      </div>
+      }
+    </div>
+  </div> }
 </div>

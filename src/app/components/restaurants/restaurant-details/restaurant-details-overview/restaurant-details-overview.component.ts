@@ -9,7 +9,7 @@ import { MapComponent } from '../map/map.component';
 @Component({
   selector: 'app-restaurant-details-overview',
   standalone: true,
-  imports: [CommonModule,MapComponent],
+  imports: [CommonModule, MapComponent],
   templateUrl: './restaurant-details-overview.component.html',
   styleUrls: ['./restaurant-details-overview.component.scss'],
 })
@@ -17,24 +17,24 @@ export class RestaurantDetailsOverviewComponent implements OnInit {
   restaurantId!: string;
   restaurant: Restaurant = {
     // location: '',
-  location: {
-        address: '',
+    location: {
+      address: '',
       city: '',
-    country: '',
-    coordinates: ''
-  },
+      country: '',
+      coordinates: '',
+    },
     name: '',
     features: {
       cuisines: [],
       mealTypes: [],
-      specialDiets: []
+      specialDiets: [],
     },
     _id: '',
     destination: '',
     rank: 0,
-    rating:0,
+    rating: 0,
     // hours: '',
-  hours: {},
+    hours: {},
     website: '',
     phone: '',
     // reviewsCount: 0,
@@ -42,13 +42,14 @@ export class RestaurantDetailsOverviewComponent implements OnInit {
     images: {
       restaurantImages: [],
       menuImages: [],
-      interiorImages: []
+      interiorImages: [],
     },
     menu: [],
     createdAt: '',
     updatedAt: '',
-    __v: 0
-  };  googleMapUrl: string = '';
+    __v: 0,
+  };
+  googleMapUrl: string = '';
 
   constructor(
     private restaurantService: RestaurantService,
@@ -76,10 +77,6 @@ export class RestaurantDetailsOverviewComponent implements OnInit {
   //   });
   // }
 
-
-
-
-
   // loadRestaurantData(): void {
   //   this.restaurantService.getRestaurantById(this.restaurantId).subscribe((data) => {
   //     if (data) {
@@ -105,48 +102,46 @@ export class RestaurantDetailsOverviewComponent implements OnInit {
   //   });
   // }
 
-loadRestaurantData(): void {
-  this.restaurantService.getRestaurantById(this.restaurantId).subscribe((data) => {
-    if (data) {
-      this.restaurant = data;
+  loadRestaurantData(): void {
+    this.restaurantService
+      .getRestaurantById(this.restaurantId)
+      .subscribe((data) => {
+        if (data) {
+          this.restaurant = data;
 
-      this.restaurant.features = this.restaurant.features || {
-        cuisines: [],
-        mealTypes: [],
-        specialDiets: []
-      };
+          this.restaurant.features = this.restaurant.features || {
+            cuisines: [],
+            mealTypes: [],
+            specialDiets: [],
+          };
 
-      const coords = this.extractCoords(this.restaurant.location.coordinates);
-      if (coords) {
-        const [lat, lng] = coords;
-        this.googleMapUrl = `https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=${lat},${lng}&zoom=16`;
-      } else {
-        this.googleMapUrl = '';
-        console.warn('No coordinates found in location.coordinates.');
-      }
-    } else {
-      console.error('No restaurant data found!');
-    }
-  });
-}
-
-
+          const coords = this.extractCoords(
+            this.restaurant.location.coordinates
+          );
+          if (coords) {
+            const [lat, lng] = coords;
+            this.googleMapUrl = `https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=${lat},${lng}&zoom=16`;
+          } else {
+            this.googleMapUrl = '';
+            console.warn('No coordinates found in location.coordinates.');
+          }
+        } else {
+          console.error('No restaurant data found!');
+        }
+      });
+  }
 
   // extractCoords(location: string): [string, string] | null {
   //   const match = location.match(/@([0-9\.\-]+),([0-9\.\-]+)/);
   //   return match ? [match[1], match[2]] : null;
   // }
-extractCoords(coordinates?: string): [string, string] | null {
-  if (!coordinates) return null;
-  const match = coordinates.match(/@?([0-9.\-]+),([0-9.\-]+)/);
-  return match ? [match[1], match[2]] : null;
-}
+  extractCoords(coordinates?: string): [string, string] | null {
+    if (!coordinates) return null;
+    const match = coordinates.match(/@?([0-9.\-]+),([0-9.\-]+)/);
+    return match ? [match[1], match[2]] : null;
+  }
 
   get features() {
     return this.restaurant?.features;
   }
 }
-
-
-
-

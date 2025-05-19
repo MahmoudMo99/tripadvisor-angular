@@ -57,13 +57,23 @@ export const API = {
     getCurrentUserReviews: `${Domain}reviews`,
     getReviews: (type: string, reference: string) =>
       `${Domain}reviews/${type}/${reference}`,
-
+    addReview: (type: string, reference: string) =>
+      `${Domain}reviews/${type}/${reference}`,
     getFlightReviews: (type: string) =>
       `${Domain}reviews/flightReviews/${type}`,
   },
   location: {
     searchforlocation: (searchValue: string, limit: number, page: number) =>
       `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
+  },
+  search: {
+    searchforPlace: (
+      searchValue: string,
+      limit: number,
+      page: number,
+      type: string | undefined
+    ) =>
+      `${Domain}search?searchValue=${searchValue}&limit=${limit}&page=${page}&type=${type}`,
   },
 };
 

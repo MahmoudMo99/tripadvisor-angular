@@ -110,7 +110,7 @@ export const routes: Routes = [
         ],
       },
       { path: 'review-search', component: ReviewSearchComponent },
-      { path: 'review-form', component: ReviewFormComponent },
+      { path: 'review-form/:type/:reference', component: ReviewFormComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'post-photo', component: PostPhotoComponent },
       { path: 'search', component: SearchComponent },

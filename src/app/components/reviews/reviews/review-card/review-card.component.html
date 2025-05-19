@@ -1,0 +1,33 @@
+<div class="p-3 d-flex flex-column gap-3 ">
+  <!-- header -->
+  <div class="col-lg-5 d-flex align-items-center gap-2">
+    <div class="col-1">
+      <img [src]="review.user.image || 'https://randomuser.me/api/portraits/men/1.jpg'" alt="user photo"
+      class="rounded-circle img-fluid">
+    </div>
+    <p class="fs-6 fw-bolder m-0">{{review.user.firstName+' '+review?.user?.lastName}}</p>
+  </div>
+  <!-- body -->
+  <div class="d-flex flex-column gap-3">
+    <div class=" ">
+      <app-review-rate [readonly]="true" [rating]="review.rating"></app-review-rate>
+      <p class="fw-bolder m-0">{{review.title}}</p>
+    </div>
+    <!-- date -->
+    <div>
+      <p class="fw-semibold m-0">{{ review.when | showDate }}</p>
+    </div>
+    <!-- detail -->
+    <div class="d-flex flex-column gap-2">
+      <p class="m-0">{{review.description}}</p>
+      @if (review.photos)
+      {
+      <div class="d-flex gap-2">
+        @for (item of review.photos; track $index) {
+        <div class="rounded col-2 col-lg-1"><img [src]="item" alt="User photo" class="rounded img-fluid"></div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

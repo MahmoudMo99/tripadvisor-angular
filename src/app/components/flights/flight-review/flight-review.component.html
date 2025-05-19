@@ -176,15 +176,10 @@
     <div class="row justify-content-center">
       <div class="col-md-5">
         <form role="search" (submit)="onSearch()" class="position-relative">
-          <i class="bi bi-search position-absolute top-50 start-0 ms-3 translate-middle-y"
-             style="cursor: pointer;"
-             (click)="onSearch()"></i>
-          <input type="search"
-                 [(ngModel)]="searchQuery"
-                 name="q"
-                 class="shadow form-control rounded-pill py-2 px-4 ps-5"
-                 placeholder="Search airlines"
-                 required>
+          <i class="bi bi-search position-absolute top-50 start-0 ms-3 translate-middle-y" style="cursor: pointer;"
+            (click)="onSearch()"></i>
+          <input type="search" [(ngModel)]="searchQuery" name="q"
+            class="shadow form-control rounded-pill py-2 px-4 ps-5" placeholder="Search airlines" required>
         </form>
       </div>
     </div>
@@ -209,18 +204,15 @@
           <div class="rating d-flex align-items-center mb-3">
             <span class="circles me-2">{{review.ratingflightCountnumber }}</span>
             <div class="rating-circles">
-              <span *ngFor="let circle of getRatingCircles(review.ratingflightCountcircles)" 
-                    class="rate-circle"
-                    [class.filled]="circle.filled">
+              <span *ngFor="let circle of getRatingCircles(review.ratingflightCountcircles)" class="rate-circle"
+                [class.filled]="circle.filled">
               </span>
             </div>
           </div>
 
           <div class="user-info mt-1 d-flex align-items-center mb-1">
-            <img [src]="review.user?.image || 'assets/avatar.jpg'" 
-                 class="img-fluid rounded-circle me-2"
-                 alt="Profile Image" 
-                 style="width: 30px; height: 30px;">
+            <img [src]="review.user?.image || 'assets/avatar.jpg'" class="img-fluid rounded-circle me-2"
+              alt="Profile Image" style="width: 30px; height: 30px;">
             <small>{{review.user?.firstName}} {{review.user?.lastName}}</small>
           </div>
 
@@ -229,7 +221,7 @@
               Top rated in {{review.topRatedInflights || 'none'}}
             </small>
           </p>
-          
+
           <p class="review-text">
             {{review.reviewflightText || 'none'}}
           </p>
