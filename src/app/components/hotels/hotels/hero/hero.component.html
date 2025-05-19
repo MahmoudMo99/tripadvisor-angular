@@ -1,0 +1,43 @@
+<section class="hero ">
+  <div class="overlay"></div>
+  <div class="hero-content container text-center">
+    <h1 class="fw-bold text-white mb-4">Latest reviews. Lowest prices.</h1>
+
+    <div class="search-bar-wrapper">
+      <div class="search-bar d-flex flex-column flex-lg-row align-items-stretch gap-2">
+        <div class="search-item flex-grow-1 d-flex align-items-center position-relative">
+          <fa-icon [icon]="faSearch"></fa-icon>
+          <input
+            type="text"
+            class="form-control"
+            [formControl]="searchControl"
+            placeholder="Hotel name or destination"
+          />
+          <div *ngIf="loading" class="ps-4 small text-muted">Loading...</div>
+
+          <ul *ngIf="suggestions.length > 0" class="suggestions-list">
+            <li *ngFor="let hotel of suggestions" (click)="selectDestination(hotel)">
+              <img *ngIf="getDestinationImage(hotel)" [src]="getDestinationImage(hotel)" alt="Destination Image" />
+              <div class="hotel-texts">
+                <div class="hotel-name">{{ hotel.name }}</div>
+                <div class="destination-name">{{ getDestinationName(hotel) }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="search-item2 d-flex align-items-center flex-shrink-0">
+          <fa-icon [icon]="faCalendar"></fa-icon>
+          <span>Enter dates</span>
+        </div>
+
+        <div class="search-item2 d-flex align-items-center flex-shrink-0">
+          <fa-icon [icon]="faUser"></fa-icon>
+          <span>1 room · 2 guests</span>
+        </div>
+
+        <button class="search-btn flex-shrink-0">Find hotels</button>
+      </div>
+    </div>
+  </div>
+</section>

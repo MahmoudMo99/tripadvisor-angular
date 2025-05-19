@@ -1,19 +1,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-        <app-navbar></app-navbar>
-        <app-modal-language></app-modal-language>
+            <app-navbar></app-navbar>
+            <!-- <app-modal-language></app-modal-language> -->
 
         </div>
     </div>
     <div class="row">
         <div class="col-12 p-0">
-        <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
         </div>
     </div>
     <div class="row">
         <div class="col-12 p-0">
-        <app-footer></app-footer>
+            <app-footer></app-footer>
         </div>
     </div>
+
+
+
+    @if (showScrollTop) {
+    <button (click)="scrollToTop()" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="bi bi-arrow-up-short"></i>
+    </button>
+    }
+
 </div>

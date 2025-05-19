@@ -16,32 +16,45 @@ export class RecentRestautantComponent {
     this.fetchRestaurant();
   }
 
-  fetchRestaurant() {
-    this.restaurant.getRecentlyRestaurant().subscribe(
-      (data) => {
-        this.recentlyRestaurant = data.map((rest: any) => ({
-          title: rest.name,
-          image: rest.images?.[0] || 'assets/default-image.jpg',
-          link: `/rest/${rest.id}`,
-          rate: rest.rating || 0,
-          reviews: rest.reviewsCount || 0,
-        }));
-      },
-      (error) => {
-        console.error('Error fetching rest', error);
-      }
-    );
-  }
+fetchRestaurant() {
+  this.restaurant.getRecentlyRestaurant().subscribe(
+    (data) => {
+      console.log(data);
 
-  // createRatingArray(rate: number): boolean[] {
-  //   const max = 5;
-  //   const full = Math.round(rate);
-  //   return Array.from({ length: max }, (_, i) => i < full);
+      this.recentlyRestaurant = data.map((rest: any) => ({
+            title: rest.name,
+            image:
+              rest.images?.restaurantImages?.[0] || 'assets/default-image.jpg',
+            link: `/restaurants/${rest._id}`,
+            rate: rest.rating || 0,
+            reviews: rest.numberOfReviews || 0,
+          }));
+    },
+    (error) => {
+      console.error('Error fetching rest', error);
+    }
+  );
+}
+
+
+
+
+  // createArray(rate: number): number[] {
+  //   return new Array(Math.round(rate)).fill(0);
   // }
 
-  createArray(rate: number): number[] {
-    return new Array(Math.round(rate)).fill(0);
+
+
+    getRatingFillArray(rate: number): number[] {
+  const result: number[] = [];
+  for (let i = 0; i < 5; i++) {
+    const diff = rate - i;
+    if (diff >= 1) result.push(1);
+    else if (diff > 0) result.push(diff);
+    else result.push(0);
   }
+  return result;
+}
   scrollToLeft() {
     const container = document.getElementById('scroll-container-3');
     if (container) container.scrollBy({ left: -300, behavior: 'smooth' });

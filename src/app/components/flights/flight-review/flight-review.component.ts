@@ -1,75 +1,10 @@
-// import { CommonModule } from '@angular/common';
-// import { Component, OnInit } from '@angular/core';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { RouterModule } from '@angular/router';
-
-// @Component({
-//   selector: 'app-flight-review',
-//   standalone: true,
-//   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
-//   templateUrl: './flight-review.component.html',
-//   styleUrls: ['./flight-review.component.scss']
-// })
-// export class FlightReviewComponent implements OnInit {
-//   searchQuery: string = '';
-//   reviews = [
-//     {
-//       airline: 'American Airlines',
-//       rating: 4,
-//       ratingcount: '81,691',
-//       topRatedIn: 'Customer Service (e.g. attitude, care, helpfulness)',
-//       reviewText: '“The flight left on time and service onboard was excellent.”'
-//     },
-//     {
-//       airline: 'Delta Air Lines',
-//       rating: 4,
-//       ratingcount: '81,691',
-//       topRatedIn: 'Inflight Entertainment',
-//       reviewText: '“Delta Airlines was very relaxing, no delays, and great service.”'
-//     },
-//     {
-//       airline: 'United Airlines',
-//       rating: 3,
-//       ratingcount: '81,691',
-//       topRatedIn: 'Customer Service',
-//       reviewText: '“Great experience, friendly flight attendants, and comfortable seating.”'
-//     },
-//     {
-//       airline: 'JetBlue',
-//       rating: 4,
-//       ratingcount: '81,691',
-//       topRatedIn: 'Legroom',
-//       reviewText: '“Spacious legroom and smooth flight experience.”'
-//     }
-//   ];
-
-//   ngOnInit(): void {
-//     this.destinationreview();
-//   }
-
-//   destinationreview(): void {
-//     console.log('Fetching reviews..');
-//   }
-
-//   onSearch(): void {
-//     if (this.searchQuery.trim()) {
-//       console.log('Searching for:', this.searchQuery);
-//     }
-//   }
-
-//   getRatingStars(rating: number): string {
-//     return '★'.repeat(rating) + '☆'.repeat(5 - rating);
-//   }
-// }
-
-
-
-// flight-review.component.ts
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReviewService } from '../../../services/review/review.service';
+import { FlightService } from '../../../services/flight.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-flight-review',
@@ -81,55 +16,84 @@ import { ReviewService } from '../../../services/review/review.service';
 export class FlightReviewComponent implements OnInit {
   searchQuery: string = '';
   reviews: any[] = [];
+  loading: boolean = false;
+  error: string | null = null;
 
-  constructor(private reviewService: ReviewService) {}
+  constructor(
+    private reviewService: ReviewService,
+    private flightService: FlightService
+  ) {}
 
   ngOnInit(): void {
-    const type = 'Flight';
-    const reference = ''; 
-
-    this.loadReviews(type, reference);
+    this.loadReviews();
   }
 
-  loadReviews(type: string, reference: string): void {
-    this.reviewService.getReviews(type, reference).subscribe(
-      (data: any) => {
-        console.log('Fetched reviews:', data);
+  loadReviews() {
+    this.loading = true;
+    this.reviews = [];
+    this.error = '';
 
-        this.reviews = data
-          .filter((review: any) => review.type === 'Flight')
-          .map((review: any) => ({
-            airline: review.title,
-            user:{
-              image: review.user?.profileImage || 'assets/tonit1079.jpg',
-            },
-            rating: review.rating,
-            ratingcount: review.ratingcount||"0", 
-            topRatedIn: review.topRatedIn ||'Flights', 
-            reviewText: review.description, 
-          }));
+    this.flightService.getAllFlightIds().subscribe({
+      next: (flightIds: string[]) => {
+        if (!flightIds || flightIds.length === 0) {
+          this.error = 'No flights found to fetch reviews.';
+          this.loading = false;
+          return;
+        }
+        const requests = flightIds.map((flightId) =>
+          this.reviewService.getFlightReviews('Flight')
+        );
+        forkJoin(requests).subscribe({
+          next: (responses: any[]) => {
+            const allReviews = responses.flatMap((response) => {
+              if (Array.isArray(response)) {
+                return response;
+              } else if (response?.data && Array.isArray(response.data)) {
+                return response.data;
+              } else {
+                return [];
+              }
+            });
+            this.reviews = allReviews;
+            if (this.reviews.length === 0) {
+              this.error = 'No flight reviews available.';
+            }
+            this.loading = false;
+          },
+          error: (_error: any) => {
+            this.error = 'Failed to load reviews for flights.';
+            this.loading = false;
+          },
+        });
       },
-      (error) => {
-        console.error('Error fetching reviews', error);
-      }
-    );
+      error: (_error: any) => {
+        this.error = 'Failed to load flights to fetch reviews.';
+        this.loading = false;
+      },
+    });
   }
 
-  getRatingStars(rating: number): string {
-    const fullStars = '★'.repeat(Math.floor(rating));
-    const emptyStars = '☆'.repeat(5 - Math.floor(rating));
-    return fullStars + emptyStars;
+  getRatingCircles(rating: number): { filled: boolean }[] {
+    const ratingValue = rating || 0;
+    return Array(5)
+      .fill(0)
+      .map((_, index) => ({
+        filled: index < ratingValue,
+      }));
   }
 
   onSearch(): void {
-    if (!this.searchQuery.trim()) return;
-    
+    if (!this.searchQuery.trim()) {
+      this.loadReviews();
+      return;
+    }
     const searchTerm = this.searchQuery.toLowerCase();
-    const filteredReviews = this.reviews.filter(review => 
-      review.title.toLowerCase().includes(searchTerm) ||
-      review.description.toLowerCase().includes(searchTerm)
+    const filteredReviews = this.reviews.filter(
+      (review) =>
+        review.title?.toLowerCase().includes(searchTerm) ||
+        review.description?.toLowerCase().includes(searchTerm) ||
+        review.reviewflightText?.toLowerCase().includes(searchTerm)
     );
-    
-    console.log('Search results:', filteredReviews);
+    this.reviews = filteredReviews;
   }
 }

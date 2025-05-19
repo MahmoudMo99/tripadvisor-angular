@@ -1,16 +1,6 @@
-<div
-  class="offcanvas offcanvas-start"
-  tabindex="-1"
-  id="mobileMenu"
-  aria-labelledby="mobileMenuLabel"
->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header">
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <h5 class="offcanvas-title fs-6 fw-bold px-2" id="mobileMenuLabel">
     <i class="fa-solid fa-globe"></i> United States, EN | USD
@@ -21,18 +11,14 @@
       <hr />
       @for (item of menuItems; track $index) {
       <li>
-        <a
-          href="#"
-          class="text-dark-emphasis d-block py-2 text-decoration-none fw-bold"
-          >{{item}}</a
-        >
+        <a href="#" class="text-dark-emphasis d-block py-2 text-decoration-none fw-bold">{{item}}</a>
 
         @if(item === 'Forums'){
-          <hr/>
+        <hr />
         }
       </li>
       }
- 
+
     </ul>
   </div>
 </div>

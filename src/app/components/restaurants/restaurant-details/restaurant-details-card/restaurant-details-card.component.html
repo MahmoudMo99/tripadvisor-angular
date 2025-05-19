@@ -1,19 +1,7 @@
-<!-- <div class="page-container">
-  <div class="content-area">
-  </div>
+<div>
+  <button class="reservation-button px-5" (click)="onReserve()">Reservation</button>
+</div>
 
-  <div class="hours-wrapper">
-    <div class="hours-card" *ngIf="parsedHours">
-      <h3>Opening Hours</h3>
-      <div *ngFor="let day of weekDays" class="day-hours">
-        <span class="day">{{ day }}</span>
-        <div class="hours">
-          <span>{{ parsedHours[day].join(', ') }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 <div class="page-container">
   <div class="content-area">
   </div>
@@ -24,7 +12,6 @@
       <div *ngFor="let day of weekDays" class="day-hours">
         <span class="day">{{ day }}</span>
         <div class="hours">
-          <!-- Use safe navigation operator and provide a fallback to avoid errors -->
           <span>{{ parsedHours[day].join(', ') || 'No hours available' }}</span>
         </div>
       </div>

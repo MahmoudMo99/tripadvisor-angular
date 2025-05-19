@@ -110,7 +110,6 @@ select {
     }
   }
 }
-/* تنسيق قسم الرحلات المتعددة */
 .flight-segment {
   margin-bottom: 20px;
   padding: 15px;
@@ -190,3 +189,363 @@ select {
 .is-invalid {
   border-color: #dc3545 !important;
 }
+
+.accordion {
+  .accordion-item {
+    border: none;
+    margin-bottom: 8px; 
+
+    .accordion-button {
+      background-color: #f9f9f9;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 12px; /* Reduced padding */
+      font-size: 0.9rem; /* Reduced font size */
+
+      &:not(.collapsed) {
+        background-color: #e9ecef;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .accordion-body {
+      padding: 12px;
+
+      .form-check {
+        margin-bottom: 8px;
+
+        .form-check-label {
+          font-size: 12px; 
+        }
+      }
+
+      .form-range {
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 12px; 
+      }
+    }
+  }
+}
+.flight-card {
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e8ecef;
+  background: #fff;
+}
+
+.flight-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 3px;
+}
+
+.flight-info:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.time-airline {
+  flex: 0 0 35%;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.time-airline .flight-time {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.time-airline .airline-details {
+  font-size: 0.90rem;
+  color: #6c757d;
+}
+
+.duration-stops {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.duration-stops p {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.duration-stops .text-muted {
+  font-size: 0.85rem;
+  color: #6c757d;
+   span {  
+      font-size: 0.85rem; 
+    }
+}
+
+.price-action {
+  flex: 0 0 auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 120px;
+}
+
+.price-action h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.price-action .rounded-custom {
+  border-radius: 15px;
+  background-color: #f39c12;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 15px;
+  font-size: 0.85rem;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.price-action .rounded-custom:hover {
+  background-color: #e67e22;
+}
+
+.price-action .self-transfer {
+  font-size: 0.75rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}.sort-by-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sort-by-label {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.sort-by-select {
+  width: 150px;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+.filters-modal, .sort-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0;
+}
+
+.modal-content {
+  background: #fff;
+  margin: 0 auto;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+}
+
+// Mobile/Tablet/Laptop (less than 1280px) responsive rules
+@media (max-width: 1279.98px) {
+  .mobile-summary-bar {
+    display: flex !important;
+  }
+  .trip-type-buttons,
+  form[formGroup] {
+    display: none;
+  }
+  .trip-type-buttons.d-block,
+  form[formGroup].d-block {
+    display: block !important;
+  }
+  .trip-type-buttons.d-none,
+  form[formGroup].d-none {
+    display: none !important;
+  }
+  .mobile-controls {
+    display: flex !important;
+  }
+}
+
+// Hide summary bar and mobile controls on desktop (1280px and up)
+@media (min-width: 1280px) {
+  .mobile-summary-bar,
+  .mobile-controls {
+    display: none !important;
+  }
+  .trip-type-buttons,
+  form[formGroup] {
+    display: block !important;
+  }
+}
+
+// Special rules for <=800px
+@media (max-width: 800px) {
+  .sort-by-container {
+    display: none !important;
+  }
+  .col-12.col-xl-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .flight-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .flight-time .mobile-time-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+  }
+ 
+}
+
+@media (max-width: 992px) {
+    .flight_search {
+        height: 85vh;
+    }
+    .formborder{
+      border-radius: 0% !important;
+    }
+    h2 {
+        font-size: 14px; 
+    }
+
+    .findtrip,
+    .flight-txt {
+        width: 100%;
+    }
+
+    .firstinput {
+        flex-direction: column;
+        display: flex;
+        gap: 10px;
+        border-radius: 0px;
+        gap: 0;
+    }
+
+    .firstinput > div,
+    .firstinput input,
+    .firstinput button {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .datedisp {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .s_disp,
+    .e_disp {
+        width: 48%;
+    }
+
+    .custom-input {
+        display: none !important;
+    }
+
+    .findtrip {
+        width: 100%;
+    }
+
+    .findtrip {
+    width: 70px !important;
+    height: 25px !important;
+    font-size: 10px !important;
+    margin-bottom: 5px !important;
+  }
+
+    input, select, button {
+        font-size: 14px; 
+    }
+
+    .flight_search input::placeholder {
+        font-size: 12px; 
+    }
+}
+
+.one-way-duration {
+  font-size: 1.2rem !important;
+  font-weight: 350;
+  color: gray;
+}
+.one-way-airline-details {
+  font-size: 1.1rem !important;
+  font-weight: 350;
+  color: gray;
+  margin-top: 10px;
+}
+.one-way-duration-stops {
+  font-size: 1.1rem !important;
+}
+.one-way-stops {
+  font-size: 1.1rem !important;
+  font-weight: 350;
+  color: gray;
+}
+.one-way-stops-location {
+  font-size: 1rem !important;
+  font-weight: 350;
+  color: gray;
+}
+
+

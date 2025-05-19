@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AttractionService } from '../../../../../services/attractive/attraction.service';
 import { ICards } from '../../../../../models/attractions/i-cards';
+import { AuthService } from '../../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-reverse-section',
@@ -24,13 +25,17 @@ export class ReverseSectionComponent implements OnInit {
   constructor(
     private router: Router,
     private attractionService: AttractionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.attractionId = params.get('id') || '';
-      console.log('Route IDdddddddddddddddddddddddddddddddddd:', this.attractionId);
+      console.log(
+        'Route IDdddddddddddddddddddddddddddddddddd:',
+        this.attractionId
+      );
 
       if (this.attractionId) {
         this.loadAttraction(this.attractionId);
@@ -51,7 +56,7 @@ export class ReverseSectionComponent implements OnInit {
         this.pricePerAdult = attraction.price ?? 0;
 
         this.bookingData = {
-          selectedDate: new Date(Date.now() + 86400000 * 3)
+          checkIn: new Date(Date.now() + 86400000 * 3)
             .toISOString()
             .split('T')[0],
           travelers: 1,
@@ -62,7 +67,7 @@ export class ReverseSectionComponent implements OnInit {
           image: attraction.images[0] || 'assets/19th-century.jpg',
           attraction: attraction,
           attractionId: this.attractionId,
-          referenceId: this.attractionId,
+          reference: this.attractionId,
           type: 'Attractive',
         };
 
@@ -97,34 +102,32 @@ export class ReverseSectionComponent implements OnInit {
   updateTotalPrice() {
     this.bookingData.totalPrice =
       this.bookingData.travelers * this.pricePerAdult;
-    console.log('Total price updated to:', this.bookingData.totalPrice);
   }
 
   reverse(form: any) {
-    const { selectedDate, travelers, selectedTime, attraction } = form;
+    if (this.authService.isAuthenticated()) {
+      const { selectedDate, travelers, selectedTime, attraction } = form;
 
-    this.bookingData.selectedDate =
-      selectedDate || this.bookingData.selectedDate;
-    this.bookingData.travelers = travelers || this.bookingData.travelers;
-    this.bookingData.selectedTime =
-      selectedTime || this.bookingData.selectedTime;
-    this.attraction = attraction;
+      this.bookingData.selectedDate =
+        selectedDate || this.bookingData.selectedDate;
+      this.bookingData.travelers = travelers || this.bookingData.travelers;
+      this.bookingData.selectedTime =
+        selectedTime || this.bookingData.selectedTime;
+      this.attraction = attraction;
 
-    console.log('Reverse attraction data:', this.attraction);
+      this.updateTotalPrice();
 
-    this.updateTotalPrice();
+      this.attractionClick.emit(this.bookingData.attractionId);
 
-    console.log('✅ Booking confirmed with:', this.bookingData);
-
-    this.attractionClick.emit(this.bookingData.attractionId);
-
-    this.router
-      .navigate(['/Booking'], {
-        state: { booking: this.bookingData },
-      })
-      .then(() => {
-        window.scrollTo(0, 0);
-        console.log('🧭 Navigated to /Booking with bookingData in state');
-      });
+      this.router
+        .navigate(['/Booking'], {
+          state: { booking: this.bookingData },
+        })
+        .then(() => {
+          window.scrollTo(0, 0);
+        });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

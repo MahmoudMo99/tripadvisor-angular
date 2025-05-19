@@ -119,12 +119,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
       this.bookingService.setBookingData(this.contactForm.value);
       this.router.navigate(['/Booking/activity-details'], {
-        state: {
-          booking: {
-            type: this.historyState?.booking?.type,
-            referenceId: this.historyState?.booking?.referenceId,
-          },
-        },
+        state: { booking :this.historyState?.booking},
       });
     }
   }

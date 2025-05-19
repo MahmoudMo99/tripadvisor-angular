@@ -13,9 +13,5 @@ export class NavListsComponent {
     { label: 'Things to Do', path: '/attractions' },
     { label: 'Restaurants', path: '/restaurants' },
     { label: 'Flights', path: '/flights' },
-    { label: 'Vacation Rentals', path: '/vacation-rentals' },
-    { label: 'Cruises', path: '/cruises' },
-    { label: 'Rental Cars', path: '/rental-cars' },
-    { label: 'Forum', path: '/forum' },
   ];
 }

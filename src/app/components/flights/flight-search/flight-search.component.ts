@@ -135,18 +135,20 @@ export class FlightSearchComponent implements OnInit {
   
   
 
-  searchFlights(query: any) {
-    console.log('Search Query:', query); 
-    this.flightService.searchFlights(query).subscribe({
-      next: (results) => {
-        console.log('Search Results:', results); 
-        this.searchResults = results;
-        this.router.navigate(['/searched-flight'], { queryParams: query });
-      },
-      error: (err) => {
-        console.error('Error searching flights:', err);
-        this.errorMessage = 'An error occurred while searching for flights.';
-      }
-    });
-  }
-}
+ searchFlights(query: any) {
+  console.log('Search Query:', query);
+  // Save the search query in the service
+  this.flightService.setSearchQuery(query);
+  
+  this.flightService.searchFlights(query).subscribe({
+    next: (results) => {
+      console.log('Search Results:', results);
+      this.searchResults = results;
+      this.router.navigate(['/searched-flight']); // Removed queryParams to simplify
+    },
+    error: (err) => {
+      console.error('Error searching flights:', err);
+      this.errorMessage = 'An error occurred while searching for flights.';
+    }
+  });
+}}

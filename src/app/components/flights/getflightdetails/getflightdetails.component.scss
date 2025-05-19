@@ -1,19 +1,149 @@
+
+
+
+
+
+
+
+.container {
+  padding: 20px;
+}
+
 .cardbig {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Trip summary header */
+.trip-summary h6 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Flight leg layout */
+.flight-leg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Evenly space elements */
+  position: relative;
+}
+
+/* Departure and arrival sections */
+.departure, .arrival {
+  flex: 1; /* Equal width for symmetry */
+}
+
+.departure {
+  text-align: left;
+}
+
+.arrival {
+  text-align: right;
+}
+
+/* Duration section with timeline */
+.duration {
+  flex: 0 0 auto;
+  text-align: center;
+  position: relative;
+  margin: 0 20px; /* Adjusted for balanced spacing */
+}
+
+/* Dashed line styling */
+.line::before,
+.line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px; /* Increased for better symmetry */
+  border-top: 1px dashed #999;
+}
+
+.line::before {
+  left: -60px; /* Matches the width */
+}
+
+.line::after {
+  right: -60px; /* Matches the width */
+}
+
+/* Airplane icon */
+.plane-icon {
+  font-size: 14px;
+  color: #666;
+  display: block; /* Centers the icon */
+  margin: 0 auto 5px; /* Spacing below icon */
+}
+
+/* Text styling */
+.time {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.date {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+/* Flight details */
+.flight-details p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.flight-details strong {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .flight-leg {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .card-body {
-    padding: 20px;
-  }
-  
-  p {
+
+  .departure, .arrival, .duration {
+    text-align: left !important;
     margin-bottom: 10px;
+  }
+
+  .duration {
+    margin: 10px 0;
+  }
+
+  .line::before,
+  .line::after {
+    display: none; /* Hide line on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .trip-summary h6 {
     font-size: 16px;
   }
-  
-  strong {
-    font-weight: bold;
-    color: #333;
+
+  .time {
+    font-size: 16px;
   }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .flight-details p {
+    font-size: 14px;
+  }
+}

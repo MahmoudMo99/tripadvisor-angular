@@ -1,4 +1,4 @@
-<div class="popular-destination container">
+ <!-- <div class="popular-destination container">
   <div class="row">
     <div class="dist1 col-md-4 col-12" *ngFor="let destination of destinations">
       <img [src]="destination.image" alt="Deals" class="img-fluid">
@@ -41,4 +41,33 @@
   <p>{{ deal.description }}</p>
 </div>
 
+ 
+  -->
+<div class="popular-destination container">
+  <div class="row">
+    <div class="dist1 col-md-4 col-12" *ngFor="let destination of destinations">
+      <img [src]="destination.image" alt="Deals" class="img-fluid">
+      <h4>{{ destination.title }}</h4>
+      <p>{{ destination.description }}</p>
+    </div>
+  </div>
+</div>
 
+<div class="images container mt-4" *ngIf="!isLoading; else loading">
+  <div class="row flex-nowrap overflow-auto">
+    <div class="col-12 col-md-2 img-container" *ngFor="let destination of imageDestinations">
+      <img [src]="destination.images[0] || '/assets/fallback.jpg'" [alt]="destination.name" class="img-fluid">
+      <h5>{{ destination.name }}</h5>
+      <p>{{ destination.country }}</p>
+      <p class="price">from ${{ getPrice(destination._id) || 'N/A' }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div>Loading destinations...</div>
+</ng-template>
+
+<div class="container" *ngFor="let deal of flightDeals">
+  <h5>{{ deal.title }}</h5>
+  <p>{{ deal.description }}</p>
+</div>

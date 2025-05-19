@@ -1,5 +1,4 @@
-import { Routes, CanActivateFn } from '@angular/router';
-// import { NavBarHomePageComponent } from './components/home/nav-bar-home-page/nav-bar-home-page.component';
+import { Routes } from '@angular/router';
 import { HomePageComponent } from './components/home/home-page/home-page.component';
 import { AttractionsComponent } from './components/attractions/attractions/attractions-main/attractions.component';
 import { AttractionsDetailsComponent } from './components/attractions/attractions-details/attractions-details-main/attractions-details.component';
@@ -16,13 +15,9 @@ import { ReviewFormComponent } from './components/reviews/review-form/review-for
 import { ProfileComponent } from './components/profile/profile.component';
 import { PostPhotoComponent } from './components/post-photo/post-photo.component';
 import { SearchComponent } from './components/search/search.component';
-
-
 import { SearchedFlightsComponent } from './components/flights/searched-flights/searched-flights.component';
 import { GetflightdetailsComponent } from './components/flights/getflightdetails/getflightdetails.component';
-import { FlightReviewComponent } from './components/flights/flight-review/flight-review.component';
 import { FlightpageComponent } from './components/flights/flightpage/flightpage.component';
-import { EmptyTripsComponent } from './components/trips/main-trip/empty-trips/empty-trips.component';
 import { MyTripsComponent } from './components/trips/main-trip/my-trips/my-trips.component';
 import { RestaurantDetailsConnectionComponent } from './components/restaurants/restaurant-details/restaurant-details-connection/restaurant-details-connection.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
@@ -32,7 +27,10 @@ import { TripsDetailsMainComponent } from './components/trips/tripsDetails/trips
 import { ForYouComponent } from './components/trips/tripsDetails/for-you/for-you.component';
 import { SavesComponent } from './components/trips/tripsDetails/saves/saves.component';
 import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/itinerary.component';
-import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
+import { HotelsComponent } from './components/hotels/hotels/hotels-main/hotels.component';
+import { HotelsDetailsComponent } from './components/hotels/hotels-details/hotels-details-main/hotels-details.component';
+// import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 export const routes: Routes = [
   {
     path: '',
@@ -40,29 +38,44 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomePageComponent },
-      { path: 'language', component: ModalLanguageComponent },
-
-      // authentication routes (Mahmoud)
       { path: 'options', component: OptionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-
+      { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'attractions', component: AttractionsComponent },
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
-      // { path: 'steps', component: StepsComponent },
-      // { path: 'attraction/:id/contact', component: ContactComponent },
-      // { path: 'attraction/activity', component: ActivityComponent },
-      // { path: 'payment', component: PaymentComponent },
+      { path: 'hotels', component: HotelsComponent },
+      { path: 'hotel/:id', component: HotelsDetailsComponent },
+
+      {
+        path: 'trips/:id',
+        component: TripsDetailsMainComponent,
+        children: [
+          { path: '', redirectTo: 'for-you', pathMatch: 'full' },
+          { path: 'saves', component: SavesComponent },
+          { path: 'itinerary', component: ItineraryComponent },
+          { path: 'for-you', component: ForYouComponent },
+        ],
+      },
+
+      {
+        path: 'trips/:id',
+        component: TripsDetailsMainComponent,
+        children: [
+          { path: '', redirectTo: 'for-you', pathMatch: 'full' },
+          { path: 'saves', component: SavesComponent },
+          { path: 'itinerary', component: ItineraryComponent },
+          { path: 'for-you', component: ForYouComponent },
+        ],
+      },
       { path: 'searched-flight', component: SearchedFlightsComponent },
       { path: 'getflightdetails/:id', component: GetflightdetailsComponent },
       { path: 'flights', component: FlightpageComponent },
-
       { path: 'restaurants', component: ResturantPageComponent },
       {
         path: 'restaurants/:id',
         component: RestaurantDetailsConnectionComponent,
       },
-      // { path: 'Resturant', component: ResturantPageComponent },
       { path: 'Trips', component: MyTripsComponent, title: 'Trips' },
       {
         path: 'trips/:id',
@@ -74,25 +87,7 @@ export const routes: Routes = [
           { path: 'for-you', component: ForYouComponent },
         ],
       },
-    ],
-  },
 
-  {
-    path: '', component: MainLayoutComponent, children: [
-
-      { path: '', redirectTo: 'Home', pathMatch: 'full' },
-      { path: 'Home', component: HomePageComponent },
-      { path: 'attractions', component: AttractionsComponent },
-      // { path: 'attractions/details', component: AttractionsDetailsComponent },
-      { path: 'attraction/:id', component: AttractionsDetailsComponent },
-      // { path: 'steps', component: StepsComponent },
-      // { path: 'attraction/:id/contact', component: ContactComponent },
-
-      // { path: 'attraction/activity', component: ActivityComponent },
-      // { path: 'payment', component: PaymentComponent },
-      { path: '', redirectTo: '/Home', pathMatch: 'full' },
-
-      { path: '', redirectTo: '/Home', pathMatch: 'full' },
       {
         path: 'Booking',
         component: BookingComponent,
@@ -114,61 +109,11 @@ export const routes: Routes = [
           },
         ],
       },
-
-      {
-        path: 'activity-details',
-        component: ActivityDetailsComponent,
-        canActivate: [bookingActivityGuard],
-      },
-      {
-        path: 'payment-details',
-        component: PaymentDetailsComponent,
-        canActivate: [bookingPaymentGuard],
-      },
-      { path: 'Resturant', component: ResturantPageComponent },
       { path: 'review-search', component: ReviewSearchComponent },
       { path: 'review-form', component: ReviewFormComponent },
-      {path:'profile',component:ProfileComponent},
-      {path:'post-photo',component:PostPhotoComponent},
-      {path:'search',component:SearchComponent},
+      { path: 'profile', component: ProfileComponent },
+      { path: 'post-photo', component: PostPhotoComponent },
+      { path: 'search', component: SearchComponent },
     ],
   },
-
-    
-  // { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  // { path: 'Home', component: HomePageComponent },
-  // { path: 'attractions', component: AttractionsComponent },
-  // // { path: 'attractions/details', component: AttractionsDetailsComponent },
-  // { path: 'attraction/:id', component: AttractionsDetailsComponent },
-  // { path: 'steps', component: StepsComponent },
-  // { path: 'attraction/:id/contact', component: ContactComponent },
-
-  // { path: 'attraction/activity', component: ActivityComponent },
-  // { path: 'payment', component: PaymentComponent },
-  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
-
-  // { path: '', redirectTo: '/Home', pathMatch: 'full' },
-  // {
-  //   path: 'Booking',
-  //   component: BookingComponent,
-  //   children: [
-  //     { path: '', redirectTo: 'contact-details', pathMatch: 'full' },
-  //     {
-  //       path: 'contact-details',
-  //       component: ContactDetailsComponent,
-  //     },
-  //     {
-  //       path: 'activity-details',
-  //       component: ActivityDetailsComponent,
-  //       canActivate: [bookingActivityGuard],
-  //     },
-  //     {
-  //       path: 'payment-details',
-  //       component: PaymentDetailsComponent,
-  //       canActivate: [bookingPaymentGuard],
-  //     },
-  //   ],
-  // },
-  // { path: 'Resturant', component: ResturantPageComponent },
-
 ];

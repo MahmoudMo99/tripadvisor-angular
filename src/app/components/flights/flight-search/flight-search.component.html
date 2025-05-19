@@ -222,10 +222,9 @@
             />
             <div class="dropdown-menu p-3" [class.show]="isDropdownOpen">
               <select class="form-select mb-3" formControlName="class">
-                <option value="Economy">First Class</option>
+                <option value="FirstClass">First Class</option>
                 <option value="Business">Business</option>
-                <option value="PremiumEconomy">Economy</option>
-                <option value="FirstClass">Premium Economy</option>
+                <option value="Economy"> Economy</option>
               </select>
               <div class="passenger-count">
                 <label>Adults</label>
@@ -278,20 +277,7 @@
             </div>
           </div>
 
-          <button
-            type="submit"
-            class="findtrip"
-            style="
-              background-color: rgb(1, 95, 1);
-              color: #ccc;
-              width: 15%;
-              border-radius: 0 20px 20px 0;
-            "
-            [disabled]="flightForm.invalid"
-            (click)="searchFlights(flightForm.value)"
-          >
-            Find Flight
-          </button>
+        
 
           <button
             type="submit"

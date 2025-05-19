@@ -1,0 +1,98 @@
+
+<div class="container col-10 main-container">
+      <h2 class="mt-4">About</h2>
+      <hr style="color:#b1b1b1;">
+      <div *ngIf="hotel">
+<div class="about-section">
+      <br>
+<div class="about-left">
+
+    <div class="score-main">
+      <div class="score-value">{{hotel.averageRating}} <span>Very Good</span></div>
+      <div class="review-count">({{hotel.totalReviews |number}} reviews)</div>
+      <div class="rank">#{{hotel.ranking?.position}} of {{hotel.ranking?.totalHotels}} all-inclusives in Belek</div>
+
+   <div class="category-scores" *ngFor="let rating of ratings">
+  <span class="category-label">{{ rating.label }}</span>
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="bar">
+      <div class="fill" [style.width.%]="rating.value * 20"></div>
+    </div>
+    <span class="value">{{ rating.value }}</span>
+  </div>
+</div>
+
+
+      <div class="award">
+        <i class="fas fa-award"></i> 2025 Travelers' Choice Best of the Best
+      </div>
+        <hr style="color:#b1b1b1;">
+  </div>
+
+    <div class="description">
+<p>{{ showFullDesc ? fullDescription : shortDescription }}</p>
+<button *ngIf="!showFullDesc && fullDescription !== shortDescription"
+        (click)="showFullDesc = true"
+        class="read-more">
+  Read more
+</button>
+
+      <div class="edit-links">
+        <a href="#">Suggest edits to improve what we show.</a><br>
+        <a href="#"><strong>Improve this listing</strong></a>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+   <div class="section">
+          <h4>Property amenities</h4>
+          <ul class="amenities-list">
+            <li *ngFor="let item of amenities.property">
+              <i class="fas" [ngClass]="item.icon"></i> {{ item.featureName }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h4>Room features</h4>
+          <ul class="amenities-list">
+            <li *ngFor="let item of amenities.features">
+              <i class="fas" [ngClass]="item.icon"></i> {{ item.featureName }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h4>Room types</h4>
+          <ul class="amenities-list">
+            <li *ngFor="let item of amenities.types">
+              <i class="fas" [ngClass]="item.icon"></i> {{ item.featureName }}
+            </li>
+          </ul>
+        </div>
+
+    <div class="section">
+      <h4>Good to know</h4>
+      <p><strong>HOTEL CLASS</strong><br>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </p>
+      <p><strong>HOTEL STYLE</strong><br> {{hotel.hotelStyle.join( "  ")}}</p>
+    </div>
+
+    <div class="section">
+      <h4>Languages Spoken</h4>
+      <p>{{hotel.languagesSpoken .join('  ')}}</p>
+    </div>
+
+    <div class="section">
+      <h4>Hotel links</h4>
+      <ul class="amenities-list d-flex "style="flex-direction:column">
+        <li class=""><i class="fas fa-globe"></i><a href={{hotel.HotelLink}}> Visit hotel website</a></li>
+        <li><i class="fas fa-tag"></i> Special Rate: Special rate available</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>

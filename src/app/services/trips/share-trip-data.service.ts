@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ItripFetch } from '../../models/Trips/itrip-fetch'; 
+import { ItripFetch } from '../../models/Trips/itrip-fetch';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TripSharedService {
   private tripDataSource = new BehaviorSubject<ItripFetch | null>(null);

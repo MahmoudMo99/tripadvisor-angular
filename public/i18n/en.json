@@ -1,0 +1,313 @@
+{
+
+   "HOME": {
+    "TITLE": "Welcome"
+  },
+
+
+ "NAV": {
+    "DISCOVER": "Discover",
+    "TRIPS": "Trips",
+    "REVIEW": "Review",
+    "SWITCH_TO": "Switch to",
+    "SIGN_IN": "Sign In",
+    "WRITE_REVIEW": "Write a review",
+    "PROFILE": "Profile",
+    "BOOKINGS": "Bookings",
+    "MESSAGES": "Messages",
+    "ACCOUNT_INFO": "Account info",
+    "SIGN_OUT": "Sign out"
+  },
+  "LANG": {
+    "ENGLISH": "English",
+    "ARABIC": "Arabic"
+  },
+
+
+
+
+
+
+
+
+  "header":{
+
+    "DiscoverV":"Discover",
+    "TripsV":"Trips",
+    "ReviewV":"Review",
+    "USAV":"USV",
+    "HotelsV":"Hotels",
+    "ThingsToDoV":"Things To Do",
+    "RestaurantsV":"Restaurants",
+    "FlightsV":"Flights",
+    "VacationRentalsV":"Vacation Rentals",
+    "CruisesV":"Cruises",
+    "RentalCarsV":"Renta lCars",
+    "Forum":"Forum"
+  },
+  "HomePage": {
+    "DiscoverV": "Discover",
+    "TripsV": "Trips",
+    "ReviewV": "Review",
+    "MoreV": "More",
+    "USAV": "USA",
+    "SignUpV": "Sign up",
+    "WhereToV": "Where To ?",
+    "SearchAllV": "Search All",
+    "HotelsV": "Hotels",
+    "ThingsToDoV": "Things To Do",
+    "RestaurantsV": "Restaurants",
+    "FlightsV": "Flights",
+    "VacationRentalsV": "Vacation Rentals",
+    "SearchV": "Places to go,thingsto do ,hotels",
+    "searchButton": "Search",
+    "BannerText1":"The 2025 Tripadvisor Trendcast",
+    "BannerText2":"Forecasting the future of travel—now.",
+    "CheckitoutV":"Check it out",
+    "SponsoredbyGuadeloupeIslandsV":"Sponsored by Guadeloupe Islands",
+    "DiscoverGuadeloupeV":"Discover Guadeloupe",
+    "FindOutV":"Find out why travelers like you are raving aboute Guadeloupe ",
+
+
+"ThingsToDoValue":"Things To Do",
+"OurActivietesV":"Our Activietes For You",
+"restaurantsTitle":"Explore the world’s top restaurants",
+
+    "ExploreV":"Explore now",
+    "MoreToExploreV":"More to explore",
+    "ExploretheworldV":"Explore the world’s most stunning seasides",
+    "DreamNextTripV":"Dream Your Next Trip",
+    "vacationV":"Top destinations for your next vacation",
+    "travelcreatorsV":"Got inspired by our fave travel creators",
+    "nextbigtripV":"Tried-and-true guidance to fuel your next big trip",
+    "TravelersChoiceV":"Travelers' Choice Awards Best of the Best",
+    "TravelersChoiceTextV":"Among our top 1% of places, stays, eats, and experiences—decided by you.",
+    "winnerV":"See the winners"
+
+
+  }
+  ,"footer":{
+    "copyrightV":"© 2025 Tripadvisor LLC All rights reserved",
+    "PrivacyandCookiesV":"Terms of Use Privacy and Cookies StatementCookie ConsentSite MapHow the site worksContact us",
+    "versionWebsite":"This is the version of our website addressed to speakers of English in the United States. If you are a resident of another country or region, please select the appropriate version of Tripadvisor for your country or region in the drop-down menu.",
+    "USAV":"USA",
+    "UnitedStatesV":"United States"
+  }
+  ,"attractions":{
+    "FindThingsV":"Find Things to Do anywhere",
+    "searchV":"Search by place or activity",
+    "PlanbookV":"Plan, book, go—we make it easy",
+    "BackedbytravelersV":"Backed by travelers",
+    "BackedbytravelersText":"See what people loved (or didn’t love) with real reviews on almost everything.",
+    "FreecancellationV":"Free cancellation",
+    "FreecancellationText":"Go with the flow. Most experiences can be canceled up to 24 hours before.",
+    "LowestPriceGuaranteeV":"Lowest Price Guarantee",
+    "LowestPriceGuaranteeText":"If you find the same thing cheaper online, get a refund of the difference. Learn more",
+    "RecentlyviewedV":"Recently viewed",
+    "RecommendedforyouV":"Recommended for you",
+    "TopattractionsV":"Top attractions in Paris",
+    "TopexperiencesV":"Top experiences in Paris",
+    "TopglobaldestinationsV":"Top global destinations",
+    "TopglobalattractionsV":"Top global attractions",
+    "nearmeV":"Top things to do and attractions near me",
+    "nearmeText":"Explore the best things to do around the world on Tripadvisor to get recommendations and read reviews from those who have been there before. From family-friendly activities and adventure excursions to city tours, museums and iconic attractions, discover amazing experiences near and far to start planning your next trip."
+  }
+  ,"attractionsDetails":{
+    "About":"About",
+    "RecommendedforYouV":"Recommended for You",
+    "AboutOperatorV":"About the operator",
+    "AboutOperatorText":"Don’t take it from us – here’s what people have to say about this operator:",
+    "reviewsV":"These reviews are the subjective opinions of Tripadvisor members and not of Tripadvisor LLC. Tripadvisor performs checks on reviews as part of our industry-leading trust & safety standards. Read our transparency report to learn more.",
+    "ContributeV":"Contribute",
+    "FinishReviewV":"Finish your review",
+    "uploadPhotoV":"upload Photo",
+    "FromCard":"From",
+    "peradultV":"per adult (price varies by group size)",
+    "SelectDateAndtravelersV":"Select date and travelers",
+    "Free Cancellation":"Free Cancellation • Cancel anytime before Mar 13 for full refund.",
+    "ReserveNow":"Reserve now, pay later • Secure your spot while staying flexible.",
+    "reserveV":"RESERVE NOW & PAY LATER ELIGIBLE",
+    "Adults":"Adults",
+    "ReserveButton":"ReseveNow",
+
+    "includedV":"What's included",
+    "includedD":"Discovery of exceptional automatons as in the 19th century.Entry/Admission - Paris Guaranteed to skip the lines",
+    "DepartureandreturnV":"Departure and return",
+    "DepartureandreturnD":"Start: Hotel Alfred Sommier, 20 Rue de l'Arcade, 75008 Paris, France At 20 rue de l'arcade, enter the interior courtyard of the Hotel Alfred Sommier. 30m on your right is the entrance to the hotel reception. Ask the concierge or receptionist to direct you to the Golden Lounge.End: This activity ends back at the meeting point.",
+    "AccessibilityV":"Accessibility",
+    "AccessibilityD":"Accessibility Wheelchair accessible Near public transportation Transportation is wheelchair accessible Surfaces are wheelchair accessible If you have questions about accessibility, we’d be happy to help. Just call the number below and reference the product code: 439056P1 +1 855 275 5071",
+    "AdditionalV":"Additional information",
+    "AdditionalD":"Additional information Confirmation will be received at time of booking Most travelers can participate This experience requires a minimum number of travelers. If it’s canceled because the minimum isn’t met, you’ll be offered a different date/experience or a full refund This is a private tour/activity. Only your group will participate",
+    "CancellationpolicyV":"Cancellation policy",
+    "CancellationpolicyD":"For a full refund, cancel at least 24 hours in advance of the start date of the experience.",
+    "HelpV":"Help",
+    "HelpD":"If you have questions about this tour or need help making your booking, we’d be happy to help. Just call the number below and reference the product code: 439056P1 +1 855 275 5071"
+
+  }
+
+,"restaurant":{
+  "searchV":"Places to go,thingsto do ,hotels",
+  "perfectRestaurantV":"Find your perfect restaurant",
+  "placestoeat":"Find the best places to eat",
+  "card1":"4.3 million restaurants — everything from street food to fine dining.",
+  "latestReviewsV":"See the latest reviews",
+  "card2":"Millions of restaurant reviews and photos from our global travel community",
+  "ReserveTable":"Reserve a table",
+  "card3":"Make online reservations at restaurants worldwide.",
+  "RecentlyViewedV":"Recently Viewed",
+  "DinnerRestaurantsV":"Dinner Restaurants",
+  "LaunchRestaurantsV":"Launch Restaurants",
+  "BreakfastRestaurantsV":"Breakfast Restaurants"
+}
+,"restaurantDetails":{
+  "shareV":"Share",
+  "reviewsV":"Review",
+  "saveV":"Save",
+  "glanceV":"At a glance",
+  "About":"About",
+  "overview":"Overview",
+  "FeaturesV":"Features",
+  "LocationV":"Location",
+  "MenuV":"Menu",
+  "OpeningHoursV":"Opening Hours",
+  "ReservtoinV":"Reservtoin",
+  "SundayV":"Sunday",
+  "MondayV":"Monday",
+  "TuesdayV":"Tuesday",
+  "WednesdayV":"Wednesday",
+  "ThursdayV":"Thursday",
+  "FridayV":"Friday",
+  "SaturdayV":"Saturday",
+  "InteriorV":"Interior",
+  "reviewsrate":"reviews"
+}
+
+,"flights":{
+  "findBestV":"Find the best flight for the right price",
+  "RoundTripV":"Round Trip",
+  "OneDayV":"One-Day",
+  "multiCity":"Multi-City",
+  "fromV":"From",
+  "whereV":"Where",
+  "dateV":"mm/dd/yyyy",
+  "econmyV":"econmy",
+  "AdultsV":"Adults",
+  "ChildrenV":"Children",
+  "SeniorV":"Senior",
+  "findFlightV":"Find Flight",
+  "nonstopV":"Prefer nonstop",
+  "nearbyAirportsV":"Include nearby airports",
+  "travelerReviewsV":"See traveler reviews",
+  "travelerReviewsText":"Customer service, legroom, meals—find out what travelers loved (or didn’t love) in their airline reviews. Browse all airlines",
+  "searchAirlinesV":"search airlines",
+  "bestDealsV":"Get the best deals",
+  "bestDealsText":"Compare flight prices from hundreds of airlines and travel sites in one place.",
+  "CustomiseResultsText":"Filter for your preferred airlines, flight times, desired price, and more.",
+  "CustomiseResultsV":"Customise your results",
+  "SearchWorryV":"Search without worry",
+  "SearchWorryText":"We’re completely free to use—no hidden charges or fees on flight prices at all.",
+  "BestDealsV":"Best Flight Deals",
+  "BestDealsText":"No need to shop multiple sites any more. We've already done that by searching hundreds of cheap flights for you– scouring premium airlines, low-cost carriers and the biggest online travel agencies for the best deals. We'll even check alternate dates and nearby airports to help you save money, time, even sanity on airline tickets",
+  "FlightSearchFiltersV":"Our filters make it a snap to easily find the cheap flight that's right for you. Find direct flights that are nonstop, avoid early departure times— or try our Best Value filter, which sorts based on price, duration, and additional factors.",
+  "In-FlightExperienceV":"In-Flight Experience",
+  "FlightExperienceText":"Want Wi-Fi? More legroom? Or even a seat that allows you to sleep perfectly flat? Tripadvisor Flights now makes it easier to find the amenities that can make or break your flight. Find which flights include Wi-Fi, live TV, power outlets, free baggage, and more.",
+  "AirplanePhotosV":"Airplane Photos",
+  "AirplanePhotosText":"Thousands of photos from real travelers let you peek inside the plane before you buy your ticket. Our airline reviews provide unbiased opinions to help you select the right airline and flight for your trip."
+}
+
+
+,"contactDetails":{
+  "ContactDetailsV":"Contact Details",
+  "ContactDetailsText":"We'll use this information to send you confirmation and updates about your booking.",
+"FirstNameV":"First Name",
+"LastNameV":"Last Name",
+"EmailV":"Email",
+"PhoneNumberV ":"Phone Number ",
+"ReceiveSMSV":"Receive SMS updates about your booking. Message rates may apply.",
+"PromoCodeV":"Promo Code",
+"NextButton":"Next",
+"copyRight":"© 2025 Tripadvisor LLC All rights reserved. Tripadvisor Terms of Use and Privacy and Cookies Statement",
+"TotalV":"Total",
+"BookConfidenceV":"Book with confidence",
+"LowestPriceGuaranteeV":"Lowest price guarantee",
+"LowestPriceGuaranteeText":"Find it cheaper? We'll refund the difference",
+"PrivacyProtectionV":"Privacy protection",
+"PrivacyProtectionText":"We use SSL encryption to keep your data secure",
+"24/7 global support":"Get the answers you need, when you need them",
+"GiveUsV":"Give us a call",
+"GiveUsText":"We’d be happy to help you out with your booking",
+"phoneV":"call now: +1 855 275 5071 ",
+"byV":"by",
+"privateTourV":"private tour",
+"DateV":"Date:",
+"TimeV":"Time:",
+"TravelersV":"Travelers:",
+"cancellationRescheduleV":"Free cancellation + Unlimited reschedule ",
+"PromoCode":"Enter Promo Code"
+}
+
+,"hotels":{
+  "hotelTitle":"Latest reviews. Lowest prices.",
+  "searchHotel":"Hotel name or destination",
+  "EnterDates":"Enter dates",
+  "roomGuests":"1 room · 2 guests",
+  "searchButton":"Find hotels",
+  "RecentlyViewedV":"Recently viewed",
+  "TravelersHotel":"Travelers’ Choice: Top hotels",
+"TravelersChoice":"Travelers’ Choice: All-inclusive resorts",
+"HotelsDestinations":"Hotels in top destinations",
+"HotelReviews":"Hotel reviews: Hotels near me",
+"popularDestinations":"Hotels in popular destinations — Find hotels & motels near you",
+"United":"United States & Canada",
+"AtlantaHotelsV":"Atlanta Hotels",
+"BostonHotelsV":"Boston Hotels",
+"ChicagoHotelsV":"Chicago Hotels",
+"DallasHotelsV":"Dallas Hotels",
+"LasVegasHotelsV":"Las Vegas Hotels",
+"LosAngelesHotels":"Los Angeles Hotels",
+"NewYorkCityHotelsV":"New York City Hotels",
+"FranciscoHotelsV":"San Francisco Hotels",
+"SeattleHotelsV":"Seattle Hotels",
+"WashingtonDCHotelsV":"Washington DC Hotels",
+"CaribbeanMexicoV":"Caribbean/Mexico",
+"CancunHotelsV":"Cancun Hotels",
+"JamaicaHotelsV":"Jamaica Hotels",
+"MexicoHotelsV":"Mexico City Hotels",
+"DominicanRepublicHotelsV":"Dominican Republic Hotels",
+"Europe":"Europe",
+"AmsterdamHotelsV":"Amsterdam Hotels",
+"BarcelonaHotelsV":"Barcelona Hotels",
+"BerlinHotelsV":"Berlin Hotels",
+"FlorenceHotelsV":"Florence Hotels",
+"LondonHotelsV":"London Hotels",
+"MadridHotelsV":"Madrid Hotels",
+"MunichHotelsV":"Munich Hotels",
+"ParisHotelsV":"Paris Hotels",
+"RomeHotelsV":"Rome Hotels",
+"VeniceHotelsV":"Venice Hotels",
+"Africa/MiddleEastV":"Africa/Middle East",
+"DubaiHotelsV":"Dubai Hotels",
+"SharmSheikhHotelsV":"Sharm El Sheikh Hotels",
+"AsiaPacificAustraliaV":"Asia/Pacific & Australia",
+"BaliHotelsV":"Bali Hotels",
+"BangkokHotelsV":"Bangkok Hotels",
+"BeijingHotelsV":"Beijing Hotels",
+"HongKongHotelsV":"Hong Kong Hotels",
+"SingaporeHotelsV":"Singapore Hotels",
+"SydneyHotelsV":"Sydney Hotels",
+"TokyoHotelsV":"Tokyo Hotels",
+"Central/SouthAmericaV":"Central/South America",
+"BuenosAiresHotelsV":"Buenos Aires Hotels"
+
+}
+,"hotelsDetails":{
+"ViewpricesV":"View prices for your travel dates",
+"CheckInV":"Check In",
+"CheckOutV":"Check Out",
+"RoomGuests":"1 room , 1 guests",
+"AboutV":"About",
+"likeV":"You may also like",
+"PopularNearbyV":"Popular Nearby",
+"SeeMoreV":"See More"
+}
+}

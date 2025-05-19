@@ -5,15 +5,31 @@ const withDomain = (path: string) => `${Domain}${path}`;
 
 export const API = {
   auth: {
+    register: withDomain('auth/register'),
     login: withDomain('auth/login'),
+    logout: withDomain('auth/logout'),
+    sendOtp: withDomain('auth/send-otp'),
+    verifyOtp: withDomain('auth/verify-otp'),
+    resetPassword: withDomain('auth/reset-password'),
+    googleLogin: withDomain('auth/google'),
   },
   attractives: {
     getAll: withDomain('attractives'),
     getById: (id: string) => withDomain(`attractives/${id}`),
+    filter: withDomain('attractives/filter'),
   },
+
+  hotels: {
+    getAll: withDomain('hotels'),
+    getById: (id: string) => withDomain(`hotels/${id}`),
+    checkAvailability: (id: string) => withDomain(`hotels/${id}/availability`),
+    filter: withDomain('hotels/filter'),
+  },
+
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
+    getAll: `${Domain}destination`,
   },
   trips: {
     create: withDomain('trips'),
@@ -25,7 +41,7 @@ export const API = {
     markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
     delete: (id: string) => withDomain(`trips/${id}`),
     getSortedTrips: withDomain('trips/sorted'),
-    makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
+    makePublic: (id: string) => withDomain(`trips/${id}/makePublic`),
   },
   booking: {
     create: withDomain('bookings'),
@@ -36,14 +52,19 @@ export const API = {
   },
   user: {
     getCurrentUser: `${Domain}users`,
-  }
-  , review: {
+  },
+  review: {
     getCurrentUserReviews: `${Domain}reviews`,
-    getReviews: (type: string, reference: string) => `${Domain}reviews/${type}/${reference}`,
+    getReviews: (type: string, reference: string) =>
+      `${Domain}reviews/${type}/${reference}`,
+
+    getFlightReviews: (type: string) =>
+      `${Domain}reviews/flightReviews/${type}`,
   },
   location: {
-    searchforlocation: (searchValue: string, limit: number, page: number) => `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
-  }
+    searchforlocation: (searchValue: string, limit: number, page: number) =>
+      `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
+  },
 };
 
 export const auth = {
@@ -51,3 +72,4 @@ export const auth = {
   attractiveHome: `${Domain}attractives`,
   destinationHome: `${Domain}destination`,
 };
+export { withDomain };

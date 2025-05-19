@@ -1,62 +1,82 @@
 import { Injectable } from '@angular/core';
-import { AttractionService } from './attraction.service'; 
+import { AttractionService } from './attraction.service';
 import { Observable, map } from 'rxjs';
 import { ICards } from '../../models/attractions/i-cards';
+
+interface CategorizedAttractions {
+  attractions: ICards[];
+  recommendedAttractions: ICards[];
+  topAttractions: ICards[];
+  topExperiencesWorldwide: ICards[];
+  topGlobalDestinations: ICards[];
+  topGlobalAttractions: ICards[];
+  topExperiencesByDestination: ICards[];
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AttractionCategorizerService {
 
+  private GLOBAL_DESTINATIONS = ['Paris', 'New York', 'London', 'Dubai', 'Tokyo'];
+
   constructor(private attractionService: AttractionService) {}
 
-  getCategorizedAttractions(): Observable<{
-    attractions: ICards[],
-    recommendedAttractions: ICards[],
-    topAttractions: ICards[],
-    topExperiences: ICards[],
-    topExperiencesWorldwide: ICards[],
-    topGlobalDestinations: ICards[],
-    topGlobalAttractions: ICards[]
-  }> {
+  getCategorizedAttractions(): Observable<CategorizedAttractions> {
     return this.attractionService.getAttractions().pipe(
-      map((response: ICards[]) => {
-        const data: ICards[] = Array.isArray(response) ? response : [];
+      map((data: ICards[] = []) => {
+        const attractions = data.map(attraction => {
+          const destinationName = attraction.destination?.name?.toLowerCase().trim() ?? '';
+          const isRecommended = attraction.rating >= 4.5 && attraction.reviewsCount > 100;
+          const isGlobalDestination = this.GLOBAL_DESTINATIONS.map(d => d.toLowerCase()).includes(destinationName);
+          const isGlobalAttraction = (attraction.rank ?? 9999) <= 10 && attraction.reviewsCount > 1000;
 
-        const attractions = data.map(attraction => ({
-          ...attraction,
-          isRecommended: attraction.rating >= 4.5 && attraction.reviewsCount > 100000,
-          isGlobalDestination: ['Paris', 'New York', 'London', 'Dubai', 'Tokyo'].includes(attraction.location || ''),
-          isGlobalAttraction: (attraction.rank ?? 9999) <= 20 && attraction.reviewsCount > 2000
-        }));
+          return {
+            ...attraction,
+            isRecommended,
+            isGlobalDestination,
+            isGlobalAttraction
+          };
+        });
+
+        // const topExperiencesByDestination = attractions.reduce((acc, attraction) => {
+        //   const destination = attraction.destination?.name?.trim();
+        //   if (!destination || attraction.reviewsCount < 50) return acc;
+
+        //   if (!acc[destination]) acc[destination] = [];
+        //   acc[destination].push(attraction);
+        //   acc[destination] = acc[destination]
+        //     .sort((a, b) => b.reviewsCount - a.reviewsCount)
+        //     .slice(0, 10);
+        //   return acc;
+        // }, {} as Record<string, ICards[]>);
 
         return {
           attractions,
+
           recommendedAttractions: attractions
             .filter(a => a.isRecommended)
             .sort((a, b) => b.rating - a.rating),
 
           topAttractions: attractions
-            .filter(a => a.location === 'Paris' && a.rating >= 4.5)
+            .filter(a => (a.price ?? 0) >= 300 )
             .sort((a, b) => b.rating - a.rating),
 
-          topExperiences: attractions
-            .filter(a => a.location === 'Paris' && a.reviewsCount > 100000)
-            .sort((a, b) => b.reviewsCount - a.reviewsCount)
-            .slice(0, 10),
-
           topExperiencesWorldwide: attractions
-            .filter(a => a.reviewsCount > 100000)
+            .filter(a => a.reviewsCount > 50000)
             .sort((a, b) => b.reviewsCount - a.reviewsCount),
 
           topGlobalDestinations: attractions
-            .filter(a => a.isGlobalDestination)
+            .filter(a => a.rating>=4.9 && a.reviewsCount > 100000)
             .sort((a, b) => b.rating - a.rating),
 
           topGlobalAttractions: attractions
             .filter(a => a.isGlobalAttraction)
-            .sort((a, b) => b.rating - a.rating)
-        };
+            .sort((a, b) => b.rating - a.rating),
+
+            topExperiencesByDestination: attractions
+            .filter(h => (h.reviewsCount ?? 0) > 20000)
+            .sort((a, b) => (b.reviewsCount ?? 0) - (a.reviewsCount ?? 0)),        };
       })
     );
   }

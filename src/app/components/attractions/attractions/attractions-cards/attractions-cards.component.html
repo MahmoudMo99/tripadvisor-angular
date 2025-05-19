@@ -1,61 +1,52 @@
 <div class="container">
 
+  <app-cards-template 
+    [title]="'Recently viewed'" 
+    [attractions]="attractions"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template>
 
-<app-cards-template 
-  [title]="'Recently viewed'" 
-  [attractions]="attractions"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
+  <app-cards-template 
+    [title]="'Recommended for you'" 
+    [attractions]="recommendedAttractions"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template>
 
-<app-cards-template 
-  [title]="'Recommended for you'" 
-  [attractions]="recommendedAttractions"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
+  <!-- <app-cards-template 
+    [title]="'Top attractions'" 
+    [attractions]="topAttractions"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template> -->
 
-<app-cards-template 
-  [title]="'Top attractions in Paris'" 
+  <!-- <ng-container *ngFor="let entry of topExperiencesByDestination | keyvalue">
+    <app-cards-template
+      [title]="'Top experiences '"
+      [attractions]="'topExperiencesByDestination'"
+      (attractionClick)="goToDetails($event)"
+    ></app-cards-template>
+  </ng-container> -->
+
+  <app-cards-template 
+  [title]="'Top attractions'" 
   [attractions]="topAttractions"
   (attractionClick)="goToDetails($event)"
 ></app-cards-template>
+  <app-cards-template 
+    [title]="'Top experiences in Paris'" 
+    [attractions]="topExperiencesByDestination"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template>
 
-<app-cards-template 
-  [title]="'Top experiences in Paris'" 
-  [attractions]="topExperiences"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
+  <app-cards-template 
+    [title]="'Top global destinations'" 
+    [attractions]="topGlobalDestinations"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template>
 
-<app-cards-template 
-  [title]="'Top experiences worldwide'" 
-  [attractions]="topExperiences"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
-
-<app-cards-template 
-  [title]="'Top global destinations'" 
-  [attractions]="topGlobalDestinations"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
-
-<app-cards-template 
-  [title]="'Top global attractions'" 
-  [attractions]="topGlobalAttractions"
-  (attractionClick)="goToDetails($event)"
-></app-cards-template>
-
-
-
-
-  <div class="mt-4">
-    <h2 class="fw-bold mb-4">Top things to do and attractions near me</h2>
-    <p>
-      Explore the best things to do around the world on Tripadvisor to get
-      recommendations and read reviews from those who have been there before.
-      From family-friendly activities and adventure excursions to city tours,
-      museums and iconic attractions, discover amazing experiences near and far
-      to start planning your next trip.
-    </p>
-  </div>
-
+  <app-cards-template 
+    [title]="'Top global attractions'" 
+    [attractions]="topGlobalAttractions"
+    (attractionClick)="goToDetails($event)"
+  ></app-cards-template>
 
 </div>
