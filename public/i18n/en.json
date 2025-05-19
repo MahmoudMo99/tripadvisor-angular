@@ -1,4 +1,35 @@
 {
+
+   "HOME": {
+    "TITLE": "Welcome"
+  },
+
+
+ "NAV": {
+    "DISCOVER": "Discover",
+    "TRIPS": "Trips",
+    "REVIEW": "Review",
+    "SWITCH_TO": "Switch to",
+    "SIGN_IN": "Sign In",
+    "WRITE_REVIEW": "Write a review",
+    "PROFILE": "Profile",
+    "BOOKINGS": "Bookings",
+    "MESSAGES": "Messages",
+    "ACCOUNT_INFO": "Account info",
+    "SIGN_OUT": "Sign out"
+  },
+  "LANG": {
+    "ENGLISH": "English",
+    "ARABIC": "Arabic"
+  },
+
+
+
+
+
+
+
+
   "header":{
 
     "DiscoverV":"Discover",
@@ -98,7 +129,7 @@
     "reserveV":"RESERVE NOW & PAY LATER ELIGIBLE",
     "Adults":"Adults",
     "ReserveButton":"ReseveNow",
-    
+
     "includedV":"What's included",
     "includedD":"Discovery of exceptional automatons as in the 19th century.Entry/Admission - Paris Guaranteed to skip the lines",
     "DepartureandreturnV":"Departure and return",
