@@ -5,6 +5,7 @@ import { Restaurant } from '../../../../models/restaurants/restaurant'; //  Impo
 import { CommonModule } from '@angular/common';
 import { RestaurantService } from '../../../../services/restaurant.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-restaurant-details-card',
@@ -30,7 +31,8 @@ export class RestaurantDetailsCardComponent implements OnInit {
   constructor(
     private restaurantService: RestaurantService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -58,18 +60,23 @@ export class RestaurantDetailsCardComponent implements OnInit {
   }
 
   onReserve(): void {
-    const restaurantId = this.route.snapshot.paramMap.get('id');
-    if (restaurantId && this.restaurant) {
-      const booking = {
-        type: 'Restaurant',
-        reference: restaurantId,
-        checkIn: this.checkIn,
-        restaurant: this.restaurant,
-      };
+    if (this.authService.isAuthenticated()) {
+      const restaurantId = this.route.snapshot.paramMap.get('id');
+      if (restaurantId && this.restaurant) {
+        const booking = {
+          type: 'Restaurant',
+          reference: restaurantId,
+          checkIn: this.checkIn,
+          restaurant: this.restaurant,
+        };
 
-      this.router.navigate(['/Booking'], {
-        state: { booking },
-      });
+        this.router.navigate(['/Booking'], {
+          state: { booking },
+        });
+      }
+    } else {
+      this.router.navigate(['/login']);
     }
+    
   }
 }
