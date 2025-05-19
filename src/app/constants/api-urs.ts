@@ -43,7 +43,7 @@ export const API = {
     markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
     delete: (id: string) => withDomain(`trips/${id}`),
     getSortedTrips: withDomain('trips/sorted'),
-    makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
+    makePublic: (id: string) => withDomain(`trips/${id}/makePublic`),
   },
   booking: {
     create: withDomain('bookings'),
