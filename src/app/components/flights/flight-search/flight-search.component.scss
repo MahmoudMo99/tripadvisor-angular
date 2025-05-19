@@ -222,3 +222,74 @@
         font-size: 12px; 
     }
 }
+
+
+
+  @media (max-width: 992px) {
+    .flight_search {
+        height: 85vh;
+    }
+    .formborder{
+      border-radius: 0% !important;
+    }
+    h2 {
+        font-size: 14px; 
+    }
+
+    .findtrip,
+    .flight-txt {
+        width: 100%;
+    }
+
+    .firstinput {
+        flex-direction: column;
+        display: flex;
+        gap: 10px;
+        border-radius: 0px;
+        gap: 0;
+    }
+
+    .firstinput > div,
+    .firstinput input,
+    .firstinput button {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .datedisp {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .s_disp,
+    .e_disp {
+        width: 48%;
+    }
+
+    .custom-input {
+        display: none !important;
+    }
+
+    .findtrip {
+        width: 100%;
+    }
+
+    .findtrip button {
+        background-color: #0a5; 
+        width: 100%;
+        color: white;
+        font-size: 18px;
+        border-radius: 0px;
+        border: none;
+    }
+
+    input, select, button {
+        font-size: 14px; 
+    }
+
+    .flight_search input::placeholder {
+        font-size: 12px; 
+    }
+}

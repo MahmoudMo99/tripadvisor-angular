@@ -30,6 +30,7 @@ import { ItineraryComponent } from './components/trips/tripsDetails/itinerary/it
 import { HotelsComponent } from './components/hotels/hotels/hotels-main/hotels.component';
 import { HotelsDetailsComponent } from './components/hotels/hotels-details/hotels-details-main/hotels-details.component';
 import { ModalLanguageComponent } from './shared/modal-language/modal-language.component';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 export const routes: Routes = [
   {
     path: '',
@@ -41,6 +42,7 @@ export const routes: Routes = [
       { path: 'options', component: OptionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'attractions', component: AttractionsComponent },
       { path: 'attraction/:id', component: AttractionsDetailsComponent },
       { path: 'hotels', component: HotelsComponent },
@@ -48,16 +50,16 @@ export const routes: Routes = [
 
       // { path: 'steps', component: StepsComponent },
       // { path: 'attraction/:id/contact', component: ContactComponent },
- { 
-    path: 'trips/:id', 
-    component: TripsDetailsMainComponent,
-    children: [
-      { path: '', redirectTo: 'for-you', pathMatch: 'full' }, 
-      { path: 'saves', component: SavesComponent },
-      { path: 'itinerary', component: ItineraryComponent },
-      { path: 'for-you', component: ForYouComponent }
-    ]
-  },
+      {
+        path: 'trips/:id',
+        component: TripsDetailsMainComponent,
+        children: [
+          { path: '', redirectTo: 'for-you', pathMatch: 'full' },
+          { path: 'saves', component: SavesComponent },
+          { path: 'itinerary', component: ItineraryComponent },
+          { path: 'for-you', component: ForYouComponent },
+        ],
+      },
       // { path: 'attraction/activity', component: ActivityComponent },
       // { path: 'payment', component: PaymentComponent },
 

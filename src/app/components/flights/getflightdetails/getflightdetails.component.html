@@ -1,38 +1,80 @@
-
 <div *ngIf="flight" class="container mt-4">
-  <h1>{{ flight.origin.name }} → {{ flight.destination.name }} and back</h1>
+  <h1>
+    {{ flight.origin.name }} → {{ flight.destination.name }}
+    <ng-container *ngIf="returnFlight"> &amp; {{ returnFlight.origin.name }} → {{ returnFlight.destination.name }}</ng-container>
+  </h1>
   <div class="row">
     <div class="col-12 col-md-8">
       <div class="cardbig">
         <div class="card-body">
-          <p>Trip Summary</p>
-          <hr>
           <div class="trip-summary">
-            <h6>{{ flight.origin.name }} → {{ flight.destination.name }}</h6>
-            <div class="flight-leg d-flex align-items-center">
+            <div class="d-flex align-items-center mb-5">
+              <h5 class="mb-0">{{ flight.origin.name }} <span style="color:#888; font-size:1.2rem;">&#8594;</span> {{ flight.destination.name }}</h5>
+            </div>
+            <div class="flight-leg d-flex align-items-center mb-3">
               <div class="departure text-start">
-                <p class="time">{{ flight.departureDate | date:'shortTime' }}</p>
-                <p class="date">{{ flight.departureDate | date:'EEE, MMM d' }}</p>
+                <div class="time" style="font-size:1.3rem; color:black; font-weight:300;">{{ flight.departureDate | date:'shortTime' }}</div>
+                <div class="date">{{ flight.departureDate | date:'EEE, MMM d' }}</div>
+                <div class="airport-code mt-1 text-muted" style="font-size:0.95rem;">{{ flight.origin.code }}</div>
               </div>
               <div class="duration mx-3 text-center position-relative">
                 <span class="line"></span>
-                <p class="mb-0">
-                  <i class="fa-solid fa-plane plane-icon"></i>
-                  {{ flight.flightDuration }}H
-                </p>
+                <div class="d-flex flex-column align-items-center">
+                  <i class="fa-solid fa-plane plane-icon mb-1" style="font-size:1.2rem;"></i>
+                  <span style="font-size:1rem; color:#555;">{{ flight.flightDuration }}H</span>
+                </div>
               </div>
               <div class="arrival text-end">
-                <p class="time">{{ flight.arrivalDate | date:'shortTime' }}</p>
-                <p class="date">{{ flight.arrivalDate | date:'EEE, MMM d' }}</p>
+                <div class="time" style="font-size:1.3rem; color:black; font-weight:300;">{{ flight.arrivalDate | date:'shortTime' }}</div>
+                <div class="date">{{ flight.arrivalDate | date:'EEE, MMM d' }}</div>
+                <div class="airport-code mt-1 text-muted" style="font-size:0.95rem;">{{ flight.destination.code }}</div>
               </div>
             </div>
-            <div class="flight-details mt-3">
-              <p><strong>{{ flight.origin.name }} · {{ flight.origin.country }}</strong></p>
-              <p>{{ flight.origin.description }}</p>
-              <p><strong>{{ flight.airline }}</strong></p>
-              <p><strong>Flight Number: {{ flight.flightNumber }}</strong></p>
-              <p><strong>{{ flight.destination.name }} · {{ flight.destination.country }}</strong></p>
-              <p>{{ flight.destination.description }}</p>
+            <div *ngIf="returnFlight">
+              <div class="d-flex align-items-center mb-5">
+                <h5 class="mb-0">{{ returnFlight.origin.name }} <span style="color:#888; font-size:1.2rem;">&#8594;</span> {{ returnFlight.destination.name }}</h5>
+              </div>
+              <div class="flight-leg d-flex align-items-center mb-3">
+                <div class="departure text-start">
+                  <div class="time" style="font-size:1.3rem; color:black; font-weight:300;">{{ returnFlight.departureDate | date:'shortTime' }}</div>
+                  <div class="date">{{ returnFlight.departureDate | date:'EEE, MMM d' }}</div>
+                  <div class="airport-code mt-1 text-muted" style="font-size:0.95rem;">{{ returnFlight.origin.code }}</div>
+                </div>
+                <div class="duration mx-3 text-center position-relative">
+                  <span class="line"></span>
+                  <div class="d-flex flex-column align-items-center">
+                    <i class="fa-solid fa-plane plane-icon mb-1" style="font-size:1.2rem; transform: rotate(180deg);"></i>
+                    <span style="font-size:1rem; color:#555;">{{ returnFlight.flightDuration }}H</span>
+                  </div>
+                </div>
+                <div class="arrival text-end">
+                  <div class="time" style="font-size:1.3rem; color:black; font-weight:300;">{{ returnFlight.arrivalDate | date:'shortTime' }}</div>
+                  <div class="date">{{ returnFlight.arrivalDate | date:'EEE, MMM d' }}</div>
+                  <div class="airport-code mt-1 text-muted" style="font-size:0.95rem;">{{ returnFlight.destination.code }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="flight-details row g-4 mt-2">
+              <div class="col-12 col-md-6">
+                <div>
+                  <div class="fw-bold mb-1" style="color:black;">{{ flight.origin.name }} <span class="text-muted"></span></div>
+                  <div class="mb-2 text-muted">{{ flight.origin.country }}</div>
+                  <div class="mb-2">{{ flight.origin.description }}</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div>
+                  <div class="fw-bold mb-1" style="color:black;">{{ flight.destination.name }} <span class="text-muted"></span></div>
+                  <div class="mb-2 text-muted">{{ flight.destination.country }}</div>
+                  <div class="mb-2">{{ flight.destination.description }}</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="bg-white    h-100">
+                  <div class="mb-2"><strong>Airline:</strong> {{ flight.airline }}</div>
+                  <div class="mb-2"><strong>Flight Number:</strong> {{ flight.flightNumber }}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

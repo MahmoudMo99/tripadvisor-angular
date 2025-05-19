@@ -10,7 +10,7 @@ interface CategorizedAttractions {
   topExperiencesWorldwide: ICards[];
   topGlobalDestinations: ICards[];
   topGlobalAttractions: ICards[];
-  topExperiencesByDestination: Record<string, ICards[]>;
+  topExperiencesByDestination: ICards[];
 }
 
 @Injectable({
@@ -39,17 +39,17 @@ export class AttractionCategorizerService {
           };
         });
 
-        const topExperiencesByDestination = attractions.reduce((acc, attraction) => {
-          const destination = attraction.destination?.name?.trim();
-          if (!destination || attraction.reviewsCount < 50) return acc;
+        // const topExperiencesByDestination = attractions.reduce((acc, attraction) => {
+        //   const destination = attraction.destination?.name?.trim();
+        //   if (!destination || attraction.reviewsCount < 50) return acc;
 
-          if (!acc[destination]) acc[destination] = [];
-          acc[destination].push(attraction);
-          acc[destination] = acc[destination]
-            .sort((a, b) => b.reviewsCount - a.reviewsCount)
-            .slice(0, 10);
-          return acc;
-        }, {} as Record<string, ICards[]>);
+        //   if (!acc[destination]) acc[destination] = [];
+        //   acc[destination].push(attraction);
+        //   acc[destination] = acc[destination]
+        //     .sort((a, b) => b.reviewsCount - a.reviewsCount)
+        //     .slice(0, 10);
+        //   return acc;
+        // }, {} as Record<string, ICards[]>);
 
         return {
           attractions,
@@ -74,8 +74,9 @@ export class AttractionCategorizerService {
             .filter(a => a.isGlobalAttraction)
             .sort((a, b) => b.rating - a.rating),
 
-          topExperiencesByDestination
-        };
+            topExperiencesByDestination: attractions
+            .filter(h => (h.reviewsCount ?? 0) > 20000)
+            .sort((a, b) => (b.reviewsCount ?? 0) - (a.reviewsCount ?? 0)),        };
       })
     );
   }

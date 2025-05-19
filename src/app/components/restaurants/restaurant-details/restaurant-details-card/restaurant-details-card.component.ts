@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'; // ✅ Add OnInit
+import { Component, OnInit } from '@angular/core'; //  Add OnInit
 
 
-import { Restaurant } from '../../../../models/restaurants/restaurant'; // ✅ Import model
+import { Restaurant } from '../../../../models/restaurants/restaurant'; //  Import model
 import { CommonModule } from '@angular/common';
 import { RestaurantService } from '../../../../services/restaurant.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './restaurant-details-card.component.scss',
 })
 export class RestaurantDetailsCardComponent implements OnInit {
-  restaurant: Restaurant | null = null; // ✅ Use proper type
+  restaurant: Restaurant | null = null; //  Use proper type
   parsedHours: { [day: string]: string[] } = {};
   weekDays = [
     'Sunday',

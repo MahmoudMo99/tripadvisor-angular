@@ -115,7 +115,7 @@ makeTripPublicAndUpdate(id: string, data: any) {
           `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
   );
 
-  return this.http.put(API.trips.makePublic(id), data, { headers });
+  return this.http.patch(API.trips.makePublic(id), data, { headers });
 }
 
 

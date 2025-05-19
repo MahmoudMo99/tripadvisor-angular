@@ -1,22 +1,9 @@
-// .cardbig {
-//     border: 1px solid #ddd;
-//     border-radius: 8px;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//   }
-  
-//   .card-body {
-//     padding: 20px;
-//   }
-  
-//   p {
-//     margin-bottom: 10px;
-//     font-size: 16px;
-//   }
-  
-//   strong {
-//     font-weight: bold;
-//     color: #333;
-//   }
+
+
+
+
+
+
 
 .container {
   padding: 20px;
@@ -33,37 +20,75 @@
   padding: 20px;
 }
 
-p {
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-strong {
+/* Trip summary header */
+.trip-summary h6 {
+  margin-bottom: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 
-.trip-summary h6 {
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
+/* Flight leg layout */
 .flight-leg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Evenly space elements */
   position: relative;
 }
 
+/* Departure and arrival sections */
 .departure, .arrival {
-  flex: 1;
+  flex: 1; /* Equal width for symmetry */
 }
 
+.departure {
+  text-align: left;
+}
+
+.arrival {
+  text-align: right;
+}
+
+/* Duration section with timeline */
 .duration {
   flex: 0 0 auto;
+  text-align: center;
+  position: relative;
+  margin: 0 20px; /* Adjusted for balanced spacing */
 }
 
+/* Dashed line styling */
+.line::before,
+.line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px; /* Increased for better symmetry */
+  border-top: 1px dashed #999;
+}
+
+.line::before {
+  left: -60px; /* Matches the width */
+}
+
+.line::after {
+  right: -60px; /* Matches the width */
+}
+
+/* Airplane icon */
+.plane-icon {
+  font-size: 14px;
+  color: #666;
+  display: block; /* Centers the icon */
+  margin: 0 auto 5px; /* Spacing below icon */
+}
+
+/* Text styling */
 .time {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #333;
 }
 
 .date {
@@ -72,54 +97,19 @@ strong {
   margin-bottom: 0;
 }
 
-.line::before,
-.line::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 50px;
-  border-top: 1px dashed #999;
+/* Flight details */
+.flight-details p {
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
-.line::before {
-  left: -50px;
+.flight-details strong {
+  font-weight: bold;
+  color: #333;
 }
 
-.line::after {
-  right: -50px;
-}
-
-.plane-icon {
-  font-size: 14px;
-  margin-right: 5px;
-  color: #666;
-}
-
-span {
-  color: #28a745; // Green for "Included"
-  margin-left: 5px;
-}
-
-.btn-success {
-  width: 200px;
-  border-radius: 50px;
-  padding: 10px;
-}
-
-@media (max-width: 768px) { // Tablet and below
-  .col-md-8, .col-md-4 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
-  .cardbig {
-    margin-bottom: 15px;
-  }
-
-  .btn-success {
-    width: 100%;
-  }
-
+/* Responsive design */
+@media (max-width: 768px) {
   .flight-leg {
     flex-direction: column;
     align-items: flex-start;
@@ -131,28 +121,16 @@ span {
   }
 
   .duration {
-    margin: 0;
+    margin: 10px 0;
   }
 
   .line::before,
   .line::after {
-    display: none; // Hide line on smaller screens
+    display: none; /* Hide line on smaller screens */
   }
 }
 
-@media (max-width: 576px) { // Phone
-  h1 {
-    font-size: 24px;
-  }
-
-  .card-body {
-    padding: 15px;
-  }
-
-  p {
-    font-size: 14px;
-  }
-
+@media (max-width: 576px) {
   .trip-summary h6 {
     font-size: 16px;
   }
@@ -163,5 +141,9 @@ span {
 
   .date {
     font-size: 12px;
+  }
+
+  .flight-details p {
+    font-size: 14px;
   }
 }
