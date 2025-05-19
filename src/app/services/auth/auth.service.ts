@@ -45,14 +45,44 @@ export class AuthService {
       })
     );
   }
+
   logout(): void {
-    this.tokenService.deleteCurrentToken();
-    this._isLoggedIn$.next(false);
-    this.router.navigate(['/options']);
+    this.changeStatusBack().subscribe({
+      next: () => {
+        this.tokenService.deleteCurrentToken();
+        this._isLoggedIn$.next(false);
+        this.router.navigate(['/options']);
+      },
+      error: (err) => {
+        this.tokenService.deleteCurrentToken();
+        this._isLoggedIn$.next(false);
+        this.router.navigate(['/options']);
+      },
+    });
+  }
+
+  changeStatusBack(): Observable<any> {
+    return this.httpClient.post(API.auth.logout, {});
   }
 
   isAuthenticated(): boolean {
     const token = this.currentToken;
     return token !== null && this.tokenService.isTokenValid(token);
+  }
+
+  sendOtp(email: string) {
+    return this.httpClient.post(API.auth.sendOtp, { email });
+  }
+
+  verifyOtp(email: string, otp: string) {
+    return this.httpClient.post(API.auth.verifyOtp, { email, otp });
+  }
+
+  resetPassword(email: string, otp: string, newPassword: string) {
+    return this.httpClient.post(API.auth.resetPassword, {
+      email,
+      otp,
+      newPassword,
+    });
   }
 }

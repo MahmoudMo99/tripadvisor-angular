@@ -19,7 +19,7 @@ export class CardsComponent implements AfterViewInit, OnInit {
   attractions: ICards[] = [];
   recommendedAttractions: ICards[] = [];
   topAttractions: ICards[] = [];
-  topExperiencesByDestination: Record<string, ICards[]> = {};
+  topExperiencesByDestination:ICards[]=[];
   topExperiencesWorldwide: ICards[] = [];
   topGlobalDestinations: ICards[] = [];
   topGlobalAttractions: ICards[] = [];

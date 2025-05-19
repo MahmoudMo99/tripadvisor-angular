@@ -43,9 +43,6 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           this.router.navigate(['/Home']);
         },
-        error: (error) => {
-          console.error('Login failed:', error);
-        },
       });
     }
   }

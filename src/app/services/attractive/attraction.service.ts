@@ -61,4 +61,13 @@ const cardElement = slider.nativeElement.querySelector(`.${cardClass}`);
   getAttractionById(id: string): Observable<ICards> {
     return this.http.get<ICards>(API.attractives.getById(id));
   }
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
+  filterAttractions(query: string): Observable<ICards[]> {
+    const params = { title: query };
+    return this.http.get<ICards[]>(API.attractives.filter, { params });
+  }
+  
 }

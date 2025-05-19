@@ -7,10 +7,16 @@ export const API = {
   auth: {
     register: withDomain('auth/register'),
     login: withDomain('auth/login'),
+    logout: withDomain('auth/logout'),
+    sendOtp: withDomain('auth/send-otp'),
+    verifyOtp: withDomain('auth/verify-otp'),
+    resetPassword: withDomain('auth/reset-password'),
   },
   attractives: {
     getAll: withDomain('attractives'),
     getById: (id: string) => withDomain(`attractives/${id}`),
+    filter: withDomain('attractives/filter'),
+
   },
 
   hotels: {
@@ -23,7 +29,9 @@ export const API = {
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
-    
+    getAll: `${Domain}destination`
+
+
   },
   trips: {
     create: withDomain('trips'),
@@ -35,7 +43,7 @@ export const API = {
     markComplete: (id: string) => withDomain(`trips/${id}/makeComplete`),
     delete: (id: string) => withDomain(`trips/${id}`),
     getSortedTrips: withDomain('trips/sorted'),
-    makePublic: (id: string) => withDomain(`trips/${id}/make-public`),
+    makePublic: (id: string) => withDomain(`trips/${id}/makePublic`),
   },
   booking: {
     create: withDomain('bookings'),
