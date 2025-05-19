@@ -1,54 +1,8 @@
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class FlightService {
-//   private apiUrl = 'http://localhost:3000/api';
-//   private flightUrl = `${this.apiUrl}/flights`;
-//     private httpHeaders = new HttpHeaders({
-//     'Content-Type': 'application/json',
-//   });
-// selectedFlight: any;
-//   constructor(private http: HttpClient) {}
-//  searchFlights(query: any): Observable<any> {
-//     return this.http.get(`${this.flightUrl}/filter`, {
-//       params: query,
-//       headers: this.httpHeaders,
-//     });
-//   }
-
-//   getFlightById(_id: string): Observable<any> {
-//     if (!_id) {
-//       throw new Error('Flight ID is required');
-//     }
-//     return this.http.get(`${this.flightUrl}/${_id}`, {
-//       headers: this.httpHeaders,
-//     });
-//   }
- 
-
-//     checkAvailability(flightId: string, query: any): Observable<any> {
-//     return this.http.get(`${this.flightUrl}/check-availability/${flightId}`, {
-//       params: query,
-//       headers: this.httpHeaders,
-//     });
-//   }
-// setSelectedFlight(flight: any): void {
-//   this.selectedFlight = flight;
-// } getSelectedFlight(): any {
-//   return this.selectedFlight;
-// }
-
-//   clearSelectedFlight(): void {
-//     this.selectedFlight = null;
-//   }
-// }import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -116,5 +70,18 @@ export class FlightService {
   clearSelectedFlight(): void {
     this.selectedFlight = null;
   
+  }
+
+  getFlightReviews(flightId: string): Observable<any> {
+    return this.http.get(`${this.flightUrl}/reviews/${flightId}`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  getAllFlightIds(): Observable<string[]> {
+    return this.http.get<any[]>(`${this.flightUrl}`, { headers: this.httpHeaders })
+      .pipe(
+        map(flights => flights.map(f => f._id))
+      );
   }
 }

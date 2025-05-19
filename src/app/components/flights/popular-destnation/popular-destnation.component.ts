@@ -83,17 +83,17 @@ destinations = [
     {
       title: "Get the best deals",
       description: "Compare flight prices from hundreds of airlines and travel sites in one place.",
-      image: "/assets/image.png"
+      image: "/assets/images/flights/best.png"
     },
     {
       title: "Customise your results",
       description: "Filter for your preferred airlines, flight times, desired price, and more.",
-      image: "/assets/image.png"
+      image: "/assets/images/flights/cust.png"
     },
     {
       title: "Search without worry",
       description: "We’re completely free to use—no hidden charges or fees on flight prices at all.",
-      image: "/assets/image.png"
+      image: "/assets/images/flights/search.png"
     }
   ];
    flightDeals = [

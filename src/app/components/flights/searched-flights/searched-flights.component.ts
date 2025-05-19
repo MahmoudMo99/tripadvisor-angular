@@ -1,4 +1,3 @@
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../../../services/flight.service';
@@ -20,7 +19,7 @@ export class SearchedFlightsComponent implements OnInit, OnDestroy {
   isDropdownOpen: boolean = false;
   private subscription: Subscription | undefined;
 
-  availableAirlines: string[] = ['Nesma', 'Other airline'];
+  availableAirlines: string[] = ['Nesma', 'American', 'Turkish', 'United', 'Egypt', 'Delta'];
 
   filters = {
     stops: { nonStop: false, oneStop: false, twoPlusStops: false },
@@ -38,7 +37,25 @@ export class SearchedFlightsComponent implements OnInit, OnDestroy {
   returnFlights: any[] = [];
   filteredResults: any[] = [];
   errorMessage: string = '';
-searchResults: any[] = [];
+  searchResults: any[] = [];
+
+  sortOptions = [
+    { label: 'Best Value', value: 'bestValue' },
+    { label: 'Price (Low to High)', value: 'priceAsc' },
+    { label: 'Price (High to Low)', value: 'priceDesc' },
+    { label: 'Duration (Short to Long)', value: 'durationAsc' },
+    { label: 'Duration (Long to Short)', value: 'durationDesc' },
+    { label: 'Earliest Outbound Arrival', value: 'earliestArrival' },
+    { label: 'Earliest Outbound Departure', value: 'earliestDeparture' },
+    { label: 'Latest Outbound Arrival', value: 'latestArrival' },
+    { label: 'Latest Outbound Departure', value: 'latestDeparture' }
+  ];
+  selectedSort: string = 'bestValue';
+
+  showFiltersModal = false;
+  showSortModal = false;
+  isEditingFormMobile = false;
+
   constructor(
     private route: ActivatedRoute,
     private flightService: FlightService,
@@ -49,28 +66,28 @@ searchResults: any[] = [];
   }
 
   ngOnInit(): void {
-    // Initialize airline filters
     this.availableAirlines.forEach(airline => {
       this.filters.airlines[airline] = false;
     });
 
-    // Retrieve the search query from the service
     this.searchQuery = this.flightService.getSearchQuery();
-
     if (this.searchQuery) {
-      // Set trip type and populate form
       this.tripType = this.searchQuery.tripType || 'roundTrip';
       this.populateForm(this.searchQuery);
       this.fetchFlights(this.searchQuery);
     } else {
       this.errorMessage = 'No search criteria found. Please search again.';
+      this.router.navigate(['']);
     }
+    this.updateEditingFormMobile();
+    window.addEventListener('resize', this.updateEditingFormMobile.bind(this));
   }
 
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    window.removeEventListener('resize', this.updateEditingFormMobile.bind(this));
   }
 
   initializeForm(): void {
@@ -109,7 +126,6 @@ searchResults: any[] = [];
       includeNearbyAirports: query.includeNearbyAirports || false
     });
 
-    // Populate multi-city segments
     if (query.tripType === 'multiCity' && query.segments?.length) {
       const segmentsArray = this.fb.array<FormGroup>([]);
       query.segments.forEach((segment: any) => {
@@ -192,78 +208,128 @@ searchResults: any[] = [];
       this.searchQuery = query;
       this.fetchFlights(query);
     }
+    this.isEditingFormMobile = false;
+    this.updateEditingFormMobile();
   }
 
   navigateToSearch(): void {
     this.router.navigate(['']);
   }
 
-  // ...existing code...
-fetchFlights(query: any): void {
-  this.flightService.searchFlights(query).subscribe({
-    next: (results: any[]) => {
-      this.searchResults = results;
-      if (query.tripType === 'roundTrip') {
-        this.outboundFlights = results.filter(flight =>
-          flight.origin?.name?.toLowerCase() === query.from?.toLowerCase() &&
-          flight.destination?.name?.toLowerCase() === query.to?.toLowerCase()
-        );
-        this.returnFlights = results.filter(flight =>
-          flight.origin?.name?.toLowerCase() === query.to?.toLowerCase() &&
-          flight.destination?.name?.toLowerCase() === query.from?.toLowerCase()
-        );
-        this.filteredResults = [...this.outboundFlights];
-      } else {
-        this.outboundFlights = results.filter(flight =>
-          flight.origin?.name?.toLowerCase() === query.from?.toLowerCase() &&
-          flight.destination?.name?.toLowerCase() === query.to?.toLowerCase()
-        );
-        this.returnFlights = [];
-        this.filteredResults = [...this.outboundFlights];
+  fetchFlights(query: any): void {
+    this.flightService.searchFlights(query).subscribe({
+      next: (results: any[]) => {
+        this.searchResults = results;
+        if (query.tripType === 'roundTrip') {
+          this.outboundFlights = results.filter(flight =>
+            flight.origin?.name?.toLowerCase() === query.from?.toLowerCase() &&
+            flight.destination?.name?.toLowerCase() === query.to?.toLowerCase()
+          );
+          this.returnFlights = results.filter(flight =>
+            flight.origin?.name?.toLowerCase() === query.to?.toLowerCase() &&
+            flight.destination?.name?.toLowerCase() === query.from?.toLowerCase()
+          );
+          this.filteredResults = [...this.outboundFlights];
+        } else {
+          this.outboundFlights = results.filter(flight =>
+            flight.origin?.name?.toLowerCase() === query.from?.toLowerCase() &&
+            flight.destination?.name?.toLowerCase() === query.to?.toLowerCase()
+          );
+          this.returnFlights = [];
+          this.filteredResults = [...this.outboundFlights];
+        }
+        this.applyFilters();
+      },
+      error: (err) => {
+        console.error('Error fetching flights:', err);
+        this.errorMessage = 'An error occurred while fetching flights.';
       }
-      this.applyFilters();
-    },
-    error: (err) => {
-      console.error('Error fetching flights:', err);
-      this.errorMessage = 'An error occurred while fetching flights.';
-    }
-  });
-}
+    });
+  }
 
   getLowestSeatPrice(seats: any[]): number {
     if (!seats || seats.length === 0) return 0;
     return Math.min(...seats.map(seat => seat.price));
   }
 
-  getflightbyid(flightId: string): void {
-    if (!flightId) {
+  getflightbyid(outboundId: string, returnId?: string): void {
+    if (!outboundId) {
       console.error('Flight ID is missing');
       return;
     }
-    this.router.navigate(['/getflightdetails', flightId]);
+    if (this.tripType === 'roundTrip' && returnId) {
+      // Navigate with both outbound and return flight IDs as query params
+      this.router.navigate(['/getflightdetails', outboundId], { queryParams: { returnId } });
+    } else {
+      this.router.navigate(['/getflightdetails', outboundId]);
+    }
+  }
+
+  normalizeAirlineName(name: string): string {
+    if (!name) return '';
+    return name
+      .toLowerCase()
+      .replace(/air ?lines?/g, '') 
+      .replace(/\s+/g, '') 
+      .replace(/[^a-z]/g, '');
   }
 
   applyFilters(): void {
-    // Example: filter only outbound flights, you can add logic for returnFlights as needed
     this.filteredResults = this.outboundFlights.filter(flight => {
-      const stops = flight.stops || 0;
+      const stops = flight.numberOfStops || 0;
       const stopsFilter =
         (this.filters.stops.nonStop && stops === 0) ||
         (this.filters.stops.oneStop && stops === 1) ||
         (this.filters.stops.twoPlusStops && stops >= 2) ||
         (!this.filters.stops.nonStop && !this.filters.stops.oneStop && !this.filters.stops.twoPlusStops);
 
-      const airlineFilter =
-        Object.values(this.filters.airlines).some(value => value)
-          ? this.filters.airlines[flight.airline]
-          : true;
+      let airlineFilter = true;
+      const selectedAirlines = Object.entries(this.filters.airlines).filter(([_, v]) => v).map(([k]) => k);
+      if (selectedAirlines.length > 0) {
+        const flightAirlineNorm = this.normalizeAirlineName(flight.airline || '');
+        airlineFilter = selectedAirlines.some(selected => {
+          const selectedNorm = this.normalizeAirlineName(selected);
+          return flightAirlineNorm.includes(selectedNorm) || selectedNorm.includes(flightAirlineNorm);
+        });
+      }
 
       const priceFilter = this.getLowestSeatPrice(flight.seats) <= this.filters.price;
-
       const durationFilter = (flight.flightDuration || 0) <= this.filters.duration;
 
       return stopsFilter && airlineFilter && priceFilter && durationFilter;
     });
+    this.sortResults();
+  }
+
+  sortResults(): void {
+    this.filteredResults.sort((a, b) => {
+      switch (this.selectedSort) {
+        case 'priceAsc':
+          return this.getLowestSeatPrice(a.seats) - this.getLowestSeatPrice(b.seats);
+        case 'priceDesc':
+          return this.getLowestSeatPrice(b.seats) - this.getLowestSeatPrice(a.seats);
+        case 'durationAsc':
+          return (a.flightDuration || 0) - (b.flightDuration || 0);
+        case 'durationDesc':
+          return (b.flightDuration || 0) - (a.flightDuration || 0);
+        case 'earliestArrival':
+          return new Date(a.arrivalTime).getTime() - new Date(b.arrivalTime).getTime();
+        case 'earliestDeparture':
+          return new Date(a.departureTime).getTime() - new Date(b.departureTime).getTime();
+        case 'latestArrival':
+          return new Date(b.arrivalTime).getTime() - new Date(a.arrivalTime).getTime();
+        case 'latestDeparture':
+          return new Date(b.departureTime).getTime() - new Date(a.departureTime).getTime();
+        case 'bestValue':
+        default:
+          return this.getLowestSeatPrice(a.seats) - this.getLowestSeatPrice(b.seats);
+      }
+    });
+  }
+
+  onSortChange(event: any): void {
+    this.selectedSort = event.target.value;
+    this.sortResults();
   }
 
   toggleAccordion(section: string): void {
@@ -281,5 +347,22 @@ fetchFlights(query: any): void {
         this.isDurationOpen = !this.isDurationOpen;
         break;
     }
+  }
+
+  updateEditingFormMobile() {
+    if (window.innerWidth <= 800) {
+      if (!this.isEditingFormMobile) {
+      }
+    } else {
+      this.isEditingFormMobile = false;
+    }
+  }
+
+  get isMobileOrTabletScreen(): boolean {
+    return window.innerWidth <= 1279;
+  }
+
+  get isMobileScreen(): boolean {
+    return window.innerWidth <= 800;
   }
 }

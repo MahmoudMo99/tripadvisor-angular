@@ -1,5 +1,22 @@
 <div class="container">
-  <div class="trip-type-buttons">
+
+
+  <!-- Mobile/Tablet Summary Bar (<=800px only) -->
+  <div class="mobile-summary-bar d-flex d-md-none" *ngIf="!isEditingFormMobile">
+    <div class="summary-content">
+      <span class="summary-route">
+        {{ flightForm.get('from')?.value || 'From' }}
+        <i class="fa-solid fa-arrow-right mx-2"></i>
+        {{ flightForm.get('to')?.value || 'To' }}
+      </span>
+      <button class="edit-btn" (click)="isEditingFormMobile = true">
+        <i class="fa-solid fa-pencil"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Trip Type Buttons: Hide on mobile/tablet unless editing -->
+  <div class="trip-type-buttons" [ngClass]="{'d-none d-md-block': !isEditingFormMobile, 'd-block': isEditingFormMobile}">
     <ul class="nav nav-pills justify-content-start">
       <li class="nav-item">
         <button class="nav-link" [class.active]="tripType === 'roundTrip'" (click)="setTripType('roundTrip')">
@@ -18,7 +35,9 @@
       </li>
     </ul>
   </div>
-  <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+
+  <!-- Search Form: Hide on mobile/tablet unless editing -->
+  <form [formGroup]="flightForm" (ngSubmit)="onSubmit()" [ngClass]="{'d-none d-md-block': !isEditingFormMobile, 'd-block': isEditingFormMobile}">
     <div class="formcontent">
       <div class="firstinput" style="display: flex; width: 100%; gap: 10px;">
         <div style="position: relative; flex: 1;">
@@ -80,9 +99,6 @@
                     style="padding-right: 15px; border-radius: 0px;"
                     [ngClass]="{'is-invalid': segment.get('date')?.touched && segment.get('date')?.invalid}">
                 </div>
-
-                <!-- <button (click)="addSegment()">Add Flight</button> -->
-                <!-- <button (click)="removeSegment(i)" *ngIf="multiCitySegments.length > 1">Remove</button> -->
               </div>
             </div>
           </div>
@@ -124,31 +140,37 @@
         </div>
 
         <button type="submit" class="findtrip" style="
-              background-color: gray;
-              color: white;
-              width: 220px;
-              height: 35px;
-              border: none;
-              border-radius: 50px;
-              font-weight: bold;
-              font-size: 16px;
-            " [disabled]="flightForm.invalid" (click)="fetchFlights(flightForm.value)">
+          background-color: gray;
+          color: white;
+          width: 220px;
+          height: 35px;
+          border: none;
+          border-radius: 50px;
+          font-weight: bold;
+          font-size: 16px;
+        " [disabled]="flightForm.invalid" (click)="fetchFlights(flightForm.value)">
           Search
         </button>
       </div>
 
       <div class="custom-input">
         <label>
-          <input type="checkbox" formControlName="preferNonStop" /> Prefer nonstop
+          <input type="checkbox" formControlName="preferNonStop" /> Prefer nonstop  
         </label>
         <label>
-          <input type="checkbox" formControlName="includeNearbyAirports" /> Include nearby airports
+          <input type="checkbox" formControlName="includeNearbyAirports" /> Include nearby airports 
         </label>
       </div>
     </div>
   </form>
+
   <div class="row">
-    <div class="col-3">
+     <div class="mobile-controls d-flex d-md-none mt-3 mb-3" *ngIf="!isEditingFormMobile">
+    <button class="btn btn-outline-secondary flex-fill" (click)="showFiltersModal = true">Filters</button>
+    <button class="btn btn-outline-secondary flex-fill" (click)="showSortModal = true">Sort</button>
+  </div>
+
+    <div class="col-3" *ngIf="!isMobileOrTabletScreen">
       <div class="accordion accordion-flush" id="filtersAccordion">
         <div class="accordion-item">
           <h2 class="accordion-header" id="stopsHeading">
@@ -230,27 +252,49 @@
       </div>
     </div>
 
-<div class="col-md-6">
+   <div [ngClass]="{
+      'col-12': isMobileOrTabletScreen,
+      'col-12 col-md-6': !isMobileOrTabletScreen
+    }">
+  <div class="sort-by-container d-none d-xl-flex">
+    <label for="sortBy" class="sort-by-label">Sort by:</label>
+    <select id="sortBy" class="sort-by-select" (change)="onSortChange($event)" [(ngModel)]="selectedSort">
+      <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+
   <div *ngIf="tripType === 'roundTrip' && outboundFlights.length > 0 && returnFlights.length > 0">
     <div class="row">
-      <ng-container *ngFor="let outbound of outboundFlights; let i = index">
+      <ng-container *ngFor="let outbound of filteredResults; let i = index">
         <div *ngIf="returnFlights[i]" class="col-md-12 mb-2">
           <div class="card flight-card">
             <div class="flight-info">
               <div class="time-airline">
                 <p class="mb-1 flight-time">
-                  {{ outbound.departureDate | date:'shortTime' }} - {{ outbound.arrivalDate | date:'shortTime' }}
-                  <sup *ngIf="(outbound.arrivalDate | date:'d') !== (outbound.departureDate | date:'d')">+1</sup>
+                  <ng-container *ngIf="isMobileScreen; else desktopTime">
+                    <span class="mobile-time-row">
+                      {{ outbound.departureDate | date:'shortTime' }}
+                    </span>
+                    <span class="mobile-time-row">
+                      {{ outbound.arrivalDate | date:'shortTime' }}
+                      <sup *ngIf="(outbound.arrivalDate | date:'d') !== (outbound.departureDate | date:'d')">+1</sup>
+                    </span>
+                  </ng-container>
+                  <ng-template #desktopTime>
+                    {{ outbound.departureDate | date:'shortTime' }} - {{ outbound.arrivalDate | date:'shortTime' }}
+                    <sup *ngIf="(outbound.arrivalDate | date:'d') !== (outbound.departureDate | date:'d')">+1</sup>
+                  </ng-template>
                 </p>
                 <p class="text-muted mb-2 airline-details">
-                  {{ outbound.origin?.code }} - {{ outbound.destination?.code }}, {{ outbound.airline }}
+
+              {{ outbound.airline }}
                 </p>
               </div>
               <div class="duration-stops">
                 <p class="mb-1">{{ outbound.flightDuration }}</p>
                 <p class="text-muted mb-0">
-                  {{ outbound.stopovers === 0 ? 'Nonstop' : outbound.stopovers + ' stop' + (outbound.stopovers > 1 ? 's' : '') }}
-                  <span *ngIf="outbound.stopovers > 0">, {{ outbound.stopoverLocation }}</span>
+                  {{ outbound.numberOfStops === 0 ? 'Nonstop' : outbound.numberOfStops + ' stop' + (outbound.numberOfStops > 1 ? 's' : '') }}
+                  <span *ngIf="outbound.numberOfStops > 0">, {{ outbound.stopsLocation }}</span>
                 </p>
               </div>
               <div class="price-action">
@@ -261,23 +305,33 @@
             <div class="flight-info">
               <div class="time-airline">
                 <p class="mb-1 flight-time">
-                  {{ returnFlights[i].departureDate | date:'shortTime' }} - {{ returnFlights[i].arrivalDate | date:'shortTime' }}
-                  <sup *ngIf="(returnFlights[i].arrivalDate | date:'d') !== (returnFlights[i].departureDate | date:'d')">+1</sup>
+                  <ng-container *ngIf="isMobileScreen; else desktopTime2">
+                    <span class="mobile-time-row">
+                      {{ returnFlights[i].departureDate | date:'shortTime' }}
+                    </span>
+                    <span class="mobile-time-row">
+                      {{ returnFlights[i].arrivalDate | date:'shortTime' }}
+                      <sup *ngIf="(returnFlights[i].arrivalDate | date:'d') !== (returnFlights[i].departureDate | date:'d')">+1</sup>
+                    </span>
+                  </ng-container>
+                  <ng-template #desktopTime2>
+                    {{ returnFlights[i].departureDate | date:'shortTime' }} - {{ returnFlights[i].arrivalDate | date:'shortTime' }}
+                    <sup *ngIf="(returnFlights[i].arrivalDate | date:'d') !== (returnFlights[i].departureDate | date:'d')">+1</sup>
+                  </ng-template>
                 </p>
                 <p class="text-muted mb-2 airline-details">
-                  {{ returnFlights[i].origin?.code }} - {{ returnFlights[i].destination?.code }}, {{ returnFlights[i].airline }}
-                </p>
+                 {{ returnFlights[i].airline }}
+                </p> 
               </div>
-              <div class="duration-stops">
-                <p class="mb-1">{{ returnFlights[i].flightDuration }}</p>
+               <div class="duration-stops">
+                <p class="mb-1">{{ outbound.flightDuration }}</p>
                 <p class="text-muted mb-0">
-                  {{ returnFlights[i].stopovers === 0 ? 'Nonstop' : returnFlights[i].stopovers + ' stop' + (returnFlights[i].stopovers > 1 ? 's' : '') }}
-                  <span *ngIf="returnFlights[i].stopovers > 0">, {{ returnFlights[i].stopoverLocation }}</span>
+                  {{ outbound.numberOfStops === 0 ? 'Nonstop' : outbound.numberOfStops + ' stop' + (outbound.numberOfStops > 1 ? 's' : '') }}
+                  <span *ngIf="outbound.numberOfStops > 0">, {{ outbound.stopsLocation }}</span>
                 </p>
               </div>
               <div class="price-action">
-                <!-- <h5 class="mb-2">${{ getLowestSeatPrice(outbound.seats) + getLowestSeatPrice(returnFlights[i].seats) }}</h5> -->
-                <button (click)="getflightbyid(outbound._id)" class="btn btn-warning rounded-custom mb-1">View Deal</button>
+                <button (click)="getflightbyid(outbound._id, returnFlights[i]._id)" class="btn btn-warning rounded-custom mb-1">View Deal</button>
                 <p *ngIf="returnFlights[i].selfTransfer" class="text-muted mb-0 self-transfer">Self-transfer</p>
               </div>
             </div>
@@ -294,19 +348,32 @@
           <div class="flight-info">
             <div class="time-airline">
               <p class="mb-1 flight-time">
-                {{ flight.departureDate | date:'shortTime' }} - {{ flight.arrivalDate | date:'shortTime' }}
-                <sup *ngIf="(flight.arrivalDate | date:'d') !== (flight.departureDate | date:'d')">+1</sup>
+                <ng-container *ngIf="isMobileScreen; else desktopTime3">
+                  <span class="mobile-time-row">
+                    {{ flight.departureDate | date:'shortTime' }}
+                  </span>
+                  <span class="mobile-time-row">
+                    {{ flight.arrivalDate | date:'shortTime' }}
+                    <sup *ngIf="(flight.arrivalDate | date:'d') !== (flight.departureDate | date:'d')">+1</sup>
+                  </span>
+                </ng-container>
+                <ng-template #desktopTime3>
+                  {{ flight.departureDate | date:'shortTime' }} - {{ flight.arrivalDate | date:'shortTime' }}
+                  <sup *ngIf="(flight.arrivalDate | date:'d') !== (flight.departureDate | date:'d')">+1</sup>
+                </ng-template>
               </p>
-              <p class="text-muted mb-2 airline-details">
-                {{ flight.origin?.code }} - {{ flight.destination?.code }}, {{ flight.airline }}
+              <p class="text-muted mb-2 airline-details one-way-airline-details">
+                {{ flight.origin?.code }}<span *ngIf="flight.origin?.code && flight.destination?.code"> - </span>{{ flight.destination?.code }}<span *ngIf="flight.airline">{{ flight.airline }}</span>
+                <!-- {{ flight.origin?.code }} - {{ flight.destination?.code }}, {{ flight.airline }} -->
               </p>
             </div>
-           <div class="duration-stops">
-  <p class="mb-1">{{ flight.flightDuration }}</p>
-  <p class="text-muted mb-0">
-    {{ flight.stopovers === 0 ? '2 stops' : flight.stopovers + ' stop' + (flight.stopovers > 1 ? 's' : '') }}
-    <span *ngIf="flight.stopovers > 0">, {{ flight.stopoverLocation }}</span>
-  </p></div>
+            <div class="duration-stops one-way-duration-stops">
+              <p class="mb-1 one-way-duration">{{ flight.flightDuration }}</p>
+              <p class="text-muted mb-0 one-way-stops">
+                {{ flight.numberOfStops === 0 ? 'Nonstop' : flight.numberOfStops + ' stop' + (flight.numberOfStops > 1 ? 's' : '') }}
+                <span *ngIf="flight.numberOfStops > 0" class="one-way-stops-location">, {{ flight.stopsLocation }}</span>
+              </p>
+            </div>
             <div class="price-action">
               <h5 class="mb-2">${{ getLowestSeatPrice(flight.seats) }}</h5>
               <button (click)="getflightbyid(flight._id)" class="btn btn-warning rounded-custom mb-1">View Deal</button>
@@ -325,16 +392,70 @@
     <p>{{ errorMessage }}</p>
   </div>
 </div>
-<div class="col-md-3">
+
+    <div class="col-md-3 d-none d-md-block" *ngIf="!isMobileOrTabletScreen">
       <div>
         <h5>greet {{searchResults[0]?.origin?.name}} hotel deals </h5>
         <img src="{{ searchResults[0]?.origin?.images[0] }}" class="card-img-top h-50">
         <div class="card-body">
           <p class="card-text">with price as low as:12$ </p>
           <button type="submit">Go somewhere</button>
-
         </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Mobile Controls: Show on <=800px for filters/sort modals -->
+ 
+  <!-- Filters Modal -->
+  <div class="modal-backdrop" *ngIf="showFiltersModal" (click)="showFiltersModal = false"></div>
+  <div class="filters-modal" *ngIf="showFiltersModal">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h5>Filters</h5>
+        <button class="close-btn" (click)="showFiltersModal = false">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check" *ngFor="let airline of availableAirlines">
+          <input type="checkbox" class="form-check-input" [(ngModel)]="filters.airlines[airline]" (change)="applyFilters()">
+          <label class="form-check-label">{{ airline }}</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="nonStop" class="form-check-input" [(ngModel)]="filters.stops.nonStop" (change)="applyFilters()">
+          <label for="nonStop" class="form-check-label">Non-stop</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="oneStop" class="form-check-input" [(ngModel)]="filters.stops.oneStop" (change)="applyFilters()">
+          <label for="oneStop" class="form-check-label">1 Stop</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="twoPlusStops" class="form-check-input" [(ngModel)]="filters.stops.twoPlusStops" (change)="applyFilters()">
+          <label for="twoPlusStops" class="form-check-label">2+ Stops</label>
+        </div>
+        <div class="form-group mt-3">
+          <label>Max Price: ${{ filters.price }}</label>
+          <input type="range" class="form-range" min="0" max="5000" step="100" [(ngModel)]="filters.price" (input)="applyFilters()">
+        </div>
+        <div class="form-group mt-3">
+          <label>Max Duration: {{ filters.duration }} Hours</label>
+          <input type="range" class="form-range" min="0" max="24" step="1" [(ngModel)]="filters.duration" (input)="applyFilters()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sort Modal -->
+  <div class="modal-backdrop" *ngIf="showSortModal" (click)="showSortModal = false"></div>
+  <div class="sort-modal" *ngIf="showSortModal">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h5>Sort By</h5>
+        <button class="close-btn" (click)="showSortModal = false">&times;</button>
+      </div>
+      <div class="modal-body">
+        <select class="form-select" [(ngModel)]="selectedSort" (change)="onSortChange($event)">
+          <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-

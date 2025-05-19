@@ -1,4 +1,3 @@
-
 // import { Component, OnInit } from '@angular/core';
 // import { FlightService } from '../../../services/flight.service';
 // import { ActivatedRoute, Router } from '@angular/router';
@@ -122,6 +121,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class GetflightdetailsComponent implements OnInit {
   flight: any;
+  returnFlight: any; // NEW: to hold return flight if present
   bookingData: any = {
     selectedDate: '',
     travelers: 1,
@@ -140,38 +140,46 @@ export class GetflightdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const flightId = params.get('id');
-      if (flightId) {
-        this.getflightbyid(flightId);
-      } else {
-        console.error('Flight ID is missing');
-      }
+      // Check for returnId in query params
+      this.route.queryParamMap.subscribe(qparams => {
+        const returnId = qparams.get('returnId');
+        if (flightId) {
+          this.getflightbyid(flightId, 'outbound');
+          if (returnId) {
+            this.getflightbyid(returnId, 'return');
+          }
+        } else {
+          console.error('Flight ID is missing');
+        }
+      });
     });
   }
 
-  getflightbyid(flightId: string): void {
+  getflightbyid(flightId: string, type: 'outbound' | 'return' = 'outbound'): void {
     if (!flightId) {
       console.error('Flight ID is missing');
       return;
     }
-
     this.flightService.getFlightById(flightId).subscribe({
       next: (flight) => {
         if (!flight) {
           console.error('No flight data returned');
           return;
         }
-        this.flight = flight;
-        console.log('Flight Details:', this.flight);
-
-        // Initialize bookingData with flight details
-        this.bookingData = {
-          selectedDate: new Date(flight.departureDate).toISOString().split('T')[0],
-          travelers: 1,
-          selectedSeat: flight.seats[0]?.seatNumber || '',
-          totalPrice: flight.seats[0]?.price || 0,
-          flight: this.flight,
-          flightId: flightId
-        };
+        if (type === 'outbound') {
+          this.flight = flight;
+          // Initialize bookingData with flight details (for outbound only)
+          this.bookingData = {
+            selectedDate: new Date(flight.departureDate).toISOString().split('T')[0],
+            travelers: 1,
+            selectedSeat: flight.seats[0]?.seatNumber || '',
+            totalPrice: flight.seats[0]?.price || 0,
+            flight: this.flight,
+            flightId: flightId
+          };
+        } else {
+          this.returnFlight = flight;
+        }
       },
       error: (err) => {
         console.error('Error fetching flight details:', err);
