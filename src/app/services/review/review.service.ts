@@ -34,7 +34,7 @@ export class ReviewService {
 
   getReviews(type: string, reference: string): Observable<{ totalRate: number, reviews: IReviews[] }> {
 
-    return this.http.get(API.review.getReviews(type,reference), { headers });
+    return this.http.get<{ totalRate: number, reviews: IReviews[] }>(API.review.getReviews(type,reference));
   }
   getCurrentUserReviews() {
     const headers = new HttpHeaders().set(
