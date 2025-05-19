@@ -1,17 +1,16 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 // import { LanguageNavbarService } from './language-navbar.service';
 // import{ LanguageNavbarService } from '../../../language-navbar.service';
-import{ LanguageNavbarService } from '../language-navbar.service';
+import { LanguageNavbarService } from '../language-navbar.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-modal-language',
   standalone: true,
   imports: [NgIf, NgFor, ModalModule],
-   templateUrl: './modal-language.component.html',
-  styleUrl: './modal-language.component.scss'
- 
+  templateUrl: './modal-language.component.html',
+  styleUrl: './modal-language.component.scss',
 })
 export class ModalLanguageComponent {
   @ViewChild('autoShownModal') public autoShownModal!: ModalDirective;
@@ -57,15 +56,15 @@ export class ModalLanguageComponent {
     { name: 'United Kingdom', language: 'English' },
     { name: 'Venezuela', language: 'Español' },
     { name: 'Việt Nam', language: 'Tiếng Việt' },
-    { name: 'Ελλάδα', language: 'Ελληνικά' }, 
-    { name: 'Россия', language: 'Русский' }, 
-    { name: 'العربية', language: 'العربية' }, 
-    { name: 'مصر', language: 'العربية' }, 
-    { name: '中国', language: '中文' }, 
-    { name: '台灣', language: '中文' }, 
-    { name: '日本', language: '日本語' }, 
-    { name: '香港特别行政區', language: '中文' }, 
-    { name: '대한민국', language: '한국어' }
+    { name: 'Ελλάδα', language: 'Ελληνικά' },
+    { name: 'Россия', language: 'Русский' },
+    { name: 'العربية', language: 'العربية' },
+    { name: 'مصر', language: 'العربية' },
+    { name: '中国', language: '中文' },
+    { name: '台灣', language: '中文' },
+    { name: '日本', language: '日本語' },
+    { name: '香港特别行政區', language: '中文' },
+    { name: '대한민국', language: '한국어' },
   ];
   currencies = [
     { name: 'U.S. Dollars', code: 'USD' },
@@ -137,7 +136,7 @@ export class ModalLanguageComponent {
     { name: 'Malagasy Ariary', code: 'MGA' },
     { name: 'Malawian Kwacha', code: 'MWK' },
     { name: 'Malaysian Ringgit', code: 'MYR' },
-    { name: 'Maldivian Rufiyaa', code: 'MVR' }, 
+    { name: 'Maldivian Rufiyaa', code: 'MVR' },
     { name: 'Mauritius Rupees', code: 'MUR' },
     { name: 'Mexican Peso', code: 'MXN' },
     { name: 'Moldovan Leu', code: 'MDL' },
@@ -187,7 +186,7 @@ export class ModalLanguageComponent {
     { name: 'Tajikistani Somoni', code: 'TJS' },
     { name: 'Tanzanian Shilling', code: 'TZS' },
     { name: 'Thai Baht', code: 'THB' },
-    { name: 'Tongan Pa\'anga', code: 'TOP' },
+    { name: "Tongan Pa'anga", code: 'TOP' },
     { name: 'Trinidad and Tobago Dollars', code: 'TTD' },
     { name: 'Tunisian Dinar', code: 'TND' },
     { name: 'Turkish Lira', code: 'TRY' },
@@ -198,13 +197,16 @@ export class ModalLanguageComponent {
     { name: 'Uzbekistan Sum', code: 'UZS' },
     { name: 'Vanuatu Vatu', code: 'VUV' },
     { name: 'Vietnamese Dong', code: 'VND' },
-    { name: 'Yemeni Rial', code: 'YER' }
-
-];
-  public selectedRegion: any ;
+    { name: 'Yemeni Rial', code: 'YER' },
+    { name: 'العربية', language: 'Arabic', code: 'ar' },
+  ];
+  public selectedRegion: any;
   selectedCurrency: any;
 
-  constructor(private langService: LanguageNavbarService) {}
+  constructor(
+    private translate: TranslateService,
+    private langService: LanguageNavbarService
+  ) {}
   ngOnInit(): void {
     this.langService.showModal$.subscribe(() => {
       this.showModal();
@@ -213,11 +215,11 @@ export class ModalLanguageComponent {
   public showModal(): void {
     this.autoShownModal.show();
   }
-  
+
   public hideModal(): void {
     this.autoShownModal.hide();
   }
-  
+
   public onHidden(): void {
     this.isModalShown = false;
   }
@@ -226,11 +228,16 @@ export class ModalLanguageComponent {
     this.selectedRegion = region;
   }
 
-setActiveTab(tab: string) {
-  this.activeTab = tab;
-}
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
-selectCurrency(currency: any) {
-  this.selectedCurrency = currency;
-}
+  selectCurrency(currency: any) {
+    this.selectedCurrency = currency;
+  }
+
+  changeLanguage(langCode: string) {
+    this.translate.use(langCode);
+    this.isModalShown = false; // close modal after language selection
+  }
 }

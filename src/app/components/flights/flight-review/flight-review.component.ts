@@ -19,7 +19,10 @@ export class FlightReviewComponent implements OnInit {
   loading: boolean = false;
   error: string | null = null;
 
-  constructor(private reviewService: ReviewService, private flightService: FlightService) {}
+  constructor(
+    private reviewService: ReviewService,
+    private flightService: FlightService
+  ) {}
 
   ngOnInit(): void {
     this.loadReviews();
@@ -37,10 +40,12 @@ export class FlightReviewComponent implements OnInit {
           this.loading = false;
           return;
         }
-        const requests = flightIds.map(flightId => this.reviewService.getReviews('Flight', flightId));
+        const requests = flightIds.map((flightId) =>
+          this.reviewService.getFlightReviews('Flight')
+        );
         forkJoin(requests).subscribe({
           next: (responses: any[]) => {
-            const allReviews = responses.flatMap(response => {
+            const allReviews = responses.flatMap((response) => {
               if (Array.isArray(response)) {
                 return response;
               } else if (response?.data && Array.isArray(response.data)) {
@@ -58,21 +63,23 @@ export class FlightReviewComponent implements OnInit {
           error: (_error: any) => {
             this.error = 'Failed to load reviews for flights.';
             this.loading = false;
-          }
+          },
         });
       },
       error: (_error: any) => {
         this.error = 'Failed to load flights to fetch reviews.';
         this.loading = false;
-      }
+      },
     });
   }
 
   getRatingCircles(rating: number): { filled: boolean }[] {
     const ratingValue = rating || 0;
-    return Array(5).fill(0).map((_, index) => ({
-      filled: index < ratingValue
-    }));
+    return Array(5)
+      .fill(0)
+      .map((_, index) => ({
+        filled: index < ratingValue,
+      }));
   }
 
   onSearch(): void {
@@ -81,11 +88,12 @@ export class FlightReviewComponent implements OnInit {
       return;
     }
     const searchTerm = this.searchQuery.toLowerCase();
-    const filteredReviews = this.reviews.filter(review =>
-      (review.title?.toLowerCase().includes(searchTerm) ||
-      review.description?.toLowerCase().includes(searchTerm) ||
-      review.reviewflightText?.toLowerCase().includes(searchTerm)
-    ));
+    const filteredReviews = this.reviews.filter(
+      (review) =>
+        review.title?.toLowerCase().includes(searchTerm) ||
+        review.description?.toLowerCase().includes(searchTerm) ||
+        review.reviewflightText?.toLowerCase().includes(searchTerm)
+    );
     this.reviews = filteredReviews;
   }
 }

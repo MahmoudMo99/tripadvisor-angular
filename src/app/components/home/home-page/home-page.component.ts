@@ -8,14 +8,14 @@ import { AdvertisementHomePageComponent } from '../advertisement-home-page/adver
 import { TrendsHomePageComponent } from '../trends-home-page/trends-home-page.component';
 import { AttractiveHomePageComponent } from '../attractive-home-page/attractive-home-page.component';
 import { MoreExploreComponent } from '../more-explore/more-explore.component';
-import { Destination1HomePageComponent } from '../destination1-home-page/destination1-home-page.component';
-import { Destination2HomePageComponent } from '../destination2-home-page/destination2-home-page.component';
+// import { Destination1HomePageComponent } from '../destination1-home-page/destination1-home-page.component';
+// import { Destination2HomePageComponent } from '../destination2-home-page/destination2-home-page.component';
 import { TravelChoiceComponent } from '../travel-choice/travel-choice.component';
 import { TravelCreatorComponent } from '../travel-creator/travel-creator.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [WhereToHomePageComponent,NavigateSearchHomePageComponent,SearchBarHomePageComponent,BannerHomePageComponent,AdvertisementHomePageComponent,TrendsHomePageComponent,AttractiveHomePageComponent,MoreExploreComponent,Destination1HomePageComponent,Destination2HomePageComponent,TravelChoiceComponent,TravelCreatorComponent],
+  imports: [WhereToHomePageComponent,NavigateSearchHomePageComponent,SearchBarHomePageComponent,BannerHomePageComponent,AdvertisementHomePageComponent,TrendsHomePageComponent,AttractiveHomePageComponent,MoreExploreComponent,TravelChoiceComponent,TravelCreatorComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

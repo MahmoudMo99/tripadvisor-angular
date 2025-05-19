@@ -8,9 +8,12 @@ import {
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { NavListsComponent } from '../nav-lists/nav-lists.component';
-import { LanguageNavbarService } from '../../../shared/language-navbar.service';
+
 import { RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { LanguageNavbarService } from '../../../shared/language-navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +22,9 @@ import { AuthService } from '../../../services/auth/auth.service';
     MobileMenuComponent,
     NavListsComponent,
     RouterModule,
-    RouterLink
+    RouterLink,
+    TranslateModule,
+    CommonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -37,8 +42,8 @@ export class NavbarComponent implements OnInit {
     this.isDropdownOpen = false;
   }
   constructor(
-    private langService: LanguageNavbarService,
-    private authService: AuthService
+    private authService: AuthService,
+    private langService: LanguageNavbarService
   ) {}
   ngOnInit(): void {
     this.updateLoggedStatus();

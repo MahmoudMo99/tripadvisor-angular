@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Hotel } from '../../../../models/hotels/Hotel';
 import { IRoom } from '../../../../models/hotels/IRoom';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-hotel-booking',
@@ -47,7 +48,8 @@ export class HotelBookingComponent {
   constructor(
     private hotelsService: HotelsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -103,7 +105,7 @@ export class HotelBookingComponent {
       )
       .subscribe({
         next: (response) => {
-          console.log("respons is", response.rooms);
+          console.log('respons is', response.rooms);
 
           this.rooms = response.rooms;
           this.loading = false;
@@ -147,20 +149,22 @@ export class HotelBookingComponent {
   }
 
   bookRoom(room: any) {
-    const booking = {
-      type: 'Hotel',
-      reference: this.hotelId,
-      checkIn: this.checkIn,
-      checkOut: this.checkOut,
-      roomId: room._id,
-      hotel: this.hotel,
-    };
+    if (this.authService.isAuthenticated()) {
+      const booking = {
+        type: 'Hotel',
+        reference: this.hotelId,
+        checkIn: this.checkIn,
+        checkOut: this.checkOut,
+        roomId: room._id,
+        hotel: this.hotel,
+      };
 
-    console.log('booking data', booking);
-
-    this.router.navigate(['/Booking'], {
-      state: { booking },
-    });
+      this.router.navigate(['/Booking'], {
+        state: { booking },
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+   
   }
-
 }

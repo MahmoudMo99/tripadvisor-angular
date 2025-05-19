@@ -111,13 +111,14 @@ import { FlightService } from '../../../services/flight.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-getflightdetails',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './getflightdetails.component.html',
-  styleUrls: ['./getflightdetails.component.scss']
+  styleUrls: ['./getflightdetails.component.scss'],
 })
 export class GetflightdetailsComponent implements OnInit {
   flight: any;
@@ -128,20 +129,21 @@ export class GetflightdetailsComponent implements OnInit {
     selectedSeat: '',
     totalPrice: 0,
     flight: null,
-    flightId: ''
+    flightId: '',
   };
 
   constructor(
     private route: ActivatedRoute,
     private flightService: FlightService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const flightId = params.get('id');
       // Check for returnId in query params
-      this.route.queryParamMap.subscribe(qparams => {
+      this.route.queryParamMap.subscribe((qparams) => {
         const returnId = qparams.get('returnId');
         if (flightId) {
           this.getflightbyid(flightId, 'outbound');
@@ -155,7 +157,10 @@ export class GetflightdetailsComponent implements OnInit {
     });
   }
 
-  getflightbyid(flightId: string, type: 'outbound' | 'return' = 'outbound'): void {
+  getflightbyid(
+    flightId: string,
+    type: 'outbound' | 'return' = 'outbound'
+  ): void {
     if (!flightId) {
       console.error('Flight ID is missing');
       return;
@@ -170,12 +175,14 @@ export class GetflightdetailsComponent implements OnInit {
           this.flight = flight;
           // Initialize bookingData with flight details (for outbound only)
           this.bookingData = {
-            selectedDate: new Date(flight.departureDate).toISOString().split('T')[0],
+            selectedDate: new Date(flight.departureDate)
+              .toISOString()
+              .split('T')[0],
             travelers: 1,
             selectedSeat: flight.seats[0]?.seatNumber || '',
             totalPrice: flight.seats[0]?.price || 0,
             flight: this.flight,
-            flightId: flightId
+            flightId: flightId,
           };
         } else {
           this.returnFlight = flight;
@@ -183,14 +190,14 @@ export class GetflightdetailsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching flight details:', err);
-      }
+      },
     });
   }
 
   onTravelersChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target) {
-      this.bookingData.travelers = +target.value || 1; 
+      this.bookingData.travelers = +target.value || 1;
       this.updateTotalPrice();
     }
   }
@@ -211,31 +218,41 @@ export class GetflightdetailsComponent implements OnInit {
   }
 
   updateTotalPrice(): void {
-    const selectedSeat = this.flight?.seats.find((s: any) => s.seatNumber === this.bookingData.selectedSeat);
-    this.bookingData.totalPrice = selectedSeat ? selectedSeat.price * this.bookingData.travelers : this.bookingData.totalPrice;
+    const selectedSeat = this.flight?.seats.find(
+      (s: any) => s.seatNumber === this.bookingData.selectedSeat
+    );
+    this.bookingData.totalPrice = selectedSeat
+      ? selectedSeat.price * this.bookingData.travelers
+      : this.bookingData.totalPrice;
   }
 
   getSelectedSeat(): any {
-    return this.flight?.seats.find((s: any) => s.seatNumber === this.bookingData.selectedSeat);
+    return this.flight?.seats.find(
+      (s: any) => s.seatNumber === this.bookingData.selectedSeat
+    );
   }
 
   bookFlight(seat: any): void {
-    const booking = {
-      type: 'Flight',
-      reference: this.bookingData.flightId,
-      checkIn: new Date(this.bookingData.selectedDate),
-      checkOut: null,
-      seatId: seat._id,
-      flight: this.flight
-    };
+    if (this.authService.isAuthenticated()) {
+      const booking = {
+        type: 'Flight',
+        reference: this.bookingData.flightId,
+        checkIn: new Date(this.bookingData.selectedDate),
+        checkOut: null,
+        seatId: seat._id,
+        flight: this.flight,
+      };
 
-    console.log('booking data', booking);
-
-    this.router.navigate(['/Booking'], {
-      state: { booking }
-    }).then(() => {
-      window.scrollTo(0, 0);
-      console.log('Navigated to /Booking with bookingData in state');
-    });
+      this.router
+        .navigate(['/Booking'], {
+          state: { booking },
+        })
+        .then(() => {
+          window.scrollTo(0, 0);
+          console.log('Navigated to /Booking with bookingData in state');
+        });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

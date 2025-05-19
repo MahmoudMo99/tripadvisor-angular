@@ -70,6 +70,17 @@ export class AuthService {
     return token !== null && this.tokenService.isTokenValid(token);
   }
 
+  googleLogin(token: ILoginRequest): Observable<ILoginResponse> {
+    return this.httpClient
+      .post<ILoginResponse>(API.auth.googleLogin, { token })
+      .pipe(
+        tap((res) => {
+          this.tokenService.saveToken(res.token);
+          this._isLoggedIn$.next(true);
+        })
+      );
+  }
+
   sendOtp(email: string) {
     return this.httpClient.post(API.auth.sendOtp, { email });
   }

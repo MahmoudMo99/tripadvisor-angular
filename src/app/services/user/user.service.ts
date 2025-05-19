@@ -25,7 +25,7 @@ export class UserService {
     return this.http.get<IUser>(API.user.getCurrentUser, {
       withCredentials: true,
       headers: {
-        authorization: `Bearer ${this.token}`, 
+        authorization: `Bearer ${this.token}`, // Include the token in the headers if needed
       },
     });
   }
@@ -33,7 +33,7 @@ export class UserService {
     return this.http.patch<IUser>(API.user.getCurrentUser, user, {
       withCredentials: true,
       headers: {
-        authorization: `Bearer ${this.token}`,
+        authorization: `Bearer ${this.token}`, // Include the token in the headers if needed
       },
     });
   }

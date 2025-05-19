@@ -1,7 +1,7 @@
 <ul class="nav justify-content-between col-9">
   @for (item of navItems; track $index) {
-    <li class="nav-item">
-      <a class="nav-link fw-semibold text-dark p-1" [routerLink]="item.path">{{ item.label }}</a>
-    </li>
+  <li class="nav-item">
+    <a class="nav-link fw-semibold text-dark p-1" [routerLink]="item.path">{{ item.label }}</a>
+  </li>
   }
 </ul>

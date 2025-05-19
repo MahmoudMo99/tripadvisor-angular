@@ -11,12 +11,12 @@ export const API = {
     sendOtp: withDomain('auth/send-otp'),
     verifyOtp: withDomain('auth/verify-otp'),
     resetPassword: withDomain('auth/reset-password'),
+    googleLogin: withDomain('auth/google'),
   },
   attractives: {
     getAll: withDomain('attractives'),
     getById: (id: string) => withDomain(`attractives/${id}`),
     filter: withDomain('attractives/filter'),
-
   },
 
   hotels: {
@@ -29,9 +29,7 @@ export const API = {
   destination: {
     search: (searchValue: string) =>
       withDomain(`destination/search?searchValue=${searchValue}`),
-    getAll: `${Domain}destination`
-
-
+    getAll: `${Domain}destination`,
   },
   trips: {
     create: withDomain('trips'),
@@ -59,7 +57,9 @@ export const API = {
     getCurrentUserReviews: `${Domain}reviews`,
     getReviews: (type: string, reference: string) =>
       `${Domain}reviews/${type}/${reference}`,
-    addReview: (type: string, reference: string) => `${Domain}reviews/${type}/${reference}`
+    addReview: (type: string, reference: string) => `${Domain}reviews/${type}/${reference}`,
+    getFlightReviews: (type: string) =>
+      `${Domain}reviews/flightReviews/${type}`,
   },
   location: {
     searchforlocation: (searchValue: string, limit: number, page: number) => `${Domain}destination/search?searchValue=${searchValue}&limit=${limit}&page=${page}`,
