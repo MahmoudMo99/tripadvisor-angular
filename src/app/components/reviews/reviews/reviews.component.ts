@@ -13,23 +13,29 @@ import { ReviewService } from '../../../services/review/review.service';
   styleUrl: './reviews.component.scss'
 })
 export class ReviewsComponent implements OnInit {
-  @Input() type='' ;
-  @Input() reference='' ;
+  @Input() type = '';
+  @Input() reference = '';
 
   reviews: IReviews[] = [];
+  rateCounter = [0, 0, 0, 0, 0];
+  totaleRate: number = 5;
 
   constructor(private reviewService: ReviewService) {
   }
   ngOnInit(): void {
-    console.log('test ======>',this.type,this.reference);
+    console.log('test ======>', this.type, this.reference);
     this.getReviews();
-
+    this.reviews.forEach((review) => {
+      this.rateCounter[review.rating - 1]++;
+    }
+    )
   }
-  
-  getReviews(){
-    this.reviewService.getReviews(this.type,this.reference).subscribe(res=>{
-      this.reviews = res;
-      console.log('reviews=> ',this.reviews)
+
+  getReviews() {
+    this.reviewService.getReviews(this.type, this.reference).subscribe(res => {
+      this.reviews = res.reviews;
+      this.totaleRate = res.totalRate;
+      console.log('reviews=> ', this.reviews)
     })
   }
 }
@@ -40,6 +46,7 @@ interface IReviews {
   description: string,
   photos?: string[],
   when: Date,
+  rating: number,
   user: {
     firstName: string;
     lastName: string;

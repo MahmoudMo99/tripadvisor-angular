@@ -5,12 +5,12 @@
       <img [src]="review.user.image || 'https://randomuser.me/api/portraits/men/1.jpg'" alt="user photo"
       class="rounded-circle img-fluid">
     </div>
-    <p class="fs-6 fw-bolder m-0">{{review.user.firstName+' '+review?.user?.firstName}}</p>
+    <p class="fs-6 fw-bolder m-0">{{review.user.firstName+' '+review?.user?.lastName}}</p>
   </div>
   <!-- body -->
   <div class="d-flex flex-column gap-3">
     <div class=" ">
-      <app-review-rate [readonly]="true" [rating]="4"></app-review-rate>
+      <app-review-rate [readonly]="true" [rating]="review.rating"></app-review-rate>
       <p class="fw-bolder m-0">{{review.title}}</p>
     </div>
     <!-- date -->

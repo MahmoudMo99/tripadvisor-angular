@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,5 +8,5 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './review-progressbar.component.scss'
 })
 export class ReviewProgressbarComponent {
-
+@Input() value: number = 0;
 }

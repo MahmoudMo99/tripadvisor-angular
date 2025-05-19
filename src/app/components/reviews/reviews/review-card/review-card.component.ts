@@ -14,6 +14,7 @@ export class ReviewCardComponent {
     description: string,
     photos?: string[],
     when: Date,
+    rating:number,
     user: {
       firstName: string;
       lastName: string;
