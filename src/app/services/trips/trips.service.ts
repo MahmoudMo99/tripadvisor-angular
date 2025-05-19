@@ -8,7 +8,6 @@ import { ItripShareRes } from '../../models/Trips/itrip-share-res';
 import { ItripFetch } from '../../models/Trips/itrip-fetch';
 import { environment } from '../../environment/environemt.dev';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,104 +19,53 @@ export class TripsService {
   createTrip(tripData: Itrip): Observable<any> {
     // const token = localStorage.getItem('accessToken');
     // token here will update while auth is completeeeeeeeeeeeeeeeeee
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
-    );
-    return this.http.post(API.trips.create, tripData, { headers });
+
+    return this.http.post(API.trips.create, tripData);
   }
 
   getMyTrips(): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
-    );
-    return this.http.get(API.trips.getMyTrips, { headers });
+    return this.http.get(API.trips.getMyTrips);
   }
 
-
-
-
   updateTripDate(tripId: string, date: string) {
-  const url = API.trips.addDateToTrip(tripId);
-  const headers = new HttpHeaders().set(
-    'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0 `
-  );
-  const body = { date };
-  return this.http.patch(url, body, { headers });
-}
+    const url = API.trips.addDateToTrip(tripId);
+
+    const body = { date };
+    return this.http.patch(url, body);
+  }
 
   inviteTrip(tripId: string) {
     const url = API.trips.invite(tripId);
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0 `
-    );
-    return this.http.get<ItripInviteRes>(url, { headers });
-  }
 
+    return this.http.get<ItripInviteRes>(url);
+  }
 
   shareTrip(tripId: string) {
     const url = API.trips.share(tripId);
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0 `
-    );
-    return this.http.get<ItripShareRes>(url, { headers });
+
+    return this.http.get<ItripShareRes>(url);
   }
 
-markTripAsComplete(tripId: string): Observable<{ trip: ItripFetch }> {
-  const headers = new HttpHeaders().set(
-    'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0 `
-  );
-  return this.http.patch<{ trip: ItripFetch }>(
-    API.trips.markComplete(tripId),
-    {},
-    { headers }
-  );
-}
-
-
-deleteTrip(tripId: string): Observable<any> {
-  const headers = new HttpHeaders().set(
-    'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0 `
-  );
-return this.http.delete(API.trips.delete(tripId), { headers });
-  
-}
-
-
-    getTripById(tripId: string): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
+  markTripAsComplete(tripId: string): Observable<{ trip: ItripFetch }> {
+    return this.http.patch<{ trip: ItripFetch }>(
+      API.trips.markComplete(tripId),
+      {}
     );
-    return this.http.get(API.trips.getTripById(tripId), { headers });
   }
 
+  deleteTrip(tripId: string): Observable<any> {
+    return this.http.delete(API.trips.delete(tripId));
+  }
 
+  getTripById(tripId: string): Observable<any> {
+    return this.http.get(API.trips.getTripById(tripId));
+  }
 
   getSortedTrips(sortBy: string) {
-  const headers = new HttpHeaders().set(
-    'Authorization',
-          `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
+    return this.http.get<any>(`${API.trips.getSortedTrips}?sortBy=${sortBy}`);
+  }
 
-  );
-  return this.http.get<any>(`${API.trips.getSortedTrips}?sortBy=${sortBy}`, { headers });
+  makeTripPublicAndUpdate(id: string, data: any) {
+    return this.http.patch(API.trips.makePublic(id), data);
+  }
 }
-
-makeTripPublicAndUpdate(id: string, data: any) {
-  const headers = new HttpHeaders().set(
-    'Authorization',
-          `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAxMDYxMzdmOWViZjJmODlhZmJjY2IiLCJpYXQiOjE3NDQ4OTc1NzZ9.DIe5NuzhAw2uGH9XqM-E0NxKTj-LUwTnlTvm8himsh0`
-  );
-
-  return this.http.patch(API.trips.makePublic(id), data, { headers });
-}
-
-
-}
-

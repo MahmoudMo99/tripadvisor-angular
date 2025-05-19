@@ -38,7 +38,6 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomePageComponent },
-      // { path: 'language', component: ModalLanguageComponent },
       { path: 'options', component: OptionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
@@ -48,8 +47,6 @@ export const routes: Routes = [
       { path: 'hotels', component: HotelsComponent },
       { path: 'hotel/:id', component: HotelsDetailsComponent },
 
-      // { path: 'steps', component: StepsComponent },
-      // { path: 'attraction/:id/contact', component: ContactComponent },
       {
         path: 'trips/:id',
         component: TripsDetailsMainComponent,
@@ -60,8 +57,7 @@ export const routes: Routes = [
           { path: 'for-you', component: ForYouComponent },
         ],
       },
-      // { path: 'attraction/activity', component: ActivityComponent },
-      // { path: 'payment', component: PaymentComponent },
+
       {
         path: 'trips/:id',
         component: TripsDetailsMainComponent,

@@ -8,8 +8,6 @@ import { IEditUser } from '../../models/user/i-edit-user';
   providedIn: 'root',
 })
 export class UserService {
-  token: string | null =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODAwOWY5NmFhMzYwMGEwYTE0NmU0ODkiLCJpYXQiOjE3NDQ4NzI3ODJ9.WC_jomYNYiq_xwdiWFDUS-wCT2PcZJIFwmWRgeGDkXk';
   showEditModelFlag = new BehaviorSubject<boolean>(false);
   showEditImageModelFlag = new BehaviorSubject<boolean>(false);
   showEditImageModelType = new BehaviorSubject<string>('image');
@@ -24,17 +22,11 @@ export class UserService {
   getCurrentUser(): Observable<IUser> {
     return this.http.get<IUser>(API.user.getCurrentUser, {
       withCredentials: true,
-      headers: {
-        authorization: `Bearer ${this.token}`, // Include the token in the headers if needed
-      },
     });
   }
   editProfile(user: IEditUser | FormData): Observable<IUser> {
     return this.http.patch<IUser>(API.user.getCurrentUser, user, {
       withCredentials: true,
-      headers: {
-        authorization: `Bearer ${this.token}`, // Include the token in the headers if needed
-      },
     });
   }
 }
